@@ -3,14 +3,12 @@ using Firebase.Extensions;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class LocalDatabase : MonoBehaviour
 {
     public string username;
     public string gmail;
     public string UID;
-   
-    public string workoutData;
     public static LocalDatabase instance;
     private DataSnapshot levelSnapshot;
 
@@ -29,6 +27,11 @@ public class LocalDatabase : MonoBehaviour
        
     }
 
+     void Start()
+    {
+       
+    }
+
     public List<string> Getvalue()
     {
         username = PlayerPrefs.GetString("username", "");
@@ -39,6 +42,7 @@ public class LocalDatabase : MonoBehaviour
         InfoData.Add(username);
         InfoData.Add(gmail);
         InfoData.Add(UID);
+      
         return InfoData;
     }
 
@@ -57,23 +61,34 @@ public class LocalDatabase : MonoBehaviour
     {
 
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
-        dbRef.Child("users").Child(UID).Child("workout").SetValueAsync(Data);  
+        dbRef.Child("users").Child(UID).Child("workout").SetValueAsync(Data);
+        PlayerPrefs.SetString("workout",Data);
     }
     public void Loadworkout()
     {
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
-      dbRef.Child("users").Child(UID).Child("workout").GetValueAsync().ContinueWithOnMainThread(task => {
-            if (task.IsFaulted)
+       
+       
+            dbRef.Child("users").Child(UID).Child("workout").GetValueAsync().ContinueWithOnMainThread(task =>
             {
-                // Failure
-            }
-            else if (task.IsCompleted)
-            {
-                DataSnapshot snapshot = task.Result;
-              workoutData = snapshot.Value.ToString();
-                // Success
-            }
-        });
+                if (task.IsFaulted)
+                {
+                    // Failure
+                    print("dsfdsf");
+                }
+                else if (task.IsCompleted)
+                {
+                    DataSnapshot snapshot = task.Result;
+                    print(snapshot.Value.ToString());
+                    PlayerPrefs.SetString("workout", snapshot.Value.ToString());
+                    // Success
+                }
+            });
+
+           
+        
+
+       
     }
     public void repData(string Exercisename, string Data)
     {
@@ -125,6 +140,15 @@ public class LocalDatabase : MonoBehaviour
             if(charValue == i)
             {
                 chars[i].SetActive(true);
+
+                if (GameObject.FindObjectOfType<ScrollHandler>() != null)
+                {
+                    GameObject.FindObjectOfType<ScrollHandler>().ani = chars[i].GetComponent<Animator>();
+                }
+                else if (GameObject.FindObjectOfType<WorkoutHandler>() != null)
+                {
+                    GameObject.FindObjectOfType<WorkoutHandler>().animator = chars[i].GetComponent<Animator>();
+                }
 
             }
             else

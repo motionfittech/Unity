@@ -35,6 +35,7 @@ public class FirebaseSetUp : MonoBehaviour
         if(PlayerPrefs.GetString("uid","").Length > 0)
         {
            List<string> tempSignData = LocalDatabase.instance.Getvalue();
+
             if (PlayerPrefs.GetString("loginMethod", "C") == "C")
             {
                 print(tempSignData[1] );

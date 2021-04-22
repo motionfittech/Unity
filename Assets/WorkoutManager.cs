@@ -42,6 +42,7 @@ public class WorkoutManager : MonoBehaviour
     private void Start()
     {
         loadworkoutData();
+     //   PlayerPrefs.SetString("workout",LocalDatabase.instance.workoutData);
      
     }
     private void LateUpdate()
@@ -101,8 +102,8 @@ public class WorkoutManager : MonoBehaviour
         popupPanel.SetActive(true);
         PopupText.fontSize = 150;
         PopupText.text = "Exercise will start in "+ temp.ToString()+" sec";
-        GetComponent<WorkoutHandler>().PlayerLeftHandModel.SetActive(true);
-        GetComponent<WorkoutHandler>().PlayerRightHandModel.SetActive(true);
+      ///  GetComponent<WorkoutHandler>().PlayerLeftHandModel.SetActive(true);
+      //  GetComponent<WorkoutHandler>().PlayerRightHandModel.SetActive(true);
         while (temp > 0)
         {
             yield return new WaitForSeconds(1);
@@ -212,7 +213,7 @@ public class WorkoutManager : MonoBehaviour
 
     public void loadworkoutData()
     {
-      LocalDatabase.instance.Loadworkout();
+     
         StartCoroutine(loadingWorkoutData());
       
     }
@@ -220,13 +221,13 @@ public class WorkoutManager : MonoBehaviour
     IEnumerator loadingWorkoutData()
     {
 
-        while (LocalDatabase.instance.workoutData.Length <= 0)
+        while (PlayerPrefs.GetString("workout", "").Length <= 0)
         {
            
             yield return null;
         }
        
-        string listAnimation = LocalDatabase.instance.workoutData;
+        string listAnimation = PlayerPrefs.GetString("workout", "");
         string[] tempData = listAnimation.Split(","[0]);
         for (int i = 0; i < tempData.Length; i++)
         {
