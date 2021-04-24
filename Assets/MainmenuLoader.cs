@@ -19,7 +19,12 @@ public class MainmenuLoader : MonoBehaviour
     }
     private void Start()
     {
+        if (LocalDatabase.instance == null)
+            return;
+
+
        StartCoroutine(LocalDatabase.instance.getCharacter(ListofPlayerModel,FadeImage));
+        
        LocalDatabase.instance.Loadworkout();
     }
     public void mainbt(int level)

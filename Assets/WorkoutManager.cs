@@ -31,6 +31,9 @@ public class WorkoutManager : MonoBehaviour
     public GameObject popupPanel;
     public TextMeshProUGUI PopupText;
     public ModalWindowManager myModalWindow;
+
+    public TextMeshProUGUI currentAniTxt, work2AniTxt,Clickedtext;
+   
     private void Awake()
     {
         startBt.material.SetColor("_Outline_Color", Color.black);
@@ -81,7 +84,7 @@ public class WorkoutManager : MonoBehaviour
     IEnumerator startCounter()
     {
         Doneanimation();
-        int temp = 5;
+        int temp = 0;
         popupPanel.SetActive(true);
         PopupText.fontSize = 400;
         PopupText.text = temp.ToString();
@@ -260,4 +263,13 @@ public class WorkoutManager : MonoBehaviour
         _startcounting = false;
     }
 
+    public void updateExerciseTxt()
+    {
+        work2AniTxt.text = currentAniTxt.text;
+    }
+
+    public void textString(string textH)
+    {
+        Clickedtext.text = textH;
+    }
 }
