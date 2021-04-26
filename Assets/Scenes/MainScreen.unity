@@ -287,6 +287,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 4f17edd16144c464daed95ef9a2734be, type: 2}
+    - target: {fileID: 5866666021909216657, guid: f8f1e8cdfe27baa4ab4c061c15530fa0,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8f1e8cdfe27baa4ab4c061c15530fa0, type: 3}
 --- !u!4 &100876818 stripped
@@ -2477,7 +2482,7 @@ MonoBehaviour:
   FadeImage: {fileID: 244656255}
   profileUsertxt: {fileID: 428385507}
   ListofPlayerModel:
-  - {fileID: 3766112375042974052}
+  - {fileID: 4071960576226986875}
   - {fileID: 2134689508}
   - {fileID: 1692668730}
   - {fileID: 100876819}
@@ -2996,6 +3001,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 4f17edd16144c464daed95ef9a2734be, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 0407c1e487f8cf749964db74df7ff668,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0407c1e487f8cf749964db74df7ff668, type: 3}
 --- !u!4 &1066484976 stripped
@@ -5297,6 +5307,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 4f17edd16144c464daed95ef9a2734be, type: 2}
+    - target: {fileID: 5866666021909216657, guid: b83b00b37616a7b479fde0a270b92cd1,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b83b00b37616a7b479fde0a270b92cd1, type: 3}
 --- !u!4 &1692668729 stripped
@@ -5998,6 +6013,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 4f17edd16144c464daed95ef9a2734be, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 72c1e50236f5a354f86a15cec3e9067c,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8086520302597111194, guid: 72c1e50236f5a354f86a15cec3e9067c,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -8073,7 +8093,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 4f17edd16144c464daed95ef9a2734be, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1

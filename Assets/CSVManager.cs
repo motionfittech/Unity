@@ -15,6 +15,7 @@ public class CSVManager : MonoBehaviour
 	private char fieldSeperator = ','; // It defines field seperate chracter
 	private int indexer = 0;
 	public AccelerometerObjectControl AOC;
+	public List<Vector3> Quat = new List<Vector3>();
 	void Start()
 	{
 
@@ -27,25 +28,42 @@ public class CSVManager : MonoBehaviour
 	// Read data from CSV file
 	private void readData()
 	{
+		print("Reading");
 		indexer = 0;
 		string[] records = csvFile.text.Split("\n"[0]);
 		for (int i = 0; i < records.Length; i++)
 		{
 
 			string[] temprecords = records[i].Split(","[0]);
-			if (temprecords.Length > 6)
-			{
+			
 				//addData(temprecords[5], temprecords[6], temprecords[7], "1");
-				Vector3 FliteredValues = AOC.filterPos(new Vector3(float.Parse(temprecords[5]), float.Parse(temprecords[6]), float.Parse(temprecords[7])));
-				addData(FliteredValues.x.ToString(),FliteredValues.y.ToString(),FliteredValues.z.ToString(),"1");
-			}
+				//	Vector3 FliteredValues = AOC.filterPos(new Vector3(float.Parse(temprecords[5]), float.Parse(temprecords[6]), float.Parse(temprecords[7])));
+				//	print(float.Parse(temprecords[5])+" "+ float.Parse(temprecords[6]) + " " + float.Parse(temprecords[7]) + " " + float.Parse(temprecords[8]));
+				Vector3 tempQuat = new Vector3(float.Parse(temprecords[0]),float.Parse(temprecords[1]),float.Parse(temprecords[2]));
+
+			//	this.transform.rotation = new Quaternion(float.Parse(temprecords[5]), float.Parse(temprecords[6]), float.Parse(temprecords[7]), float.Parse(temprecords[8]));
+				Quat.Add(tempQuat);
+			//	addData(FliteredValues.x.ToString(),FliteredValues.y.ToString(),FliteredValues.z.ToString(),"1");
+			
           
 		}
-		
-		
+
+		StartCoroutine(callrot());
 		//StartCoroutine(addValue());
 	}
-	
+	public IEnumerator callrot()
+    {
+		int temp = Quat.Count;
+		int counter = 0;
+		while(temp > 0)
+        {
+			this.transform.position = Quat[counter];
+			
+			yield return new WaitForSeconds(0.1f);
+			temp -= 1;
+			counter += 1;
+		}
+    }
 
 	public void waitforCall()
     {

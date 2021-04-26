@@ -1058,7 +1058,7 @@ MonoBehaviour:
   selectList: {fileID: 114852632293167302}
   ListofCharacter: []
   ListofModel:
-  - {fileID: 3766112374589744581}
+  - {fileID: 420888516}
   - {fileID: 388566626}
   - {fileID: 661171653}
   - {fileID: 2041100611}
@@ -1538,7 +1538,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 4f17edd16144c464daed95ef9a2734be, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -2428,6 +2428,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 4f17edd16144c464daed95ef9a2734be, type: 2}
+    - target: {fileID: 5866666021909216657, guid: b83b00b37616a7b479fde0a270b92cd1,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b83b00b37616a7b479fde0a270b92cd1, type: 3}
 --- !u!4 &661171652 stripped
@@ -4147,6 +4152,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 4f17edd16144c464daed95ef9a2734be, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 72c1e50236f5a354f86a15cec3e9067c,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8086520302597111194, guid: 72c1e50236f5a354f86a15cec3e9067c,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -6070,6 +6080,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 4f17edd16144c464daed95ef9a2734be, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 0407c1e487f8cf749964db74df7ff668,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0407c1e487f8cf749964db74df7ff668, type: 3}
 --- !u!1 &1771752867 stripped
@@ -7737,6 +7752,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 4f17edd16144c464daed95ef9a2734be, type: 2}
+    - target: {fileID: 5866666021909216657, guid: f8f1e8cdfe27baa4ab4c061c15530fa0,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8f1e8cdfe27baa4ab4c061c15530fa0, type: 3}
 --- !u!4 &2041100610 stripped

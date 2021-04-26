@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44401923, g: 0.49341774, b: 0.5728733, a: 1}
+  m_IndirectSpecularColor: {r: 0.16583481, g: 0.20799923, b: 0.28779745, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2894,7 +2894,7 @@ MonoBehaviour:
   FadeImage: {fileID: 1584406806}
   profileUsertxt: {fileID: 0}
   ListofPlayerModel:
-  - {fileID: 3766112374589744581}
+  - {fileID: 1298794546}
   - {fileID: 1342469143}
   - {fileID: 1035799901}
   - {fileID: 1467051775}
