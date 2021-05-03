@@ -24,12 +24,20 @@ public class LocalDatabase : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
-       
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
     }
 
      void Start()
     {
        
+    }
+
+
+    void Update()
+    {
+        if (Application.targetFrameRate != 60)
+            Application.targetFrameRate = 60;
     }
 
     public List<string> Getvalue()

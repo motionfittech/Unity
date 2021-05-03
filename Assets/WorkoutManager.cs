@@ -86,6 +86,9 @@ public class WorkoutManager : MonoBehaviour
         {
             stopWorkout(currentWorkoutSO);
             Doneanimation();
+            popupPanel.SetActive(false);
+            WH.animator.speed = 1;
+            print(WH.animator.speed);
             _isIKon = false;
         }
     }
@@ -186,6 +189,13 @@ public class WorkoutManager : MonoBehaviour
             myModalWindow.titleText = "Imbalances"; // Change title
             myModalWindow.descriptionText = "Do you really want to go to Imbalances, Unsave Reps will be lost"; // Change desc
         }
+
+        if (!_isIKon)
+        {
+            answer(counter);
+            return;
+        }
+
         myModalWindow.onConfirm.RemoveAllListeners();
         myModalWindow.onConfirm.AddListener(delegate { answer(counter); });
         myModalWindow.UpdateUI(); // Update UI
