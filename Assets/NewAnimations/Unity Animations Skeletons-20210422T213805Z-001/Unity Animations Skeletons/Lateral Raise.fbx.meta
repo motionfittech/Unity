@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 23fb7ebce0f62f541866c06496127e2b
 ModelImporter:
-  serializedVersion: 20101
+  serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: -7948933839114426945
@@ -902,6 +902,7 @@ ModelImporter:
   animationType: 3
   humanoidOversampling: 1
   avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
