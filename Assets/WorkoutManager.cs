@@ -38,7 +38,7 @@ public class WorkoutManager : MonoBehaviour
     public ModalWindowManager myModalWindow;
 
     public TextMeshProUGUI currentAniTxt, work2AniTxt,Clickedtext;
-
+    public FitCapTest FCT;
     Camera main_Camera;
     private void Awake()
     {
@@ -80,6 +80,8 @@ public class WorkoutManager : MonoBehaviour
         {
             NewWorkout(currentWorkoutSO);
             StartCoroutine(startCounter());
+            FCT.OnButtonPress_StartStopButtonObj();
+           
             _isIKon = true;
         }
         else
@@ -89,6 +91,7 @@ public class WorkoutManager : MonoBehaviour
             popupPanel.SetActive(false);
             WH.animator.speed = 1;
             print(WH.animator.speed);
+            FCT.OnButtonPress_DisconnectButtonObj();
             _isIKon = false;
         }
     }
@@ -129,7 +132,7 @@ public class WorkoutManager : MonoBehaviour
                 WH.animator.speed = 0;
             }
         }
-
+        FCT.OnButtonPress_DisconnectButtonObj();
         popupPanel.SetActive(false);
         WH.animator.speed = 1;
     }
