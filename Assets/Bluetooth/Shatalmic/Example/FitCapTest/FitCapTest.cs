@@ -12,10 +12,8 @@ public class FitCapTest : MonoBehaviour
 
     public Text AccelerometerText;
     public Text FitCapStatusText;
-    public Text BatteryLevelText;
-
-    public Button StartStopButtonObj;
-    public Button DisconnectButtonObj;
+    public Button StartStopButton;
+    public Button DisconnectButton;
 
     public GameObject TopPanel;
     public GameObject MiddlePanel;
@@ -26,7 +24,6 @@ public class FitCapTest : MonoBehaviour
         public string CharacteristicUUID;
         public bool Found;
     }
-
 
     public static List<Characteristic> Characteristics = new List<Characteristic>
     {
@@ -39,7 +36,6 @@ public class FitCapTest : MonoBehaviour
     public Characteristic SubscribeAccelerometer = Characteristics[0];
     public Characteristic ReadAccelerometer = Characteristics[1];
     public Characteristic ConfigureIMU = Characteristics[2];
-    public Characteristic Battery = Characteristics[3];
 
     public bool AllCharacteristicsFound { get { return !(Characteristics.Where(c => c.Found == false).Any()); } }
     public Characteristic GetCharacteristic(string serviceUUID, string characteristicsUUID)
@@ -55,7 +51,6 @@ public class FitCapTest : MonoBehaviour
         Scan,
         Connect,
         ConfigureAccelerometer,
-        ReadBattery,
         SubscribeToAccelerometer,
         SubscribingToAccelerometerTimeout,
         Disconnect,
@@ -73,29 +68,29 @@ public class FitCapTest : MonoBehaviour
     // path of the file
     private string path = "";
 
-
-    public void OnButtonPress_DisconnectButtonObj()
+       
+    public void OnButtonPress_DisconnectButton()
     {
         if (connectdisconnect == false)
         {
             connectdisconnect = true;
-            Text txt = DisconnectButtonObj.GetComponentInChildren<Text>();
+            Text txt = DisconnectButton.GetComponentInChildren<Text>();
             txt.text = "Disconnect";
         }
         else
         {
             connectdisconnect = false;
-            Text txt = DisconnectButtonObj.GetComponentInChildren<Text>();
+            Text txt = DisconnectButton.GetComponentInChildren<Text>();
             txt.text = "Connect";
         }
     }
 
-    public void OnButtonPress_StartStopButtonObj()
+    public void OnButtonPress_StartStopButton()
     {
         if (DisplayData == false)
         {
             DisplayData = true;
-            Text txt = StartStopButtonObj.GetComponentInChildren<Text>();
+            Text txt = StartStopButton.GetComponentInChildren<Text>();
             txt.text = "Stop";
 
             //string startstring = System.DateTime.Now.ToString();
@@ -117,7 +112,7 @@ public class FitCapTest : MonoBehaviour
         else
         {
             DisplayData = false;
-            Text txt = StartStopButtonObj.GetComponentInChildren<Text>();
+            Text txt = StartStopButton.GetComponentInChildren<Text>();
             txt.text = "Start";
 
             path = "";
@@ -161,31 +156,21 @@ public class FitCapTest : MonoBehaviour
 
     void StartProcess()
     {
-        BatteryLevelText.text = "Battery: Unknown";
-        FitCapStatusMessages = "StartProcesstest";
-        StartStopButtonObj.onClick.AddListener(OnButtonPress_StartStopButtonObj);
-        DisconnectButtonObj.onClick.AddListener(OnButtonPress_DisconnectButtonObj);
+        FitCapStatusMessages = "StartProcess";
+        StartStopButton.onClick.AddListener(OnButtonPress_StartStopButton);
+        DisconnectButton.onClick.AddListener(OnButtonPress_DisconnectButton);
 
         Reset();
         BluetoothLEHardwareInterface.Initialize(true, false, () =>
         {
-            FitCapStatusMessages = "StartProcess-startscan";
 
             SetState(States.Scan, 0.1f);
 
         }, (error) =>
         {
-            FitCapStatusMessages = "StartProcess-hwfail";
 
             BluetoothLEHardwareInterface.Log("Error: " + error);
         });
-    }
-
-    private void OnReadBattery(string characteristric, byte[] rcvd_data)
-    {
-        int level = rcvd_data[0];
-        string batt_level = "Battery: " + level.ToString() + "%";
-        BatteryLevelText.text = batt_level;
     }
 
     private void OnCharacteristicNotification(string deviceAddress, string characteristric, byte[] rcvd_data)
@@ -200,81 +185,71 @@ public class FitCapTest : MonoBehaviour
             MiddlePanel.SetActive(true);
         }
 
-
-
         var sBytes = BitConverter.ToString(rcvd_data);
 
 
-        //        Custom_App_Context.Acc_gyro_mag_char_value[0] = timestamp;
-        //        Custom_App_Context.Acc_gyro_mag_char_value[1] = (timestamp >> 8);
+            //        Custom_App_Context.Acc_gyro_mag_char_value[0] = timestamp;
+            //        Custom_App_Context.Acc_gyro_mag_char_value[1] = (timestamp >> 8);
 
-        int timestamp = (rcvd_data[0] | (rcvd_data[1] << 8));
+            int timestamp = (rcvd_data[0] | (rcvd_data[1] << 8));
 
-        int accAxesXint = (rcvd_data[2] | (rcvd_data[3] << 8));
-        if (accAxesXint > 32767) { accAxesXint -= 65536; }
+            int accAxesXint = (rcvd_data[2] | (rcvd_data[3] << 8));
+            if (accAxesXint > 32767) { accAxesXint -= 65536; }
 
-        int accAxesYint = (rcvd_data[4] | (rcvd_data[5] << 8));
-        if (accAxesYint > 32767) { accAxesYint -= 65536; }
+            int accAxesYint = (rcvd_data[4] | (rcvd_data[5] << 8));
+            if (accAxesYint > 32767) { accAxesYint -= 65536; }
 
-        int accAxesZint = (rcvd_data[6] | (rcvd_data[7] << 8));
-        if (accAxesZint > 32767) { accAxesZint -= 65536; }
+            int accAxesZint = (rcvd_data[6] | (rcvd_data[7] << 8));
+            if (accAxesZint > 32767) { accAxesZint -= 65536; }
 
-        int gyrAxesXint = (rcvd_data[8] | (rcvd_data[9] << 8));
-        if (gyrAxesXint > 32767) { gyrAxesXint -= 65536; }
+            int gyrAxesXint = (rcvd_data[8] | (rcvd_data[9] << 8));
+            if (gyrAxesXint > 32767) { gyrAxesXint -= 65536; }
 
-        int gyrAxesYint = (rcvd_data[10] | (rcvd_data[11] << 8));
-        if (gyrAxesYint > 32767) { gyrAxesYint -= 65536; }
+            int gyrAxesYint = (rcvd_data[10] | (rcvd_data[11] << 8));
+            if (gyrAxesYint > 32767) { gyrAxesYint -= 65536; }
 
-        int gyrAxesZint = (rcvd_data[12] | (rcvd_data[13] << 8));
-        if (gyrAxesZint > 32767) { gyrAxesZint -= 65536; }
+            int gyrAxesZint = (rcvd_data[12] | (rcvd_data[13] << 8));
+            if (gyrAxesZint > 32767) { gyrAxesZint -= 65536; }
 
-        //#define LSM6DSOX_ACC_SENSITIVITY_FS_2G   0.061f  
-        float ACCsensitivity = 0.061f;
+            //#define LSM6DSOX_ACC_SENSITIVITY_FS_2G   0.061f  
+            float ACCsensitivity = 0.061f;
 
-        //#define LSM6DSOX_ACC_SENSITIVITY_FS_4G   0.122f
-        //#define LSM6DSOX_ACC_SENSITIVITY_FS_8G   0.244f
-        //#define LSM6DSOX_ACC_SENSITIVITY_FS_16G  0.488f
+            //#define LSM6DSOX_ACC_SENSITIVITY_FS_4G   0.122f
+            //#define LSM6DSOX_ACC_SENSITIVITY_FS_8G   0.244f
+            //#define LSM6DSOX_ACC_SENSITIVITY_FS_16G  0.488f
 
-        //#define LSM6DSOX_GYRO_SENSITIVITY_FS_125DPS    4.375f
-        //#define LSM6DSOX_GYRO_SENSITIVITY_FS_250DPS    8.750f
-        //#define LSM6DSOX_GYRO_SENSITIVITY_FS_500DPS   17.500f
-        //#define LSM6DSOX_GYRO_SENSITIVITY_FS_1000DPS  35.000f
-        //#define LSM6DSOX_GYRO_SENSITIVITY_FS_2000DPS  70.000f 
-        float GYRsensitivity = 70.000f;
+            //#define LSM6DSOX_GYRO_SENSITIVITY_FS_125DPS    4.375f
+            //#define LSM6DSOX_GYRO_SENSITIVITY_FS_250DPS    8.750f
+            //#define LSM6DSOX_GYRO_SENSITIVITY_FS_500DPS   17.500f
+            //#define LSM6DSOX_GYRO_SENSITIVITY_FS_1000DPS  35.000f
+            //#define LSM6DSOX_GYRO_SENSITIVITY_FS_2000DPS  70.000f 
+            float GYRsensitivity = 70.000f;
 
-        //      int accAxesXint32 = (int)((float)((float)accAxesXint * ACCsensitivity));
-        //      int accAxesYint32 = (int)((float)((float)accAxesYint * ACCsensitivity));
-        //      int accAxesZint32 = (int)((float)((float)accAxesZint * ACCsensitivity));
+            int accAxesXint32 = (int)((float)((float)accAxesXint * ACCsensitivity));
+            int accAxesYint32 = (int)((float)((float)accAxesYint * ACCsensitivity));
+            int accAxesZint32 = (int)((float)((float)accAxesZint * ACCsensitivity));
 
-        //      int gyrAxesXint32 = (int)((float)((float)gyrAxesXint * GYRsensitivity));
-        //      int gyrAxesYint32 = (int)((float)((float)gyrAxesYint * GYRsensitivity));
-        //      int gyrAxesZint32 = (int)((float)((float)gyrAxesZint * GYRsensitivity));
-        float accAxesXint32 = (float)((float)((float)accAxesXint * ACCsensitivity));
-        float accAxesYint32 = (float)((float)((float)accAxesYint * ACCsensitivity));
-        float accAxesZint32 = (float)((float)((float)accAxesZint * ACCsensitivity));
+            int gyrAxesXint32 = (int)((float)((float)gyrAxesXint * GYRsensitivity));
+            int gyrAxesYint32 = (int)((float)((float)gyrAxesYint * GYRsensitivity));
+            int gyrAxesZint32 = (int)((float)((float)gyrAxesZint * GYRsensitivity));
 
-        float gyrAxesXint32 = (float)((float)((float)gyrAxesXint * GYRsensitivity));
-        float gyrAxesYint32 = (float)((float)((float)gyrAxesYint * GYRsensitivity));
-        float gyrAxesZint32 = (float)((float)((float)gyrAxesZint * GYRsensitivity));
+            string stime = timestamp.ToString();
 
-        //string stime = timestamp.ToString();
-
-        string display_string = "timestamp: " + timestamp.ToString() + "\n" +
-                                "Acc:\n" +
-                                "X= " + accAxesXint32.ToString() + "\n" +
-                                "Y= " + accAxesYint32.ToString() + "\n" +
-                                "Z= " + accAxesZint32.ToString() + "\n" +
-                                "Gyr:\n" +
-                                "X= " + gyrAxesXint32.ToString() + "\n" +
-                                "Y= " + gyrAxesYint32.ToString() + "\n" +
-                                "Z= " + gyrAxesZint32.ToString();
+            string display_string = "timestamp: " + timestamp.ToString() + "\n" +
+                                    "Acc:\n" +
+                                    "X= " + accAxesXint32.ToString() + "\n" +
+                                    "Y= " + accAxesYint32.ToString() + "\n" +
+                                    "Z= " + accAxesZint32.ToString() + "\n" +
+                                    "Gyr:\n" +
+                                    "X= " + gyrAxesXint32.ToString() + "\n" +
+                                    "Y= " + gyrAxesYint32.ToString() + "\n" +
+                                    "Z= " + gyrAxesZint32.ToString();
 
         if (DisplayData == true)
         {
             AccelerometerText.text = display_string;
 
-            string str = timestamp.ToString() + "," +
-                         accAxesXint32.ToString() + "," +
+            string str = accAxesXint32.ToString() + "," +
                          accAxesYint32.ToString() + "," +
                          accAxesZint32.ToString() + "," +
                          gyrAxesXint32.ToString() + "," +
@@ -316,7 +291,6 @@ public class FitCapTest : MonoBehaviour
         if (_timeout > 0f)
         {
             _timeout -= Time.deltaTime;
-            //BatteryLevelText.text = "time: " + _timeout.ToString();
             if (_timeout <= 0f)
             {
                 _timeout = 0f;
@@ -333,27 +307,27 @@ public class FitCapTest : MonoBehaviour
 
                             FitCapStatusMessages = "Scanning Found: " + deviceName;
 
-                            if (deviceName.Contains(DeviceName))
-                            {
-                                FitCapStatusMessages = "Found a FitCap: " + address;
-
-                                if (connectdisconnect == true)
+                                if (deviceName.Contains(DeviceName))
                                 {
-                                    BluetoothLEHardwareInterface.StopScan();
+                                    FitCapStatusMessages = "Found a FitCap: " + address;
 
-                                    TopPanel.SetActive(true);
+                                    if (connectdisconnect == true)
+                                    {
+                                        BluetoothLEHardwareInterface.StopScan();
 
-                                    // found a device with the name we want
-                                    // this example does not deal with finding more than one
-                                    _deviceAddress = address;
-                                    SetState(States.Connect, 0.5f);
+                                        TopPanel.SetActive(true);
+
+                                        // found a device with the name we want
+                                        // this example does not deal with finding more than one
+                                        _deviceAddress = address;
+                                        SetState(States.Connect, 0.5f);
+                                    }
+                                    else
+                                    {
+                                        SetState(States.Scan, 0.5f);
+                                    }
                                 }
-                                else
-                                {
-                                    SetState(States.Scan, 0.5f);
-                                }
-                            }
-                        }, null, true);
+                                }, null, true);
                         break;
 
                     case States.Connect:
@@ -388,15 +362,10 @@ public class FitCapTest : MonoBehaviour
                         FitCapStatusMessages = "Configuring FitCap Accelerometer...";
                         BluetoothLEHardwareInterface.WriteCharacteristic(_deviceAddress, ConfigureIMU.ServiceUUID, ConfigureIMU.CharacteristicUUID, ConfigureIMU_Bytes, ConfigureIMU_Bytes.Length, true, (address) => {
                             FitCapStatusMessages = "Configured FitCap Accelerometer";
-                            SetState(States.ReadBattery, 2f);
+                            SetState(States.SubscribeToAccelerometer, 2f);
                         });
                         break;
 
-                    case States.ReadBattery:
-                        BatteryLevelText.text = "Battery: Read";
-                        BluetoothLEHardwareInterface.ReadCharacteristic(_deviceAddress, Battery.ServiceUUID, Battery.CharacteristicUUID, OnReadBattery);
-                        SetState(States.SubscribeToAccelerometer, 2f);
-                        break;
 
                     case States.SubscribeToAccelerometer:
                         SetState(States.SubscribingToAccelerometerTimeout, 5f);
@@ -405,7 +374,7 @@ public class FitCapTest : MonoBehaviour
                         BluetoothLEHardwareInterface.SubscribeCharacteristicWithDeviceAddress(_deviceAddress, SubscribeAccelerometer.ServiceUUID, SubscribeAccelerometer.CharacteristicUUID, delegate { }, OnCharacteristicNotification);
                         FitCapStatusMessages = "Subscribed to FitCap Accelerometer...";
 
-                        Text txt = StartStopButtonObj.GetComponentInChildren<Text>();
+                        Text txt = StartStopButton.GetComponentInChildren<Text>();
                         txt.text = "Start";
 
                         break;
