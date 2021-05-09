@@ -80,7 +80,7 @@ public class WorkoutManager : MonoBehaviour
         {
             NewWorkout(currentWorkoutSO);
             StartCoroutine(startCounter());
-            FCT.OnButtonPress_StartStopButtonObj();
+            FCT.OnButtonPress_StartStopButton();
            
             _isIKon = true;
         }
@@ -91,7 +91,7 @@ public class WorkoutManager : MonoBehaviour
             popupPanel.SetActive(false);
             WH.animator.speed = 1;
             print(WH.animator.speed);
-            FCT.OnButtonPress_DisconnectButtonObj();
+            FCT.OnButtonPress_DisconnectButton();
             _isIKon = false;
         }
     }
@@ -132,7 +132,7 @@ public class WorkoutManager : MonoBehaviour
                 WH.animator.speed = 0;
             }
         }
-        FCT.OnButtonPress_DisconnectButtonObj();
+        FCT.OnButtonPress_DisconnectButton();
         popupPanel.SetActive(false);
         WH.animator.speed = 1;
     }

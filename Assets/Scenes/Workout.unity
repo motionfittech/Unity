@@ -909,9 +909,8 @@ MonoBehaviour:
   DeviceName: FitCap1
   AccelerometerText: {fileID: 1959476321}
   FitCapStatusText: {fileID: 2092832426}
-  BatteryLevelText: {fileID: 2092832426}
-  StartStopButtonObj: {fileID: 1244615148}
-  DisconnectButtonObj: {fileID: 1449819396}
+  StartStopButton: {fileID: 1244615148}
+  DisconnectButton: {fileID: 1449819396}
   TopPanel: {fileID: 1946407582}
   MiddlePanel: {fileID: 1893575061}
 --- !u!1 &105965591
