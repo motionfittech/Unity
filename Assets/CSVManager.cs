@@ -16,8 +16,11 @@ public class CSVManager : MonoBehaviour
 	private int indexer = 0;
 	public AccelerometerObjectControl AOC;
 	public List<Vector3> Quat = new List<Vector3>();
+	public string saveFilename = "Default";
+	public Transform IkPos;
     Vector3 previous ;
     float velocity;
+	public float offsetX, offsetY, offsetZ;
 	void Start()
 	{
 
@@ -39,18 +42,19 @@ public class CSVManager : MonoBehaviour
 			string[] temprecords = records[i].Split(","[0]);
 
 			//addData(temprecords[5], temprecords[6], temprecords[7], "1");
-		//	print(temprecords[1] +"  "+ temprecords[2] + "  " + temprecords[3]);
-			Vector3 FliteredValues = AOC.filterPos(new Vector3(float.Parse(temprecords[1]), float.Parse(temprecords[2]), float.Parse(temprecords[3])));
+			//print(temprecords[5] +"  "+ temprecords[6] + "  " + temprecords[7]);
+		Vector3 FliteredValues = AOC.filterPos(new Vector3(float.Parse(temprecords[0])+offsetX, float.Parse(temprecords[1])+offsetY, float.Parse(temprecords[2])+offsetZ));
 				//	print(float.Parse(temprecords[5])+" "+ float.Parse(temprecords[6]) + " " + float.Parse(temprecords[7]) + " " + float.Parse(temprecords[8]));
 				//Vector3 tempQuat = new Vector3(float.Parse(temprecords[1]),float.Parse(temprecords[2]),float.Parse(temprecords[3]));
 
 			//	this.transform.rotation = new Quaternion(float.Parse(temprecords[5]), float.Parse(temprecords[6]), float.Parse(temprecords[7]), float.Parse(temprecords[8]));
-				//Quat.Add(tempQuat);
+			Quat.Add(FliteredValues);
 			
-				addData(FliteredValues.x.ToString(),FliteredValues.y.ToString(),FliteredValues.z.ToString(),"1");
+		//		addData(FliteredValues.x.ToString(),FliteredValues.y.ToString(),FliteredValues.z.ToString(), indexer.ToString());
 			
           
 		}
+		StartCoroutine(ReadingEnd());
 		//if (Quat.Count > 0)
 		//{
 		//	this.transform.position = new Vector3(Quat[0].x / 245, Quat[0].y / -1266, Quat[0].z / 328);
@@ -58,6 +62,30 @@ public class CSVManager : MonoBehaviour
 		//}
 
 		//StartCoroutine(addValue());
+	}
+	public IEnumerator ReadingEnd()
+	{
+		while (Quat.Count <= 0)
+		{
+			yield return new WaitForSeconds(0.5f);
+		}
+		StartCoroutine(PlayingEnd());
+
+	}
+	public IEnumerator PlayingEnd()
+	{
+		int counter = 0;
+		while (Quat.Count-1 != counter)
+		{
+			IkPos.localPosition = Quat[counter];
+		
+			counter += 1;
+			yield return new WaitForSeconds(0.01f);
+		}
+	//	IkPos.localPosition = Quat[0];
+	//	print("ReadingEnd");
+
+
 	}
 	public IEnumerator callrot()
     {
@@ -86,7 +114,7 @@ public class CSVManager : MonoBehaviour
 		//indexer += 1;
     }
 	// Add data to CSV file
-
+	
 
 
 	public void saveVelocityRaw(string velocity)
@@ -97,14 +125,15 @@ public class CSVManager : MonoBehaviour
 	public void addData(string X,string Y, string Z, string rep)
 	{
 
-		// Following line adds data to CSV file
-		if (indexer > 0)
-		{
-			File.AppendAllText(getPath() + "/Resources/Save_Squat_Set_8.csv", lineSeperater + X + fieldSeperator + Y + fieldSeperator + Z + fieldSeperator + rep);
-		}
+      //  Following line adds data to CSV file
+
+        if (indexer > 0)
+        {
+            File.AppendAllText(getPath() + "/Resources/" + saveFilename + ".csv", lineSeperater + X + fieldSeperator + Y + fieldSeperator + Z + fieldSeperator + rep);
+        }
         else
         {
-			File.AppendAllText(getPath() + "/Resources/Save_Squat_Set_8.csv", X + fieldSeperator + Y + fieldSeperator + Z + fieldSeperator + rep);
+            File.AppendAllText(getPath() + "/Resources/"+ saveFilename + ".csv", X + fieldSeperator + Y + fieldSeperator + Z + fieldSeperator + rep);
 			indexer += 1;
 		}
 		// Following lines refresh the edotor and print data
