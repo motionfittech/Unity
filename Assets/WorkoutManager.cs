@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Michsky.UI.ModernUIPack;
+using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
 public class WorkoutManager : MonoBehaviour
@@ -40,6 +41,14 @@ public class WorkoutManager : MonoBehaviour
     public TextMeshProUGUI currentAniTxt, work2AniTxt,Clickedtext;
     public FitCapTest FCT;
     Camera main_Camera;
+
+    [Header("Side Menu")]
+    public GameObject sideMenuObject;
+    public bool _isOpened = false;
+    public float testingSpeed;
+    public Vector2 OpeningPos, ClosingPos;
+    public Sprite openSp, closeSp;
+    public Image currentSideImageIcon;
     private void Awake()
     {
         startBt.material.SetColor("_Outline_Color", Color.black);
@@ -54,6 +63,7 @@ public class WorkoutManager : MonoBehaviour
         main_Camera.transform.position = CameraPos1;
         main_Camera.transform.eulerAngles = CameraRot1;
         loadworkoutData();
+        
      //   PlayerPrefs.SetString("workout",LocalDatabase.instance.workoutData);
      
     }
@@ -313,5 +323,46 @@ public class WorkoutManager : MonoBehaviour
     public void textString(string textH)
     {
         Clickedtext.text = textH;
+    }
+
+    public void sideMenuBt()
+    {
+        StartCoroutine(SideMoveCall(_isOpened));
+    }
+
+    public IEnumerator SideMoveCall(bool conditionn)
+    {
+        float waitingtime = testingSpeed;
+        switch (conditionn)
+        {
+            case true:
+                while (waitingtime > 0)
+                {
+                    currentSideImageIcon.sprite = openSp;
+                    sideMenuObject.GetComponent<RectTransform>().localPosition = Vector3.MoveTowards(sideMenuObject.GetComponent<RectTransform>().localPosition, OpeningPos, testingSpeed);
+                    yield return null;
+                    waitingtime -= 1;
+
+                }
+              
+
+
+                break;
+            case false:
+                while (waitingtime > 0)
+                {
+                    currentSideImageIcon.sprite = closeSp;
+                    sideMenuObject.GetComponent<RectTransform>().localPosition = Vector3.MoveTowards(sideMenuObject.GetComponent<RectTransform>().localPosition,ClosingPos,testingSpeed);
+                    yield return null;
+                    waitingtime -= 1;
+
+                }
+                
+
+
+                break;
+        }
+
+        _isOpened = !conditionn;
     }
 }
