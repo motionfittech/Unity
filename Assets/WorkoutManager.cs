@@ -44,7 +44,9 @@ public class WorkoutManager : MonoBehaviour
 
     [Header("Side Menu")]
     public GameObject sideMenuObject;
-    public bool _isOpened = false;
+    private bool _isOpened = true;
+    public GameObject listofSelectedObject;
+    public RectTransform prefabofSelectedObject;
     public float testingSpeed;
     public Vector2 OpeningPos, ClosingPos;
     public Sprite openSp, closeSp;
@@ -332,13 +334,13 @@ public class WorkoutManager : MonoBehaviour
 
     public IEnumerator SideMoveCall(bool conditionn)
     {
-        float waitingtime = testingSpeed;
+        float waitingtime = testingSpeed/2;
         switch (conditionn)
         {
             case true:
                 while (waitingtime > 0)
                 {
-                    currentSideImageIcon.sprite = openSp;
+                    currentSideImageIcon.sprite = closeSp;
                     sideMenuObject.GetComponent<RectTransform>().localPosition = Vector3.MoveTowards(sideMenuObject.GetComponent<RectTransform>().localPosition, OpeningPos, testingSpeed);
                     yield return null;
                     waitingtime -= 1;
@@ -351,7 +353,7 @@ public class WorkoutManager : MonoBehaviour
             case false:
                 while (waitingtime > 0)
                 {
-                    currentSideImageIcon.sprite = closeSp;
+                    currentSideImageIcon.sprite = openSp;
                     sideMenuObject.GetComponent<RectTransform>().localPosition = Vector3.MoveTowards(sideMenuObject.GetComponent<RectTransform>().localPosition,ClosingPos,testingSpeed);
                     yield return null;
                     waitingtime -= 1;
@@ -364,5 +366,20 @@ public class WorkoutManager : MonoBehaviour
         }
 
         _isOpened = !conditionn;
+
+        if (listofSelectedObject != null)
+        {
+
+            for (int i = 0; i < selectedAnimations.Count; i++)
+            {
+                RectTransform clone = Instantiate(prefabofSelectedObject, Vector3.zero, Quaternion.identity);
+                clone.SetParent(listofSelectedObject.transform);
+                clone.GetChild(1).GetComponent<TextMeshProUGUI>().text = selectedAnimations[i];
+                clone.gameObject.SetActive(true);
+                clone.localScale = Vector3.one;
+            }
+        }
+           
+
     }
 }

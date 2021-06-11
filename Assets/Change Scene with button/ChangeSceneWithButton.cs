@@ -9,6 +9,12 @@ public class ChangeSceneWithButton : MonoBehaviour
     public Image Fade;
     public GameObject WarningPanel;
     public TextMeshProUGUI infotxt;
+
+    private void Start()
+    {
+        LoadScene();
+    }
+
     public void LoadScene()
     {
         Fade.enabled = true;

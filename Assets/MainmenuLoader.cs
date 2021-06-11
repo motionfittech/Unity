@@ -30,12 +30,12 @@ public class MainmenuLoader : MonoBehaviour
     public void mainbt(int level)
     {
 
-      FadeImage.SetActive(true);
+        FadeImage.SetActive(true);
         Invoke("changeLevel", 1);
         Levelint = level;
     }
 
-     public void changeLevel()
+    public void changeLevel()
     {
         Application.LoadLevel(Levelint);
     }

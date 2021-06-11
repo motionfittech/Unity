@@ -12,8 +12,6 @@ public class FitCapTest : MonoBehaviour
 
     public Text AccelerometerText;
     public Text FitCapStatusText;
-    public Text BatteryLevelText;
-
     public Button StartStopButton;
     public Button DisconnectButton;
 
@@ -27,19 +25,17 @@ public class FitCapTest : MonoBehaviour
         public bool Found;
     }
 
-  
     public static List<Characteristic> Characteristics = new List<Characteristic>
     {
         new Characteristic { ServiceUUID = "00000000-CC7A-482A-984A-7F2ED5B3E58F", CharacteristicUUID = "0000E000-8E22-4541-9D4C-21EDAE82ED19", Found = false },
         new Characteristic { ServiceUUID = "00000000-CC7A-482A-984A-7F2ED5B3E58F", CharacteristicUUID = "00000004-8E22-4541-9D4C-21EDAE82ED19", Found = false },
-        new Characteristic { ServiceUUID = "00000000-CC7A-482A-984A-7F2ED5B3E58F", CharacteristicUUID = "00000002-8E22-4541-9D4C-21EDAE82ED19", Found = false },
+        new Characteristic { ServiceUUID = "0000000f-cc7a-482a-984a-7f2ed5b3e58f", CharacteristicUUID = "00000002-8e22-4541-9d4c-21edae82ed19", Found = false },
         new Characteristic { ServiceUUID = "0000180F-0000-1000-8000-00805f9b34fb", CharacteristicUUID = "00002a19-0000-1000-8000-00805f9b34fb", Found = false },
     };
 
     public Characteristic SubscribeAccelerometer = Characteristics[0];
     public Characteristic ReadAccelerometer = Characteristics[1];
     public Characteristic ConfigureIMU = Characteristics[2];
-    public Characteristic Battery = Characteristics[3];
 
     public bool AllCharacteristicsFound { get { return !(Characteristics.Where(c => c.Found == false).Any()); } }
     public Characteristic GetCharacteristic(string serviceUUID, string characteristicsUUID)
@@ -55,7 +51,6 @@ public class FitCapTest : MonoBehaviour
         Scan,
         Connect,
         ConfigureAccelerometer,
-        ReadBattery,
         SubscribeToAccelerometer,
         SubscribingToAccelerometerTimeout,
         Disconnect,
@@ -161,7 +156,6 @@ public class FitCapTest : MonoBehaviour
 
     void StartProcess()
     {
-        BatteryLevelText.text = "Battery: Unknown";
         FitCapStatusMessages = "StartProcess";
         StartStopButton.onClick.AddListener(OnButtonPress_StartStopButton);
         DisconnectButton.onClick.AddListener(OnButtonPress_DisconnectButton);
@@ -179,13 +173,6 @@ public class FitCapTest : MonoBehaviour
         });
     }
 
-    private void OnReadBattery(string characteristric, byte[] rcvd_data)
-    {
-        int level = rcvd_data[0];
-        string batt_level = "Battery: " + level.ToString() + "%";
-        BatteryLevelText.text = batt_level;
-    }
-
     private void OnCharacteristicNotification(string deviceAddress, string characteristric, byte[] rcvd_data)
     {
         if (connectdisconnect == false)
@@ -197,8 +184,6 @@ public class FitCapTest : MonoBehaviour
             _state = States.None;
             MiddlePanel.SetActive(true);
         }
-
-        
 
         var sBytes = BitConverter.ToString(rcvd_data);
 
@@ -306,7 +291,6 @@ public class FitCapTest : MonoBehaviour
         if (_timeout > 0f)
         {
             _timeout -= Time.deltaTime;
-            //BatteryLevelText.text = "time: " + _timeout.ToString();
             if (_timeout <= 0f)
             {
                 _timeout = 0f;
@@ -378,15 +362,10 @@ public class FitCapTest : MonoBehaviour
                         FitCapStatusMessages = "Configuring FitCap Accelerometer...";
                         BluetoothLEHardwareInterface.WriteCharacteristic(_deviceAddress, ConfigureIMU.ServiceUUID, ConfigureIMU.CharacteristicUUID, ConfigureIMU_Bytes, ConfigureIMU_Bytes.Length, true, (address) => {
                             FitCapStatusMessages = "Configured FitCap Accelerometer";
-                            SetState(States.ReadBattery, 2f);
+                            SetState(States.SubscribeToAccelerometer, 2f);
                         });
                         break;
 
-                    case States.ReadBattery:
-                        BatteryLevelText.text = "Battery: Read";
-                        BluetoothLEHardwareInterface.ReadCharacteristic(_deviceAddress, Battery.ServiceUUID, Battery.CharacteristicUUID, OnReadBattery);
-                        SetState(States.SubscribeToAccelerometer, 2f);
-                        break;
 
                     case States.SubscribeToAccelerometer:
                         SetState(States.SubscribingToAccelerometerTimeout, 5f);

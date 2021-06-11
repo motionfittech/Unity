@@ -72,6 +72,7 @@ namespace ChartAndGraph
                 return true;
             }
         }
+       
         /// <summary>
         /// The seperation between the axis and the chart bars.
         /// </summary>

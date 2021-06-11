@@ -10,10 +10,11 @@ public class BarChartFeed : MonoBehaviour {
        
         if (barChart != null)
         {
-         //  barChart.DataSource.SetValue("Player 1", "Value 1", 20);
-          //  barChart.DataSource.SlideValue("Player 2", "Value 1", 15,20);
-            barChart.DataSource.AddCategory("Player 5",mat);
-            barChart.DataSource.SetValue("Player 5", "Value 1", 10);
+       //    barChart.DataSource.SetValue("Category 1", "All", 5);
+            barChart.DataSource.SetValue("Category 2", "All", 10);
+            //  barChart.DataSource.SlideValue("Player 2", "Value 1", 15,20);
+            // barChart.DataSource.AddCategory("Player 5",mat);
+            //   barChart.DataSource.SetValue("Player 5", "Value 1", 10);
 
         }
     }
