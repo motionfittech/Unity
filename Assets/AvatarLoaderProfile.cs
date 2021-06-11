@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using Wolf3D.ReadyPlayerMe.AvatarSDK;
+//using TMPro;
+//using Wolf3D.ReadyPlayerMe.AvatarSDK;
 using UnityEngine.UI;
 using UnityEditor;
 using Michsky.UI.ModernUIPack;
@@ -24,17 +24,17 @@ public class AvatarLoaderProfile : MonoBehaviour
         {
           
            // FadeImage.SetActive(true);
-            AvatarLoader avatarLoader = new AvatarLoader();
-            avatarLoader.LoadAvatar(PlayerPrefs.GetString("geturl", ""), AvatarLoadedCallback);
+            //AvatarLoader avatarLoader = new AvatarLoader();
+            //avatarLoader.LoadAvatar(PlayerPrefs.GetString("geturl", ""), AvatarLoadedCallback);
         }
     }
 
     public void GetAvatar()
     {
      //  FadeImage.SetActive(true);
-        AvatarLoader avatarLoader = new AvatarLoader();
-        PlayerPrefs.SetString("geturl", LinkField.text);
-        avatarLoader.LoadAvatar(LinkField.text, AvatarLoadedCallback);
+        //AvatarLoader avatarLoader = new AvatarLoader();
+        //PlayerPrefs.SetString("geturl", LinkField.text);
+        //avatarLoader.LoadAvatar(LinkField.text, AvatarLoadedCallback);
     }
     private void AvatarLoadedCallback(GameObject avatar)
     {
