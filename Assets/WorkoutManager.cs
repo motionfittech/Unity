@@ -9,7 +9,7 @@ public class WorkoutManager : MonoBehaviour
 {
     [SerializeField] private GameObject player = null;
 
-    public Renderer startBt;
+  //  public Renderer startBt;
 
 
     [Header("workoutScene1")]
@@ -53,9 +53,9 @@ public class WorkoutManager : MonoBehaviour
     public Image currentSideImageIcon;
     private void Awake()
     {
-        startBt.material.SetColor("_Outline_Color", Color.black);
-        startBt.material.SetFloat("TileX", 0.05f);
-        startBt.material.SetFloat("TileY", 0.05f);
+      //  startBt.material.SetColor("_Outline_Color", Color.black);
+      //  startBt.material.SetFloat("TileX", 0.05f);
+       // startBt.material.SetFloat("TileY", 0.05f);
 
     }
 
@@ -152,18 +152,18 @@ public class WorkoutManager : MonoBehaviour
     public void NewWorkout(WorkoutScriptableObject currentWorkout)
     {
       
-        startBt.material.SetColor("_Outline_Color", Color.blue);
-        startBt.material.SetFloat("_TileX",10.0f);
-        startBt.material.SetFloat("_TileY", 10.0f);
+     //   startBt.material.SetColor("_Outline_Color", Color.blue);
+     //   startBt.material.SetFloat("_TileX",10.0f);
+      //  startBt.material.SetFloat("_TileY", 10.0f);
 
         //  this.GetComponent<IHandleWorkouts>().NewWorkout(currentWorkout);
     }
 
     public void stopWorkout(WorkoutScriptableObject currentWorkout)
     {
-        startBt.material.SetColor("_Outline_Color", Color.blue);
-        startBt.material.SetFloat("_TileX", 0.05f);
-        startBt.material.SetFloat("_TileY", 0.05f);
+        //startBt.material.SetColor("_Outline_Color", Color.blue);
+       // startBt.material.SetFloat("_TileX", 0.05f);
+        //startBt.material.SetFloat("_TileY", 0.05f);
         //if (player)
         //    player.GetComponent<IHandleWorkouts>().StopWorkout(currentWorkout);
     }
