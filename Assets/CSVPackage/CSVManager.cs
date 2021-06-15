@@ -21,19 +21,24 @@ public class CSVManager : MonoBehaviour
 	public int IndexX = 0, IndexY = 1, IndexZ = 2 ;
 
 	public float totalVelocity = 0;
+
+	public string rawDataPath = FitCapTest.path;
+
 	void Start()
 	{
-
-		
-	    Invoke("readData",1);
-		
-
+		Invoke("readData",1);
 	}
 
 	// Read data from CSV file
 	private void readData()
 	{
-		
+		if (File.Exists(rawDataPath))
+		{
+			string temptext = " ";
+			temptext = File.ReadAllText(rawDataPath);
+			csvFile.text.Insert(0, temptext);
+		}
+
 		indexer = 0;
 		string[] records = csvFile.text.Split("\n"[0]);
 		for (int i = 0; i < records.Length; i++)

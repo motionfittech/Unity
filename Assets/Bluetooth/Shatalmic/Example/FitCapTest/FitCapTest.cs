@@ -71,7 +71,7 @@ public class FitCapTest : MonoBehaviour
     private bool connectdisconnect = false;
 
     // path of the file
-    private string path = "";
+    static public string path = "";
 
        
     public void OnButtonPress_DisconnectButton()
@@ -101,16 +101,17 @@ public class FitCapTest : MonoBehaviour
             //string startstring = System.DateTime.Now.ToString();
             System.DateTime theTime = System.DateTime.Now;
             string startstring = theTime.Year + "_" + theTime.Month + "_" + theTime.Day + "_" + theTime.Hour + "_" + theTime.Minute + "_" + theTime.Second;
-            //path = Application.dataPath + "/log_" + startstring + ".csv";
-            path = Application.persistentDataPath + "/log_" + startstring + ".csv";
+            //path = Application.dataPath + "/log_" + startstring + ".csv";  // unknown
+            path = Application.persistentDataPath + "/log_" + startstring + ".csv"; // works, original
 
             FitCapStatusMessages = path;
 
             // create file if it doesn't exist
+            string starttimetag = "Session date: " + theTime.Year + "-" + theTime.Month + "-" + theTime.Day + "-" + theTime.Hour + ":" + theTime.Minute + ":" + theTime.Second + "\n";
             if (!File.Exists(path))
             {
                 // write data to file
-                string starttimetag = "Session date: " + theTime.Year + "-" + theTime.Month + "-" + theTime.Day + "-" + theTime.Hour + ":" + theTime.Minute + ":" + theTime.Second + "\n";
+                //string starttimetag = "Session date: " + theTime.Year + "-" + theTime.Month + "-" + theTime.Day + "-" + theTime.Hour + ":" + theTime.Minute + ":" + theTime.Second + "\n";
                 File.WriteAllText(path, starttimetag);
             }
         }
