@@ -22,6 +22,7 @@ public class WorkoutManager : MonoBehaviour
     public Vector3 CameraRot2;
     [Header("Imbalance")]
     public List<GameObject> workout3 = new List<GameObject>();
+    public GameObject VelocityPanel;
     private int sceneSwitcher = 0;
 
     public List<string> nameofAnimations = new List<string>();
@@ -251,6 +252,18 @@ public class WorkoutManager : MonoBehaviour
                 innerList(workout1, false);
                 innerList(workout2, false);
                 innerList(workout3, true);
+                break;
+            case 5:
+                innerList(workout1, false);
+                innerList(workout2, false);
+                innerList(workout3, false);
+                VelocityPanel.SetActive(true);
+                break;
+            case 6:
+                innerList(workout1, false);
+                innerList(workout2, true);
+                innerList(workout3, false);
+                VelocityPanel.SetActive(false);
                 break;
             default:
                 print("Incorrect");
