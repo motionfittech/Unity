@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.unity.scripting.python": "2.0.1-preview.2",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",
     "com.unity.ads": "3.6.1",
