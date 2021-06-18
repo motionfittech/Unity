@@ -47,6 +47,22 @@ public class FitCapTest : MonoBehaviour
         return Characteristics.Where(c => IsEqual(serviceUUID, c.ServiceUUID) && IsEqual(characteristicsUUID, c.CharacteristicUUID)).FirstOrDefault();
     }
 
+	// the ConfigureIMU service is really a generic service to control the hardware
+	// The first byte is the command: 
+	//  	0x01 is the notification interval, this currently controls the sampling rate but not the resolution.
+	//		     0x01 command is followed by 4 bytes that represent the speed in mS in reverse byte order 
+	//           example <0x01><0x10><0x00><0x00><0x00> sends 16 mS interval to collect samples.  High rates will flood BLE
+	//           example <0x01><0xE8><0x03><0x00><0x00> sends 1000 mS (1 second) interval to collect samples.
+	//			 
+	//      0x02 is the command for controlling the LED
+	//           0x02 command is followed by one byte the LED(s) to enable, bit 1 == LED_RED = LED1, bit 2 == LED_GREEN = LED2, bit 3 == LED_BLUE = LED3
+	//			 example: <0x02><0x06>  sends the command to turn on the Green and Blue LED at the same time.
+    //           example: <0x02><0x06>  turns off all LED's`
+	//                
+	//      0x03 is the command to enter OTA mode. 
+	//           OTA Command is followed by ANY byte but typically zero
+	//           example: <0x03><0x00>
+	//           NOTE: there is no way back from this mode once the command is sent, the firmware must be updated over OTA. 
     private byte[] ConfigureIMU_Bytes = new byte[] { 0x01, 0x10, 0x00, 0x00, 0x00 }; // this is 16 mS 
     
 
