@@ -19,7 +19,7 @@ public class FitCapTest : MonoBehaviour
 
     public GameObject TopPanel;
     public GameObject MiddlePanel;
-
+    [HideInInspector] public string exerciseString; 
     public class Characteristic
     {
         public string ServiceUUID;
@@ -130,7 +130,7 @@ public class FitCapTest : MonoBehaviour
             System.DateTime theTime = System.DateTime.Now;
             string startstring = theTime.Year + "_" + theTime.Month + "_" + theTime.Day + "_" + theTime.Hour + "_" + theTime.Minute + "_" + theTime.Second;
             //path = Application.dataPath + "/log_" + startstring + ".csv";  // unknown
-            path = Application.persistentDataPath + "/log_" + startstring + ".csv"; // works, original
+            path = Application.persistentDataPath + "/log_"+exerciseString+"_" + startstring + ".csv"; // works, original
 
             FitCapStatusMessages = path;
 

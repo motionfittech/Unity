@@ -811,6 +811,7 @@ MonoBehaviour:
   DisconnectButton: {fileID: 2069790186}
   TopPanel: {fileID: 173953858}
   MiddlePanel: {fileID: 1799849738}
+  exerciseString: 
 --- !u!1 &141190048
 GameObject:
   m_ObjectHideFlags: 43
