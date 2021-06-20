@@ -28,9 +28,11 @@ public class WorkoutManager : MonoBehaviour
     public List<string> nameofAnimations = new List<string>();
     public List<string> selectedAnimations = new List<string>();
     public WorkoutHandler WH;
-    public HorizontalSelector HS;
+    public TextMeshProUGUI CenterButtonExercisetxt;
+    public Button CenterButton;
     public WorkoutScriptableObject currentWorkoutSO;
     private bool _isIKon;
+    [HideInInspector] public bool _Dowehaveanimation = false;
     private bool _startcounting;
     private int anicounter;
 
@@ -82,7 +84,7 @@ public class WorkoutManager : MonoBehaviour
 
         if (WH.animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
-            LocalDatabase.instance.repData(HS.label.text,anicounter.ToString());
+//            LocalDatabase.instance.repData(HS.label.text,anicounter.ToString());
             anicounter += 1;
         }
         // TODO: Do something when animation did complete
@@ -91,11 +93,26 @@ public class WorkoutManager : MonoBehaviour
     {
         if (!_isIKon)
         {
-            NewWorkout(currentWorkoutSO);
-            StartCoroutine(startCounter());
-            FCT.OnButtonPress_StartStopButton();
-           
+
+            if (!_Dowehaveanimation)
+            {
+                switchBt(7);
+            
+                return;
+            }
+            
+
+          //  NewWorkout(currentWorkoutSO);
+            readworkoutData();
+            popupPanel.SetActive(false);
+            WH.animator.speed = 1;
+            //      StartCoroutine(startCounter());
+            //            FCT.OnButtonPress_StartStopButton();
+
+            CenterButton.GetComponent<Image>().color = Color.red;
+            CenterButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "STOP";
             _isIKon = true;
+           
         }
         else
         {
@@ -103,52 +120,54 @@ public class WorkoutManager : MonoBehaviour
             Doneanimation();
             popupPanel.SetActive(false);
             WH.animator.speed = 1;
-            print(WH.animator.speed);
-            FCT.OnButtonPress_DisconnectButton();
+            //            FCT.OnButtonPress_DisconnectButton();
+            CenterButton.GetComponent<Image>().color = Color.green;
+            CenterButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "START";
             _isIKon = false;
+
         }
     }
 
-    IEnumerator startCounter()
-    {
-        Doneanimation();
-        int temp = 0;
-        popupPanel.SetActive(true);
-        PopupText.fontSize = 400;
-        PopupText.text = temp.ToString();
-        while (temp > 0)
-        {
-            yield return new WaitForSeconds(1);
-            temp -= 1;
-            PopupText.text = temp.ToString();
+    //IEnumerator startCounter()
+    //{
+    //    Doneanimation();
+    //    int temp = 0;
+    //    popupPanel.SetActive(true);
+    //    PopupText.fontSize = 400;
+    //    PopupText.text = temp.ToString();
+    //    while (temp > 0)
+    //    {
+    //        yield return new WaitForSeconds(1);
+    //        temp -= 1;
+    //        PopupText.text = temp.ToString();
            
-        }
-        readworkoutData();
-        StartCoroutine(startingPosCounter());
-    }
+    //    }
+    //    readworkoutData();
+    //    StartCoroutine(startingPosCounter());
+    //}
 
-    IEnumerator startingPosCounter()
-    {
-        int temp = 10;
-        popupPanel.SetActive(true);
-        PopupText.fontSize = 150;
-        PopupText.text = "Exercise will start in "+ temp.ToString()+" sec";
-      ///  GetComponent<WorkoutHandler>().PlayerLeftHandModel.SetActive(true);
-      //  GetComponent<WorkoutHandler>().PlayerRightHandModel.SetActive(true);
-        while (temp > 0)
-        {
-            yield return new WaitForSeconds(1);
-            temp -= 1;
-            PopupText.text = "Exercise will start in " + temp.ToString() + " sec";
-            if(temp > 1)
-            {
-                WH.animator.speed = 0;
-            }
-        }
-        FCT.OnButtonPress_DisconnectButton();
-        popupPanel.SetActive(false);
-        WH.animator.speed = 1;
-    }
+//    IEnumerator startingPosCounter()
+//    {
+//        int temp = 10;
+//        popupPanel.SetActive(true);
+//        PopupText.fontSize = 150;
+//        PopupText.text = "Exercise will start in "+ temp.ToString()+" sec";
+//      ///  GetComponent<WorkoutHandler>().PlayerLeftHandModel.SetActive(true);
+//      //  GetComponent<WorkoutHandler>().PlayerRightHandModel.SetActive(true);
+//        while (temp > 0)
+//        {
+//            yield return new WaitForSeconds(1);
+//            temp -= 1;
+//            PopupText.text = "Exercise will start in " + temp.ToString() + " sec";
+//            if(temp > 1)
+//            {
+//                WH.animator.speed = 0;
+//            }
+//        }
+////        FCT.OnButtonPress_DisconnectButton();
+//        popupPanel.SetActive(false);
+//        WH.animator.speed = 1;
+//    }
     #region Circle Work button
     public void NewWorkout(WorkoutScriptableObject currentWorkout)
     {
@@ -176,7 +195,7 @@ public class WorkoutManager : MonoBehaviour
     #endregion
     public void switchBt(int counter)
     {
-        print("HERE");
+        
         //  myModalWindow.icon = "spriteVariable; // Change icon
         if (counter == 2)
         {
@@ -205,12 +224,12 @@ public class WorkoutManager : MonoBehaviour
             myModalWindow.titleText = "Imbalances"; // Change title
             myModalWindow.descriptionText = "Do you really want to go to Imbalances, Unsave Reps will be lost"; // Change desc
         }
-
-        if (!_isIKon)
+        else if (counter == 7)
         {
-            answer(counter);
-            return;
+            myModalWindow.titleText = "Exercise"; // Change title
+            myModalWindow.descriptionText = "Do you want to add exerice click? ";
         }
+       
 
         myModalWindow.onConfirm.RemoveAllListeners();
         myModalWindow.onConfirm.AddListener(delegate { answer(counter); });
@@ -265,6 +284,10 @@ public class WorkoutManager : MonoBehaviour
                 innerList(workout3, false);
                 VelocityPanel.SetActive(false);
                 break;
+            case 7:
+                sideMenuBt();
+                break;
+
             default:
                 print("Incorrect");
                 break;
@@ -303,11 +326,11 @@ public class WorkoutManager : MonoBehaviour
         {
             int temp = int.Parse(tempData[i]);
             selectedAnimations.Add(nameofAnimations[temp]);
-            print(nameofAnimations[temp]);
-            HS.CreateNewItem(nameofAnimations[temp]);
+//            print(nameofAnimations[temp]);
+        //    HS.CreateNewItem(nameofAnimations[temp]);
 
         }
-        HS.label.text = selectedAnimations[0];
+      //  HS.label.text = selectedAnimations[0];
         
     }
     public void readworkoutData()
@@ -316,7 +339,13 @@ public class WorkoutManager : MonoBehaviour
         {
             WH.animator.SetBool(nameofAnimations[y], false);
         }
-        WH.animator.SetBool(HS.label.text, true);
+        for (int a = 0; a < selectedAnimations.Count; a++)
+        {
+            if (selectedAnimations[a] == CenterButtonExercisetxt.text)
+            {
+                WH.animator.SetBool(selectedAnimations[a], true);
+            }
+        }
         _startcounting = true;
     }
 
@@ -380,7 +409,7 @@ public class WorkoutManager : MonoBehaviour
 
         _isOpened = !conditionn;
 
-        if (listofSelectedObject != null)
+        if (listofSelectedObject.transform.childCount == 1)
         {
 
             for (int i = 0; i < selectedAnimations.Count; i++)

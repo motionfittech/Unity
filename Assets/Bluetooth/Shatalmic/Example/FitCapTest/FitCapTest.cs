@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Android;
 using UnityEngine.UI;
-
+using TMPro;
 public class FitCapTest : MonoBehaviour
 {
     public string DeviceName = "FitCap1";
@@ -120,11 +120,11 @@ public class FitCapTest : MonoBehaviour
 
     public void OnButtonPress_StartStopButton()
     {
-        if (DisplayData == false)
+        if (DisplayData == false && GameObject.FindObjectOfType<WorkoutManager>()._Dowehaveanimation)
         {
             DisplayData = true;
-            Text txt = StartStopButton.GetComponentInChildren<Text>();
-            txt.text = "Stop";
+          //  TextMeshProUGUI txt = StartStopButton.GetComponentInChildren<TextMeshProUGUI>();
+          //  txt.text = "Stop";
 
             //string startstring = System.DateTime.Now.ToString();
             System.DateTime theTime = System.DateTime.Now;
@@ -146,8 +146,8 @@ public class FitCapTest : MonoBehaviour
         else
         {
             DisplayData = false;
-            Text txt = StartStopButton.GetComponentInChildren<Text>();
-            txt.text = "Start";
+         //   Text txt = StartStopButton.GetComponentInChildren<Text>();
+          //  txt.text = "Start";
 
             path = "";
         }
