@@ -63,17 +63,6 @@ public class FitCapTest : MonoBehaviour
 	//           OTA Command is followed by ANY byte but typically zero
 	//           example: <0x03><0x00>
 	//           NOTE: there is no way back from this mode once the command is sent, the firmware must be updated over OTA. 
-    //
-	// FUTURE COMMANDS NOT IMPLEMENTED YET:
-	//      0x04 is the command for multi-sample mode. This will collect multiple samples into a single BLE packet
-	//           Multi-sample mode is followed by a single byte setting the number of samples per interval 
-	//           example: <0x04><0x03> collects 3 samples per every interval into 1 BLE packet. 
-	//                    If the sample rate is 16mS a sample will be collected every 5.33 mS and sent every 16 mS
-	// 		0x05 is the command to set the gyro sample rate
-	// 		0x06 is the command to set the accel sample rate
-	// 		0x07 is the command to set the gyro magnitude rate
-	// 		0x08 is the command to set the accel magnitude rate
-	//           These commands are followed by 4 bytes that represent the value requested.
     private byte[] ConfigureIMU_Bytes = new byte[] { 0x01, 0x10, 0x00, 0x00, 0x00 }; // this is 16 mS 
     
 
