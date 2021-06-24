@@ -45,7 +45,7 @@ public class AvatarLoaderProfile : MonoBehaviour
 
         if(AvaterParent.GetComponent<WorkoutHandler>() != null)
         {
-            AvaterParent.GetComponent<WorkoutHandler>().animator = avatar.GetComponentInChildren<Animator>();
+       //     AvaterParent.GetComponent<WorkoutHandler>().animator = avatar.GetComponentInChildren<Animator>();
         }
         FadeImage.SetActive(false);
        
@@ -77,10 +77,10 @@ public class AvatarLoaderProfile : MonoBehaviour
         List<GameObject> temp = new List<GameObject>();
         for (int a = 0; a < ListofCharacter.Count; a++)
         {
-            if (ListofCharacter[a].isOn)
+            if (    ListofCharacter[a].isOn)
             {
                 ListofModel[a].SetActive(true);
-                LocalDatabase.instance.setCharacter(a.ToString());
+               // LocalDatabase.instance.setCharacter(a.ToString());
             }
             else
             {

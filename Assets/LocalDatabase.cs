@@ -116,7 +116,7 @@ public class LocalDatabase : MonoBehaviour
         while (!inCondition)
         {
             Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
-            dbRef.Child("users").Child(UID).Child("characterselect").GetValueAsync().ContinueWithOnMainThread(task => {
+            dbRef.Child("users").Child("ab00").Child("characterselect").GetValueAsync().ContinueWithOnMainThread(task => {
                 if (task.IsFaulted)
                 {
                     // Handle the error...
@@ -137,7 +137,7 @@ public class LocalDatabase : MonoBehaviour
     public void setCharacter(string indexer)
     {
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
-        dbRef.Child("users").Child(UID).Child("characterselect").SetValueAsync(indexer);
+        dbRef.Child("users").Child("ab00").Child("characterselect").SetValueAsync(indexer);
     }
 
      void manageCharacter(List<GameObject> chars, int charValue)
@@ -155,7 +155,7 @@ public class LocalDatabase : MonoBehaviour
                 }
                 else if (GameObject.FindObjectOfType<WorkoutHandler>() != null)
                 {
-                    GameObject.FindObjectOfType<WorkoutHandler>().animator = chars[i].GetComponent<Animator>();
+              //      GameObject.FindObjectOfType<WorkoutHandler>().animator = chars[i].GetComponent<Animator>();
                 }
 
             }
