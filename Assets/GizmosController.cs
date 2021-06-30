@@ -51,12 +51,12 @@ public class GizmosController : MonoBehaviour
         {
 			_isLeft = false;
 
-			Avater.GetComponent<FirebaseDatabase>().UpdateData(transform.position.ToString(),"Right");
+//			Avater.GetComponent<FirebaseDatabase>().UpdateData(transform.position.ToString(),"Right");
         }
 		else if (_isLeft)
         {
 			_isRight = false;
-			Avater.GetComponent<FirebaseDatabase>().UpdateData(transform.position.ToString(), "Left");
+	//		Avater.GetComponent<FirebaseDatabase>().UpdateData(transform.position.ToString(), "Left");
 		}
     }
 

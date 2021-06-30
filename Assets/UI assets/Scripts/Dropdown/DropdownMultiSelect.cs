@@ -108,9 +108,9 @@ namespace Michsky.UI.ModernUIPack
                 go.transform.SetParent(itemParent, false);
                 if (GetComponent<ToggleGroup>() != null)
                 {
-                    go.GetComponent<Toggle>().group = GetComponent<ToggleGroup>();
-                    go.GetComponent<Toggle>().onValueChanged.AddListener(delegate { Camera.main.GetComponent<AvatarLoaderProfile>().CharacterSelectionDropDown(); });
-                    GameObject.FindObjectOfType<AvatarLoaderProfile>().ListofCharacter.Add(go.GetComponent<Toggle>());
+    //                go.GetComponent<Toggle>().group = GetComponent<ToggleGroup>();
+//                    go.GetComponent<Toggle>().onValueChanged.AddListener(delegate { Camera.main.GetComponent<AvatarLoaderProfile>().CharacterSelectionDropDown(); });
+  //                  GameObject.FindObjectOfType<AvatarLoaderProfile>().ListofCharacter.Add(go.GetComponent<Toggle>());
                 }
                 setItemText = go.GetComponentInChildren<TextMeshProUGUI>();
                 textHelper = dropdownItems[i].itemName;

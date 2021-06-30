@@ -61,7 +61,7 @@ public class ScrollHandler : MonoBehaviour
                 }
             }
            }
-        LocalDatabase.instance.saveWorkout(tempstring);
+//        LocalDatabase.instance.saveWorkout(tempstring);
         }
     public void closeAnimation()
     {
