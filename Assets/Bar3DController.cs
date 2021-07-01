@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Bar3DController : MonoBehaviour
 {
 
@@ -10,6 +10,7 @@ public class Bar3DController : MonoBehaviour
     public bool _isRightDown = false;
     public bool _isLeftDown = false;
     float tempvalueX;
+    public Slider CurrentSlider;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,15 +24,18 @@ public class Bar3DController : MonoBehaviour
         {
             tempvalueX += 0.05f;
             obj.position += new Vector3(currentXvalue, 0, 0);
+            CurrentSlider.value = tempvalueX;
         }
         else if (_isLeftDown)
         {
             tempvalueX -= 0.05f;
             obj.position += new Vector3(currentXvalue, 0, 0);
+            CurrentSlider.value = tempvalueX;
         }
 
         tempvalueX = Mathf.Clamp(tempvalueX,0,13f);
         obj.position = new Vector3(tempvalueX,0,0);
+       
     }
 
     public void btDown()
