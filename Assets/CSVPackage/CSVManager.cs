@@ -16,29 +16,25 @@ public class CSVManager : MonoBehaviour
     [Header("Start Value of Every CSV acceleration is a Offset")]
 	public float offsetX = 35, offsetY = 50, offsetZ = -17;
 
-
+	public Text StatusText;
+	public Text PerVelocity;
+	public Text TotalVelocity;
 	[Header("Acceleration Value in CSV Index")]
 	public int IndexX = 0, IndexY = 1, IndexZ = 2 ;
-
-	public float totalVelocity = 0;
-
-	public string rawDataPath = FitCapTest.path;
-
+	public List<float> speeds = new List<float>();
 	void Start()
 	{
-		Invoke("readData",1);
+
+		StatusText.text = "Wait Data is Loading";
+	    Invoke("readData",1);
+		
+
 	}
 
 	// Read data from CSV file
 	private void readData()
 	{
-		if (File.Exists(rawDataPath))
-		{
-			string temptext = " ";
-			temptext = File.ReadAllText(rawDataPath);
-			csvFile.text.Insert(0, temptext);
-		}
-
+		StatusText.text = "Reading Data Now";
 		indexer = 0;
 		string[] records = csvFile.text.Split("\n"[0]);
 		for (int i = 0; i < records.Length; i++)
@@ -50,17 +46,36 @@ public class CSVManager : MonoBehaviour
 			// Getting Velocity
 			previous = new Vector3(FliteredValues.x/offsetX, FliteredValues.y/offsetY, FliteredValues.z/offsetZ);
 			var velocity = ((transform.position - previous).magnitude) / Time.deltaTime;
-			totalVelocity += velocity;
 			this.transform.position = previous;
-
+			speeds.Add(velocity);
+			
 			// Saving Value
 			addData(FliteredValues.x.ToString(),FliteredValues.y.ToString(),FliteredValues.z.ToString(),velocity.ToString());
 		}
 
 
-		
+		StatusText.text = "Fliter Data has been Saved in "+saveFilename;
+		TotalVelocity.text = "Average Velocity is "+returnAverage().ToString();
 	}
-	
+
+
+	float returnAverage() //call when Finished
+	{
+		float averageTotal = 0;
+		float finalTotal = 0;
+
+		for (int i = 0; i < speeds.Count; i++)
+		{
+			averageTotal += speeds[i];
+		//	PerVelocity.text += " " + i.ToString() + " " + speeds[i].ToString();
+		}
+
+		finalTotal = averageTotal / speeds.Count;
+		speeds.Clear(); // so as the list is free for the next time
+	    return finalTotal;
+	}
+
+
 	public void addData(string X,string Y, string Z, string vel)
 	{
 
