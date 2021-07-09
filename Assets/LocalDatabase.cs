@@ -69,7 +69,7 @@ public class LocalDatabase : MonoBehaviour
     {
 
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
-        dbRef.Child("users").Child(UID).Child("workout").SetValueAsync(Data);
+        dbRef.Child("users").Child("ab00").Child("workout").SetValueAsync(Data);
         PlayerPrefs.SetString("workout",Data);
     }
     public void Loadworkout()
@@ -77,7 +77,7 @@ public class LocalDatabase : MonoBehaviour
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
        
        
-            dbRef.Child("users").Child(UID).Child("workout").GetValueAsync().ContinueWithOnMainThread(task =>
+            dbRef.Child("users").Child("ab00").Child("workout").GetValueAsync().ContinueWithOnMainThread(task =>
             {
                 if (task.IsFaulted)
                 {
@@ -101,12 +101,12 @@ public class LocalDatabase : MonoBehaviour
     public void repData(string Exercisename, string Data)
     {
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
-        dbRef.Child("users").Child(UID).Child("DailyWorkout").Child(Exercisename).Child("fatigue").SetValueAsync(Data);
-        dbRef.Child("users").Child(UID).Child("DailyWorkout").Child(Exercisename).Child("Velocity").SetValueAsync(Data);
-        dbRef.Child("users").Child(UID).Child("DailyWorkout").Child(Exercisename).Child("distance").SetValueAsync(Data);
-        dbRef.Child("users").Child(UID).Child("DailyWorkout").Child(Exercisename).Child("calories ").SetValueAsync(Data);
-        dbRef.Child("users").Child(UID).Child("WeeklyWorkout").SetValueAsync("00");
-        dbRef.Child("users").Child(UID).Child("MonthlyWorkout").SetValueAsync("00");
+        dbRef.Child("users").Child("ab00").Child("DailyWorkout").Child(Exercisename).Child("fatigue").SetValueAsync(Data);
+        dbRef.Child("users").Child("ab00").Child("DailyWorkout").Child(Exercisename).Child("Velocity").SetValueAsync(Data);
+        dbRef.Child("users").Child("ab00").Child("DailyWorkout").Child(Exercisename).Child("distance").SetValueAsync(Data);
+        dbRef.Child("users").Child("ab00").Child("DailyWorkout").Child(Exercisename).Child("calories ").SetValueAsync(Data);
+        dbRef.Child("users").Child("ab00").Child("WeeklyWorkout").SetValueAsync("00");
+        dbRef.Child("users").Child("ab00").Child("MonthlyWorkout").SetValueAsync("00");
     }
     
     public IEnumerator getCharacter(List<GameObject> chars, GameObject FadeImage)
@@ -149,14 +149,14 @@ public class LocalDatabase : MonoBehaviour
             {
                 chars[i].SetActive(true);
 
-                if (GameObject.FindObjectOfType<ScrollHandler>() != null)
-                {
-                    GameObject.FindObjectOfType<ScrollHandler>().ani = chars[i].GetComponent<Animator>();
-                }
-                else if (GameObject.FindObjectOfType<WorkoutHandler>() != null)
-                {
-              //      GameObject.FindObjectOfType<WorkoutHandler>().animator = chars[i].GetComponent<Animator>();
-                }
+              //  if (GameObject.FindObjectOfType<ScrollHandler>() != null)
+              //  {
+              // //     GameObject.FindObjectOfType<ScrollHandler>().ani = chars[i].GetComponent<Animator>();
+              //  }
+              //  else if (GameObject.FindObjectOfType<WorkoutHandler>() != null)
+              //  {
+              ////      GameObject.FindObjectOfType<WorkoutHandler>().animator = chars[i].GetComponent<Animator>();
+              //  }
 
             }
             else
