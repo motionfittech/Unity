@@ -277,6 +277,7 @@ public class WorkoutManager : MonoBehaviour
                 innerList(workout2, false);
                 innerList(workout3, false);
                 VelocityPanel.SetActive(true);
+               
                 break;
             case 6:
                 innerList(workout1, false);

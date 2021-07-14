@@ -3050,6 +3050,7 @@ GameObject:
   - component: {fileID: 483293489}
   - component: {fileID: 483293490}
   - component: {fileID: 483293492}
+  - component: {fileID: 483293491}
   m_Layer: 5
   m_Name: GraphChart
   m_TagString: Untagged
@@ -3329,6 +3330,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sensitivity: 10
+--- !u!222 &483293491
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483293485}
+  m_CullTransparentMesh: 1
 --- !u!114 &483293492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4128,7 +4137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &567091556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4141,7 +4150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9232b383a89eb743be28efb1a63aa4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  a: 0.0000001
+  a: 0.01
 --- !u!4 &567091558
 Transform:
   m_ObjectHideFlags: 0
@@ -4172,7 +4181,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &572307532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4185,17 +4194,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 644ffddc2ae747a4ead8e81fa37211a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  csvFile: {fileID: 4900000, guid: c87f30a3892c84741ae9aa6d4d6bfee7, type: 3}
+  csvFile: {fileID: 4900000, guid: ae02710e1b2052941a10cc3218f2b6f8, type: 3}
   AOC: {fileID: 567091556}
   saveFilename: Data_BenchPress_V4
-  offsetX: 35
-  offsetY: 50
-  offsetZ: 308
+  offsetX: -352
+  offsetY: 736
+  offsetZ: -613
   IndexX: 0
   IndexY: 1
   IndexZ: 2
-  totalVelocity: 0
-  rawDataPath: 
+  speeds: []
 --- !u!4 &572307533
 Transform:
   m_ObjectHideFlags: 0
@@ -12355,6 +12363,7 @@ GameObject:
   - component: {fileID: 1703667648}
   - component: {fileID: 1703667647}
   - component: {fileID: 1703667646}
+  - component: {fileID: 1703667645}
   m_Layer: 5
   m_Name: BarCanvasSimple
   m_TagString: Untagged
@@ -12381,6 +12390,14 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 457}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1703667645
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703667643}
+  m_CullTransparentMesh: 1
 --- !u!114 &1703667646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12649,9 +12666,9 @@ MonoBehaviour:
     mGroups:
     - All
     mData: []
-    automaticMaxValue: 0
-    maxValue: 1.2
-    automaticMinValue: 0
+    automaticMaxValue: 1
+    maxValue: 1
+    automaticMinValue: 1
     minValue: 0
   transitionTimeBetaFeature: -1
   heightRatio: 226.2

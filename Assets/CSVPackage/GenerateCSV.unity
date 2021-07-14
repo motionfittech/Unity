@@ -1016,12 +1016,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 644ffddc2ae747a4ead8e81fa37211a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  csvFile: {fileID: 4900000, guid: f1b47232e36455a4484d8da0c9e37068, type: 3}
+  csvFile: {fileID: 4900000, guid: 3ffd89583a24c344c93df944de57498e, type: 3}
   AOC: {fileID: 1717814419}
-  saveFilename: SavedBenchPressData
-  offsetX: -488
-  offsetY: 467
-  offsetZ: -781
+  saveFilename: DumbbellShouderPressData5
+  offsetX: -240
+  offsetY: 675
+  offsetZ: -732
   StatusText: {fileID: 137779467}
   PerVelocity: {fileID: 1683372302}
   TotalVelocity: {fileID: 1347068323}

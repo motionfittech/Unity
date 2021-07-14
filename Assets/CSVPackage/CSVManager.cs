@@ -16,16 +16,15 @@ public class CSVManager : MonoBehaviour
     [Header("Start Value of Every CSV acceleration is a Offset")]
 	public float offsetX = 35, offsetY = 50, offsetZ = -17;
 
-	public Text StatusText;
-	public Text PerVelocity;
-	public Text TotalVelocity;
+	
 	[Header("Acceleration Value in CSV Index")]
 	public int IndexX = 0, IndexY = 1, IndexZ = 2 ;
 	public List<float> speeds = new List<float>();
+
 	void Start()
 	{
 
-		StatusText.text = "Wait Data is Loading";
+	
 	    Invoke("readData",1);
 		
 
@@ -34,28 +33,35 @@ public class CSVManager : MonoBehaviour
 	// Read data from CSV file
 	private void readData()
 	{
-		StatusText.text = "Reading Data Now";
+		
 		indexer = 0;
 		string[] records = csvFile.text.Split("\n"[0]);
 		for (int i = 0; i < records.Length; i++)
 		{
 			// Filtring Values
-			string[] temprecords = records[i].Split(","[0]);	
-		    Vector3 FliteredValues = AOC.filterPos(new Vector3(float.Parse(temprecords[IndexX])+offsetX, float.Parse(temprecords[IndexY])+offsetY, float.Parse(temprecords[IndexZ])+offsetZ));
-
+			string[] temprecords = records[i].Split(","[0]);
+			/*Vector3 FliteredValues = AOC.filterPos(new Vector3(float.Parse(temprecords[IndexX])+offsetX, float.Parse(temprecords[IndexY])+offsetY, float.Parse(temprecords[IndexZ])+offsetZ));*/
+			Vector3 FliteredValues =new Vector3(float.Parse(temprecords[IndexX]) + offsetX, float.Parse(temprecords[IndexY]) + offsetY, float.Parse(temprecords[IndexZ]) + offsetZ);
 			// Getting Velocity
 			previous = new Vector3(FliteredValues.x/offsetX, FliteredValues.y/offsetY, FliteredValues.z/offsetZ);
-			var velocity = ((transform.position - previous).magnitude) / Time.deltaTime;
-			this.transform.position = previous;
+			float velocity = ((transform.position - previous).magnitude) / Time.deltaTime;
 			speeds.Add(velocity);
+			this.transform.position = previous;
+			
 			
 			// Saving Value
 			addData(FliteredValues.x.ToString(),FliteredValues.y.ToString(),FliteredValues.z.ToString(),velocity.ToString());
+			
 		}
+		
+		Invoke("callafter",2);
+	}
 
-
-		StatusText.text = "Fliter Data has been Saved in "+saveFilename;
-		TotalVelocity.text = "Average Velocity is "+returnAverage().ToString();
+	public void callafter()
+    {
+		print(returnAverage().ToString());
+		addData("", "", "", "AV " + returnAverage().ToString());
+		GameObject.FindObjectOfType<BarChartFeed>().addbarValue(speeds);
 	}
 
 
@@ -63,18 +69,20 @@ public class CSVManager : MonoBehaviour
 	{
 		float averageTotal = 0;
 		float finalTotal = 0;
-
+		//BarChartFeed bcr = GameObject.FindObjectOfType<BarChartFeed>();
 		for (int i = 0; i < speeds.Count; i++)
 		{
 			averageTotal += speeds[i];
-		//	PerVelocity.text += " " + i.ToString() + " " + speeds[i].ToString();
+		//	bcr.barChart.DataSource.AddCategory("VEL "+i.ToString(), bcr.mat);
+		//	bcr.barChart.DataSource.SetValue("VEL " + i.ToString(), "All", speeds[i]);
+			//	PerVelocity.text += " " + i.ToString() + " " + speeds[i].ToString();
 		}
 
 		finalTotal = averageTotal / speeds.Count;
-		speeds.Clear(); // so as the list is free for the next time
+		//speeds.Clear(); // so as the list is free for the next time
 	    return finalTotal;
 	}
-
+	
 
 	public void addData(string X,string Y, string Z, string vel)
 	{

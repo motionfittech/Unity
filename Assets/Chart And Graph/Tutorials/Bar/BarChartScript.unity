@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -517,6 +517,7 @@ GameObject:
   - component: {fileID: 979191440}
   - component: {fileID: 979191439}
   - component: {fileID: 979191445}
+  - component: {fileID: 979191446}
   m_Layer: 0
   m_Name: Bar3DSimple
   m_TagString: Untagged
@@ -531,7 +532,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 979191438}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fa3c1507f66ca24fa9c929b5fae69a5, type: 3}
   m_Name: 
@@ -856,6 +857,21 @@ MonoBehaviour:
   _isRightDown: 0
   _isLeftDown: 0
   CurrentSlider: {fileID: 1082915033}
+--- !u!114 &979191446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979191438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0adffba478642274dbb910f69c3e6e71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barChart: {fileID: 979191443}
+  mat: {fileID: 2100000, guid: c7ce674b0130fe840963fac41e6b88fa, type: 2}
+  values: []
 --- !u!1 &1082915031
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,7 +908,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 2.0271912, y: 47}
+  m_AnchoredPosition: {x: 2.0272217, y: 47}
   m_SizeDelta: {x: -20.2715, y: 35.677}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1082915033

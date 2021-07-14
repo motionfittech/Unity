@@ -87,7 +87,7 @@ public class LocalDatabase : MonoBehaviour
                 else if (task.IsCompleted)
                 {
                     DataSnapshot snapshot = task.Result;
-                    print(snapshot.Value.ToString());
+                //    print(snapshot.Value.ToString());
                     PlayerPrefs.SetString("workout", snapshot.Value.ToString());
                     // Success
                 }
