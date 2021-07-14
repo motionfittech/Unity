@@ -20,7 +20,7 @@ public class CSVManager : MonoBehaviour
 	[Header("Acceleration Value in CSV Index")]
 	public int IndexX = 0, IndexY = 1, IndexZ = 2 ;
 	public List<float> speeds = new List<float>();
-
+	public BarChartFeed bcf;
 	void Start()
 	{
 
@@ -45,12 +45,12 @@ public class CSVManager : MonoBehaviour
 			// Getting Velocity
 			previous = new Vector3(FliteredValues.x/offsetX, FliteredValues.y/offsetY, FliteredValues.z/offsetZ);
 			float velocity = ((transform.position - previous).magnitude) / Time.deltaTime;
-			speeds.Add(velocity);
+			speeds.Add(velocity*100);
 			this.transform.position = previous;
 			
 			
 			// Saving Value
-			addData(FliteredValues.x.ToString(),FliteredValues.y.ToString(),FliteredValues.z.ToString(),velocity.ToString());
+		//	addData(FliteredValues.x.ToString(),FliteredValues.y.ToString(),FliteredValues.z.ToString(),velocity.ToString());
 			
 		}
 		
@@ -61,7 +61,8 @@ public class CSVManager : MonoBehaviour
     {
 		print(returnAverage().ToString());
 		addData("", "", "", "AV " + returnAverage().ToString());
-		GameObject.FindObjectOfType<BarChartFeed>().addbarValue(speeds);
+		
+	StartCoroutine(bcf.addbarValue(speeds));
 	}
 
 
@@ -73,14 +74,14 @@ public class CSVManager : MonoBehaviour
 		for (int i = 0; i < speeds.Count; i++)
 		{
 			averageTotal += speeds[i];
-		//	bcr.barChart.DataSource.AddCategory("VEL "+i.ToString(), bcr.mat);
-		//	bcr.barChart.DataSource.SetValue("VEL " + i.ToString(), "All", speeds[i]);
+			//bcr.barChart.DataSource.AddCategory("VEL "+i.ToString(), bcr.mat);
+		//	bcr.barChart.DataSource.SetValue("VEL " + i.ToString(), "All", temp);
 			//	PerVelocity.text += " " + i.ToString() + " " + speeds[i].ToString();
 		}
 
 		finalTotal = averageTotal / speeds.Count;
 		//speeds.Clear(); // so as the list is free for the next time
-	    return finalTotal;
+	    return finalTotal*100;
 	}
 	
 

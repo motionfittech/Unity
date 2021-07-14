@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Bar3DController : MonoBehaviour
 {
 
-    public Transform obj;
+ //   public Transform obj;
     public float currentXvalue;
     public bool _isRightDown = false;
     public bool _isLeftDown = false;
@@ -23,18 +23,18 @@ public class Bar3DController : MonoBehaviour
         if (_isRightDown)
         {
             tempvalueX += 0.05f;
-            obj.position += new Vector3(currentXvalue, 0, 0);
+         //   obj.position += new Vector3(currentXvalue, 0, 0);
             CurrentSlider.value = tempvalueX;
         }
         else if (_isLeftDown)
         {
             tempvalueX -= 0.05f;
-            obj.position += new Vector3(currentXvalue, 0, 0);
+        //    obj.position += new Vector3(currentXvalue, 0, 0);
             CurrentSlider.value = tempvalueX;
         }
 
         tempvalueX = Mathf.Clamp(tempvalueX,0,13f);
-        obj.position = new Vector3(tempvalueX,0,0);
+      //  obj.position = new Vector3(tempvalueX,0,0);
        
     }
 

@@ -3,28 +3,36 @@ using UnityEngine;
 using System.Collections;
 using ChartAndGraph;
 using System.Collections.Generic;
-
+using UnityEngine.UI;
 public class BarChartFeed : MonoBehaviour {
     public BarChart barChart;
     public Material mat;
     public List<float> values = new List<float>();
-
+    public Slider maxvalue;
     public void start()
     {
 
     }
 
-	public void addbarValue(List<float> tempValues)
+	public IEnumerator addbarValue(List<float> tempValues)
     {
-
-        for (int i = 0; i < 20; i++)
+        int i = 0;
+//        maxvalue.maxValue = tempValues.Count;
+       
+        while (i < 300)
         {
-            if (i > 0)
+           
+            if (tempValues[i] > 0)
             {
-                print("we are here");
+                
                 barChart.DataSource.AddCategory("SET "+i.ToString(), mat);
-                barChart.DataSource.SetValue("SET " + i.ToString(), "All", i);
+                barChart.DataSource.SetValue("SET " + i.ToString(), "All", tempValues[i]);
+                
             }
+            i++;
+            yield return null;
         }
+
+      
     }
 }
