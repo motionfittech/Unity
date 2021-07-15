@@ -796,7 +796,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f093939b2a67e4195b121907e70b741f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: {fileID: 786828864}
   currentXvalue: 0
   _isRightDown: 0
   _isLeftDown: 0
@@ -817,6 +816,7 @@ MonoBehaviour:
   mat: {fileID: 2100000, guid: c7ce674b0130fe840963fac41e6b88fa, type: 2}
   values: []
   maxvalue: {fileID: 1082915033}
+  canvas: {fileID: 1578395297}
 --- !u!1 &1082915031
 GameObject:
   m_ObjectHideFlags: 0

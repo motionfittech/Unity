@@ -9,6 +9,7 @@ public class BarChartFeed : MonoBehaviour {
     public Material mat;
     public List<float> values = new List<float>();
     public Slider maxvalue;
+    public GameObject canvas;
     public void start()
     {
 
@@ -26,13 +27,23 @@ public class BarChartFeed : MonoBehaviour {
             {
                 
                 barChart.DataSource.AddCategory("SET "+i.ToString(), mat);
-                barChart.DataSource.SetValue("SET " + i.ToString(), "All", tempValues[i]);
+                float temp = tempValues[i] * 100;
+                barChart.DataSource.SetValue("SET " + i.ToString(), "All", temp);
                 
             }
             i++;
             yield return null;
         }
-
+        barChart.gameObject.SetActive(true);
+        canvas.gameObject.SetActive(true);
       
+    }
+
+    public void addbarSingleValue(float tempvalues)
+    {
+        print("we are here");
+        barChart.DataSource.AddCategory("SET " , mat);
+        float temp = tempvalues * 100;
+        barChart.DataSource.SetValue("SET " , "All", temp);
     }
 }

@@ -5,31 +5,29 @@ using System.Collections;
 
 public class GraphChartFeed : MonoBehaviour
 {
-	void Start ()
+    void Start()
     {
-        GraphChartBase graph = GetComponent<GraphChartBase>();
+
+        GraphChart graph = GetComponent<GraphChart>();
         if (graph != null)
         {
-            graph.Scrollable = false;
-            graph.HorizontalValueToStringMap[0.0] = "Zero"; // example of how to set custom axis strings
-            graph.DataSource.StartBatch();
-            graph.DataSource.ClearCategory("Player 1");
-            graph.DataSource.ClearAndMakeBezierCurve("Player 2");
-            
-            for (int i = 0; i <5; i++)
+            graph.DataSource.ClearCategory("Player 1");  // clear the categories we
+          // have created in the inspector
+            graph.DataSource.ClearCategory("Player 2");
+            for (int i = 0; i < 30; i++)
             {
-                graph.DataSource.AddPointToCategory("Player 1",i*5,Random.value*10f + 20f);
-                if (i == 0)
-                    graph.DataSource.SetCurveInitialPoint("Player 2",i*5, Random.value * 10f + 10f);
-                else
-                    graph.DataSource.AddLinearCurveToCategory("Player 2", 
-                                                                    new DoubleVector2(i*5 , Random.value * 10f + 10f));
+               
+                //add 30 random points , each with a category and an x,y value
+                graph.DataSource.AddPointToCategory("Player 1",Random.value*10f,Random.value*10f);
+                graph.DataSource.AddPointToCategory("Player 2", Random.value * 10f,Random.value * 10f);
             }
-            graph.DataSource.MakeCurveCategorySmooth("Player 2");
-            graph.DataSource.EndBatch();
+            graph.DataSource.EndBatch(); // end the update batch . this call will
+       //     render the graph
+            graph.DataSource.StartBatch();  // start a new update batch
+
         }
-       // StartCoroutine(ClearAll());
     }
+
 
     IEnumerator ClearAll()
     {

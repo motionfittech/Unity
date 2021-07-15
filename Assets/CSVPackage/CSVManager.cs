@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System.IO;
 using System.Collections.Generic;
-
+using TMPro;
 public class CSVManager : MonoBehaviour
 {
 	public TextAsset csvFile; 
@@ -21,6 +21,7 @@ public class CSVManager : MonoBehaviour
 	public int IndexX = 0, IndexY = 1, IndexZ = 2 ;
 	public List<float> speeds = new List<float>();
 	public BarChartFeed bcf;
+	public TextMeshProUGUI velocityAverageTxt;
 	void Start()
 	{
 
@@ -45,7 +46,7 @@ public class CSVManager : MonoBehaviour
 			// Getting Velocity
 			previous = new Vector3(FliteredValues.x/offsetX, FliteredValues.y/offsetY, FliteredValues.z/offsetZ);
 			float velocity = ((transform.position - previous).magnitude) / Time.deltaTime;
-			speeds.Add(velocity*100);
+			speeds.Add(velocity);
 			this.transform.position = previous;
 			
 			
@@ -53,16 +54,17 @@ public class CSVManager : MonoBehaviour
 		//	addData(FliteredValues.x.ToString(),FliteredValues.y.ToString(),FliteredValues.z.ToString(),velocity.ToString());
 			
 		}
-		
-		Invoke("callafter",2);
+
+		callafter();
 	}
 
 	public void callafter()
     {
 		print(returnAverage().ToString());
-		addData("", "", "", "AV " + returnAverage().ToString());
-		
-	StartCoroutine(bcf.addbarValue(speeds));
+		velocityAverageTxt.text = returnAverage().ToString() +" m/s";
+		//	addData("", "", "", "AV " + returnAverage().ToString());
+		bcf.addbarSingleValue(returnAverage());
+//	StartCoroutine(bcf.addbarValue(speeds));
 	}
 
 
@@ -81,7 +83,7 @@ public class CSVManager : MonoBehaviour
 
 		finalTotal = averageTotal / speeds.Count;
 		//speeds.Clear(); // so as the list is free for the next time
-	    return finalTotal*100;
+	    return finalTotal;
 	}
 	
 
