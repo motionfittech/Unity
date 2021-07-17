@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using TMPro;
 public class CSVManager : MonoBehaviour
 {
-	public TextAsset csvFile; 
+	public List<TextAsset> csvFile = new List<TextAsset>(); 
 	private char lineSeperater = '\n'; // It defines line seperate character
 	private char fieldSeperator = ','; // It defines field seperate chracter
 	private int indexer = 0;
@@ -26,17 +26,19 @@ public class CSVManager : MonoBehaviour
 	{
 
 	
-	    Invoke("readData",1);
+	//    Invoke("readData",1);
 		
 
 	}
 
-	// Read data from CSV file
-	private void readData()
+    // Read data from CSV file
+    [System.Obsolete]
+    public void readData()
 	{
 		
 		indexer = 0;
-		string[] records = csvFile.text.Split("\n"[0]);
+        int z = Random.RandomRange(0, csvFile.Count);
+		string[] records = csvFile[z].text.Split("\n"[0]);
 		for (int i = 0; i < records.Length; i++)
 		{
 			// Filtring Values
@@ -54,20 +56,19 @@ public class CSVManager : MonoBehaviour
 		//	addData(FliteredValues.x.ToString(),FliteredValues.y.ToString(),FliteredValues.z.ToString(),velocity.ToString());
 			
 		}
-
 		callafter();
 	}
 
 	public void callafter()
     {
-		print(returnAverage().ToString());
-		velocityAverageTxt.text = returnAverage().ToString() +" m/s";
+	
+		velocityAverageTxt.text = returnAverage().ToString().Substring(0,5) +" m/s";
 		//	addData("", "", "", "AV " + returnAverage().ToString());
 		bcf.addbarSingleValue(returnAverage());
-//	StartCoroutine(bcf.addbarValue(speeds));
+		speeds.Clear();
+		//StartCoroutine(bcf.addbarValue(speeds));
 	}
-
-
+	
 	float returnAverage() //call when Finished
 	{
 		float averageTotal = 0;
@@ -82,8 +83,9 @@ public class CSVManager : MonoBehaviour
 		}
 
 		finalTotal = averageTotal / speeds.Count;
-		//speeds.Clear(); // so as the list is free for the next time
+		 // so as the list is free for the next time
 	    return finalTotal;
+	
 	}
 	
 

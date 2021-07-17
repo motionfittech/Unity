@@ -14,12 +14,12 @@ public class WorkoutManager : MonoBehaviour
 
     [Header("workoutScene1")]
     public List<GameObject> workout1 = new List<GameObject>();
-    public Vector3 CameraPos1;
-    public Vector3 CameraRot1;
+   /* public Vector3 CameraPos1;
+    public Vector3 CameraRot1;*/
     [Header("workoutScene2")]
     public List<GameObject> workout2 = new List<GameObject>();
-    public Vector3 CameraPos2;
-    public Vector3 CameraRot2;
+  /*  public Vector3 CameraPos2;
+    public Vector3 CameraRot2;*/
     [Header("Imbalance")]
     public List<GameObject> workout3 = new List<GameObject>();
     public GameObject VelocityPanel;
@@ -54,6 +54,9 @@ public class WorkoutManager : MonoBehaviour
     public Vector2 OpeningPos, ClosingPos;
     public Sprite openSp, closeSp;
     public Image currentSideImageIcon;
+
+    [Header("CSVManager")]
+    public CSVManager CSVM;
     private void Awake()
     {
       //  startBt.material.SetColor("_Outline_Color", Color.black);
@@ -64,9 +67,9 @@ public class WorkoutManager : MonoBehaviour
 
     private void Start()
     {
-        main_Camera = Camera.main;
+      /*  main_Camera = Camera.main;
         main_Camera.transform.position = CameraPos1;
-        main_Camera.transform.eulerAngles = CameraRot1;
+        main_Camera.transform.eulerAngles = CameraRot1;*/
         loadworkoutData();
         
      //   PlayerPrefs.SetString("workout",LocalDatabase.instance.workoutData);
@@ -117,6 +120,7 @@ public class WorkoutManager : MonoBehaviour
         else
         {
             stopWorkout(currentWorkoutSO);
+            CSVM.readData();
             Doneanimation();
             popupPanel.SetActive(false);
             WH.animator.speed = 1;
@@ -253,16 +257,16 @@ public class WorkoutManager : MonoBehaviour
                 innerList(workout3, false);
                 innerList(workout1, true);
                
-                main_Camera.transform.position = CameraPos1;
-                main_Camera.transform.eulerAngles = CameraRot1;
+            /*    main_Camera.transform.position = CameraPos1;
+                main_Camera.transform.eulerAngles = CameraRot1;*/
                 break;
             case 2:
                 innerList(workout1, false);
                 innerList(workout3, false);
                 innerList(workout2, true);
                
-                main_Camera.transform.position = CameraPos2;
-                main_Camera.transform.eulerAngles = CameraRot2;
+            /*    main_Camera.transform.position = CameraPos2;
+                main_Camera.transform.eulerAngles = CameraRot2;*/
                 break;
             case 3:
                 Application.LoadLevel(1);

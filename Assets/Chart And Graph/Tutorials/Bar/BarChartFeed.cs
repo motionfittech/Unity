@@ -8,10 +8,11 @@ using System;
 
 public class BarChartFeed : MonoBehaviour {
     public BarChart barChart;
-    public Material mat;
+    public Material mat1,mat2,mat3;
     public List<float> values = new List<float>();
     public Slider maxvalue;
-    public GameObject canvas;
+  
+    int counter = 0;
     public void Start()
     {
      //   PlayerPrefs.SetString("DailyTimer", DateTime.Now.AddHours(1).ToString());
@@ -39,7 +40,7 @@ public class BarChartFeed : MonoBehaviour {
             if (tempValues[i] > 0)
             {
                 
-                barChart.DataSource.AddCategory("SET "+i.ToString(), mat);
+                barChart.DataSource.AddCategory("SET "+i.ToString(), mat1);
                 float temp = tempValues[i] * 100;
                 barChart.DataSource.SetValue("SET " + i.ToString(), "All", temp);
                 
@@ -47,16 +48,28 @@ public class BarChartFeed : MonoBehaviour {
             i++;
             yield return null;
         }
-        barChart.gameObject.SetActive(true);
-        canvas.gameObject.SetActive(true);
+       
+       
       
     }
 
     public void addbarSingleValue(float tempvalues)
     {
-        print("we are here");
-        barChart.DataSource.AddCategory("SET " , mat);
-        float temp = tempvalues * 100;
-        barChart.DataSource.SetValue("SET " , "All", temp);
+      
+        counter += 1;
+
+        if (tempvalues >= 6)
+        {
+            barChart.DataSource.AddCategory("SET " + counter.ToString(), mat1);
+        }
+        else if(tempvalues >= 2 && tempvalues < 6)
+        {
+            barChart.DataSource.AddCategory("SET " + counter.ToString(), mat2);
+        }
+        else
+        {
+            barChart.DataSource.AddCategory("SET " + counter.ToString(), mat3);
+        }
+        barChart.DataSource.SetValue("SET " + counter.ToString(), "All", tempvalues);
     }
 }
