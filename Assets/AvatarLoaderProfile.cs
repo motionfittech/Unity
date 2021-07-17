@@ -18,8 +18,10 @@ public class AvatarLoaderProfile : MonoBehaviour
     public List<GameObject> ListofModel = new List<GameObject>();
     private void Start()
     {
-       StartCoroutine(LocalDatabase.instance.getCharacter(ListofModel, FadeImage));
-        
+        if (LocalDatabase.instance != null)
+        {
+            StartCoroutine(LocalDatabase.instance.getCharacter(ListofModel, FadeImage));
+        }
         if (PlayerPrefs.GetString("geturl","").Length > 1)
         {
           

@@ -4,15 +4,28 @@ using System.Collections;
 using ChartAndGraph;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System;
+
 public class BarChartFeed : MonoBehaviour {
     public BarChart barChart;
     public Material mat;
     public List<float> values = new List<float>();
     public Slider maxvalue;
     public GameObject canvas;
-    public void start()
+    public void Start()
     {
-
+     //   PlayerPrefs.SetString("DailyTimer", DateTime.Now.AddHours(1).ToString());
+        var unlockDate = DateTime.Parse(PlayerPrefs.GetString("DailyTimer"));
+        if (unlockDate < DateTime.Now)
+        {
+            //object unlocked again
+        }
+        else
+        {
+            //object still locked, how long you ask?: 
+            TimeSpan diff = unlockDate.Subtract(DateTime.Now);
+            Debug.Log("object locked for " + diff.Minutes + " more minutes");
+        }
     }
 
 	public IEnumerator addbarValue(List<float> tempValues)
