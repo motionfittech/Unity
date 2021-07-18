@@ -16,17 +16,17 @@ public class BarChartFeed : MonoBehaviour {
     public void Start()
     {
      //   PlayerPrefs.SetString("DailyTimer", DateTime.Now.AddHours(1).ToString());
-        var unlockDate = DateTime.Parse(PlayerPrefs.GetString("DailyTimer"));
-        if (unlockDate < DateTime.Now)
-        {
-            //object unlocked again
-        }
-        else
-        {
-            //object still locked, how long you ask?: 
-            TimeSpan diff = unlockDate.Subtract(DateTime.Now);
-            Debug.Log("object locked for " + diff.Minutes + " more minutes");
-        }
+        //var unlockDate = DateTime.Parse(PlayerPrefs.GetString("DailyTimer"));
+        //if (unlockDate < DateTime.Now)
+        //{
+        //    //object unlocked again
+        //}
+        //else
+        //{
+        //    //object still locked, how long you ask?: 
+        //    TimeSpan diff = unlockDate.Subtract(DateTime.Now);
+        //    Debug.Log("object locked for " + diff.Minutes + " more minutes");
+        //}
     }
 
 	public IEnumerator addbarValue(List<float> tempValues)
@@ -57,7 +57,7 @@ public class BarChartFeed : MonoBehaviour {
     {
       
         counter += 1;
-
+        maxvalue.maxValue = counter+2;
         if (tempvalues >= 6)
         {
             barChart.DataSource.AddCategory("SET " + counter.ToString(), mat1);
@@ -70,6 +70,7 @@ public class BarChartFeed : MonoBehaviour {
         {
             barChart.DataSource.AddCategory("SET " + counter.ToString(), mat3);
         }
+       
         barChart.DataSource.SetValue("SET " + counter.ToString(), "All", tempvalues);
     }
 }

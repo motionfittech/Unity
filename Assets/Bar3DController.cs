@@ -33,7 +33,7 @@ public class Bar3DController : MonoBehaviour
             CurrentSlider.value = tempvalueX;
         }
 
-        tempvalueX = Mathf.Clamp(tempvalueX,0,13f);
+        tempvalueX = Mathf.Clamp(tempvalueX,CurrentSlider.minValue,CurrentSlider.maxValue);
         obj.position = new Vector3(tempvalueX,0,0);
        
     }
