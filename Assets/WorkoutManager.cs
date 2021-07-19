@@ -366,7 +366,7 @@ public class WorkoutManager : MonoBehaviour
 
     public void updateExerciseTxt()
     {
-        work2AniTxt.text = currentAniTxt.text;
+       // work2AniTxt.text = currentAniTxt.text;
     }
 
     public void textString(string textH)

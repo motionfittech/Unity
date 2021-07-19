@@ -21,6 +21,8 @@ public class CSVManager : MonoBehaviour
 	public int IndexX = 0, IndexY = 1, IndexZ = 2 ;
 	public List<float> speeds = new List<float>();
 	public BarChartFeed bcf;
+	public GraphChartFeed gcf;
+	public ExerDatabaseCsv EDC;
 	public TextMeshProUGUI velocityAverageTxt;
 	void Start()
 	{
@@ -61,10 +63,12 @@ public class CSVManager : MonoBehaviour
 
 	public void callafter()
     {
-	
-		velocityAverageTxt.text = returnAverage().ToString().Substring(0,5) +" m/s";
-		//	addData("", "", "", "AV " + returnAverage().ToString());
-		bcf.addbarSingleValue(returnAverage());
+		float tempAverage = returnAverage();
+		velocityAverageTxt.text = tempAverage.ToString().Substring(0,5) +" m/s";
+		
+		bcf.addbarSingleValue(tempAverage);
+		gcf.Singcall(tempAverage);
+		EDC.addData(tempAverage.ToString());
 		speeds.Clear();
 		//StartCoroutine(bcf.addbarValue(speeds));
 	}

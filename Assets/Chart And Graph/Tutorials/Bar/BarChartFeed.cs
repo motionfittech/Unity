@@ -32,32 +32,42 @@ public class BarChartFeed : MonoBehaviour {
 	public IEnumerator addbarValue(List<float> tempValues)
     {
         int i = 0;
-//        maxvalue.maxValue = tempValues.Count;
-       
-        while (i < 300)
+        //        maxvalue.maxValue = tempValues.Count;
+        print(tempValues.Count);
+        while (i < tempValues.Count)
         {
-           
-            if (tempValues[i] > 0)
+
+            if (tempValues[i] >= 6)
             {
-                
-                barChart.DataSource.AddCategory("SET "+i.ToString(), mat1);
-                float temp = tempValues[i] * 100;
-                barChart.DataSource.SetValue("SET " + i.ToString(), "All", temp);
-                
+                barChart.DataSource.AddCategory("SET " + counter.ToString(), mat1);
             }
+            else if (tempValues[i] >= 2 && tempValues[i] < 6)
+            {
+                barChart.DataSource.AddCategory("SET " + counter.ToString(), mat2);
+            }
+            else
+            {
+                barChart.DataSource.AddCategory("SET " + counter.ToString(), mat3);
+            }
+
+            //   barChart.DataSource.AddCategory("SET "+i.ToString(), mat1);
+            barChart.DataSource.SetValue("SET " + counter.ToString(), "All", tempValues[i]);
+               
             i++;
+            counter++;
+            maxvalue.maxValue += counter + 2;
             yield return null;
         }
-       
-       
-      
+
+
+        maxvalue.maxValue += counter + 4;
     }
 
     public void addbarSingleValue(float tempvalues)
     {
       
         counter += 1;
-        maxvalue.maxValue = counter+2;
+        maxvalue.maxValue += counter+2;
         if (tempvalues >= 6)
         {
             barChart.DataSource.AddCategory("SET " + counter.ToString(), mat1);
