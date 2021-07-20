@@ -9,11 +9,8 @@ using Michsky.UI.ModernUIPack;
 using TMPro;
 public class AvatarLoaderProfile : MonoBehaviour
 {
-    public GameObject warningMessage;
-    public TMP_InputField LinkField;
     public GameObject FadeImage;
     public Transform AvaterParent;
-    public DropdownMultiSelect selectList;
     public List<Toggle> ListofCharacter = new List<Toggle>();
     public List<GameObject> ListofModel = new List<GameObject>();
     private void Start()
@@ -56,8 +53,8 @@ public class AvatarLoaderProfile : MonoBehaviour
     public void OpenURL()
     {
         
-        Application.OpenURL("https://motionfit.readyplayer.me/avatar");
-        warningMessage.SetActive(true);
+      //  Application.OpenURL("https://motionfit.readyplayer.me/avatar");
+    //    warningMessage.SetActive(true);
         
     }
 

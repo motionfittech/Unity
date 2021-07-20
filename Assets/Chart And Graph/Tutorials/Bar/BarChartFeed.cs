@@ -55,19 +55,19 @@ public class BarChartFeed : MonoBehaviour {
                
             i++;
             counter++;
-            maxvalue.maxValue += counter + 2;
+            maxvalue.maxValue += 1.5f;
             yield return null;
         }
 
 
-        maxvalue.maxValue += counter + 4;
+     
     }
 
     public void addbarSingleValue(float tempvalues)
     {
       
         counter += 1;
-        maxvalue.maxValue += counter+2;
+        maxvalue.maxValue += 1.5f;
         if (tempvalues >= 6)
         {
             barChart.DataSource.AddCategory("SET " + counter.ToString(), mat1);
