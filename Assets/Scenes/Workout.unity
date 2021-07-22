@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18171579, g: 0.22737882, b: 0.30741787, a: 1}
+  m_IndirectSpecularColor: {r: 0.18171643, g: 0.22738002, b: 0.30741918, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6567,7 +6567,7 @@ MonoBehaviour:
     - All
     mData: []
     automaticMaxValue: 0
-    maxValue: 10
+    maxValue: 3
     automaticMinValue: 0
     minValue: 0
   transitionTimeBetaFeature: -1
@@ -12605,9 +12605,9 @@ MonoBehaviour:
     automaticVerticallView: 0
     automaticcHorizontaViewGap: 0
     automaticHorizontalView: 0
-    horizontalViewSize: 10
+    horizontalViewSize: 3
     horizontalViewOrigin: 0
-    verticalViewSize: 10
+    verticalViewSize: 3
     verticalViewOrigin: 0
     mSerializedData:
     - Name: Player 1

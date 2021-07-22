@@ -49,7 +49,7 @@ public class BarChartFeed : MonoBehaviour {
             {
                 barChart.DataSource.AddCategory("SET " + counter.ToString(), mat3);
             }
-
+            
             //   barChart.DataSource.AddCategory("SET "+i.ToString(), mat1);
             barChart.DataSource.SetValue("SET " + counter.ToString(), "All", tempValues[i]);
                
