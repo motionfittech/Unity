@@ -34,7 +34,7 @@ public class CSVManager : MonoBehaviour
 	}
 
     // Read data from CSV file
-    [System.Obsolete]
+  
     public void readData()
 	{
 		
