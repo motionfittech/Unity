@@ -46,6 +46,12 @@ public class CSVManager : MonoBehaviour
         {
 			return;
         }
+
+		Invoke("callAdding",1);
+	}
+
+	public void callAdding()
+    {
 		string[] records = csvFile.text.Split("\n"[0]);
 		for (int i = 0; i < records.Length; i++)
 		{
@@ -61,10 +67,10 @@ public class CSVManager : MonoBehaviour
 				speeds.Add(velocity);
 				this.transform.position = previous;
 			}
-			
+
 			// Saving Value
-		//	addData(FliteredValues.x.ToString(),FliteredValues.y.ToString(),FliteredValues.z.ToString(),velocity.ToString());
-			
+			//	addData(FliteredValues.x.ToString(),FliteredValues.y.ToString(),FliteredValues.z.ToString(),velocity.ToString());
+
 		}
 		callafter();
 	}
