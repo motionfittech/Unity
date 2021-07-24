@@ -55,8 +55,6 @@ public class WorkoutManager : MonoBehaviour
     public Sprite openSp, closeSp;
     public Image currentSideImageIcon;
 
-    [Header("CSVManager")]
-    public CSVManager CSVM;
     private void Awake()
     {
       //  startBt.material.SetColor("_Outline_Color", Color.black);
@@ -128,7 +126,7 @@ public class WorkoutManager : MonoBehaviour
             CenterButton.GetComponent<Image>().color = Color.green;
             CenterButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "START";
             _isIKon = false;
-            CSVM.readData();
+           
 
         }
     }

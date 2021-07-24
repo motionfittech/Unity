@@ -133,7 +133,7 @@ public class FitCapTest : MonoBehaviour
             path = Application.persistentDataPath + "/log_"+exerciseString+"_" + startstring + ".csv"; // works, original
 
             FitCapStatusMessages = path;
-
+            GameObject.FindObjectOfType<CSVManager>().readData(path);
             // create file if it doesn't exist
             //string starttimetag = "Session date: " + theTime.Year + "-" + theTime.Month + "-" + theTime.Day + "-" + theTime.Hour + ":" + theTime.Minute + ":" + theTime.Second + "\n";
             //if (!File.Exists(path))
