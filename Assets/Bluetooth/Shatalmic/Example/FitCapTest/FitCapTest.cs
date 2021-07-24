@@ -135,13 +135,13 @@ public class FitCapTest : MonoBehaviour
             FitCapStatusMessages = path;
 
             // create file if it doesn't exist
-            string starttimetag = "Session date: " + theTime.Year + "-" + theTime.Month + "-" + theTime.Day + "-" + theTime.Hour + ":" + theTime.Minute + ":" + theTime.Second + "\n";
-            if (!File.Exists(path))
-            {
-                // write data to file
-                //string starttimetag = "Session date: " + theTime.Year + "-" + theTime.Month + "-" + theTime.Day + "-" + theTime.Hour + ":" + theTime.Minute + ":" + theTime.Second + "\n";
-                File.WriteAllText(path, starttimetag);
-            }
+            //string starttimetag = "Session date: " + theTime.Year + "-" + theTime.Month + "-" + theTime.Day + "-" + theTime.Hour + ":" + theTime.Minute + ":" + theTime.Second + "\n";
+            //if (!File.Exists(path))
+            //{
+            //    // write data to file
+            //    //string starttimetag = "Session date: " + theTime.Year + "-" + theTime.Month + "-" + theTime.Day + "-" + theTime.Hour + ":" + theTime.Minute + ":" + theTime.Second + "\n";
+            //    File.WriteAllText(path, starttimetag);
+            //}
         }
         else
         {
@@ -437,8 +437,8 @@ public class FitCapTest : MonoBehaviour
                         BluetoothLEHardwareInterface.SubscribeCharacteristicWithDeviceAddress(_deviceAddress, SubscribeAccelerometer.ServiceUUID, SubscribeAccelerometer.CharacteristicUUID, delegate { }, OnCharacteristicNotification);
                         FitCapStatusMessages = "Subscribed to FitCap Accelerometer...";
 
-                        Text txt = StartStopButton.GetComponentInChildren<Text>();
-                        txt.text = "Start";
+                        //Text txt = StartStopButton.GetComponentInChildren<Text>();
+                        //txt.text = "Start";
                     }
                     break;
 
