@@ -120,7 +120,7 @@ public class WorkoutManager : MonoBehaviour
         else
         {
             stopWorkout(currentWorkoutSO);
-            CSVM.readData();
+          
             Doneanimation();
             popupPanel.SetActive(false);
             WH.animator.speed = 1;
@@ -128,6 +128,7 @@ public class WorkoutManager : MonoBehaviour
             CenterButton.GetComponent<Image>().color = Color.green;
             CenterButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "START";
             _isIKon = false;
+            CSVM.readData();
 
         }
     }
