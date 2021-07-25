@@ -132,8 +132,8 @@ public class FitCapTest : MonoBehaviour
             //path = Application.dataPath + "/log_" + startstring + ".csv";  // unknown
             path = Application.persistentDataPath + "/log_"+exerciseString+"_" + startstring + ".csv"; // works, original
 
-            FitCapStatusMessages = path;
-            GameObject.FindObjectOfType<CSVManager>().readData(path);
+          //  FitCapStatusMessages = path;
+           
             // create file if it doesn't exist
             //string starttimetag = "Session date: " + theTime.Year + "-" + theTime.Month + "-" + theTime.Day + "-" + theTime.Hour + ":" + theTime.Minute + ":" + theTime.Second + "\n";
             //if (!File.Exists(path))
@@ -146,9 +146,18 @@ public class FitCapTest : MonoBehaviour
         else
         {
             DisplayData = false;
-         //   Text txt = StartStopButton.GetComponentInChildren<Text>();
-          //  txt.text = "Start";
-
+            //   Text txt = StartStopButton.GetComponentInChildren<Text>();
+            //  txt.text = "Start";
+            if (path.Length > 0)
+            {
+                FitCapStatusMessages = "Stored in this path"+ path;
+                print("path is not null");
+                GameObject.FindObjectOfType<CSVManager>().readData(path);
+            }
+            else
+            {
+                print("path is null");
+            }
             path = "";
         }
         // Debug.Log("Button clicked " + DisplayData);

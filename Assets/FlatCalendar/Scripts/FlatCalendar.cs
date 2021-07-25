@@ -28,7 +28,6 @@ using System.Collections;
 using System.Globalization;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using System.Collections;
 using System.Collections.Generic;
 
 

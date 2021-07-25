@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using TMPro;
 public class CSVManager : MonoBehaviour
 {
-	private TextAsset csvFile ; 
+	//private TextAsset csvFile ; 
 	private char lineSeperater = '\n'; // It defines line seperate character
 	private char fieldSeperator = ','; // It defines field seperate chracter
 	private int indexer = 0;
@@ -40,39 +40,40 @@ public class CSVManager : MonoBehaviour
 		{
 			string temptext = " ";
 			temptext = File.ReadAllText(rawDataPath);
-			csvFile.text.Insert(0, temptext);
-		}
-        else
-        {
-			return;
-        }
+			//csvFile.text.Insert(0, temptext);
+			string[] records = temptext.Split("\n"[0]);
+			print("we are in");
+			for (int i = 0; i < records.Length; i++)
+			{
+				print(records[i]);
+				// Filtring Values
+				string[] temprecords = records[i].Split(","[0]);
+				if (temprecords[0].Length > 0)
+				{
+					/*Vector3 FliteredValues = AOC.filterPos(new Vector3(float.Parse(temprecords[IndexX])+offsetX, float.Parse(temprecords[IndexY])+offsetY, float.Parse(temprecords[IndexZ])+offsetZ));*/
+					Vector3 FliteredValues = new Vector3(float.Parse(temprecords[IndexX]), float.Parse(temprecords[IndexY]), float.Parse(temprecords[IndexZ]));
+					// Getting Velocity
+					previous = new Vector3(FliteredValues.x, FliteredValues.y, FliteredValues.z);
+					float velocity = ((transform.position - previous).magnitude) / Time.deltaTime;
+					speeds.Add(velocity);
+					this.transform.position = previous;
+				}
 
-		Invoke("callAdding",1);
+				// Saving Value
+				//	addData(FliteredValues.x.ToString(),FliteredValues.y.ToString(),FliteredValues.z.ToString(),velocity.ToString());
+
+			}
+			callafter();
+
+
+
+		}
+     
 	}
 
 	public void callAdding()
     {
-		string[] records = csvFile.text.Split("\n"[0]);
-		for (int i = 0; i < records.Length; i++)
-		{
-			// Filtring Values
-			string[] temprecords = records[i].Split(","[0]);
-			if (temprecords[0].Length > 0)
-			{
-				/*Vector3 FliteredValues = AOC.filterPos(new Vector3(float.Parse(temprecords[IndexX])+offsetX, float.Parse(temprecords[IndexY])+offsetY, float.Parse(temprecords[IndexZ])+offsetZ));*/
-				Vector3 FliteredValues = new Vector3(float.Parse(temprecords[IndexX]), float.Parse(temprecords[IndexY]), float.Parse(temprecords[IndexZ]));
-				// Getting Velocity
-				previous = new Vector3(FliteredValues.x, FliteredValues.y, FliteredValues.z);
-				float velocity = ((transform.position - previous).magnitude) / Time.deltaTime;
-				speeds.Add(velocity);
-				this.transform.position = previous;
-			}
-
-			// Saving Value
-			//	addData(FliteredValues.x.ToString(),FliteredValues.y.ToString(),FliteredValues.z.ToString(),velocity.ToString());
-
-		}
-		callafter();
+		
 	}
 
 	public void callafter()
