@@ -18,8 +18,6 @@ public class ExerDatabaseCsv : MonoBehaviour
 	}
 	public void readData()
 	{
-
-		
 		
 		string[] records = csvFile.text.Split(","[0]);
 		for (int i = 0; i < records.Length; i++)
@@ -33,7 +31,7 @@ public class ExerDatabaseCsv : MonoBehaviour
 
 			if(i == records.Length - 1)
             {
-				print("called = "+datapoints.Count);
+				//print("called = "+datapoints.Count);
 				
 			StartCoroutine(GetComponent<CSVManager>().bcf.addbarValue(datapoints));
 				StartCoroutine(GetComponent<CSVManager>().gcf.Multicall(datapoints));

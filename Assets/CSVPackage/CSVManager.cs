@@ -52,11 +52,18 @@ public class CSVManager : MonoBehaviour
 				{
 					/*Vector3 FliteredValues = AOC.filterPos(new Vector3(float.Parse(temprecords[IndexX])+offsetX, float.Parse(temprecords[IndexY])+offsetY, float.Parse(temprecords[IndexZ])+offsetZ));*/
 					Vector3 FliteredValues = new Vector3(float.Parse(temprecords[IndexX]), float.Parse(temprecords[IndexY]), float.Parse(temprecords[IndexZ]));
+					Vector3 FliteredValues2 = new Vector3(float.Parse(temprecords[3]), float.Parse(temprecords[4]), float.Parse(temprecords[5]));
 					// Getting Velocity
-					previous = new Vector3(FliteredValues.x, FliteredValues.y, FliteredValues.z);
-					float velocity = ((transform.position - previous).magnitude) / Time.deltaTime;
-					speeds.Add(velocity);
-					this.transform.position = previous;
+				//	previous = new Vector3(FliteredValues.x, FliteredValues.y, FliteredValues.z);
+					if (i > 0)
+				{
+						//	float velocity = ((transform.position - previous).magnitude) / i;
+						Vector3 SumofVector3 = FliteredValues + FliteredValues2;
+						float magnitudeValue = SumofVector3.magnitude;
+						float squrValue = Mathf.Sqrt(magnitudeValue);
+					    speeds.Add(squrValue);
+				}
+				//	this.transform.position = previous;
 				}
 
 				// Saving Value

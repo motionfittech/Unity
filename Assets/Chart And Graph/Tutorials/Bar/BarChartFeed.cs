@@ -33,7 +33,7 @@ public class BarChartFeed : MonoBehaviour {
     {
         int i = 0;
         //        maxvalue.maxValue = tempValues.Count;
-        print(tempValues.Count);
+       // print(tempValues.Count);
         while (i < tempValues.Count)
         {
 

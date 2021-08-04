@@ -61,6 +61,11 @@ public class WorkoutManager : MonoBehaviour
       //  startBt.material.SetFloat("TileX", 0.05f);
        // startBt.material.SetFloat("TileY", 0.05f);
 
+        if(PlayerPrefs.GetInt("firsttime",0) == 0)
+        {
+           
+            Application.LoadLevel(5);
+        }
     }
 
     private void Start()
@@ -232,7 +237,11 @@ public class WorkoutManager : MonoBehaviour
             myModalWindow.titleText = "Exercise"; // Change title
             myModalWindow.descriptionText = "Do you want to add exerice click? ";
         }
-       
+        else if (counter == 8)
+        {
+            myModalWindow.titleText = "Tutorial"; // Change title
+            myModalWindow.descriptionText = "You have already Watched the tutorials, do you want to go back and master your skill? ";
+        }
 
         myModalWindow.onConfirm.RemoveAllListeners();
         myModalWindow.onConfirm.AddListener(delegate { answer(counter); });
@@ -291,7 +300,9 @@ public class WorkoutManager : MonoBehaviour
             case 7:
                 sideMenuBt();
                 break;
-
+            case 8:
+                Application.LoadLevel(5);
+                break;
             default:
                 print("Incorrect");
                 break;
