@@ -46,9 +46,11 @@ public class CSVManager : MonoBehaviour
 					if (i > 0)
 				        {
 						Vector3 SumofVector3 = FliteredValues + FliteredValues2;
-						float magnitudeValue = SumofVector3.magnitude;
+						Vector3 SumofFliter = AOC.filterPos(SumofVector3);
+						float magnitudeValue = SumofFliter.magnitude;
 						float squrValue = Mathf.Sqrt(magnitudeValue);
-					    speeds.Add(squrValue);
+						speeds.Add(squrValue);
+
 				        }
 				
 				}
