@@ -19,6 +19,7 @@ public class FitCapTest : MonoBehaviour
 
     public GameObject TopPanel;
     public GameObject MiddlePanel;
+    private int saveCounter = 0;
     [HideInInspector] public string exerciseString; 
     public class Characteristic
     {
@@ -128,9 +129,10 @@ public class FitCapTest : MonoBehaviour
 
             //string startstring = System.DateTime.Now.ToString();
             System.DateTime theTime = System.DateTime.Now;
+            saveCounter = +1;
             string startstring = theTime.Year + "_" + theTime.Month + "_" + theTime.Day + "_" + theTime.Hour + "_" + theTime.Minute + "_" + theTime.Second;
             //path = Application.dataPath + "/log_" + startstring + ".csv";  // unknown
-            path = Application.persistentDataPath + "/log_"+exerciseString+"_" + startstring + ".csv"; // works, original
+            path = Application.persistentDataPath + "/log_ "+saveCounter.ToString()+"_"+exerciseString+"_" + startstring + ".csv"; // works, original
 
           //  FitCapStatusMessages = path;
            

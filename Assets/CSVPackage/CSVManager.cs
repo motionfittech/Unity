@@ -88,8 +88,7 @@ public class CSVManager : MonoBehaviour
 		finalTotal = averageTotal / speeds.Count;
 		
 	    return finalTotal;
-	
-	}
+    	}
 	
 
 	public void addData(string X,string Y, string Z, string vel)
