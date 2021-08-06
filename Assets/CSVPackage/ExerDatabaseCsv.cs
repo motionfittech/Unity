@@ -18,8 +18,17 @@ public class ExerDatabaseCsv : MonoBehaviour
 	}
 	public void readData()
 	{
-		
-		string[] records = csvFile.text.Split(","[0]);
+		if (csvFile == null)
+			return;
+
+		string [] lastrecordArr = csvFile.text.Split("\n"[0]);
+
+		if (lastrecordArr.Length == 0)
+			return;
+
+		string lastrecord = lastrecordArr[lastrecordArr.Length - 1];
+
+		string[] records = lastrecord.Split(","[0]);
 		for (int i = 0; i < records.Length; i++)
 		{
 			
@@ -28,7 +37,7 @@ public class ExerDatabaseCsv : MonoBehaviour
 				
 				datapoints.Add(float.Parse(records[i]));
 			}
-
+                      
 			if(i == records.Length - 1)
             {
 				//print("called = "+datapoints.Count);
@@ -53,7 +62,7 @@ public class ExerDatabaseCsv : MonoBehaviour
 	{
 
      
-            File.AppendAllText(getPath() + "/Resources/" + saveFilename + ".csv",  X + fieldSeperator );
+            File.AppendAllText(getPath() + "/Resources/" + saveFilename + ".csv",  X + fieldSeperator+lineSeperater );
        
 	
 	}
