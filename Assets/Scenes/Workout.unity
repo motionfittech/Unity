@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0037024359, g: 0.0032408813, b: 0.0015062646, a: 1}
+  m_IndirectSpecularColor: {r: 0.0037024347, g: 0.0032408708, b: 0.0015062541, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4052,7 +4052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9232b383a89eb743be28efb1a63aa4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  a: 0.0000001
+  a: 0.1
 --- !u!4 &567091558
 Transform:
   m_ObjectHideFlags: 0
@@ -4098,15 +4098,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AOC: {fileID: 567091556}
-  saveFilename: Data_BenchPress_V4
+  saveFilename: Fliter_ZachSquat10Reps
   IndexX: 0
   IndexY: 1
   IndexZ: 2
-  speeds: []
   bcf: {fileID: 979191446}
   gcf: {fileID: 1741483200}
   EDC: {fileID: 572307534}
   velocityAverageTxt: {fileID: 2034578126}
+  csvName: ZachSquat10Reps
 --- !u!4 &572307533
 Transform:
   m_ObjectHideFlags: 0
@@ -6631,7 +6631,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &979191445
 MonoBehaviour:
@@ -11278,7 +11278,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1594115466
 GameObject:

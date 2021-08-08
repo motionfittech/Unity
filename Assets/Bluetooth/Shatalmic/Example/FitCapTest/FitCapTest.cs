@@ -121,7 +121,7 @@ public class FitCapTest : MonoBehaviour
 
     public void OnButtonPress_StartStopButton()
     {
-        if (DisplayData == false )
+        if (DisplayData == false && GameObject.FindObjectOfType<WorkoutManager>()._Dowehaveanimation)
         {
             DisplayData = true;
           //  TextMeshProUGUI txt = StartStopButton.GetComponentInChildren<TextMeshProUGUI>();
@@ -129,13 +129,13 @@ public class FitCapTest : MonoBehaviour
 
             //string startstring = System.DateTime.Now.ToString();
             System.DateTime theTime = System.DateTime.Now;
-            saveCounter = +1;
+            
             string startstring = theTime.Year + "_" + theTime.Month + "_" + theTime.Day + "_" + theTime.Hour + "_" + theTime.Minute + "_" + theTime.Second;
             //path = Application.dataPath + "/log_" + startstring + ".csv";  // unknown
-            path = Application.persistentDataPath + "/log_ "+saveCounter.ToString()+"_"+exerciseString+"_" + startstring + ".csv"; // works, original
+            path = Application.persistentDataPath + "/log_"+saveCounter.ToString()+"_"+exerciseString+"_" + startstring + ".csv"; // works, original
+            saveCounter +=1;
+            //  FitCapStatusMessages = path;
 
-          //  FitCapStatusMessages = path;
-           
             // create file if it doesn't exist
             //string starttimetag = "Session date: " + theTime.Year + "-" + theTime.Month + "-" + theTime.Day + "-" + theTime.Hour + ":" + theTime.Minute + ":" + theTime.Second + "\n";
             //if (!File.Exists(path))
@@ -153,9 +153,9 @@ public class FitCapTest : MonoBehaviour
             if (path.Length > 0)
             {
                 FitCapStatusMessages = "Stored in this path"+ path;
-                print("path is not null");
-                //   GameObject.FindObjectOfType<CSVManager>().readData(path);
-                Invoke("call",2);
+              //  print("path is not null");
+                  GameObject.FindObjectOfType<CSVManager>().readData(path);
+              
             }
             else
             {
@@ -181,13 +181,7 @@ public class FitCapTest : MonoBehaviour
         }
     }
 
-    void call()
-    {
-        TextAsset csvFile = new TextAsset(System.IO.File.ReadAllText(path));
-        CsvRawDataManager CRDM = GameObject.FindObjectOfType<CsvRawDataManager>();
-        CRDM.csvFile = csvFile;
-        CRDM.readData();
-    }
+  
     void Reset()
     {
         _connected = false;

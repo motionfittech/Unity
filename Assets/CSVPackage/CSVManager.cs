@@ -16,21 +16,36 @@ public class CSVManager : MonoBehaviour
 
 	[Header("Acceleration Value in CSV Index")]
 	public int IndexX = 0, IndexY = 1, IndexZ = 2 ;
-	public List<float> speeds = new List<float>();
+	
 	public BarChartFeed bcf;
 	public GraphChartFeed gcf;
 	public ExerDatabaseCsv EDC;
 	public TextMeshProUGUI velocityAverageTxt;
-	
-  
+	public string csvName;
+
+
+
+   /* private void Start()
+    {
+		//Invoke("call",2);
+    }*/
+
+   /* void call()
+    {
+        readData("D:/Unity/Assets/CSVPackage/Log files/"+csvName+".csv");
+    }*/
     public void readData(string rawDataPath)
 	{
 		
 		indexer = 0;
+		Vector3 previous = Vector3.zero;
+		Vector3 current = Vector3.zero;
+		Vector3 firstvalue = Vector3.zero;
+		List<float> speeds = new List<float>();
 		if (File.Exists(rawDataPath))
 		{
-			string temptext = " ";
-			temptext = File.ReadAllText(rawDataPath);
+			
+			string temptext = File.ReadAllText(rawDataPath);
 			string[] records = temptext.Split("\n"[0]);
 			
 			for (int i = 0; i < records.Length; i++)
@@ -42,29 +57,41 @@ public class CSVManager : MonoBehaviour
 					
 					Vector3 FliteredValues = new Vector3(float.Parse(temprecords[IndexX]), float.Parse(temprecords[IndexY]), float.Parse(temprecords[IndexZ]));
 					Vector3 FliteredValues2 = new Vector3(float.Parse(temprecords[3]), float.Parse(temprecords[4]), float.Parse(temprecords[5]));
+					current = AOC.filterPos(FliteredValues);
 				
-					if (i > 0)
-				        {
-						Vector3 SumofVector3 = FliteredValues + FliteredValues2;
-						Vector3 SumofFliter = AOC.filterPos(SumofVector3);
-						float magnitudeValue = SumofFliter.magnitude;
-						float squrValue = Mathf.Sqrt(magnitudeValue);
-						speeds.Add(squrValue);
+					if (i > 0 ) {
+						current = current - firstvalue;
+						
+						float velocity = Vector3.Distance(previous,current);
+						float tempvelocity = velocity / i*0.1f;
+					
+						speeds.Add(Mathf.Abs(tempvelocity));
+                    }
+                    else
+                    {
+                        firstvalue = current;
+                    }
 
-				        }
+                    previous = current;
+					
 				
 				}
 
 			
 			}
-			callafter();
+
+			
+#if UNITY_EDITOR
+			UnityEditor.AssetDatabase.Refresh();
+#endif
+			callafter(speeds);
 		}
      
 	}
-
-	public void callafter()
+	
+	public void callafter( List<float> speeds)
     {
-		float tempAverage = returnAverage();
+		float tempAverage = returnAverage(speeds);
 		velocityAverageTxt.text = tempAverage.ToString().Substring(0,5) +" m/s";
 		
 		bcf.addbarSingleValue(tempAverage);
@@ -74,7 +101,7 @@ public class CSVManager : MonoBehaviour
 		
 	}
 	
-	float returnAverage() 
+	float returnAverage(List<float> speeds) 
 	{
 		float averageTotal = 0;
 		float finalTotal = 0;
