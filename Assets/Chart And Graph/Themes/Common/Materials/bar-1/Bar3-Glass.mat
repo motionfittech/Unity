@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bar1
+  m_Name: Bar3-Glass
   m_Shader: {fileID: 4800000, guid: bf77440f72a211343af02246df7ffbda, type: 3}
-  m_ShaderKeywords: _ALPHAPREMULTIPLY_ON
-  m_LightmapFlags: 5
+  m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _EMISSION
+  m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
@@ -82,7 +82,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 1, g: 0.9724138, b: 0, a: 0.547}
+    - _Color: {r: 1, g: 0.272, b: 0, a: 0.691}
     - _ColorFrom: {r: 1, g: 1, b: 1, a: 1}
     - _ColorTo: {r: 1, g: 1, b: 1, a: 1}
     - _Combine: {r: 1, g: 1, b: 1, a: 0}

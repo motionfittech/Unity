@@ -6397,7 +6397,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &979191439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6453,7 +6453,7 @@ MonoBehaviour:
     prefix: 
     suffix: 
     customFormat: 
-  fontSize: 34
+  fontSize: 21
   fontSharpness: 3
   seperation: 0
   location:
@@ -6500,7 +6500,7 @@ MonoBehaviour:
     textPrefix: 
     textSuffix: 
     fractionDigits: 2
-    fontSize: 23
+    fontSize: 15
     fontSharpness: 3
     textDepth: -0.18
     textSeperation: -0.71
@@ -6527,7 +6527,7 @@ MonoBehaviour:
     textPrefix: 
     textSuffix: 
     fractionDigits: 2
-    fontSize: 23
+    fontSize: 15
     fontSharpness: 3
     textDepth: -0.18
     textSeperation: -0.71
@@ -6550,9 +6550,9 @@ MonoBehaviour:
     prefix: 
     suffix: 
     customFormat: 
-  fontSize: 59
+  fontSize: 35
   fontSharpness: 3
-  seperation: 0.43
+  seperation: 0.51
   location:
     Breadth: 0
     Depth: 0
@@ -6592,17 +6592,49 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Data:
-    mCategories: []
+    mCategories:
+    - Name: SET 1
+      Materials:
+        Normal: {fileID: 2100000, guid: cae9ba415ce9fbd49a88eb9e571b11e8, type: 2}
+        Hover: {r: 0, g: 0, b: 0, a: 0}
+        Selected: {r: 0, g: 0, b: 0, a: 0}
+    - Name: SET 2
+      Materials:
+        Normal: {fileID: 2100000, guid: 585dbb6d5c29f0147a84dda72d04ce2a, type: 2}
+        Hover: {r: 0, g: 0, b: 0, a: 0}
+        Selected: {r: 0, g: 0, b: 0, a: 0}
+    - Name: SET 3
+      Materials:
+        Normal: {fileID: 2100000, guid: 97e489aa1f5a78648b5a053ada60bade, type: 2}
+        Hover: {r: 0, g: 0, b: 0, a: 0}
+        Selected: {r: 0, g: 0, b: 0, a: 0}
+    - Name: SET4
+      Materials:
+        Normal: {fileID: 2100000, guid: fcd469b33f1482a4183171f305027437, type: 2}
+        Hover: {r: 0, g: 0, b: 0, a: 0}
+        Selected: {r: 0, g: 0, b: 0, a: 0}
     mGroups:
     - All
-    mData: []
+    mData:
+    - GroupName: All
+      ColumnName: SET 1
+      Amount: 1
+    - GroupName: All
+      ColumnName: SET 2
+      Amount: 2
+    - GroupName: All
+      ColumnName: SET 3
+      Amount: 3
+    - GroupName: All
+      ColumnName: SET4
+      Amount: 4
     automaticMaxValue: 0
     maxValue: 3
     automaticMinValue: 0
     minValue: 0
   transitionTimeBetaFeature: -1
   heightRatio: 5
-  totalWidth: 4.06
+  totalWidth: 8.95
   totalDepth: 2.14
   textCamera: {fileID: 0}
   textIdleDistance: 20
@@ -6627,7 +6659,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 979191438}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: -2.5, z: 2.6}
+  m_LocalPosition: {x: -5.02, y: -5.7, z: 5.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6663,9 +6695,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barChart: {fileID: 979191443}
-  mat1: {fileID: 2100000, guid: 375c4c8ccdaee1144be4710a45d8ff7d, type: 2}
-  mat2: {fileID: 2100000, guid: 726c0d574271b504293cce9b2b28826f, type: 2}
-  mat3: {fileID: 2100000, guid: 5fc3245638119f24e9cf06d6b59d1c0b, type: 2}
+  mat1: {fileID: 2100000, guid: cae9ba415ce9fbd49a88eb9e571b11e8, type: 2}
+  mat2: {fileID: 2100000, guid: fcd469b33f1482a4183171f305027437, type: 2}
+  mat3: {fileID: 2100000, guid: 97e489aa1f5a78648b5a053ada60bade, type: 2}
   values: []
   maxvalue: {fileID: 158067636}
 --- !u!1 &987359452
