@@ -92,12 +92,11 @@ public class CSVManager : MonoBehaviour
 	public void callafter( List<float> speeds)
     {
 		float tempAverage = returnAverage(speeds);
-		string AveragetoString = tempAverage.ToString().Substring(0,5);
-		velocityAverageTxt.text = AveragetoString+" m/s";
+		velocityAverageTxt.text = tempAverage.ToString().Substring(0, 5 )+ " m/s";
 		
-		bcf.addbarSingleValue(float.Parse(AveragetoString));
-		gcf.Singcall(float.Parse(AveragetoString));
-		EDC.addData(AveragetoString);
+		bcf.addbarSingleValue(tempAverage);
+		gcf.Singcall(tempAverage);
+		EDC.addData(tempAverage.ToString());
 		speeds.Clear();
 		
 	}
