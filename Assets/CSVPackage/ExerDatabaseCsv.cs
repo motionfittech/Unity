@@ -62,7 +62,7 @@ public class ExerDatabaseCsv : MonoBehaviour
 	{
 
      
-            File.AppendAllText(getPath() + "/Resources/" + saveFilename + ".csv",  X + fieldSeperator+lineSeperater );
+            File.AppendAllText(getPath() + "/Resources/" + saveFilename + ".csv",  X + fieldSeperator);
        
 	
 	}

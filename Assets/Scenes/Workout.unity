@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0037024347, g: 0.0032408708, b: 0.0015062541, a: 1}
+  m_IndirectSpecularColor: {r: 0.0037024359, g: 0.0032408813, b: 0.0015062646, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4084,7 +4084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &572307532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4098,7 +4098,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AOC: {fileID: 567091556}
-  saveFilename: Fliter_ZachSquat10Reps
+  saveFilename: log_ 1_FrontRaise_2021_8_6_20_9_55
   IndexX: 0
   IndexY: 1
   IndexZ: 2
@@ -4106,7 +4106,7 @@ MonoBehaviour:
   gcf: {fileID: 1741483200}
   EDC: {fileID: 572307534}
   velocityAverageTxt: {fileID: 2034578126}
-  csvName: ZachSquat10Reps
+  csvName: log_ 1_FrontRaise_2021_8_6_20_10_46
 --- !u!4 &572307533
 Transform:
   m_ObjectHideFlags: 0
@@ -4133,7 +4133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fed58b7fad194168811480d11714040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  csvFile: {fileID: 4900000, guid: 7ec9bb15608af4c7999efaa78ed85e93, type: 3}
+  csvFile: {fileID: 4900000, guid: 72c2c5f33147441068c46813c26a4fb9, type: 3}
   saveFilename: ExerciseData
   datapoints: []
 --- !u!1 &582300525
@@ -4959,16 +4959,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 730938545}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1942067740}
-  m_RootOrder: 11
+  m_Father: {fileID: 1406086991}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -10, y: 99}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -128, y: -106}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &730938547
@@ -6453,7 +6453,7 @@ MonoBehaviour:
     prefix: 
     suffix: 
     customFormat: 
-  fontSize: 21
+  fontSize: 30
   fontSharpness: 3
   seperation: 0
   location:
@@ -6476,13 +6476,13 @@ MonoBehaviour:
   SimpleView: 1
   format: 0
   depth:
-    Automatic: 0
-    Value: 0
+    Automatic: 1
+    Value: 0.15
   mainDivisions:
     messure: 0
     unitsPerDivision: 0
     total: 3
-    material: {fileID: 2100000, guid: e65ebfd404010624fb315bf790f7eebe, type: 2}
+    material: {fileID: 2100000, guid: 21e6ef6db30c8004fbc0738ef4f48d89, type: 2}
     materialTiling:
       EnableTiling: 0
       TileFactor: 100
@@ -6491,16 +6491,16 @@ MonoBehaviour:
       Value: 0.5
     markLength:
       Automatic: 0
-      Value: -0.41
+      Value: -0.16
     markDepth:
       Automatic: 1
-      Value: 0.5
+      Value: 1.27
     markThickness: 0.17
     textPrefab: {fileID: 0}
     textPrefix: 
     textSuffix: 
-    fractionDigits: 2
-    fontSize: 15
+    fractionDigits: 1
+    fontSize: 24
     fontSharpness: 3
     textDepth: -0.18
     textSeperation: -0.71
@@ -6509,7 +6509,7 @@ MonoBehaviour:
     messure: 0
     unitsPerDivision: 0
     total: 3
-    material: {fileID: 2100000, guid: a47d052d9a1992e4495892ee553abd96, type: 2}
+    material: {fileID: 2100000, guid: 527c113108b732941bbe1fc04ef3ae5d, type: 2}
     materialTiling:
       EnableTiling: 0
       TileFactor: 100
@@ -6518,16 +6518,16 @@ MonoBehaviour:
       Value: 0.5
     markLength:
       Automatic: 0
-      Value: -0.41
+      Value: -0.16
     markDepth:
       Automatic: 1
-      Value: 0.5
+      Value: 1.27
     markThickness: 0.17
     textPrefab: {fileID: 0}
     textPrefix: 
     textSuffix: 
-    fractionDigits: 2
-    fontSize: 15
+    fractionDigits: 1
+    fontSize: 24
     fontSharpness: 3
     textDepth: -0.18
     textSeperation: -0.71
@@ -6550,14 +6550,14 @@ MonoBehaviour:
     prefix: 
     suffix: 
     customFormat: 
-  fontSize: 35
+  fontSize: 42
   fontSharpness: 3
   seperation: 0.51
   location:
     Breadth: 0
     Depth: 0
   alignment: 0
-  fractionDigits: 0
+  fractionDigits: 2
 --- !u!114 &979191443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6592,49 +6592,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Data:
-    mCategories:
-    - Name: SET 1
-      Materials:
-        Normal: {fileID: 2100000, guid: cae9ba415ce9fbd49a88eb9e571b11e8, type: 2}
-        Hover: {r: 0, g: 0, b: 0, a: 0}
-        Selected: {r: 0, g: 0, b: 0, a: 0}
-    - Name: SET 2
-      Materials:
-        Normal: {fileID: 2100000, guid: 585dbb6d5c29f0147a84dda72d04ce2a, type: 2}
-        Hover: {r: 0, g: 0, b: 0, a: 0}
-        Selected: {r: 0, g: 0, b: 0, a: 0}
-    - Name: SET 3
-      Materials:
-        Normal: {fileID: 2100000, guid: 97e489aa1f5a78648b5a053ada60bade, type: 2}
-        Hover: {r: 0, g: 0, b: 0, a: 0}
-        Selected: {r: 0, g: 0, b: 0, a: 0}
-    - Name: SET4
-      Materials:
-        Normal: {fileID: 2100000, guid: fcd469b33f1482a4183171f305027437, type: 2}
-        Hover: {r: 0, g: 0, b: 0, a: 0}
-        Selected: {r: 0, g: 0, b: 0, a: 0}
+    mCategories: []
     mGroups:
     - All
-    mData:
-    - GroupName: All
-      ColumnName: SET 1
-      Amount: 1
-    - GroupName: All
-      ColumnName: SET 2
-      Amount: 2
-    - GroupName: All
-      ColumnName: SET 3
-      Amount: 3
-    - GroupName: All
-      ColumnName: SET4
-      Amount: 4
+    mData: []
     automaticMaxValue: 0
-    maxValue: 3
+    maxValue: 1.3
     automaticMinValue: 0
     minValue: 0
   transitionTimeBetaFeature: -1
   heightRatio: 5
-  totalWidth: 8.95
+  totalWidth: 4.06
   totalDepth: 2.14
   textCamera: {fileID: 0}
   textIdleDistance: 20
@@ -6659,7 +6627,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 979191438}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.02, y: -5.7, z: 5.78}
+  m_LocalPosition: {x: -5.2, y: -3.5, z: 5.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -10099,6 +10067,7 @@ RectTransform:
   - {fileID: 1300303889}
   - {fileID: 1264477780}
   - {fileID: 432130058}
+  - {fileID: 730938546}
   m_Father: {fileID: 1942067740}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14812,7 +14781,6 @@ RectTransform:
   - {fileID: 173953859}
   - {fileID: 2116721340}
   - {fileID: 1607407383}
-  - {fileID: 730938546}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
