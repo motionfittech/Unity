@@ -57,13 +57,13 @@ public class CSVManager : MonoBehaviour
 					
 					Vector3 FliteredValues = new Vector3(float.Parse(temprecords[IndexX]), float.Parse(temprecords[IndexY]), float.Parse(temprecords[IndexZ]));
 					Vector3 FliteredValues2 = new Vector3(float.Parse(temprecords[3]), float.Parse(temprecords[4]), float.Parse(temprecords[5]));
-					current = AOC.filterPos(FliteredValues);
+					current = FliteredValues;
 				
 					if (i > 0 ) {
 						current = current - firstvalue;
 						
 						float velocity = Vector3.Distance(previous,current);
-						float tempvelocity = velocity / i*0.5f;
+						float tempvelocity = velocity / i*0.15f;
 					
 						speeds.Add(Mathf.Abs(tempvelocity));
                     }
