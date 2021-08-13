@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0037024359, g: 0.0032408813, b: 0.0015062646, a: 1}
+  m_IndirectSpecularColor: {r: 0.0037024347, g: 0.0032408708, b: 0.0015062541, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4084,7 +4084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &572307532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4098,7 +4098,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AOC: {fileID: 567091556}
-  saveFilename: log_ 1_FrontRaise_2021_8_6_20_9_55
+  saveFilename: log_ log_0_Situps_2021_8_12_6_51_44
   IndexX: 0
   IndexY: 1
   IndexZ: 2
@@ -4106,7 +4106,7 @@ MonoBehaviour:
   gcf: {fileID: 1741483200}
   EDC: {fileID: 572307534}
   velocityAverageTxt: {fileID: 2034578126}
-  csvName: log_ 1_FrontRaise_2021_8_6_20_10_46
+  csvName: log_0_Situps_2021_8_12_6_51_44
 --- !u!4 &572307533
 Transform:
   m_ObjectHideFlags: 0
@@ -6397,7 +6397,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &979191439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8409,7 +8409,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 960, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 826, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1179404662
@@ -9676,8 +9676,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 413, y: 0}
-  m_SizeDelta: {x: 786, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1343136070
 MonoBehaviour:

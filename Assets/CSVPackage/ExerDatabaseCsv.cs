@@ -9,8 +9,6 @@ public class ExerDatabaseCsv : MonoBehaviour
 	public TextAsset csvFile;
 	private char lineSeperater = '\n'; // It defines line seperate character
 	private char fieldSeperator = ','; // It defines field seperate chracter
-	
-	public string saveFilename = "Default";
 	public List<float> datapoints = new List<float>();
 	void Start()
 	{
@@ -58,11 +56,11 @@ public class ExerDatabaseCsv : MonoBehaviour
 	}
 
 
-	public void addData(string X)
+	public void addData(string filename,string X)
 	{
 
      
-            File.AppendAllText(getPath() + "/Resources/" + saveFilename + ".csv",  X + fieldSeperator);
+            File.AppendAllText(getPath() + "/Resources/" + filename + ".csv",  X + fieldSeperator);
        
 	
 	}

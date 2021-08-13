@@ -25,15 +25,15 @@ public class CSVManager : MonoBehaviour
 
 
 
-  //    private void Start()
-  //  {
-		//Invoke("call",2);
-  //  }
+   /*   private void Start()
+    {
+		Invoke("call",2);
+    }
 
-  //  void call()
-  //  {
-  //      readData("Assets/CSVPackage/Log files/"+csvName+".csv");
-  //  }
+    void call()
+    {
+        readData("Assets/CSVPackage/Log files/"+csvName+".csv");
+    }*/
     public void readData(string rawDataPath)
 	{
 		
@@ -63,7 +63,7 @@ public class CSVManager : MonoBehaviour
 						current = current - firstvalue;
 						
 						float velocity = Vector3.Distance(previous,current);
-						float tempvelocity = velocity / i*0.15f;
+						float tempvelocity = velocity / i*0.01f;
 					
 						speeds.Add(Mathf.Abs(tempvelocity));
                     }
@@ -96,7 +96,8 @@ public class CSVManager : MonoBehaviour
 		
 		bcf.addbarSingleValue(tempAverage);
 		gcf.Singcall(tempAverage);
-		EDC.addData(tempAverage.ToString());
+		EDC.addData("ExerciseData", tempAverage.ToString());
+
 		speeds.Clear();
 		
 	}
