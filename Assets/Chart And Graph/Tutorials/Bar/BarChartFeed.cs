@@ -9,9 +9,8 @@ using System;
 public class BarChartFeed : MonoBehaviour {
     public BarChart barChart;
     public Material mat1,mat2,mat3;
-    public List<float> values = new List<float>();
     public Slider maxvalue;
-  
+    
     int counter = 0;
     public void Start()
     {
@@ -32,6 +31,7 @@ public class BarChartFeed : MonoBehaviour {
 	public IEnumerator addbarValue(List<float> tempValues)
     {
         int i = 0;
+        barChart.DataSource.ClearCategories();
         //        maxvalue.maxValue = tempValues.Count;
        // print(tempValues.Count);
         while (i < tempValues.Count)

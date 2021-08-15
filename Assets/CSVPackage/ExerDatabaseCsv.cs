@@ -6,20 +6,16 @@ using System.Collections.Generic;
 using TMPro;
 public class ExerDatabaseCsv : MonoBehaviour
 {
-	public TextAsset csvFile;
 	private char lineSeperater = '\n'; // It defines line seperate character
 	private char fieldSeperator = ','; // It defines field seperate chracter
 	public List<float> datapoints = new List<float>();
-	void Start()
+	
+	public void readData(TextAsset Csv)
 	{
-		readData();
-	}
-	public void readData()
-	{
-		if (csvFile == null)
+		if (Csv == null)
 			return;
-
-		string [] lastrecordArr = csvFile.text.Split("\n"[0]);
+		datapoints = new List<float>(0);
+		string [] lastrecordArr = Csv.text.Split("\n"[0]);
 
 		if (lastrecordArr.Length == 0)
 			return;
@@ -40,9 +36,7 @@ public class ExerDatabaseCsv : MonoBehaviour
             {
 				//print("called = "+datapoints.Count);
 				
-			StartCoroutine(GetComponent<CSVManager>().bcf.addbarValue(datapoints));
-				StartCoroutine(GetComponent<CSVManager>().gcf.Multicall(datapoints));
-
+			
 				if (GetComponent<CSVManager>().velocityAverageTxt != null)
 				{
 					GetComponent<CSVManager>().velocityAverageTxt.text = records[0].ToString().Substring(0, 5) + " m/s";
@@ -50,9 +44,12 @@ public class ExerDatabaseCsv : MonoBehaviour
 			}
 						
 		}
+		StartCoroutine(GetComponent<CSVManager>().bcf.addbarValue(datapoints));
+		StartCoroutine(GetComponent<CSVManager>().gcf.Multicall(datapoints));
 
 
-		
+
+
 	}
 
 

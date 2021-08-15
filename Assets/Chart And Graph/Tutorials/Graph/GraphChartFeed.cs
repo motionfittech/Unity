@@ -48,7 +48,8 @@ public class GraphChartFeed : MonoBehaviour
     {
         
             int i = 0;
-            //        maxvalue.maxValue = tempValues.Count;
+        //        maxvalue.maxValue = tempValues.Count;
+        graph.DataSource.Clear();
            
             while (i < x.Count)
             {

@@ -20,12 +20,12 @@ public class CSVManager : MonoBehaviour
 	public BarChartFeed bcf;
 	public GraphChartFeed gcf;
 	public ExerDatabaseCsv EDC;
-	public TextMeshProUGUI velocityAverageTxt;
+	public TextMeshProUGUI velocityAverageTxt,ForceTxt,WorkTxt;
 	public string csvName;
+	public int Totaltime;
 
 
-
-   /*   private void Start()
+      private void Start()
     {
 		Invoke("call",2);
     }
@@ -33,7 +33,7 @@ public class CSVManager : MonoBehaviour
     void call()
     {
         readData("Assets/CSVPackage/Log files/"+csvName+".csv");
-    }*/
+    }
     public void readData(string rawDataPath)
 	{
 		
@@ -92,12 +92,16 @@ public class CSVManager : MonoBehaviour
 	public void callafter( List<float> speeds)
     {
 		float tempAverage = returnAverage(speeds);
+		float tempSpeed = returnForce(speeds,5);
+		float tempWork = returnWork(speeds,tempSpeed);
 		velocityAverageTxt.text = tempAverage.ToString().Substring(0, 5 )+ " m/s";
-		
-		bcf.addbarSingleValue(tempAverage);
-		gcf.Singcall(tempAverage);
+		ForceTxt.text = tempSpeed.ToString().Substring(0,4) + " N";
+		WorkTxt.text = tempWork.ToString().Substring(0, 4) + " J";
+		//bcf.addbarSingleValue(tempAverage);
+		//	gcf.Singcall(tempAverage);
 		EDC.addData("ExerciseData", tempAverage.ToString());
-
+		EDC.addData("PowerData", tempSpeed.ToString());
+		EDC.addData("WorkData", tempWork.ToString());
 		speeds.Clear();
 		
 	}
@@ -105,19 +109,46 @@ public class CSVManager : MonoBehaviour
 	float returnAverage(List<float> speeds) 
 	{
 		float averageTotal = 0;
-		float finalTotal = 0;
+		
 		
 		for (int i = 0; i < speeds.Count; i++)
 		{
 			averageTotal += speeds[i];
 			
 		}
-
-		finalTotal = averageTotal / speeds.Count;
+		// Avelocity = TotalVelocity/TotalCount
+		return averageTotal / speeds.Count;
+	}
+	float returnForce(List<float> speeds,float mass)
+    {
+		float Totalacceleration = 0;
 		
-	    return finalTotal;
-    	}
-	
+		for (int i = 0; i < speeds.Count; i++)
+		{
+			Totalacceleration += speeds[i];
+
+		}
+		 // Force = Acceleration*Mass
+		return Totalacceleration * mass;
+	}
+
+	float returnWork(List<float> finalVelocity,float Force)
+    {
+
+		float Vf = 0;
+		for(int i = 0; i < finalVelocity.Count; i++)
+        {
+			Vf += finalVelocity[i];
+        }
+		 // Displacemnt = 1/2(vi+vf)*t
+		float Displacement = (Vf/2);
+		// Work = Force * Discplacement
+		
+		return Force * Displacement;
+
+
+    }
+
 
 	public void addData(string X,string Y, string Z, string vel)
 	{

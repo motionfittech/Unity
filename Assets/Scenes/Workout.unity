@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0037024347, g: 0.0032408708, b: 0.0015062541, a: 1}
+  m_IndirectSpecularColor: {r: 0.0037024359, g: 0.0032408813, b: 0.0015062646, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3067,7 +3067,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: DISTANCE
+  m_text: Work
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 194c956b3d864664890e731c63fd4a02, type: 2}
   m_sharedMaterial: {fileID: 21704438749789640, guid: 194c956b3d864664890e731c63fd4a02,
@@ -4106,7 +4106,10 @@ MonoBehaviour:
   gcf: {fileID: 1741483200}
   EDC: {fileID: 572307534}
   velocityAverageTxt: {fileID: 2034578126}
+  ForceTxt: {fileID: 2113928299}
+  WorkTxt: {fileID: 740752861}
   csvName: log_0_Situps_2021_8_12_6_51_44
+  Totaltime: 0
 --- !u!4 &572307533
 Transform:
   m_ObjectHideFlags: 0
@@ -4133,8 +4136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fed58b7fad194168811480d11714040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  csvFile: {fileID: 4900000, guid: 72c2c5f33147441068c46813c26a4fb9, type: 3}
-  saveFilename: ExerciseData
   datapoints: []
 --- !u!1 &582300525
 GameObject:
@@ -5077,7 +5078,7 @@ GameObject:
   - component: {fileID: 740752862}
   - component: {fileID: 740752861}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Worktxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5099,8 +5100,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 387, y: 10.638}
-  m_SizeDelta: {x: 215.70258, y: 63.957886}
+  m_AnchoredPosition: {x: 392.05402, y: 15}
+  m_SizeDelta: {x: 229.9186, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &740752861
 MonoBehaviour:
@@ -5157,7 +5158,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -6392,7 +6393,7 @@ GameObject:
   - component: {fileID: 979191445}
   - component: {fileID: 979191446}
   m_Layer: 0
-  m_Name: Bar3DSimple
+  m_Name: Bar3DSimpleVelocity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6666,7 +6667,6 @@ MonoBehaviour:
   mat1: {fileID: 2100000, guid: cae9ba415ce9fbd49a88eb9e571b11e8, type: 2}
   mat2: {fileID: 2100000, guid: fcd469b33f1482a4183171f305027437, type: 2}
   mat3: {fileID: 2100000, guid: 97e489aa1f5a78648b5a053ada60bade, type: 2}
-  values: []
   maxvalue: {fileID: 158067636}
 --- !u!1 &987359452
 GameObject:
@@ -8409,7 +8409,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 960, y: 0}
   m_SizeDelta: {x: 826, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1179404662
@@ -8769,7 +8769,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 114850583624139744}
   m_OnClick:
     m_PersistentCalls:
@@ -8783,11 +8783,23 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: POWER
+          m_StringArgument: Force
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 617117847}
+      - m_Target: {fileID: 1370509581}
         m_TargetAssemblyTypeName: 
+        m_MethodName: answer
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 979191438}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -8798,17 +8810,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 72282226}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 572307534}
+        m_TargetAssemblyTypeName: ExerDatabaseCsv, Assembly-CSharp
+        m_MethodName: readData
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 4900000, guid: 40ce37e2b8db742df8ec6a20307c46a3,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.TextAsset, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &1220274405
 GameObject:
@@ -9676,8 +9689,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 413, y: 0}
+  m_SizeDelta: {x: 786, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1343136070
 MonoBehaviour:
@@ -10749,7 +10762,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 114745662044682264}
   m_OnClick:
     m_PersistentCalls:
@@ -10763,11 +10776,23 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: DISTANCE
+          m_StringArgument: VELOCITY
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 617117847}
+      - m_Target: {fileID: 1370509581}
         m_TargetAssemblyTypeName: 
+        m_MethodName: answer
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 979191438}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -10778,17 +10803,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 72282226}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 572307534}
+        m_TargetAssemblyTypeName: ExerDatabaseCsv, Assembly-CSharp
+        m_MethodName: readData
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 4900000, guid: f531cc0e5010e4e7ab045382a9a826c5,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.TextAsset, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &1539267129
 GameObject:
@@ -15390,6 +15416,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 572307534}
+        m_TargetAssemblyTypeName: ExerDatabaseCsv, Assembly-CSharp
+        m_MethodName: readData
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 4900000, guid: 72c2c5f33147441068c46813c26a4fb9,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.TextAsset, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &2007899333
 GameObject:
   m_ObjectHideFlags: 0
@@ -15595,8 +15634,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 273.93616, y: 4.4}
-  m_SizeDelta: {x: 431.5484, y: 71.2852}
+  m_AnchoredPosition: {x: 328.3015, y: 15}
+  m_SizeDelta: {x: 357.4235, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2034578126
 MonoBehaviour:
@@ -15646,14 +15685,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55.85
+  m_fontSize: 70
   m_fontSizeBase: 70
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 4
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -16256,7 +16295,7 @@ GameObject:
   - component: {fileID: 2113928300}
   - component: {fileID: 2113928299}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: ForceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16278,8 +16317,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 431.8, y: 15}
-  m_SizeDelta: {x: 150.42667, y: 50}
+  m_AnchoredPosition: {x: 392.05402, y: 15}
+  m_SizeDelta: {x: 229.9186, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2113928299
 MonoBehaviour:
@@ -16336,7 +16375,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -17872,7 +17911,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114702634043980212}
   m_HandleRect: {fileID: 224421591947494422}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0.9999997
   m_Size: 0.8338219
   m_NumberOfSteps: 0
   m_OnValueChanged:
