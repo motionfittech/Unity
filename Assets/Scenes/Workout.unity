@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0037024359, g: 0.0032408813, b: 0.0015062646, a: 1}
+  m_IndirectSpecularColor: {r: 0.0037024347, g: 0.0032408708, b: 0.0015062541, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4106,8 +4106,9 @@ MonoBehaviour:
   gcf: {fileID: 1741483200}
   EDC: {fileID: 572307534}
   velocityAverageTxt: {fileID: 2034578126}
-  ForceTxt: {fileID: 2113928299}
+  ForceTxt: {fileID: 2141967621}
   WorkTxt: {fileID: 740752861}
+  PowerTxt: {fileID: 2113928299}
   csvName: log_0_Situps_2021_8_12_6_51_44
   Totaltime: 0
 --- !u!4 &572307533
@@ -5100,8 +5101,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 392.05402, y: 15}
-  m_SizeDelta: {x: 229.9186, y: 50}
+  m_AnchoredPosition: {x: 283.3716, y: 15}
+  m_SizeDelta: {x: 406.8434, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &740752861
 MonoBehaviour:
@@ -5158,7 +5159,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -9611,7 +9612,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 114494874056543642}
   m_OnClick:
     m_PersistentCalls:
@@ -9625,11 +9626,23 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: CALORIES BURNED
+          m_StringArgument: VELOCITY
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 617117847}
+      - m_Target: {fileID: 1370509581}
         m_TargetAssemblyTypeName: 
+        m_MethodName: answer
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 979191438}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -9640,17 +9653,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 72282226}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 572307534}
+        m_TargetAssemblyTypeName: ExerDatabaseCsv, Assembly-CSharp
+        m_MethodName: readData
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 4900000, guid: 5c47e34e1be63bd4ea7d7d01c19eed99,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.TextAsset, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &1343136068
 GameObject:
@@ -15634,8 +15648,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 328.3015, y: 15}
-  m_SizeDelta: {x: 357.4235, y: 50}
+  m_AnchoredPosition: {x: 283.3716, y: 15}
+  m_SizeDelta: {x: 406.8434, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2034578126
 MonoBehaviour:
@@ -15692,7 +15706,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -16295,7 +16309,7 @@ GameObject:
   - component: {fileID: 2113928300}
   - component: {fileID: 2113928299}
   m_Layer: 5
-  m_Name: ForceText
+  m_Name: PowerTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16317,8 +16331,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 392.05402, y: 15}
-  m_SizeDelta: {x: 229.9186, y: 50}
+  m_AnchoredPosition: {x: 283.3716, y: 15}
+  m_SizeDelta: {x: 406.8434, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2113928299
 MonoBehaviour:
@@ -16375,7 +16389,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -16789,7 +16803,7 @@ GameObject:
   - component: {fileID: 2141967622}
   - component: {fileID: 2141967621}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: ForceTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16811,8 +16825,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 392, y: 8}
-  m_SizeDelta: {x: 210.46826, y: 62.213074}
+  m_AnchoredPosition: {x: 293.4817, y: 15}
+  m_SizeDelta: {x: 427.0634, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2141967621
 MonoBehaviour:
@@ -16869,7 +16883,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -16943,7 +16957,7 @@ GameObject:
   - component: {fileID: 114745662044682264}
   - component: {fileID: 1512033242}
   m_Layer: 5
-  m_Name: Distance
+  m_Name: Work_Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17021,7 +17035,7 @@ GameObject:
   - component: {fileID: 114850583624139744}
   - component: {fileID: 1194269833}
   m_Layer: 5
-  m_Name: Reps
+  m_Name: Power_Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17239,7 +17253,7 @@ GameObject:
   - component: {fileID: 114494874056543642}
   - component: {fileID: 1320172563}
   m_Layer: 5
-  m_Name: Calories Burned
+  m_Name: Force_Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17258,7 +17272,7 @@ GameObject:
   - component: {fileID: 114775352324701486}
   - component: {fileID: 2005060702}
   m_Layer: 5
-  m_Name: Fatigue
+  m_Name: Velocity_Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -20,7 +20,7 @@ public class CSVManager : MonoBehaviour
 	public BarChartFeed bcf;
 	public GraphChartFeed gcf;
 	public ExerDatabaseCsv EDC;
-	public TextMeshProUGUI velocityAverageTxt,ForceTxt,WorkTxt;
+	public TextMeshProUGUI velocityAverageTxt,ForceTxt,WorkTxt,PowerTxt;
 	public string csvName;
 	public int Totaltime;
 
@@ -92,16 +92,20 @@ public class CSVManager : MonoBehaviour
 	public void callafter( List<float> speeds)
     {
 		float tempAverage = returnAverage(speeds);
-		float tempSpeed = returnForce(speeds,5);
-		float tempWork = returnWork(speeds,tempSpeed);
+		float tempForce = returnForce(speeds,5);
+		float tempWork = returnWork(speeds, tempForce);
+		float tempPower = returnPower(tempWork,speeds.Count);
 		velocityAverageTxt.text = tempAverage.ToString().Substring(0, 5 )+ " m/s";
-		ForceTxt.text = tempSpeed.ToString().Substring(0,4) + " N";
-		WorkTxt.text = tempWork.ToString().Substring(0, 4) + " J";
+		PowerTxt.text = tempPower.ToString().Substring(0, 6) + " P";
+		ForceTxt.text = tempForce.ToString().Substring(0,6) + " N";
+		WorkTxt.text = tempWork.ToString().Substring(0, 6) + " J";
+		
 		//bcf.addbarSingleValue(tempAverage);
 		//	gcf.Singcall(tempAverage);
 		EDC.addData("ExerciseData", tempAverage.ToString());
-		EDC.addData("PowerData", tempSpeed.ToString());
+		EDC.addData("ForceData", tempForce.ToString());
 		EDC.addData("WorkData", tempWork.ToString());
+		EDC.addData("PowerData", tempPower.ToString());
 		speeds.Clear();
 		
 	}
@@ -148,7 +152,10 @@ public class CSVManager : MonoBehaviour
 
 
     }
-
+	float returnPower(float work,float time)
+    {
+		return work / time;
+    }
 
 	public void addData(string X,string Y, string Z, string vel)
 	{
