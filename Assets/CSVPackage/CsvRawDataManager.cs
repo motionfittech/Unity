@@ -102,6 +102,7 @@ public class CsvRawDataManager : MonoBehaviour
 
         return finalTotal;
     }
+
     // Add data to CSV file
     public void addData()
     {

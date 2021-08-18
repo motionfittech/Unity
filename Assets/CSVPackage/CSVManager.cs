@@ -20,7 +20,7 @@ public class CSVManager : MonoBehaviour
 	public BarChartFeed bcf;
 	public GraphChartFeed gcf;
 	public ExerDatabaseCsv EDC;
-	public TextMeshProUGUI velocityAverageTxt,ForceTxt,WorkTxt,PowerTxt;
+	public TextMeshProUGUI velocityAverageTxt,ForceTxt,WorkTxt,PowerTxt,VelocityLossTxt;
 	public string csvName;
 	public int Totaltime;
 
@@ -106,6 +106,17 @@ public class CSVManager : MonoBehaviour
 		EDC.addData("ForceData", tempForce.ToString());
 		EDC.addData("WorkData", tempWork.ToString());
 		EDC.addData("PowerData", tempPower.ToString());
+
+		if(speeds.Count > 1)
+        {
+			float returnLoss = returnVelocityLoss(speeds.Count - 2, speeds.Count - 1);
+			if(returnLoss <= 0)
+            {
+				returnLoss = 0;
+            }
+			print(returnLoss);
+			VelocityLossTxt.text = returnLoss.ToString()+ " m/s";
+        }
 		speeds.Clear();
 		
 	}
@@ -156,7 +167,10 @@ public class CSVManager : MonoBehaviour
     {
 		return work / time;
     }
-
+	float returnVelocityLoss(float SetA, float SetB)
+    {
+		return SetA - SetB;
+    }
 	public void addData(string X,string Y, string Z, string vel)
 	{
 
