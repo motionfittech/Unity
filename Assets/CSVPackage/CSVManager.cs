@@ -25,20 +25,18 @@ public class CSVManager : MonoBehaviour
 	public int Totaltime;
 
 
-    private void Start()
+      private void Start()
     {
-        Invoke("call", 2);
+		Invoke("call",2);
     }
 
     void call()
     {
-        readData(PlayerPrefs.GetString("path",""),false);
+        readData("Assets/CSVPackage/Log files/"+csvName+".csv");
     }
-    public void readData(string rawDataPath,bool _isSaving)
+    public void readData(string rawDataPath)
 	{
-		if (rawDataPath.Length == 0)
-			return;
-
+		
 		indexer = 0;
 		Vector3 previous = Vector3.zero;
 		Vector3 current = Vector3.zero;
@@ -86,12 +84,12 @@ public class CSVManager : MonoBehaviour
 #if UNITY_EDITOR
 			UnityEditor.AssetDatabase.Refresh();
 #endif
-			callafter(speeds,_isSaving);
+			callafter(speeds);
 		}
      
 	}
 	
-	public void callafter( List<float> speeds,bool _isDataSaving)
+	public void callafter( List<float> speeds)
     {
 		float tempAverage = returnAverage(speeds);
 		float tempForce = returnForce(speeds,5);
@@ -101,27 +99,24 @@ public class CSVManager : MonoBehaviour
 		PowerTxt.text = tempPower.ToString().Substring(0, 6) + " P";
 		ForceTxt.text = tempForce.ToString().Substring(0,6) + " N";
 		WorkTxt.text = tempWork.ToString().Substring(0, 6) + " J";
-		if (speeds.Count > 1)
-		{
-			float returnLoss = returnVelocityLoss(speeds.Count - 2, speeds.Count - 1);
-			if (returnLoss <= 0)
-			{
-				returnLoss = 0;
-			}
-			print(returnLoss);
-			VelocityLossTxt.text = returnLoss.ToString() + " m/s";
-		}
+		
 		//bcf.addbarSingleValue(tempAverage);
 		//	gcf.Singcall(tempAverage);
+		EDC.addData("ExerciseData", tempAverage.ToString());
+		EDC.addData("ForceData", tempForce.ToString());
+		EDC.addData("WorkData", tempWork.ToString());
+		EDC.addData("PowerData", tempPower.ToString());
 
-		if (_isDataSaving)
-		{
-			EDC.addData("ExerciseData", tempAverage.ToString());
-			EDC.addData("ForceData", tempForce.ToString());
-			EDC.addData("WorkData", tempWork.ToString());
-			EDC.addData("PowerData", tempPower.ToString());
-		}
-		
+		if(speeds.Count > 1)
+        {
+			float returnLoss = returnVelocityLoss(speeds.Count - 2, speeds.Count - 1);
+			if(returnLoss <= 0)
+            {
+				returnLoss = 0;
+            }
+			print(returnLoss);
+			VelocityLossTxt.text = returnLoss.ToString()+ " m/s";
+        }
 		speeds.Clear();
 		
 	}
