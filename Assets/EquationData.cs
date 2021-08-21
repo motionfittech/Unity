@@ -30,7 +30,7 @@ public class EquationData : MonoBehaviour
     }
 
 
-	public void callafter(List<float> speeds)
+	public void callafter(List<float> speeds,bool _isSaving)
 	{
 		float tempAverage = returnAverage(speeds);
 		float tempForce = returnForce(speeds, 5);
@@ -43,11 +43,13 @@ public class EquationData : MonoBehaviour
 
 		//bcf.addbarSingleValue(tempAverage);
 		//	gcf.Singcall(tempAverage);
-		EDC.addData("ExerciseData", tempAverage.ToString());
-		EDC.addData("ForceData", tempForce.ToString());
-		EDC.addData("WorkData", tempWork.ToString());
-		EDC.addData("PowerData", tempPower.ToString());
-
+		if (_isSaving)
+		{
+			EDC.addData("ExerciseData", tempAverage.ToString());
+			EDC.addData("ForceData", tempForce.ToString());
+			EDC.addData("WorkData", tempWork.ToString());
+			EDC.addData("PowerData", tempPower.ToString());
+		}
 		if (speeds.Count > 1)
 		{
 			float returnLoss = returnVelocityLoss(speeds.Count - 2, speeds.Count - 1);
@@ -55,7 +57,7 @@ public class EquationData : MonoBehaviour
 			{
 				L_VelocityTxt.text = " Velocity Loss";
 				VelocityArrowImage.color = Color.red;
-				VelocityArrowImage.transform.localEulerAngles = new Vector3(0,180,0);
+				VelocityArrowImage.transform.localEulerAngles = new Vector3(0,0,180);
 			}
 			else if (returnLoss == 0)
             {

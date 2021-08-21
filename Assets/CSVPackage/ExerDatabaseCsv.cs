@@ -9,11 +9,11 @@ public class ExerDatabaseCsv : MonoBehaviour
 	private char lineSeperater = '\n'; // It defines line seperate character
 	private char fieldSeperator = ','; // It defines field seperate chracter
 	public List<float> datapoints = new List<float>();
-	public EquationData ED;
+	private EquationData ED;
 
     private void Start()
     {
-		ED = GameObject.FindObjectOfType<EquationData>();
+		ED = GetComponent<CSVManager>().ED;
     }
     public void readData(TextAsset Csv)
 	{
