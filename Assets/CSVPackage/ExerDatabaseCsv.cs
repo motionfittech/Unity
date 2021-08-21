@@ -9,8 +9,13 @@ public class ExerDatabaseCsv : MonoBehaviour
 	private char lineSeperater = '\n'; // It defines line seperate character
 	private char fieldSeperator = ','; // It defines field seperate chracter
 	public List<float> datapoints = new List<float>();
-	
-	public void readData(TextAsset Csv)
+	public EquationData ED;
+
+    private void Start()
+    {
+		ED = GameObject.FindObjectOfType<EquationData>();
+    }
+    public void readData(TextAsset Csv)
 	{
 		if (Csv == null)
 			return;
@@ -37,15 +42,15 @@ public class ExerDatabaseCsv : MonoBehaviour
 				//print("called = "+datapoints.Count);
 				
 			
-				if (GetComponent<CSVManager>().velocityAverageTxt != null)
+				if (ED.velocityAverageTxt != null)
 				{
-					GetComponent<CSVManager>().velocityAverageTxt.text = records[0].ToString().Substring(0, 5) + " m/s";
+					ED.velocityAverageTxt.text = records[0].ToString().Substring(0, 5) + " m/s";
 				}
 			}
 						
 		}
-		StartCoroutine(GetComponent<CSVManager>().bcf.addbarValue(datapoints));
-		StartCoroutine(GetComponent<CSVManager>().gcf.Multicall(datapoints));
+		ED.bcf.addbarValue(datapoints);
+		ED.gcf.Multicall(datapoints);
 
 
 

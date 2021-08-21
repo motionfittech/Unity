@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
 using System.IO;
 using System.Collections.Generic;
-using TMPro;
 public class CSVManager : MonoBehaviour
 {
 	
@@ -12,27 +9,20 @@ public class CSVManager : MonoBehaviour
 	private int indexer = 0;
 	public AccelerometerObjectControl AOC;
 	public string saveFilename = "Default";
-
-
 	[Header("Acceleration Value in CSV Index")]
 	public int IndexX = 0, IndexY = 1, IndexZ = 2 ;
 	
-	public BarChartFeed bcf;
-	public GraphChartFeed gcf;
-	public ExerDatabaseCsv EDC;
-	public TextMeshProUGUI velocityAverageTxt,ForceTxt,WorkTxt,PowerTxt,VelocityLossTxt;
 	public string csvName;
-	public int Totaltime;
 
-
-      private void Start()
+	public EquationData ED;
+    private void Start()
     {
-		Invoke("call",2);
+        Invoke("call", 2);
     }
 
     void call()
     {
-        readData("Assets/CSVPackage/Log files/"+csvName+".csv");
+        readData("Assets/CSVPackage/Log files/" + csvName + ".csv");
     }
     public void readData(string rawDataPath)
 	{
@@ -84,93 +74,12 @@ public class CSVManager : MonoBehaviour
 #if UNITY_EDITOR
 			UnityEditor.AssetDatabase.Refresh();
 #endif
-			callafter(speeds);
+			ED.callafter(speeds);
 		}
      
 	}
 	
-	public void callafter( List<float> speeds)
-    {
-		float tempAverage = returnAverage(speeds);
-		float tempForce = returnForce(speeds,5);
-		float tempWork = returnWork(speeds, tempForce);
-		float tempPower = returnPower(tempWork,speeds.Count);
-		velocityAverageTxt.text = tempAverage.ToString().Substring(0, 5 )+ " m/s";
-		PowerTxt.text = tempPower.ToString().Substring(0, 6) + " P";
-		ForceTxt.text = tempForce.ToString().Substring(0,6) + " N";
-		WorkTxt.text = tempWork.ToString().Substring(0, 6) + " J";
-		
-		//bcf.addbarSingleValue(tempAverage);
-		//	gcf.Singcall(tempAverage);
-		EDC.addData("ExerciseData", tempAverage.ToString());
-		EDC.addData("ForceData", tempForce.ToString());
-		EDC.addData("WorkData", tempWork.ToString());
-		EDC.addData("PowerData", tempPower.ToString());
-
-		if(speeds.Count > 1)
-        {
-			float returnLoss = returnVelocityLoss(speeds.Count - 2, speeds.Count - 1);
-			if(returnLoss <= 0)
-            {
-				returnLoss = 0;
-            }
-			print(returnLoss);
-			VelocityLossTxt.text = returnLoss.ToString()+ " m/s";
-        }
-		speeds.Clear();
-		
-	}
 	
-	float returnAverage(List<float> speeds) 
-	{
-		float averageTotal = 0;
-		
-		
-		for (int i = 0; i < speeds.Count; i++)
-		{
-			averageTotal += speeds[i];
-			
-		}
-		// Avelocity = TotalVelocity/TotalCount
-		return averageTotal / speeds.Count;
-	}
-	float returnForce(List<float> speeds,float mass)
-    {
-		float Totalacceleration = 0;
-		
-		for (int i = 0; i < speeds.Count; i++)
-		{
-			Totalacceleration += speeds[i];
-
-		}
-		 // Force = Acceleration*Mass
-		return Totalacceleration * mass;
-	}
-
-	float returnWork(List<float> finalVelocity,float Force)
-    {
-
-		float Vf = 0;
-		for(int i = 0; i < finalVelocity.Count; i++)
-        {
-			Vf += finalVelocity[i];
-        }
-		 // Displacemnt = 1/2(vi+vf)*t
-		float Displacement = (Vf/2);
-		// Work = Force * Discplacement
-		
-		return Force * Displacement;
-
-
-    }
-	float returnPower(float work,float time)
-    {
-		return work / time;
-    }
-	float returnVelocityLoss(float SetA, float SetB)
-    {
-		return SetA - SetB;
-    }
 	public void addData(string X,string Y, string Z, string vel)
 	{
 
