@@ -12,7 +12,7 @@ public class ChangeSceneWithButton : MonoBehaviour
 
     private void Start()
     {
-       // LoadScene();
+       LoadScene();
     }
 
     public void LoadScene()
