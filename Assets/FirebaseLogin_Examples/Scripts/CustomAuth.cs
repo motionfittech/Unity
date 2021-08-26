@@ -17,8 +17,8 @@ public class CustomAuth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UserNameInput.text = "demofirebase@gmail.com";
-        PasswordInput.text = "abcdefgh";
+    //    UserNameInput.text = "demofirebase@gmail.com";
+     //   PasswordInput.text = "abcdefgh";
 
         //SignupButton.onClick.AddListener(() => Signup(SignUpgmail.text, PasswordInput.text, SignUpusername.text));
         //LoginButton.onClick.AddListener(() => Login(UserNameInput.text, PasswordInput.text));
@@ -49,7 +49,23 @@ public class CustomAuth : MonoBehaviour
     }
     public void SignupcallButton()
     {
-        print(SignUpgmail.text +" "+ SignUppassword.text);
+      
+        if(SignUpgmail.text.IndexOf('@') <= 0 || SignUpgmail.text.Length == 0)
+        {
+            print("Invalid email");
+            return;
+        }
+        else if ( SignUppassword.text.Length < 6)
+        {
+            print("passwordshould be greater then sixxtings");
+            return;
+        }
+        else if (SignUpusername.text.Length == 0)
+        {
+            print("Invalid Username");
+            return;
+        }
+
         Signup(SignUpgmail.text, SignUppassword.text, SignUpusername.text);
     }
 
@@ -76,7 +92,7 @@ public class CustomAuth : MonoBehaviour
 
              user = task.Result;
             FS.CSB.LoadScene();
-            LocalDatabase.instance.saveData(user.DisplayName, email, user.UserId);
+            LocalDatabase.instance.saveData(user.UserId);
              PlayerPrefs.SetString("password", password);
             PlayerPrefs.SetString("loginMethod", "C");
 
@@ -85,12 +101,7 @@ public class CustomAuth : MonoBehaviour
 
     public void Signup(string email, string password, string username)
     {
-        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(username))
-        {
-            //Error handling
-            return;
-        }
-
+        
         auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
         {
             if (task.IsCanceled)
@@ -115,6 +126,7 @@ public class CustomAuth : MonoBehaviour
 
             user = task.Result; // Firebase user has been created.
             FS.registerUser(username,email,user.UserId);
+            PlayerPrefs.SetString("password", password);
             Debug.LogFormat("Firebase user created successfully: {0} ({1})",
                 user.DisplayName, user.UserId);
             UpdateErrorMessage("Signup Success");

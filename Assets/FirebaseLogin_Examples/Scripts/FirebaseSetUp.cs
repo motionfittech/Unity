@@ -19,11 +19,10 @@ public class FirebaseSetUp : MonoBehaviour
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
         dbRef.Child("users").Child(UID).Child("username").SetValueAsync(username);
         dbRef.Child("users").Child(UID).Child("email").SetValueAsync(email);
-        dbRef.Child("users").Child(UID).Child("email").SetValueAsync(email);
         dbRef.Child("users").Child(UID).Child("characterselect").SetValueAsync("0");
         dbRef.Child("users").Child(UID).Child("Input").Child("x").SetValueAsync("0,0,0");
         dbRef.Child("users").Child(UID).Child("Input").Child("y").SetValueAsync("0,0,0");
-        LocalDatabase.instance.saveData(username,email,UID);
+        LocalDatabase.instance.saveData(UID);
         CSB.LoadScene();
     }
 
@@ -38,7 +37,7 @@ public class FirebaseSetUp : MonoBehaviour
 
             if (PlayerPrefs.GetString("loginMethod", "C") == "C")
             {
-                print(tempSignData[1] );
+               
                 GetComponent<CustomAuth>().Login(tempSignData[1], PlayerPrefs.GetString("password", "0").ToString());
             }
             else if (PlayerPrefs.GetString("loginMethod", "C") == "F")
@@ -54,7 +53,7 @@ public class FirebaseSetUp : MonoBehaviour
             return;
         }
 
-        CSB.Fade.enabled = false;
+        CSB.signupBackButton();
     }
 
 }
