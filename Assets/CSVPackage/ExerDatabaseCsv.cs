@@ -4,53 +4,76 @@ using UnityEngine.UI;
 using System.IO;
 using System.Collections.Generic;
 using TMPro;
+using ChartAndGraph;
+
 public class ExerDatabaseCsv : MonoBehaviour
 {
 	private char lineSeperater = '\n'; // It defines line seperate character
 	private char fieldSeperator = ','; // It defines field seperate chracter
 	public List<float> datapoints = new List<float>();
 	private EquationData ED;
-
+	public List<string> csvfiles = new List<string>();
     private void Start()
     {
 		ED = GetComponent<CSVManager>().ED;
-    }
-    public void readData(TextAsset Csv)
+
+		
+		csvfiles.Add(getPath() +"ExerciseData" +".csv");
+		csvfiles.Add(getPath() + "ForceData" + ".csv");
+		csvfiles.Add(getPath() + "PowerData" + ".csv");
+		csvfiles.Add(getPath() + "WorkData" + ".csv");
+
+	}
+    public void readData(int index)
 	{
-		if (Csv == null)
+		if (csvfiles[index].Length == 0)
 			return;
+
+
 		datapoints = new List<float>(0);
-		string [] lastrecordArr = Csv.text.Split("\n"[0]);
-
-		if (lastrecordArr.Length == 0)
-			return;
-
-		string lastrecord = lastrecordArr[lastrecordArr.Length - 1];
-
-		string[] records = lastrecord.Split(","[0]);
-		for (int i = 0; i < records.Length; i++)
+		ED.bcf.barChart.DataSource.ClearCategories();
+		
+		ED.gcf.graph.DataSource.Clear();
+		if (File.Exists(csvfiles[index]))
 		{
-			
-			if (records[i].Length > 0)
+			string temptext = File.ReadAllText(csvfiles[index]);
+
+			string[] lastrecordArr = temptext.Split("\n"[0]);
+
+			if (lastrecordArr.Length == 0)
+				return;
+
+			string lastrecord = lastrecordArr[lastrecordArr.Length - 1];
+
+			string[] records = lastrecord.Split(","[0]);
+
+			for (int i = 0; i < records.Length; i++)
 			{
-				
-				datapoints.Add(float.Parse(records[i]));
-			}
-                      
-			if(i == records.Length - 1)
-            {
-				//print("called = "+datapoints.Count);
-				
-			
-				if (ED.velocityAverageTxt != null)
+
+				if (records[i].Length > 0)
 				{
-					ED.velocityAverageTxt.text = records[0].ToString().Substring(0, 5) + " m/s";
+					float tempvalue = float.Parse(records[i]);
+				
+					//	datapoints.Add(tempvalue);
+					ED.bcf.addbarSingleValue(tempvalue);
+					ED.gcf.Singcall(tempvalue);
 				}
+
+				if (i == records.Length - 1)
+				{
+					//print("called = "+datapoints.Count);
+
+
+					if (ED.velocityAverageTxt != null)
+					{
+						ED.velocityAverageTxt.text = records[0].ToString().Substring(0, 5) + " m/s";
+					}
+				}
+
 			}
-						
 		}
-		ED.bcf.addbarValue(datapoints);
-		ED.gcf.Multicall(datapoints);
+	//	ED.bcf.addbarValue(datapoints);
+		//ED.gcf.Multicall(datapoints);
 
 
 
@@ -58,11 +81,11 @@ public class ExerDatabaseCsv : MonoBehaviour
 	}
 
 
-	public void addData(string filename,string X)
+	public void addData(int index,string X)
 	{
 
-     
-            File.AppendAllText(getPath() + "/Resources/" + filename + ".csv",  X + fieldSeperator);
+		
+			File.AppendAllText(csvfiles[index],  X + fieldSeperator);
        
 	
 	}

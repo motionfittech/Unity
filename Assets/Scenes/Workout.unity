@@ -4073,6 +4073,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   datapoints: []
+  csvfiles: []
 --- !u!1 &582300525
 GameObject:
   m_ObjectHideFlags: 0
@@ -8665,12 +8666,11 @@ MonoBehaviour:
       - m_Target: {fileID: 572307534}
         m_TargetAssemblyTypeName: ExerDatabaseCsv, Assembly-CSharp
         m_MethodName: readData
-        m_Mode: 2
+        m_Mode: 3
         m_Arguments:
-          m_ObjectArgument: {fileID: 4900000, guid: 40ce37e2b8db742df8ec6a20307c46a3,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.TextAsset, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -9657,12 +9657,11 @@ MonoBehaviour:
       - m_Target: {fileID: 572307534}
         m_TargetAssemblyTypeName: ExerDatabaseCsv, Assembly-CSharp
         m_MethodName: readData
-        m_Mode: 2
+        m_Mode: 3
         m_Arguments:
-          m_ObjectArgument: {fileID: 4900000, guid: 5c47e34e1be63bd4ea7d7d01c19eed99,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.TextAsset, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -10294,7 +10293,7 @@ RectTransform:
   - {fileID: 1100488744}
   - {fileID: 1829967251}
   m_Father: {fileID: 1942067740}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -10841,12 +10840,11 @@ MonoBehaviour:
       - m_Target: {fileID: 572307534}
         m_TargetAssemblyTypeName: ExerDatabaseCsv, Assembly-CSharp
         m_MethodName: readData
-        m_Mode: 2
+        m_Mode: 3
         m_Arguments:
-          m_ObjectArgument: {fileID: 4900000, guid: f531cc0e5010e4e7ab045382a9a826c5,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.TextAsset, UnityEngine
-          m_IntArgument: 0
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -10882,7 +10880,7 @@ RectTransform:
   m_Children:
   - {fileID: 1130972233}
   m_Father: {fileID: 1942067740}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -14992,8 +14990,8 @@ RectTransform:
   - {fileID: 173953859}
   - {fileID: 2116721340}
   - {fileID: 1607407383}
-  - {fileID: 1539267130}
   - {fileID: 1456179191}
+  - {fileID: 1539267130}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15606,11 +15604,10 @@ MonoBehaviour:
       - m_Target: {fileID: 572307534}
         m_TargetAssemblyTypeName: ExerDatabaseCsv, Assembly-CSharp
         m_MethodName: readData
-        m_Mode: 2
+        m_Mode: 3
         m_Arguments:
-          m_ObjectArgument: {fileID: 4900000, guid: 72c2c5f33147441068c46813c26a4fb9,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.TextAsset, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

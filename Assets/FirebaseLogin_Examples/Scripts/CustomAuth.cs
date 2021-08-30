@@ -53,6 +53,7 @@ public class CustomAuth : MonoBehaviour
         if(SignUpgmail.text.IndexOf('@') <= 0 || SignUpgmail.text.Length == 0)
         {
             print("Invalid email");
+
             return;
         }
         else if ( SignUppassword.text.Length < 6)

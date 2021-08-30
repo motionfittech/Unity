@@ -153,14 +153,14 @@ public class FitCapTest : MonoBehaviour
             if (path.Length > 0)
             {
                 FitCapStatusMessages = "Stored in this path"+ path;
-                //  print("path is not null");
+               //   print("path is not null");
                 PlayerPrefs.SetString("path",path);
                 GameObject.FindObjectOfType<CSVManager>().readData(path,true);
               
             }
             else
             {
-                print("path is null");
+              //  print("path is null");
             }
             path = "";
         }

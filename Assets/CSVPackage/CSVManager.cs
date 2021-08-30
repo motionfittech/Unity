@@ -30,7 +30,7 @@ public class CSVManager : MonoBehaviour
 	public void readData(string rawDataPath, bool _isSaving)
 	{
 
-		print("we herer");
+		
 		if (rawDataPath.Length == 0)
 			return;
 

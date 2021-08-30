@@ -32,6 +32,7 @@ public class EquationData : MonoBehaviour
 
 	public void callafter(List<float> speeds,bool _isSaving)
 	{
+		print("we callafter now");
 		float tempAverage = returnAverage(speeds);
 		float tempForce = returnForce(speeds, 5);
 		float tempWork = returnWork(speeds, tempForce);
@@ -45,10 +46,10 @@ public class EquationData : MonoBehaviour
 		//	gcf.Singcall(tempAverage);
 		if (_isSaving)
 		{
-			EDC.addData("ExerciseData", tempAverage.ToString());
-			EDC.addData("ForceData", tempForce.ToString());
-			EDC.addData("WorkData", tempWork.ToString());
-			EDC.addData("PowerData", tempPower.ToString());
+			EDC.addData(0, tempAverage.ToString());
+			EDC.addData(1, tempForce.ToString());
+			EDC.addData(2, tempWork.ToString());
+			EDC.addData(3, tempPower.ToString());
 		}
 		if (speeds.Count > 1)
 		{
