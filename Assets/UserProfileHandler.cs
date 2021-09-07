@@ -9,6 +9,7 @@ public class UserProfileHandler : MonoBehaviour
     public Transform Main;
     public Vector2 target;
 	public List<GameObject> buttonList;
+	public List<TextMeshProUGUI> headlineTxt;
 	public List<string> upperTxt;
 	public List<string> buttonTxt;
 	public List<string> descriptiontxtList;
@@ -197,7 +198,14 @@ public class UserProfileHandler : MonoBehaviour
 			{
 				buttonList[i].GetComponent<Image>().sprite = sideSprite;
 			}
+
+
 		}
+
+		
+			headlineTxt[0].text = "Monthly "+ upperTxt[counter] +" "+"Average";
+		    headlineTxt[1].text = "Weekly " + upperTxt[counter] + " " + "Average";
+		    headlineTxt[2].text = "Daily " + upperTxt[counter] + " " + "Average";
 
 	}
 	void moveScroller(int value)
