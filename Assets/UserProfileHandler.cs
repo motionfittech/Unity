@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 public class UserProfileHandler : MonoBehaviour
 {
     [Header("Horizontal Bar")]
@@ -10,6 +11,7 @@ public class UserProfileHandler : MonoBehaviour
 	public List<GameObject> buttonList;
 	public List<string> upperTxt;
 	public List<string> buttonTxt;
+	public List<string> descriptiontxtList;
     private Vector2 fingerDownPos;
     private Vector2 fingerUpPos;
 
@@ -19,6 +21,12 @@ public class UserProfileHandler : MonoBehaviour
 
 	public bool _ismove = false,_istap = false;
 	private float offsetright, offsetleft;
+
+	public Sprite centerSprite;
+	public Sprite sideSprite;
+	public TextMeshProUGUI valuetxt;
+	public TextMeshProUGUI descriptiontxt;
+	public int counter = 3;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,14 +41,18 @@ public class UserProfileHandler : MonoBehaviour
 
 		}
 
+
+		updateScroller();
     }
 
-    // Update is called once per frame
-    void Update()
+
+	
+	// Update is called once per frame
+	void Update()
     {
 		Main.localPosition = Vector2.Lerp(Main.localPosition, target, 10 * Time.deltaTime);
 
-		Main.localPosition = new Vector3(Mathf.Clamp(Main.localPosition.x,offsetleft,offsetright),Main.localPosition.y);
+	//	Main.localPosition = new Vector3(Mathf.Clamp(Main.localPosition.x,offsetleft,offsetright),Main.localPosition.y);
 		if (!_ismove)
 			return;
 
@@ -135,18 +147,26 @@ public class UserProfileHandler : MonoBehaviour
 
 	void OnSwipeLeft()
 	{
+		if (counter > 0)
+		{
+			counter -= 1;		
+			moveScroller(+233);
+		}
+		
 		//Do something when swiped left
-		target.x += 233;
-		_ismove = false;
-		_istap = false;
+		
 	}
 
 	void OnSwipeRight()
 	{
+		if (counter < buttonList.Count-1)
+		{
+			counter += 1;
+			moveScroller(-233);
+		}
+
 		//Do something when swiped right
-		target.x -= 233;
-		_ismove = false;
-		_istap = false;
+		
 	}
 
 	public void swiprbt(bool conditioner)
@@ -162,4 +182,33 @@ public class UserProfileHandler : MonoBehaviour
 			print("called button fn");
         }
     }
+
+	void updateScroller()
+	{
+		for (int i = 0; i < buttonList.Count; i++)
+		{
+			if (counter == i)
+			{
+				buttonList[i].GetComponent<Image>().sprite = centerSprite;
+				descriptiontxt.text = descriptiontxtList[i];
+				valuetxt.text = buttonList[counter].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
+			}
+			else
+			{
+				buttonList[i].GetComponent<Image>().sprite = sideSprite;
+			}
+		}
+
+	}
+	void moveScroller(int value)
+	{
+
+
+		
+		updateScroller();
+		target.x += value;
+		_ismove = false;
+		_istap = false;
+	}
+
 }
