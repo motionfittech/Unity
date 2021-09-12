@@ -110,7 +110,7 @@ namespace Michsky.UI.ModernUIPack
                 {
                     go.GetComponent<Toggle>().group = GetComponent<ToggleGroup>();
                     go.GetComponent<Toggle>().onValueChanged.AddListener(delegate { Camera.main.GetComponent<AvatarLoaderProfile>().CharacterSelectionDropDown(); });
-                    GameObject.FindObjectOfType<AvatarLoaderProfile>().ListofCharacter.Add(go.GetComponent<Toggle>());
+                 //   GameObject.FindObjectOfType<AvatarLoaderProfile>().ListofCharacter.Add(go.GetComponent<Toggle>());
                 }
                 setItemText = go.GetComponentInChildren<TextMeshProUGUI>();
                 textHelper = dropdownItems[i].itemName;

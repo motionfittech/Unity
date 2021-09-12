@@ -14,12 +14,12 @@ public class WorkoutManager : MonoBehaviour
 
     [Header("workoutScene1")]
     public List<GameObject> workout1 = new List<GameObject>();
-    public Vector3 CameraPos1;
-    public Vector3 CameraRot1;
+   /* public Vector3 CameraPos1;
+    public Vector3 CameraRot1;*/
     [Header("workoutScene2")]
     public List<GameObject> workout2 = new List<GameObject>();
-    public Vector3 CameraPos2;
-    public Vector3 CameraRot2;
+  /*  public Vector3 CameraPos2;
+    public Vector3 CameraRot2;*/
     [Header("Imbalance")]
     public List<GameObject> workout3 = new List<GameObject>();
     public GameObject VelocityPanel;
@@ -54,19 +54,25 @@ public class WorkoutManager : MonoBehaviour
     public Vector2 OpeningPos, ClosingPos;
     public Sprite openSp, closeSp;
     public Image currentSideImageIcon;
+
     private void Awake()
     {
       //  startBt.material.SetColor("_Outline_Color", Color.black);
       //  startBt.material.SetFloat("TileX", 0.05f);
        // startBt.material.SetFloat("TileY", 0.05f);
 
+        if(PlayerPrefs.GetInt("firsttime",0) == 0)
+        {
+           
+            Application.LoadLevel(5);
+        }
     }
 
     private void Start()
     {
-        main_Camera = Camera.main;
+      /*  main_Camera = Camera.main;
         main_Camera.transform.position = CameraPos1;
-        main_Camera.transform.eulerAngles = CameraRot1;
+        main_Camera.transform.eulerAngles = CameraRot1;*/
         loadworkoutData();
         
      //   PlayerPrefs.SetString("workout",LocalDatabase.instance.workoutData);
@@ -117,6 +123,7 @@ public class WorkoutManager : MonoBehaviour
         else
         {
             stopWorkout(currentWorkoutSO);
+          
             Doneanimation();
             popupPanel.SetActive(false);
             WH.animator.speed = 1;
@@ -124,13 +131,14 @@ public class WorkoutManager : MonoBehaviour
             CenterButton.GetComponent<Image>().color = Color.green;
             CenterButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "START";
             _isIKon = false;
+           
 
         }
     }
 
     //IEnumerator startCounter()
     //{
-    //    Doneanimation();
+    ///    Doneanimation();
     //    int temp = 0;
     //    popupPanel.SetActive(true);
     //    PopupText.fontSize = 400;
@@ -229,7 +237,11 @@ public class WorkoutManager : MonoBehaviour
             myModalWindow.titleText = "Exercise"; // Change title
             myModalWindow.descriptionText = "Do you want to add exerice click? ";
         }
-       
+        else if (counter == 8)
+        {
+            myModalWindow.titleText = "Tutorial"; // Change title
+            myModalWindow.descriptionText = "You have already Watched the tutorials, do you want to go back and master your skill? ";
+        }
 
         myModalWindow.onConfirm.RemoveAllListeners();
         myModalWindow.onConfirm.AddListener(delegate { answer(counter); });
@@ -253,16 +265,16 @@ public class WorkoutManager : MonoBehaviour
                 innerList(workout3, false);
                 innerList(workout1, true);
                
-                main_Camera.transform.position = CameraPos1;
-                main_Camera.transform.eulerAngles = CameraRot1;
+            /*    main_Camera.transform.position = CameraPos1;
+                main_Camera.transform.eulerAngles = CameraRot1;*/
                 break;
             case 2:
                 innerList(workout1, false);
                 innerList(workout3, false);
                 innerList(workout2, true);
                
-                main_Camera.transform.position = CameraPos2;
-                main_Camera.transform.eulerAngles = CameraRot2;
+            /*    main_Camera.transform.position = CameraPos2;
+                main_Camera.transform.eulerAngles = CameraRot2;*/
                 break;
             case 3:
                 Application.LoadLevel(1);
@@ -277,6 +289,7 @@ public class WorkoutManager : MonoBehaviour
                 innerList(workout2, false);
                 innerList(workout3, false);
                 VelocityPanel.SetActive(true);
+               
                 break;
             case 6:
                 innerList(workout1, false);
@@ -287,7 +300,9 @@ public class WorkoutManager : MonoBehaviour
             case 7:
                 sideMenuBt();
                 break;
-
+            case 8:
+                Application.LoadLevel(5);
+                break;
             default:
                 print("Incorrect");
                 break;
@@ -361,7 +376,7 @@ public class WorkoutManager : MonoBehaviour
 
     public void updateExerciseTxt()
     {
-        work2AniTxt.text = currentAniTxt.text;
+       // work2AniTxt.text = currentAniTxt.text;
     }
 
     public void textString(string textH)

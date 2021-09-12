@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class LocalDatabase : MonoBehaviour
 {
     public string username;
-    public string gmail;
+    public string email;
     public string UID;
     public static LocalDatabase instance;
     private DataSnapshot levelSnapshot;
@@ -43,27 +43,27 @@ public class LocalDatabase : MonoBehaviour
     public List<string> Getvalue()
     {
         username = PlayerPrefs.GetString("username", "");
-        gmail = PlayerPrefs.GetString("gmail", "");
+        email = PlayerPrefs.GetString("email", "");
         
         UID = PlayerPrefs.GetString("uid", "");
         List<string> InfoData = new List<string>();
         InfoData.Add(username);
-        InfoData.Add(gmail);
+        InfoData.Add(email);
         InfoData.Add(UID);
       
         return InfoData;
     }
 
-    public void saveData(string usernameP,string gmailP,string uidP)
+    public void saveData(string uidP)
     {
-        username = usernameP;
-        gmail = gmailP;
+      
         UID = uidP;
-        PlayerPrefs.SetString("username",username);
-        PlayerPrefs.SetString("gmail", gmail);
         PlayerPrefs.SetString("uid", UID);
-       
+        loadusername();
+        loadmail();
     }
+
+
 
     public void saveWorkout(string Data)
     {
@@ -72,6 +72,52 @@ public class LocalDatabase : MonoBehaviour
         dbRef.Child("users").Child(UID).Child("workout").SetValueAsync(Data);
         PlayerPrefs.SetString("workout",Data);
     }
+
+    public void loadusername()
+    {
+        Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
+
+
+        dbRef.Child("users").Child(UID).Child("username").GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted)
+            {
+                // Failure
+                print("dsfdsf");
+            }
+            else if (task.IsCompleted)
+            {
+                DataSnapshot snapshot = task.Result;
+                //    print(snapshot.Value.ToString());
+                PlayerPrefs.SetString("username", snapshot.Value.ToString());
+                username = snapshot.Value.ToString();
+                // Success
+            }
+        });
+    }
+    public void loadmail()
+    {
+        Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
+
+
+        dbRef.Child("users").Child(UID).Child("email").GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted)
+            {
+                // Failure
+                print("dsfdsf");
+            }
+            else if (task.IsCompleted)
+            {
+                DataSnapshot snapshot = task.Result;
+                //    print(snapshot.Value.ToString());
+                PlayerPrefs.SetString("email", snapshot.Value.ToString());
+                email = snapshot.Value.ToString();
+                // Success
+            }
+        });
+    }
+
     public void Loadworkout()
     {
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
@@ -87,7 +133,7 @@ public class LocalDatabase : MonoBehaviour
                 else if (task.IsCompleted)
                 {
                     DataSnapshot snapshot = task.Result;
-                    print(snapshot.Value.ToString());
+                //    print(snapshot.Value.ToString());
                     PlayerPrefs.SetString("workout", snapshot.Value.ToString());
                     // Success
                 }
@@ -101,12 +147,12 @@ public class LocalDatabase : MonoBehaviour
     public void repData(string Exercisename, string Data)
     {
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
-        dbRef.Child("users").Child(UID).Child("DailyWorkout").Child(Exercisename).Child("fatigue").SetValueAsync(Data);
-        dbRef.Child("users").Child(UID).Child("DailyWorkout").Child(Exercisename).Child("Velocity").SetValueAsync(Data);
-        dbRef.Child("users").Child(UID).Child("DailyWorkout").Child(Exercisename).Child("distance").SetValueAsync(Data);
-        dbRef.Child("users").Child(UID).Child("DailyWorkout").Child(Exercisename).Child("calories ").SetValueAsync(Data);
-        dbRef.Child("users").Child(UID).Child("WeeklyWorkout").SetValueAsync("00");
-        dbRef.Child("users").Child(UID).Child("MonthlyWorkout").SetValueAsync("00");
+        dbRef.Child("users").Child("ab00").Child("DailyWorkout").Child(Exercisename).Child("fatigue").SetValueAsync(Data);
+        dbRef.Child("users").Child("ab00").Child("DailyWorkout").Child(Exercisename).Child("Velocity").SetValueAsync(Data);
+        dbRef.Child("users").Child("ab00").Child("DailyWorkout").Child(Exercisename).Child("distance").SetValueAsync(Data);
+        dbRef.Child("users").Child("ab00").Child("DailyWorkout").Child(Exercisename).Child("calories ").SetValueAsync(Data);
+        dbRef.Child("users").Child("ab00").Child("WeeklyWorkout").SetValueAsync("00");
+        dbRef.Child("users").Child("ab00").Child("MonthlyWorkout").SetValueAsync("00");
     }
     
     public IEnumerator getCharacter(List<GameObject> chars, GameObject FadeImage)
@@ -116,7 +162,7 @@ public class LocalDatabase : MonoBehaviour
         while (!inCondition)
         {
             Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
-            dbRef.Child("users").Child("ab00").Child("characterselect").GetValueAsync().ContinueWithOnMainThread(task => {
+            dbRef.Child("users").Child(UID).Child("characterselect").GetValueAsync().ContinueWithOnMainThread(task => {
                 if (task.IsFaulted)
                 {
                     // Handle the error...
@@ -137,7 +183,7 @@ public class LocalDatabase : MonoBehaviour
     public void setCharacter(string indexer)
     {
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
-        dbRef.Child("users").Child("ab00").Child("characterselect").SetValueAsync(indexer);
+        dbRef.Child("users").Child(UID).Child("characterselect").SetValueAsync(indexer);
     }
 
      void manageCharacter(List<GameObject> chars, int charValue)
@@ -149,14 +195,14 @@ public class LocalDatabase : MonoBehaviour
             {
                 chars[i].SetActive(true);
 
-                if (GameObject.FindObjectOfType<ScrollHandler>() != null)
-                {
-                    GameObject.FindObjectOfType<ScrollHandler>().ani = chars[i].GetComponent<Animator>();
-                }
-                else if (GameObject.FindObjectOfType<WorkoutHandler>() != null)
-                {
-              //      GameObject.FindObjectOfType<WorkoutHandler>().animator = chars[i].GetComponent<Animator>();
-                }
+              //  if (GameObject.FindObjectOfType<ScrollHandler>() != null)
+              //  {
+              // //     GameObject.FindObjectOfType<ScrollHandler>().ani = chars[i].GetComponent<Animator>();
+              //  }
+              //  else if (GameObject.FindObjectOfType<WorkoutHandler>() != null)
+              //  {
+              ////      GameObject.FindObjectOfType<WorkoutHandler>().animator = chars[i].GetComponent<Animator>();
+              //  }
 
             }
             else

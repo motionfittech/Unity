@@ -19,6 +19,7 @@ public class FitCapTest : MonoBehaviour
 
     public GameObject TopPanel;
     public GameObject MiddlePanel;
+    private int saveCounter = 0;
     [HideInInspector] public string exerciseString; 
     public class Characteristic
     {
@@ -128,27 +129,39 @@ public class FitCapTest : MonoBehaviour
 
             //string startstring = System.DateTime.Now.ToString();
             System.DateTime theTime = System.DateTime.Now;
+            
             string startstring = theTime.Year + "_" + theTime.Month + "_" + theTime.Day + "_" + theTime.Hour + "_" + theTime.Minute + "_" + theTime.Second;
             //path = Application.dataPath + "/log_" + startstring + ".csv";  // unknown
-            path = Application.persistentDataPath + "/log_"+exerciseString+"_" + startstring + ".csv"; // works, original
-
-            FitCapStatusMessages = path;
+            path = Application.persistentDataPath + "/log_"+saveCounter.ToString()+"_"+exerciseString+"_" + startstring + ".csv"; // works, original
+            saveCounter +=1;
+            //  FitCapStatusMessages = path;
 
             // create file if it doesn't exist
-            string starttimetag = "Session date: " + theTime.Year + "-" + theTime.Month + "-" + theTime.Day + "-" + theTime.Hour + ":" + theTime.Minute + ":" + theTime.Second + "\n";
-            if (!File.Exists(path))
-            {
-                // write data to file
-                //string starttimetag = "Session date: " + theTime.Year + "-" + theTime.Month + "-" + theTime.Day + "-" + theTime.Hour + ":" + theTime.Minute + ":" + theTime.Second + "\n";
-                File.WriteAllText(path, starttimetag);
-            }
+            //string starttimetag = "Session date: " + theTime.Year + "-" + theTime.Month + "-" + theTime.Day + "-" + theTime.Hour + ":" + theTime.Minute + ":" + theTime.Second + "\n";
+            //if (!File.Exists(path))
+            //{
+            //    // write data to file
+            //    //string starttimetag = "Session date: " + theTime.Year + "-" + theTime.Month + "-" + theTime.Day + "-" + theTime.Hour + ":" + theTime.Minute + ":" + theTime.Second + "\n";
+            //    File.WriteAllText(path, starttimetag);
+            //}
         }
         else
         {
             DisplayData = false;
-         //   Text txt = StartStopButton.GetComponentInChildren<Text>();
-          //  txt.text = "Start";
-
+            //   Text txt = StartStopButton.GetComponentInChildren<Text>();
+            //  txt.text = "Start";
+            if (path.Length > 0)
+            {
+                FitCapStatusMessages = "Stored in this path"+ path;
+               //   print("path is not null");
+                PlayerPrefs.SetString("path",path);
+                GameObject.FindObjectOfType<CSVManager>().readData(path,true);
+              
+            }
+            else
+            {
+              //  print("path is null");
+            }
             path = "";
         }
         // Debug.Log("Button clicked " + DisplayData);
@@ -169,6 +182,7 @@ public class FitCapTest : MonoBehaviour
         }
     }
 
+  
     void Reset()
     {
         _connected = false;
@@ -437,8 +451,8 @@ public class FitCapTest : MonoBehaviour
                         BluetoothLEHardwareInterface.SubscribeCharacteristicWithDeviceAddress(_deviceAddress, SubscribeAccelerometer.ServiceUUID, SubscribeAccelerometer.CharacteristicUUID, delegate { }, OnCharacteristicNotification);
                         FitCapStatusMessages = "Subscribed to FitCap Accelerometer...";
 
-                        Text txt = StartStopButton.GetComponentInChildren<Text>();
-                        txt.text = "Start";
+                        //Text txt = StartStopButton.GetComponentInChildren<Text>();
+                        //txt.text = "Start";
                     }
                     break;
 

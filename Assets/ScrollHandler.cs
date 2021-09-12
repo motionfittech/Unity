@@ -142,7 +142,7 @@ public class ScrollHandler : MonoBehaviour
         {
             Destroy(objs);
         }
-        print(Poptitle.text);
+       // print(Poptitle.text);
         addExercise(Poptitle.text);
     }
     public void addExercise(string a)
