@@ -36,7 +36,7 @@ public class WorkoutManager : MonoBehaviour
     private bool _startcounting;
     private int anicounter;
 
-    [Header("POPUP")]
+    [Header("POPUP")]   
     public GameObject popupPanel;
     public TextMeshProUGUI PopupText;
     public ModalWindowManager myModalWindow;
