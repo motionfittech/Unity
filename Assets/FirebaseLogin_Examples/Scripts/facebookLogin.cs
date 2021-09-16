@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Facebook.Unity;
+//using Facebook.Unity;
 using Firebase.Auth;
 using Firebase.Extensions;
 
 public class facebookLogin : MonoBehaviour
 {
-    public FirebaseSetUp FS;
+   /* public FirebaseSetUp FS;
   
     // Use this for initialization
     void Awake()
@@ -111,5 +111,5 @@ public class facebookLogin : MonoBehaviour
             {
                 Debug.Log("User cancelled login");
             }
-        }
+        }*/
     }
