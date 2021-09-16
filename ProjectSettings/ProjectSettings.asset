@@ -152,6 +152,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.gym.motionfit
     Standalone: com.gym.motionfit
+    iPhone: com.gym.motionfit
   buildNumber:
     Standalone: 0
     iPhone: 0

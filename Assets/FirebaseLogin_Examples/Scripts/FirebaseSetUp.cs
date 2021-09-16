@@ -42,7 +42,7 @@ public class FirebaseSetUp : MonoBehaviour
             }
             else if (PlayerPrefs.GetString("loginMethod", "C") == "F")
             {
-                GetComponent<facebookLogin>().FBlogin();
+//                GetComponent<facebookLogin>().FBlogin();
             }
             else if (PlayerPrefs.GetString("loginMethod", "C") == "G")
             {

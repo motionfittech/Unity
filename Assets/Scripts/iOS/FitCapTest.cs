@@ -146,9 +146,9 @@ public class FitCapTest : MonoBehaviour
         else
         {
             DisplayData = false;
-         //   Text txt = StartStopButton.GetComponentInChildren<Text>();
-          //  txt.text = "Start";
-
+            //   Text txt = StartStopButton.GetComponentInChildren<Text>();
+            //  txt.text = "Start";
+            print("else");
             path = "";
         }
         // Debug.Log("Button clicked " + DisplayData);

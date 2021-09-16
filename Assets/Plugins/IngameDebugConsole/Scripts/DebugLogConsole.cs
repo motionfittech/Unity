@@ -1,9 +1,4 @@
-﻿#if UNITY_EDITOR || UNITY_STANDALONE
-// Unity's Text component doesn't render <b> tag correctly on mobile devices
-#define USE_BOLD_COMMAND_SIGNATURES
-#endif
-
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,9 +6,6 @@ using System.Globalization;
 using System.Reflection;
 using System.Text;
 using Object = UnityEngine.Object;
-#if UNITY_EDITOR && UNITY_2021_1_OR_NEWER
-using SystemInfo = UnityEngine.Device.SystemInfo; // To support Device Simulator on Unity 2021.1+
-#endif
 
 // Manages the console commands, parses console input and handles execution of commands
 // Supported method parameter types: int, float, bool, string, Vector2, Vector3, Vector4
@@ -123,10 +115,6 @@ namespace IngameDebugConsole
 
 		static DebugLogConsole()
 		{
-			AddCommand( "help", "Prints all commands", LogAllCommands );
-			AddCommand<string>( "help", "Prints all matching commands", LogAllCommandsWithName );
-			AddCommand( "sysinfo", "Prints system information", LogSystemInfo );
-
 #if UNITY_EDITOR || !NETFX_CORE
 			// Find all [ConsoleMethod] functions
 			// Don't search built-in assemblies for console methods since they can't have any
@@ -152,22 +140,15 @@ namespace IngameDebugConsole
 				"AssetStoreTools",
 #endif
 			};
-#endif
 
-#if UNITY_EDITOR || !NETFX_CORE
 			foreach( Assembly assembly in AppDomain.CurrentDomain.GetAssemblies() )
-#else
-			foreach( Assembly assembly in new Assembly[] { typeof( DebugLogConsole ).Assembly } ) // On UWP, at least search this plugin's Assembly for console methods
-#endif
 			{
-#if( NET_4_6 || NET_STANDARD_2_0 ) && ( UNITY_EDITOR || !NETFX_CORE )
+#if NET_4_6 || NET_STANDARD_2_0
 				if( assembly.IsDynamic )
 					continue;
 #endif
 
 				string assemblyName = assembly.GetName().Name;
-
-#if UNITY_EDITOR || !NETFX_CORE
 				bool ignoreAssembly = false;
 				for( int i = 0; i < ignoredAssemblies.Length; i++ )
 				{
@@ -180,7 +161,6 @@ namespace IngameDebugConsole
 
 				if( ignoreAssembly )
 					continue;
-#endif
 
 				try
 				{
@@ -192,7 +172,7 @@ namespace IngameDebugConsole
 							{
 								ConsoleMethodAttribute consoleMethod = attribute as ConsoleMethodAttribute;
 								if( consoleMethod != null )
-									AddCommand( consoleMethod.Command, consoleMethod.Description, method, null, consoleMethod.ParameterNames );
+									AddCommand( consoleMethod.Command, consoleMethod.Description, method );
 							}
 						}
 					}
@@ -204,6 +184,10 @@ namespace IngameDebugConsole
 					Debug.LogError( "Couldn't search assembly for [ConsoleMethod] attributes: " + assemblyName + "\n" + e.ToString() );
 				}
 			}
+#endif
+
+			AddCommand( "help", "Prints all commands", LogAllCommands );
+			AddCommand( "sysinfo", "Prints system information", LogSystemInfo );
 		}
 
 		// Logs the list of available commands
@@ -213,7 +197,7 @@ namespace IngameDebugConsole
 			for( int i = 0; i < methods.Count; i++ )
 			{
 				if( methods[i].IsValid() )
-					length += methods[i].signature.Length + 7;
+					length += 3 + methods[i].signature.Length;
 			}
 
 			StringBuilder stringBuilder = new StringBuilder( length );
@@ -222,52 +206,14 @@ namespace IngameDebugConsole
 			for( int i = 0; i < methods.Count; i++ )
 			{
 				if( methods[i].IsValid() )
-					stringBuilder.Append( "\n    - " ).Append( methods[i].signature );
+					stringBuilder.Append( "\n- " ).Append( methods[i].signature );
 			}
 
-			Debug.Log( stringBuilder.ToString() );
+			Debug.Log( stringBuilder.Append( "\n" ).ToString() );
 
 			// After typing help, the log that lists all the commands should automatically be expanded for better UX
 			if( DebugLogManager.Instance )
-			{
 				DebugLogManager.Instance.ExpandLatestPendingLog();
-				DebugLogManager.Instance.StripStackTraceFromLatestPendingLog();
-			}
-		}
-
-		// Logs the list of available commands that are either equal to commandName or contain commandName as substring
-		public static void LogAllCommandsWithName( string commandName )
-		{
-			matchingMethods.Clear();
-
-			// First, try to find commands that exactly match the commandName. If there are no such commands, try to find
-			// commands that contain commandName as substring
-			FindCommands( commandName, false, matchingMethods );
-			if( matchingMethods.Count == 0 )
-				FindCommands( commandName, true, matchingMethods );
-
-			if( matchingMethods.Count == 0 )
-				Debug.LogWarning( string.Concat( "ERROR: can't find command '", commandName, "'" ) );
-			else
-			{
-				int commandsLength = 25;
-				for( int i = 0; i < matchingMethods.Count; i++ )
-					commandsLength += matchingMethods[i].signature.Length + 7;
-
-				StringBuilder stringBuilder = new StringBuilder( commandsLength );
-				stringBuilder.Append( "Matching commands:" );
-
-				for( int i = 0; i < matchingMethods.Count; i++ )
-					stringBuilder.Append( "\n    - " ).Append( matchingMethods[i].signature );
-
-				Debug.Log( stringBuilder.ToString() );
-
-				if( DebugLogManager.Instance )
-				{
-					DebugLogManager.Instance.ExpandLatestPendingLog();
-					DebugLogManager.Instance.StripStackTraceFromLatestPendingLog();
-				}
-			}
 		}
 
 		// Logs system information
@@ -307,14 +253,11 @@ namespace IngameDebugConsole
 			stringBuilder.Append( "2D Array Textures: " ).Append( SystemInfo.supports2DArrayTextures ? "supported\n" : "not supported\n" );
 			stringBuilder.Append( "Cubemap Array Textures: " ).Append( SystemInfo.supportsCubemapArrayTextures ? "supported" : "not supported" );
 
-			Debug.Log( stringBuilder.ToString() );
+			Debug.Log( stringBuilder.Append( "\n" ).ToString() );
 
 			// After typing sysinfo, the log that lists system information should automatically be expanded for better UX
 			if( DebugLogManager.Instance )
-			{
 				DebugLogManager.Instance.ExpandLatestPendingLog();
-				DebugLogManager.Instance.StripStackTraceFromLatestPendingLog();
-			}
 		}
 
 		private static StringBuilder AppendSysInfoIfPresent( this StringBuilder sb, string info, string postfix = null )
@@ -375,7 +318,7 @@ namespace IngameDebugConsole
 		}
 
 		// Add a command related with an instance method (i.e. non static method)
-		public static void AddCommandInstance( string command, string description, string methodName, object instance, params string[] parameterNames )
+		public static void AddCommandInstance( string command, string description, string methodName, object instance )
 		{
 			if( instance == null )
 			{
@@ -383,41 +326,30 @@ namespace IngameDebugConsole
 				return;
 			}
 
-			AddCommand( command, description, methodName, instance.GetType(), instance, parameterNames );
+			AddCommand( command, description, methodName, instance.GetType(), instance );
 		}
 
 		// Add a command related with a static method (i.e. no instance is required to call the method)
-		public static void AddCommandStatic( string command, string description, string methodName, Type ownerType, params string[] parameterNames )
+		public static void AddCommandStatic( string command, string description, string methodName, Type ownerType )
 		{
-			AddCommand( command, description, methodName, ownerType, null, parameterNames );
+			AddCommand( command, description, methodName, ownerType );
 		}
 
 		// Add a command that can be related to either a static or an instance method
-		public static void AddCommand( string command, string description, Action method ) { AddCommand( command, description, method.Method, method.Target, null ); }
-		public static void AddCommand<T1>( string command, string description, Action<T1> method ) { AddCommand( command, description, method.Method, method.Target, null ); }
-		public static void AddCommand<T1>( string command, string description, Func<T1> method ) { AddCommand( command, description, method.Method, method.Target, null ); }
-		public static void AddCommand<T1, T2>( string command, string description, Action<T1, T2> method ) { AddCommand( command, description, method.Method, method.Target, null ); }
-		public static void AddCommand<T1, T2>( string command, string description, Func<T1, T2> method ) { AddCommand( command, description, method.Method, method.Target, null ); }
-		public static void AddCommand<T1, T2, T3>( string command, string description, Action<T1, T2, T3> method ) { AddCommand( command, description, method.Method, method.Target, null ); }
-		public static void AddCommand<T1, T2, T3>( string command, string description, Func<T1, T2, T3> method ) { AddCommand( command, description, method.Method, method.Target, null ); }
-		public static void AddCommand<T1, T2, T3, T4>( string command, string description, Action<T1, T2, T3, T4> method ) { AddCommand( command, description, method.Method, method.Target, null ); }
-		public static void AddCommand<T1, T2, T3, T4>( string command, string description, Func<T1, T2, T3, T4> method ) { AddCommand( command, description, method.Method, method.Target, null ); }
-		public static void AddCommand<T1, T2, T3, T4, T5>( string command, string description, Func<T1, T2, T3, T4, T5> method ) { AddCommand( command, description, method.Method, method.Target, null ); }
-		public static void AddCommand( string command, string description, Delegate method ) { AddCommand( command, description, method.Method, method.Target, null ); }
-
-		// Add a command with custom parameter names
-		public static void AddCommand<T1>( string command, string description, Action<T1> method, string parameterName ) { AddCommand( command, description, method.Method, method.Target, new string[1] { parameterName } ); }
-		public static void AddCommand<T1, T2>( string command, string description, Action<T1, T2> method, string parameterName1, string parameterName2 ) { AddCommand( command, description, method.Method, method.Target, new string[2] { parameterName1, parameterName2 } ); }
-		public static void AddCommand<T1, T2>( string command, string description, Func<T1, T2> method, string parameterName ) { AddCommand( command, description, method.Method, method.Target, new string[1] { parameterName } ); }
-		public static void AddCommand<T1, T2, T3>( string command, string description, Action<T1, T2, T3> method, string parameterName1, string parameterName2, string parameterName3 ) { AddCommand( command, description, method.Method, method.Target, new string[3] { parameterName1, parameterName2, parameterName3 } ); }
-		public static void AddCommand<T1, T2, T3>( string command, string description, Func<T1, T2, T3> method, string parameterName1, string parameterName2 ) { AddCommand( command, description, method.Method, method.Target, new string[2] { parameterName1, parameterName2 } ); }
-		public static void AddCommand<T1, T2, T3, T4>( string command, string description, Action<T1, T2, T3, T4> method, string parameterName1, string parameterName2, string parameterName3, string parameterName4 ) { AddCommand( command, description, method.Method, method.Target, new string[4] { parameterName1, parameterName2, parameterName3, parameterName4 } ); }
-		public static void AddCommand<T1, T2, T3, T4>( string command, string description, Func<T1, T2, T3, T4> method, string parameterName1, string parameterName2, string parameterName3 ) { AddCommand( command, description, method.Method, method.Target, new string[3] { parameterName1, parameterName2, parameterName3 } ); }
-		public static void AddCommand<T1, T2, T3, T4, T5>( string command, string description, Func<T1, T2, T3, T4, T5> method, string parameterName1, string parameterName2, string parameterName3, string parameterName4 ) { AddCommand( command, description, method.Method, method.Target, new string[4] { parameterName1, parameterName2, parameterName3, parameterName4 } ); }
-		public static void AddCommand( string command, string description, Delegate method, params string[] parameterNames ) { AddCommand( command, description, method.Method, method.Target, parameterNames ); }
+		public static void AddCommand( string command, string description, Action method ) { AddCommand( command, description, method.Method, method.Target ); }
+		public static void AddCommand<T1>( string command, string description, Action<T1> method ) { AddCommand( command, description, method.Method, method.Target ); }
+		public static void AddCommand<T1>( string command, string description, Func<T1> method ) { AddCommand( command, description, method.Method, method.Target ); }
+		public static void AddCommand<T1, T2>( string command, string description, Action<T1, T2> method ) { AddCommand( command, description, method.Method, method.Target ); }
+		public static void AddCommand<T1, T2>( string command, string description, Func<T1, T2> method ) { AddCommand( command, description, method.Method, method.Target ); }
+		public static void AddCommand<T1, T2, T3>( string command, string description, Action<T1, T2, T3> method ) { AddCommand( command, description, method.Method, method.Target ); }
+		public static void AddCommand<T1, T2, T3>( string command, string description, Func<T1, T2, T3> method ) { AddCommand( command, description, method.Method, method.Target ); }
+		public static void AddCommand<T1, T2, T3, T4>( string command, string description, Action<T1, T2, T3, T4> method ) { AddCommand( command, description, method.Method, method.Target ); }
+		public static void AddCommand<T1, T2, T3, T4>( string command, string description, Func<T1, T2, T3, T4> method ) { AddCommand( command, description, method.Method, method.Target ); }
+		public static void AddCommand<T1, T2, T3, T4, T5>( string command, string description, Func<T1, T2, T3, T4, T5> method ) { AddCommand( command, description, method.Method, method.Target ); }
+		public static void AddCommand( string command, string description, Delegate method ) { AddCommand( command, description, method.Method, method.Target ); }
 
 		// Create a new command and set its properties
-		private static void AddCommand( string command, string description, string methodName, Type ownerType, object instance, string[] parameterNames )
+		private static void AddCommand( string command, string description, string methodName, Type ownerType, object instance = null )
 		{
 			// Get the method from the class
 			MethodInfo method = ownerType.GetMethod( methodName, BindingFlags.Public | BindingFlags.NonPublic | ( instance != null ? BindingFlags.Instance : BindingFlags.Static ) );
@@ -427,10 +359,10 @@ namespace IngameDebugConsole
 				return;
 			}
 
-			AddCommand( command, description, method, instance, parameterNames );
+			AddCommand( command, description, method, instance );
 		}
 
-		private static void AddCommand( string command, string description, MethodInfo method, object instance, string[] parameterNames )
+		private static void AddCommand( string command, string description, MethodInfo method, object instance = null )
 		{
 			if( string.IsNullOrEmpty( command ) )
 			{
@@ -518,34 +450,29 @@ namespace IngameDebugConsole
 			StringBuilder methodSignature = new StringBuilder( 256 );
 			string[] parameterSignatures = new string[parameterTypes.Length];
 
-#if USE_BOLD_COMMAND_SIGNATURES
-			methodSignature.Append( "<b>" );
-#endif
-			methodSignature.Append( command );
-
-			if( parameterTypes.Length > 0 )
-			{
-				methodSignature.Append( " " );
-
-				for( int i = 0; i < parameterTypes.Length; i++ )
-				{
-					int parameterSignatureStartIndex = methodSignature.Length;
-
-					methodSignature.Append( "[" ).Append( GetTypeReadableName( parameterTypes[i] ) ).Append( " " ).Append( ( parameterNames != null && i < parameterNames.Length && !string.IsNullOrEmpty( parameterNames[i] ) ) ? parameterNames[i] : parameters[i].Name ).Append( "]" );
-
-					if( i < parameterTypes.Length - 1 )
-						methodSignature.Append( " " );
-
-					parameterSignatures[i] = methodSignature.ToString( parameterSignatureStartIndex, methodSignature.Length - parameterSignatureStartIndex );
-				}
-			}
-
-#if USE_BOLD_COMMAND_SIGNATURES
-			methodSignature.Append( "</b>" );
-#endif
+			methodSignature.Append( command ).Append( ": " );
 
 			if( !string.IsNullOrEmpty( description ) )
-				methodSignature.Append( ": " ).Append( description );
+				methodSignature.Append( description ).Append( " -> " );
+
+			methodSignature.Append( method.DeclaringType.ToString() ).Append( "." ).Append( method.Name ).Append( "(" );
+			for( int i = 0; i < parameterTypes.Length; i++ )
+			{
+				int parameterSignatureStartIndex = methodSignature.Length;
+
+				methodSignature.Append( GetTypeReadableName( parameterTypes[i] ) ).Append( " " ).Append( parameters[i].Name );
+
+				if( i < parameterTypes.Length - 1 )
+					methodSignature.Append( ", " );
+
+				parameterSignatures[i] = methodSignature.ToString( parameterSignatureStartIndex, methodSignature.Length - parameterSignatureStartIndex );
+			}
+
+			methodSignature.Append( ")" );
+
+			Type returnType = method.ReturnType;
+			if( returnType != typeof( void ) )
+				methodSignature.Append( " : " ).Append( GetTypeReadableName( returnType ) );
 
 			methods.Insert( commandIndex, new ConsoleMethodInfo( method, parameterTypes, instance, command, methodSignature.ToString(), parameterSignatures ) );
 		}
@@ -659,35 +586,10 @@ namespace IngameDebugConsole
 
 			if( matchingMethods.Count == 0 )
 			{
-				string _command = commandArguments[0];
-				FindCommands( _command, !parameterCountMismatch, matchingMethods );
-
-				if( matchingMethods.Count == 0 )
-					Debug.LogWarning( string.Concat( "ERROR: can't find command '", _command, "'" ) );
+				if( parameterCountMismatch )
+					Debug.LogWarning( string.Concat( "ERROR: ", commandArguments[0], " doesn't take ", commandArguments.Count - 1, " parameter(s)" ) );
 				else
-				{
-					int commandsLength = _command.Length + 75;
-					for( int i = 0; i < matchingMethods.Count; i++ )
-						commandsLength += matchingMethods[i].signature.Length + 7;
-
-					StringBuilder stringBuilder = new StringBuilder( commandsLength );
-					if( parameterCountMismatch )
-						stringBuilder.Append( "ERROR: '" ).Append( _command ).Append( "' doesn't take " ).Append( commandArguments.Count - 1 ).Append( " parameter(s). Available command(s):" );
-					else
-						stringBuilder.Append( "ERROR: can't find command '" ).Append( _command ).Append( "'. Did you mean:" );
-
-					for( int i = 0; i < matchingMethods.Count; i++ )
-						stringBuilder.Append( "\n    - " ).Append( matchingMethods[i].signature );
-
-					Debug.LogWarning( stringBuilder.ToString() );
-
-					// The log that lists method signature(s) for this command should automatically be expanded for better UX
-					if( DebugLogManager.Instance )
-					{
-						DebugLogManager.Instance.ExpandLatestPendingLog();
-						DebugLogManager.Instance.StripStackTraceFromLatestPendingLog();
-					}
-				}
+					Debug.LogWarning( "ERROR: can't find command: " + commandArguments[0] );
 
 				return;
 			}
@@ -732,15 +634,17 @@ namespace IngameDebugConsole
 				Debug.LogWarning( !string.IsNullOrEmpty( errorMessage ) ? errorMessage : "ERROR: something went wrong" );
 			else
 			{
+				Debug.Log( "Executing command: " + commandArguments[0] );
+
 				// Execute the method associated with the command
 				object result = methodToExecute.method.Invoke( methodToExecute.instance, parameters );
 				if( methodToExecute.method.ReturnType != typeof( void ) )
 				{
 					// Print the returned value to the console
 					if( result == null || result.Equals( null ) )
-						Debug.Log( "Returned: null" );
+						Debug.Log( "Value returned: null" );
 					else
-						Debug.Log( "Returned: " + result.ToString() );
+						Debug.Log( "Value returned: " + result.ToString() );
 				}
 			}
 		}
@@ -764,26 +668,6 @@ namespace IngameDebugConsole
 					int endIndex = IndexOfChar( command, ' ', i + 1 );
 					commandArguments.Add( command.Substring( i, command[endIndex - 1] == ',' ? endIndex - 1 - i : endIndex - i ) );
 					i = endIndex;
-				}
-			}
-		}
-
-		public static void FindCommands( string commandName, bool allowSubstringMatching, List<ConsoleMethodInfo> matchingCommands )
-		{
-			if( allowSubstringMatching )
-			{
-				for( int i = 0; i < methods.Count; i++ )
-				{
-					if( methods[i].IsValid() && caseInsensitiveComparer.IndexOf( methods[i].command, commandName, CompareOptions.IgnoreCase | CompareOptions.IgnoreNonSpace ) >= 0 )
-						matchingCommands.Add( methods[i] );
-				}
-			}
-			else
-			{
-				for( int i = 0; i < methods.Count; i++ )
-				{
-					if( methods[i].IsValid() && caseInsensitiveComparer.Compare( methods[i].command, commandName, CompareOptions.IgnoreCase | CompareOptions.IgnoreNonSpace ) == 0 )
-						matchingCommands.Add( methods[i] );
 				}
 			}
 		}
@@ -1221,7 +1105,7 @@ namespace IngameDebugConsole
 			const int NONE = 0, OR = 1, AND = 2;
 
 			int outputInt = 0;
-			int operation = NONE; // 0: nothing, 1: OR with outputInt, 2: AND with outputInt
+			int operation = 0; // 0: nothing, 1: OR with outputInt, 2: AND with outputInt
 			for( int i = 0; i < input.Length; i++ )
 			{
 				string enumStr;
@@ -1235,12 +1119,9 @@ namespace IngameDebugConsole
 				int value;
 				if( !int.TryParse( enumStr, out value ) )
 				{
-					try
-					{
-						// Case-insensitive enum parsing
-						value = Convert.ToInt32( Enum.Parse( enumType, enumStr, true ) );
-					}
-					catch
+					if( Enum.IsDefined( enumType, enumStr ) )
+						value = Convert.ToInt32( Enum.Parse( enumType, enumStr ) );
+					else
 					{
 						output = null;
 						return false;
