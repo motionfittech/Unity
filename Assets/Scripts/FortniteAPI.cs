@@ -11,11 +11,22 @@ public class FortniteAPI : MonoBehaviour
 
     public TextAsset csvfile;
     private const string URL = "https://parmenides.balance3ds.com/api/analysis/benchpress/10";
+    // when game starts
+    private void Awake()
+    {
+        
+    }
 
+    //When script starts
     private void Start()
     {
         
         GenerateRequest();
+    }
+    //Loop
+    private void Update()
+    {
+        
     }
 
     public void GenerateRequest()
@@ -38,7 +49,7 @@ public class FortniteAPI : MonoBehaviour
             }
             else
             {
-                Debug.Log(request.);
+                Debug.Log(request.result);
             }
         }
     }
