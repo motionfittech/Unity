@@ -1,131 +1,131 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Firebase;
-using Firebase.Auth;
-using Firebase.Extensions;
-using Google;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Threading.Tasks;
+//using Firebase;
+//using Firebase.Auth;
+//using Firebase.Extensions;
+//using Google;
 using UnityEngine;
-using UnityEngine.UI;
+//using UnityEngine.UI;
 
 public class GoogleSignInDemo : MonoBehaviour
 {
-    public string webClientId = "<your client id here>";
-    public FirebaseSetUp FS;
-    private FirebaseAuth auth;
-    private GoogleSignInConfiguration configuration;
-    private string CurrentUsername, CurrentEmail, CurrentUid;
-    private void Awake()
-    {
-        configuration = new GoogleSignInConfiguration { WebClientId = webClientId, RequestEmail = true, RequestIdToken = true };
-        CheckFirebaseDependencies();
-    }
+    //public string webClientId = "<your client id here>";
+    //public FirebaseSetUp FS;
+    //private FirebaseAuth auth;
+    //private GoogleSignInConfiguration configuration;
+    //private string CurrentUsername, CurrentEmail, CurrentUid;
+    //private void Awake()
+    //{
+    //    configuration = new GoogleSignInConfiguration { WebClientId = webClientId, RequestEmail = true, RequestIdToken = true };
+    //    CheckFirebaseDependencies();
+    //}
 
-    private void CheckFirebaseDependencies()
-    {      
-       auth = FirebaseAuth.DefaultInstance;        
-    }
+    //private void CheckFirebaseDependencies()
+    //{      
+    //   auth = FirebaseAuth.DefaultInstance;        
+    //}
 
-    public void SignInWithGoogle() { OnSignIn(); }
-    public void SignOutFromGoogle() { OnSignOut(); }
+    //public void SignInWithGoogle() { OnSignIn(); }
+    //public void SignOutFromGoogle() { OnSignOut(); }
 
-    private void OnSignIn()
-    {
-        GoogleSignIn.Configuration = configuration;
-        GoogleSignIn.Configuration.UseGameSignIn = false;
-        GoogleSignIn.Configuration.RequestIdToken = true;
+    //private void OnSignIn()
+    //{
+    //    GoogleSignIn.Configuration = configuration;
+    //    GoogleSignIn.Configuration.UseGameSignIn = false;
+    //    GoogleSignIn.Configuration.RequestIdToken = true;
        
 
-        GoogleSignIn.DefaultInstance.SignIn().ContinueWith(OnAuthenticationFinished);
-    }
+    //    GoogleSignIn.DefaultInstance.SignIn().ContinueWith(OnAuthenticationFinished);
+    //}
 
-    private void OnSignOut()
-    {
+    //private void OnSignOut()
+    //{
        
-        GoogleSignIn.DefaultInstance.SignOut();
-    }
+    //    GoogleSignIn.DefaultInstance.SignOut();
+    //}
 
-    public void OnDisconnect()
-    {
+    //public void OnDisconnect()
+    //{
        
-        GoogleSignIn.DefaultInstance.Disconnect();
-    }
+    //    GoogleSignIn.DefaultInstance.Disconnect();
+    //}
 
-    internal void OnAuthenticationFinished(Task<GoogleSignInUser> task)
-    {
-        if (task.IsFaulted)
-        {
-            using (IEnumerator<Exception> enumerator = task.Exception.InnerExceptions.GetEnumerator())
-            {
-                if (enumerator.MoveNext())
-                {
-                    GoogleSignIn.SignInException error = (GoogleSignIn.SignInException)enumerator.Current;
+    //internal void OnAuthenticationFinished(Task<GoogleSignInUser> task)
+    //{
+    //    if (task.IsFaulted)
+    //    {
+    //        using (IEnumerator<Exception> enumerator = task.Exception.InnerExceptions.GetEnumerator())
+    //        {
+    //            if (enumerator.MoveNext())
+    //            {
+    //                GoogleSignIn.SignInException error = (GoogleSignIn.SignInException)enumerator.Current;
                    
-                }
-                else
-                {
+    //            }
+    //            else
+    //            {
                    
-                }
-            }
+    //            }
+    //        }
 
-            FS.CSB.infotxt.text = "User with " + task.Result.Email + " already have a account please try sign in";
-            FS.CSB.WarningPanel.SetActive(true);
+    //        FS.CSB.infotxt.text = "User with " + task.Result.Email + " already have a account please try sign in";
+    //        FS.CSB.WarningPanel.SetActive(true);
 
-        }
-        else if (task.IsCanceled)
-        {
-            FS.CSB.infotxt.text = "User with " + task.Result.Email + " already have a account please try sign in";
-            FS.CSB.WarningPanel.SetActive(true);
-            FS.CSB.Fade.enabled = false;
-        }
-        else
-        {
+    //    }
+    //    else if (task.IsCanceled)
+    //    {
+    //        FS.CSB.infotxt.text = "User with " + task.Result.Email + " already have a account please try sign in";
+    //        FS.CSB.WarningPanel.SetActive(true);
+    //        FS.CSB.Fade.enabled = false;
+    //    }
+    //    else
+    //    {
          
-            SignInWithGoogleOnFirebase(task.Result.IdToken);
-            CurrentUsername = task.Result.DisplayName;
-            CurrentEmail = task.Result.Email;
-            CurrentUid = task.Result.UserId;
-            PlayerPrefs.SetString("loginMethod", "G");
-        }
-    }
+    //        SignInWithGoogleOnFirebase(task.Result.IdToken);
+    //        CurrentUsername = task.Result.DisplayName;
+    //        CurrentEmail = task.Result.Email;
+    //        CurrentUid = task.Result.UserId;
+    //        PlayerPrefs.SetString("loginMethod", "G");
+    //    }
+    //}
 
-    private void SignInWithGoogleOnFirebase(string idToken)
-    {
-        Credential credential = GoogleAuthProvider.GetCredential(idToken, null);
+    //private void SignInWithGoogleOnFirebase(string idToken)
+    //{
+    //    Credential credential = GoogleAuthProvider.GetCredential(idToken, null);
 
-        auth.SignInWithCredentialAsync(credential).ContinueWithOnMainThread(task =>
-        {
-                AddToInformation(CurrentUsername,CurrentEmail,CurrentUid);
+    //    auth.SignInWithCredentialAsync(credential).ContinueWithOnMainThread(task =>
+    //    {
+    //            AddToInformation(CurrentUsername,CurrentEmail,CurrentUid);
            
 
-        });
-    }
+    //    });
+    //}
 
-    public void OnSignInSilently()
-    {
-        GoogleSignIn.Configuration = configuration;
-        GoogleSignIn.Configuration.UseGameSignIn = false;
-        GoogleSignIn.Configuration.RequestIdToken = true;
+    //public void OnSignInSilently()
+    //{
+    //    GoogleSignIn.Configuration = configuration;
+    //    GoogleSignIn.Configuration.UseGameSignIn = false;
+    //    GoogleSignIn.Configuration.RequestIdToken = true;
        
 
-        GoogleSignIn.DefaultInstance.SignInSilently().ContinueWith(OnAuthenticationFinished);
-    }
+    //    GoogleSignIn.DefaultInstance.SignInSilently().ContinueWith(OnAuthenticationFinished);
+    //}
 
-    public void OnGamesSignIn()
-    {
-        GoogleSignIn.Configuration = configuration;
-        GoogleSignIn.Configuration.UseGameSignIn = true;
-        GoogleSignIn.Configuration.RequestIdToken = false;
+    //public void OnGamesSignIn()
+    //{
+    //    GoogleSignIn.Configuration = configuration;
+    //    GoogleSignIn.Configuration.UseGameSignIn = true;
+    //    GoogleSignIn.Configuration.RequestIdToken = false;
 
        
 
-        GoogleSignIn.DefaultInstance.SignIn().ContinueWith(OnAuthenticationFinished);
-    }
+    //    GoogleSignIn.DefaultInstance.SignIn().ContinueWith(OnAuthenticationFinished);
+    //}
 
-    private void AddToInformation(string us_name,string Em,string U_id) {
+    //private void AddToInformation(string us_name,string Em,string U_id) {
 
-        FS.registerUser(us_name,Em,U_id);
+    //    FS.registerUser(us_name,Em,U_id);
 
-    }
+    //}
 }
