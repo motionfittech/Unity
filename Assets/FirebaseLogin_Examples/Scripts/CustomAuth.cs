@@ -44,7 +44,16 @@ public class CustomAuth : MonoBehaviour
 
     public void LogincallButton()
     {
-      
+       if(UserNameInput.text.Length == 0)
+        {
+            FS.CSB.popup("Please Enter username then try again");
+            return;
+        }
+       else if (PasswordInput.text.Length == 0)
+        {
+            FS.CSB.popup("Please Enter Password then try again");
+            return;
+        }
         Login(UserNameInput.text, PasswordInput.text);
     }
     public void SignupcallButton()
@@ -52,18 +61,19 @@ public class CustomAuth : MonoBehaviour
       
         if(SignUpgmail.text.IndexOf('@') <= 0 || SignUpgmail.text.Length == 0)
         {
-            print("Invalid email");
+            FS.CSB.popup("Enter Valid email and try again.");
 
             return;
         }
         else if ( SignUppassword.text.Length < 6)
         {
-            print("passwordshould be greater then sixxtings");
+           // print("passwordshould be greater then sixxtings");
+            FS.CSB.popup("Enter Pasword which should have it least 6 digits.");
             return;
         }
         else if (SignUpusername.text.Length == 0)
         {
-            print("Invalid Username");
+            FS.CSB.popup("Enter your username and try again..");
             return;
         }
 
@@ -82,11 +92,12 @@ public class CustomAuth : MonoBehaviour
             }
             if (task.IsFaulted)
             {
-                Debug.LogError("SignInWithEmailAndPasswordAsync error: " + task.Exception);
-                if (task.Exception.InnerExceptions.Count > 0)
+              //  Debug.LogError("SignInWithEmailAndPasswordAsync error: " + task.Exception);
+                FS.CSB.popup("No username " +UserNameInput.text +" found, please register your account or try with different account");
+               /* if (task.Exception.InnerExceptions.Count > 0)
                     UpdateErrorMessage(task.Exception.InnerExceptions[0].Message);
 
-
+*/
                 FS.CSB.Fade.enabled = false;
                 return;
             }
@@ -102,7 +113,7 @@ public class CustomAuth : MonoBehaviour
 
     public void Signup(string email, string password, string username)
     {
-        
+        FS.CSB.Fade.enabled = true;
         auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
         {
             if (task.IsCanceled)
@@ -112,16 +123,20 @@ public class CustomAuth : MonoBehaviour
             }
             if (task.IsFaulted)
             {
-                Debug.LogError("CreateUserWithEmailAndPasswordAsync error: " + task.Exception);
+              //  Debug.LogError("CreateUserWithEmailAndPasswordAsync error: " + task.Exception);
                 string temp = task.Exception.ToString();
                 if(temp.Contains("The email address is already in use by another account"))
                 {
                   
-                    FS.CSB.infotxt.text = "User with "+ email +" already have a account please try sign in";
-                    FS.CSB.WarningPanel.SetActive(true);
+                    
+                    FS.CSB.popup("User with "+ email +" already have a account please try sign in");
+                   
                 }
-                if (task.Exception.InnerExceptions.Count > 0)
+              /*  if (task.Exception.InnerExceptions.Count > 0)
                     UpdateErrorMessage(task.Exception.InnerExceptions[0].Message);
+*/
+
+                FS.CSB.Fade.enabled = false;
                 return;
             }
 

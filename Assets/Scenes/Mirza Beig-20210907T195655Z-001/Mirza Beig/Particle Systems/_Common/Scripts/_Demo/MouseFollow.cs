@@ -63,7 +63,7 @@ namespace MirzaBeig
 
                 void Update()
                 {
-                    Vector3 mousePosition = Input.mousePosition;
+                    Vector3 mousePosition = Input.GetTouch(0).position;
                     mousePosition.z = distanceFromCamera;
 
                     Vector3 mouseScreenToWorld = Camera.main.ScreenToWorldPoint(mousePosition);

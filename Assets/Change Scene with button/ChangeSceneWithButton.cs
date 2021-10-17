@@ -7,7 +7,7 @@ using TMPro;
 public class ChangeSceneWithButton : MonoBehaviour
 {
     public Image Fade;
-    public GameObject WarningPanel,Login,Signup;
+    public GameObject WarningPanel,Login,Signup,DownLoginPanel,DownSignUpPanel;
     public TextMeshProUGUI infotxt;
    
 
@@ -28,14 +28,16 @@ public class ChangeSceneWithButton : MonoBehaviour
         SceneManager.LoadScene("MainScreen");
     }
 
-    public IEnumerator startFade(GameObject close,GameObject open)
+    public IEnumerator startFade(GameObject close,GameObject open,GameObject Downclose,GameObject Downopen)
     {
         
         Fade.enabled = true;
         Fade.color = new Color(Fade.color.r, Fade.color.g, Fade.color.b,1);
         float temp = 1;
         close.SetActive(false);
+        Downclose.SetActive(false);
         open.SetActive(true);
+        Downopen.SetActive(true);
         while (Fade.color.a > 0)
         {
 
@@ -49,12 +51,24 @@ public class ChangeSceneWithButton : MonoBehaviour
 
    public void signupButton()
     {
-        StartCoroutine(startFade(Login, Signup));
+        StartCoroutine(startFade(Login, Signup, DownLoginPanel,DownSignUpPanel));
     }
     public void signupBackButton()
     {
-        StartCoroutine(startFade(Signup, Login));
+        StartCoroutine(startFade(Signup, Login,DownSignUpPanel, DownLoginPanel));
     }
 
+    public void popup(string info)
+    {
+        if (WarningPanel.active)
+        {
+            WarningPanel.SetActive(false);
+        }
+        else
+        {
+            infotxt.text = info;
+            WarningPanel.SetActive(true);
+        }
+    }
 
 }
