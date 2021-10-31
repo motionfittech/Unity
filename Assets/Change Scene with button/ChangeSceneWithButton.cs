@@ -6,10 +6,10 @@ using UnityEngine.UI;
 using TMPro;
 public class ChangeSceneWithButton : MonoBehaviour
 {
-    public Image Fade;
+    public LoadingScreenBarSystem Fade;
     public GameObject WarningPanel,Login,Signup,DownLoginPanel,DownSignUpPanel;
     public TextMeshProUGUI infotxt;
-   
+     float timeloader = 0;
 
     private void Start()
     {
@@ -19,34 +19,40 @@ public class ChangeSceneWithButton : MonoBehaviour
 
     public void LoadScene()
     {
-        Fade.enabled = true;
-        Fade.color = new Color(Fade.color.r, Fade.color.g, Fade.color.b, 1);
+        Fade.gameObject.SetActive(true);
+      
         Invoke("Restart",1);
     }
     private void Restart()
+    {
+        Fade.gameObject.SetActive(true);
+        Fade.startLoading();
+        Invoke("loadScene",1);
+    }
+    public void loadScene()
     {
         SceneManager.LoadScene("MainScreen");
     }
 
     public IEnumerator startFade(GameObject close,GameObject open,GameObject Downclose,GameObject Downopen)
     {
-        
-        Fade.enabled = true;
-        Fade.color = new Color(Fade.color.r, Fade.color.g, Fade.color.b,1);
-        float temp = 1;
+
+        Fade.gameObject.SetActive(true);
+        Fade.startLoading();
+       
         close.SetActive(false);
         Downclose.SetActive(false);
         open.SetActive(true);
         Downopen.SetActive(true);
-        while (Fade.color.a > 0)
+        while (timeloader > 0)
         {
 
-           temp -= 0.05f;
-            Fade.color = new Color(Fade.color.r, Fade.color.g, Fade.color.b, temp);
+           timeloader -= 0.01f;
+          
             yield return null;
 
         }
-        Fade.enabled = false;
+      //  Fade.gameObject.SetActive(false);
     }
 
    public void signupButton()

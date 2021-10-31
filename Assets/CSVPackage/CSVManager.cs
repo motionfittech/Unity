@@ -24,7 +24,7 @@ public class CSVManager : MonoBehaviour
 
 	void call()
 	{
-		//PlayerPrefs.SetString("path", "C:/Users/asus/AppData/LocalLow/MotionFit/Motion Fit/UsersasusAppDataLocalLowMotionFitMotion Fitlog_0_FrontRaise_2021_8_22_0_55_33.csv");
+		PlayerPrefs.SetString("path", "C:/Users/asus/AppData/LocalLow/MotionFit/Motion Fit/UsersasusAppDataLocalLowMotionFitMotion Fitlog_0_FrontRaise_2021_8_22_0_55_33.csv");
 		readData(PlayerPrefs.GetString("path", ""), false);
 	}
 	public void readData(string rawDataPath, bool _isSaving)
