@@ -9838,45 +9838,39 @@ MonoBehaviour:
   VelocityPanel: {fileID: 2116721339}
   nameofAnimations:
   - AlternatingFrontRaise
-  - BackSquat
-  - BicepCurl
-  - CleanJerk
-  - PushUp
-  - Situps
+  - Arnoldpress
+  - Bandpullapart
+  - Squat
+  - Benchpress
+  - Bentoverrow
+  - Bentlegraises
+  - Bicyclecrunch
+  - Bodyweighthamstringcurl
+  - Bridges
+  - Crunch
+  - Curl
+  - Deadlift
+  - Dumbelllunges
+  - Frontraise
+  - Frontsquat
+  - Goodmorning
+  - Hamstringcurl
+  - Kettlebell
+  - Latpulldown
+  - Latpullover
+  - Legcrunch
+  - Legraise
+  - Penguins
+  - Planktopushup
+  - Pushups
+  - Situp
+  - Skullcrushers
+  - Snatchgripdeadlift
   - Snatch
-  - SquatSnatch
-  - BenchPress
-  - BentFly
-  - BentLegRaise
-  - BentOverRow
-  - BicycleCrunch
-  - ChestFly
-  - CloseGripBenchPress
-  - FrontRaise
-  - FrontSquat
-  - HammerCurl
-  - LateralRaise
-  - PullUp
-  - ShoulderPress
-  - Skullcrusher
-  - StraightLegRaise
-  - DeadLift
-  - GoodMorning
-  - ArnoldPress
-  - BarbellHipThrust
-  - CleanandjerkIK
-  - HipthrustbridgeIK
-  - KettlebellSwingIK
-  - Lunge
-  - OHP
-  - PistolSquat
-  - PoweClean
-  - ReverseCurl
-  - ReverseLunge
-  - SnatchGripDeadLift
-  - StraightLegDeadlift
-  - SumoDeadLift
-  - UprightRow
+  - Straightlegdeadlift
+  - Sumo
+  - Uprightrow
+  - Walkinglunges
   selectedAnimations: []
   WH: {fileID: 1370509583}
   CenterButtonExercisetxt: {fileID: 1264477781}
@@ -24440,7 +24434,7 @@ Animator:
   m_GameObject: {fileID: 820048026996513519}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a4a3ba617ed9c5946bb76844ec1ef299, type: 3}
-  m_Controller: {fileID: 9100000, guid: e61cb5ecac1bf054c874ad9ecb5f9636, type: 2}
+  m_Controller: {fileID: 9100000, guid: e237db5b70349cc458b69d7f390a6e98, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -147,13 +147,14 @@ public class ScrollHandler : MonoBehaviour
     }
     public void addExercise(string a)
     {
+
         for (int y = 0; y < AnimatorParameters.Count; y++)
         {
             ani.SetBool(AnimatorParameters[y], false);
         }
 
-            string tempparameter = "";
-        for(int x = 0; x< AnimatorParameters.Count; x++)
+        string tempparameter = "";
+        for (int x = 0; x< AnimatorParameters.Count; x++)
         {
             if(a == AnimatorParameters[x])
             {
@@ -178,17 +179,19 @@ public class ScrollHandler : MonoBehaviour
                     selectedExerciseobj.Add(clone);
                     closebutton.gameObject.SetActive(true);
                     circle.gameObject.SetActive(true);
-                    
-                    if (tempparameter.Length > 1)
-                    {
-                        ani.SetBool(tempparameter, true);
-                        tempparameter = "";
-                    }
-              
-            }
-        }
-         
-        if(selectedExercise.Count > 0)
+
+                if (tempparameter.Length > 1)
+                {
+
+                    ani.SetBool(tempparameter, true);
+                    tempparameter = "";
+                }
+
+
+                 }
+              }
+
+                if (selectedExercise.Count > 0)
         {
             startworkout.gameObject.SetActive(true);
         }

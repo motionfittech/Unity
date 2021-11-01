@@ -5390,81 +5390,77 @@ MonoBehaviour:
   selectedprefab: {fileID: 2022760804}
   buttonname:
   - AlternatingFrontRaise
-  - BackSquat
-  - BicepCurl
-  - CleanJerk
-  - PushUp
-  - Situps
+  - Arnoldpress
+  - Bandpullapart
+  - Squat
+  - Benchpress
+  - Bentoverrow
+  - Bentlegraises
+  - Bicyclecrunch
+  - Bodyweighthamstringcurl
+  - Bridges
+  - Crunch
+  - Curl
+  - Deadlift
+  - Dumbelllunges
+  - Frontraise
+  - Frontsquat
+  - Goodmorning
+  - Hamstringcurl
+  - Kettlebell
+  - Latpulldown
+  - Latpullover
+  - Legcrunch
+  - Legraise
+  - Penguins
+  - Planktopushup
+  - Pushups
+  - Situp
+  - Skullcrushers
+  - Snatchgripdeadlift
   - Snatch
-  - SquatSnatch
-  - BenchPress
-  - BentFly
-  - BentOverRow
-  - BicycleCrunch
-  - FrontRaise
-  - FrontSquat
-  - HammerCurl
-  - LateralRaise
-  - PullUp
-  - ShoulderPress
-  - StraightLegRaise
-  - DeadLift
-  - GoodMorning
-  - ArnoldPress
-  - BarbellHipThrust
-  - CleanandjerkIK
-  - HipthrustbridgeIK
-  - KettlebellSwingIK
-  - Lunge
-  - OHP
-  - PistolSquat
-  - PoweClean
-  - ReverseCurl
-  - ReverseLunge
-  - SnatchGripDeadLift
-  - StraightLegDeadlift
-  - SumoDeadLift
-  - UprightRow
+  - Straightlegdeadlift
+  - Sumo
+  - Uprightrow
+  - Walkinglunges
   selectedExercise: []
   createExercise: []
   selectedExerciseobj: []
   AnimatorParameters:
   - AlternatingFrontRaise
-  - BackSquat
-  - BicepCurl
-  - CleanJerk
-  - PushUp
-  - Situps
+  - Arnoldpress
+  - Bandpullapart
+  - Squat
+  - Benchpress
+  - Bentoverrow
+  - Bentlegraises
+  - Bicyclecrunch
+  - Bodyweighthamstringcurl
+  - Bridges
+  - Crunch
+  - Curl
+  - Deadlift
+  - Dumbelllunges
+  - Frontraise
+  - Frontsquat
+  - Goodmorning
+  - Hamstringcurl
+  - Kettlebell
+  - Latpulldown
+  - Latpullover
+  - Legcrunch
+  - Legraise
+  - Penguins
+  - Planktopushup
+  - Pushups
+  - Situp
+  - Skullcrushers
+  - Snatchgripdeadlift
   - Snatch
-  - SquatSnatch
-  - BenchPress
-  - BentFly
-  - BentOverRow
-  - BicycleCrunch
-  - FrontRaise
-  - FrontSquat
-  - HammerCurl
-  - LateralRaise
-  - PullUp
-  - ShoulderPress
-  - StraightLegRaise
-  - DeadLift
-  - GoodMorning
-  - ArnoldPress
-  - BarbellHipThrust
-  - CleanandjerkIK
-  - HipthrustbridgeIK
-  - KettlebellSwingIK
-  - Lunge
-  - OHP
-  - PistolSquat
-  - PoweClean
-  - ReverseCurl
-  - ReverseLunge
-  - SnatchGripDeadLift
-  - StraightLegDeadlift
-  - SumoDeadLift
-  - UprightRow
+  - Straightlegdeadlift
+  - Sumo
+  - Uprightrow
+  - Walkinglunges
   ani: {fileID: 2358552815133040064}
   circle: {fileID: 288866094}
   closebutton: {fileID: 186288428}
@@ -8981,7 +8977,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 38816032}
   m_HandleRect: {fileID: 38816031}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -14271,7 +14267,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1650594327828305741
 Transform:
   m_ObjectHideFlags: 0
@@ -16093,7 +16089,7 @@ Animator:
   m_GameObject: {fileID: 5483562608499290822}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a4a3ba617ed9c5946bb76844ec1ef299, type: 3}
-  m_Controller: {fileID: 9100000, guid: e61cb5ecac1bf054c874ad9ecb5f9636, type: 2}
+  m_Controller: {fileID: 9100000, guid: e237db5b70349cc458b69d7f390a6e98, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
