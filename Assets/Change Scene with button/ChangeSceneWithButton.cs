@@ -52,10 +52,11 @@ public class ChangeSceneWithButton : MonoBehaviour
             yield return null;
 
         }
-      //  Fade.gameObject.SetActive(false);
+        GameObject.FindObjectOfType<LoadingScreenBarSystem>().startLoading();
+        //  Fade.gameObject.SetActive(false);
     }
 
-   public void signupButton()
+    public void signupButton()
     {
         StartCoroutine(startFade(Login, Signup, DownLoginPanel,DownSignUpPanel));
     }

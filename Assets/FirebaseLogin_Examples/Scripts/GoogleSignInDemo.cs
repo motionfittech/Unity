@@ -23,8 +23,8 @@ public class GoogleSignInDemo : MonoBehaviour
     }
 
     private void CheckFirebaseDependencies()
-    {      
-       auth = FirebaseAuth.DefaultInstance;        
+    {
+        auth = FirebaseAuth.DefaultInstance;
     }
 
     public void SignInWithGoogle() { OnSignIn(); }
@@ -35,20 +35,20 @@ public class GoogleSignInDemo : MonoBehaviour
         GoogleSignIn.Configuration = configuration;
         GoogleSignIn.Configuration.UseGameSignIn = false;
         GoogleSignIn.Configuration.RequestIdToken = true;
-       
+        print("OnSignIn");
 
         GoogleSignIn.DefaultInstance.SignIn().ContinueWith(OnAuthenticationFinished);
     }
 
     private void OnSignOut()
     {
-       
+        print("OnSignOut");
         GoogleSignIn.DefaultInstance.SignOut();
     }
 
     public void OnDisconnect()
     {
-       
+        print("OnDisconnect");
         GoogleSignIn.DefaultInstance.Disconnect();
     }
 
@@ -60,15 +60,16 @@ public class GoogleSignInDemo : MonoBehaviour
             {
                 if (enumerator.MoveNext())
                 {
+                    print("MoveNext");
                     GoogleSignIn.SignInException error = (GoogleSignIn.SignInException)enumerator.Current;
-                   
+
                 }
                 else
                 {
-                   
+                    print("No");
                 }
             }
-
+            print("ok");
             FS.CSB.infotxt.text = "User with " + task.Result.Email + " already have a account please try sign in";
             FS.CSB.WarningPanel.SetActive(true);
 
@@ -81,12 +82,15 @@ public class GoogleSignInDemo : MonoBehaviour
         }
         else
         {
-         
-            SignInWithGoogleOnFirebase(task.Result.IdToken);
+
+            print("Login");
             CurrentUsername = task.Result.DisplayName;
             CurrentEmail = task.Result.Email;
             CurrentUid = task.Result.UserId;
+
             PlayerPrefs.SetString("loginMethod", "G");
+         //   SignInWithGoogleOnFirebase(task.Result.IdToken);
+              FS.registerUser(task.Result.DisplayName, task.Result.Email, task.Result.UserId);
         }
     }
 
@@ -96,8 +100,9 @@ public class GoogleSignInDemo : MonoBehaviour
 
         auth.SignInWithCredentialAsync(credential).ContinueWithOnMainThread(task =>
         {
-                AddToInformation(CurrentUsername,CurrentEmail,CurrentUid);
-           
+
+            AddToInformation(CurrentUsername, CurrentEmail, CurrentUid);
+
 
         });
     }
@@ -107,7 +112,7 @@ public class GoogleSignInDemo : MonoBehaviour
         GoogleSignIn.Configuration = configuration;
         GoogleSignIn.Configuration.UseGameSignIn = false;
         GoogleSignIn.Configuration.RequestIdToken = true;
-       
+
 
         GoogleSignIn.DefaultInstance.SignInSilently().ContinueWith(OnAuthenticationFinished);
     }
@@ -118,14 +123,15 @@ public class GoogleSignInDemo : MonoBehaviour
         GoogleSignIn.Configuration.UseGameSignIn = true;
         GoogleSignIn.Configuration.RequestIdToken = false;
 
-       
 
+        print("OnGamesSignIn");
         GoogleSignIn.DefaultInstance.SignIn().ContinueWith(OnAuthenticationFinished);
     }
 
-    private void AddToInformation(string us_name,string Em,string U_id) {
-
-        FS.registerUser(us_name,Em,U_id);
+    private void AddToInformation(string us_name, string Em, string U_id)
+    {
+        print("addingnow");
+        FS.registerUser(us_name, Em, U_id);
 
     }
 }
