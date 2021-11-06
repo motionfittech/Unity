@@ -3,12 +3,12 @@ using UnityEngine;
 using UnityEngine.UI;
 public class FirebaseSetUp : MonoBehaviour
 {
-    public ChangeSceneWithButton CSB;
+    [HideInInspector]public ChangeSceneWithButton CSB;
 
 
     private void Start()
     {
-        
+        CSB = ChangeSceneWithButton.Instance;
         CSB.Fade.enabled = true;
         Invoke("checkLogin",2);
     }
@@ -52,8 +52,8 @@ public class FirebaseSetUp : MonoBehaviour
             //   CSB.LoadScene();
             return;
         }
-
-        CSB.signupBackButton();
+        StartCoroutine(CSB.startFade(CSB.Signup, CSB.Login, CSB.DownSignUpPanel, CSB.DownLoginPanel));
+        
     }
 
 }

@@ -4,17 +4,40 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
+
 public class ChangeSceneWithButton : MonoBehaviour
 {
     public LoadingScreenBarSystem Fade;
     public GameObject WarningPanel,Login,Signup,DownLoginPanel,DownSignUpPanel;
     public TextMeshProUGUI infotxt;
      float timeloader = 0;
+    public CanvasGroup Sidepanel;
+
+
+    public static ChangeSceneWithButton Instance;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+
+        DOTween.Init();
+    }
 
     private void Start()
     {
         //LoadScene();
-       // StartCoroutine(startFade(Signup, Login));
+        // StartCoroutine(startFade(Signup, Login));
+       
+      
     }
 
     public void LoadScene()
@@ -37,32 +60,36 @@ public class ChangeSceneWithButton : MonoBehaviour
     public IEnumerator startFade(GameObject close,GameObject open,GameObject Downclose,GameObject Downopen)
     {
 
-        Fade.gameObject.SetActive(true);
-        Fade.startLoading();
+       // Fade.gameObject.SetActive(true);
+       // Fade.startLoading();
        
         close.SetActive(false);
         Downclose.SetActive(false);
         open.SetActive(true);
         Downopen.SetActive(true);
-        while (timeloader > 0)
-        {
+      //  sideSwitch(1929);
+        //while (timeloader > 0)
+        //{
 
-           timeloader -= 0.01f;
-          
-            yield return null;
+        //   timeloader -= 0.01f;
 
-        }
-        GameObject.FindObjectOfType<LoadingScreenBarSystem>().startLoading();
+        yield return null;
+
+      //  }
+     //   GameObject.FindObjectOfType<LoadingScreenBarSystem>().startLoading();
         //  Fade.gameObject.SetActive(false);
     }
 
     public void signupButton()
     {
         StartCoroutine(startFade(Login, Signup, DownLoginPanel,DownSignUpPanel));
+        sideSwitch(2000);
+
     }
     public void signupBackButton()
     {
         StartCoroutine(startFade(Signup, Login,DownSignUpPanel, DownLoginPanel));
+        sideSwitch(2000);
     }
 
     public void popup(string info)
@@ -78,4 +105,16 @@ public class ChangeSceneWithButton : MonoBehaviour
         }
     }
 
+    public void startGame()
+    {
+        Sidepanel.DOFade(1,2).SetEase(Ease.Flash);
+    }
+
+
+    public void sideSwitch(float valuex)
+    {
+        Sidepanel.GetComponent<RectTransform>().localPosition = new Vector3(valuex,0,0);
+        Sidepanel.GetComponent<RectTransform>().DOLocalMove(Vector3.zero,0.7f).SetEase(Ease.Flash);
+    }
+   
 }

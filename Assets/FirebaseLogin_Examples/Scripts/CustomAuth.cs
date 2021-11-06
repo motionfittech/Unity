@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Firebase.Extensions;
+using DG.Tweening;
 
 public class CustomAuth : MonoBehaviour
 {
@@ -17,12 +18,13 @@ public class CustomAuth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    //    UserNameInput.text = "demofirebase@gmail.com";
-     //   PasswordInput.text = "abcdefgh";
+        DOTween.Init();
+        //    UserNameInput.text = "demofirebase@gmail.com";
+        //   PasswordInput.text = "abcdefgh";
 
         //SignupButton.onClick.AddListener(() => Signup(SignUpgmail.text, PasswordInput.text, SignUpusername.text));
         //LoginButton.onClick.AddListener(() => Login(UserNameInput.text, PasswordInput.text));
-         auth = FirebaseAuth.DefaultInstance;
+        auth = FirebaseAuth.DefaultInstance;
     }
 
     // Update is called once per frame
@@ -113,7 +115,8 @@ public class CustomAuth : MonoBehaviour
 
     public void Signup(string email, string password, string username)
     {
-        FS.CSB.Fade.enabled = true;
+     ChangeSceneWithButton.Instance.Fade.gameObject.SetActive(true);
+        GameObject.FindObjectOfType<LoadingScreenBarSystem>().startLoading();
         auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
         {
             if (task.IsCanceled)

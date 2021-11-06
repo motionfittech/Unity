@@ -26,7 +26,7 @@ public class LoadingScreenBarSystem : MonoBehaviour {
     public void Update()
     {
         
-            bar.transform.localScale += new Vector3(Random.Range(0.001f,0.003f),0,0);
+            bar.transform.localScale += new Vector3(Random.Range(0.001f,0.003f),0,0)*5;
 
             if (loadingText != null)
                 loadingText.text = "%" + (100 * bar.transform.localScale.x).ToString("####");
@@ -34,7 +34,10 @@ public class LoadingScreenBarSystem : MonoBehaviour {
 
             if(bar.transform.localScale.x >= 1)
         {
+          
             this.gameObject.SetActive(false);
+            ChangeSceneWithButton.Instance.startGame();
+           
         }
     }
     
