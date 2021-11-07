@@ -6,6 +6,7 @@ public class CharacterPreview : MonoBehaviour
 {
     public GameObject Geo1, Geo2, Geo3;
     public List<GameObject> Currentcharacter,Secondcharacter,Thirdcharacter;
+    public List<GameObject> particleSystemList = new List<GameObject>();
     public Material D_material;
     private Material CC_material;
     public float Waittime = 10;
@@ -68,7 +69,7 @@ public class CharacterPreview : MonoBehaviour
             Currentcharacter[i].SetActive(false);
             if(i == first)
             {
-                print(i);
+                particleconfig();
                 Currentcharacter[i].SetActive(true);
             }
         }
@@ -78,7 +79,7 @@ public class CharacterPreview : MonoBehaviour
             Secondcharacter[i].SetActive(false);
             if (i == second)
             {
-                print(i);
+               
                 Secondcharacter[i].SetActive(true);
                 Secondcharacter[i].GetComponent<SkinnedMeshRenderer>().material = D_material;
             }
@@ -89,11 +90,22 @@ public class CharacterPreview : MonoBehaviour
             Thirdcharacter[i].SetActive(false);
             if (i == third)
             {
-                print(i);
+               
                 Thirdcharacter[i].SetActive(true);
                 Thirdcharacter[i].GetComponent<SkinnedMeshRenderer>().material = D_material;
             }
         }
 
+    }
+
+    void particleconfig()
+    {
+        foreach(GameObject temp in particleSystemList)
+        {
+            temp.SetActive(false);
+          
+        }
+
+        particleSystemList[Random.Range(0, particleSystemList.Count)].SetActive(true);
     }
 }
