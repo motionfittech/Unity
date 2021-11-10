@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 Build from Andrew’s MacBook Pro at 11/9/2021 11:02:51 PM
+=======
+Build from Andrew’s MacBook Pro at 9/4/2021 5:48:51 PM
+>>>>>>> parent of 28002b7f... Revert "Updated the web portal with create workout functionality"
