@@ -24,7 +24,7 @@ public class CSVManager : MonoBehaviour
 
 	void call()
 	{
-	//	PlayerPrefs.SetString("path", "C:/Users/asus/AppData/LocalLow/MotionFit/Motion Fit/UsersasusAppDataLocalLowMotionFitMotion Fitlog_0_FrontRaise_2021_8_22_0_55_33.csv");
+		PlayerPrefs.SetString("path", "C:/Users/asus/Downloads/Log Folder 2/log_3_AlternatingFrontRaise_2021_8_27_15_41_53.csv");
 		readData(PlayerPrefs.GetString("path", ""), false);
 	}
 	public void readData(string rawDataPath, bool _isSaving)
@@ -61,7 +61,7 @@ public class CSVManager : MonoBehaviour
 						current = current - firstvalue;
 
 						float velocity = Vector3.Distance(previous, current);
-						float tempvelocity = velocity / i * 0.01f;
+						float tempvelocity = velocity / i * 0.1f;
 
 						speeds.Add(Mathf.Abs(tempvelocity));
 					}

@@ -4040,11 +4040,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AOC: {fileID: 567091556}
-  saveFilename: log_ log_0_Situps_2021_8_12_6_51_44
+  saveFilename: log_3_AlternatingFrontRaise_2021_8_27_15_41_53
   IndexX: 0
   IndexY: 1
   IndexZ: 2
-  csvName: log_0_Situps_2021_8_12_6_51_44(1)
+  csvName: log_3_AlternatingFrontRaise_2021_8_27_15_41_53
   ED: {fileID: 1370509584}
 --- !u!4 &572307533
 Transform:
