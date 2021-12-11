@@ -50,6 +50,10 @@ public class EquationData : MonoBehaviour
 			EDC.addData(1, tempForce.ToString());
 			EDC.addData(2, tempWork.ToString());
 			EDC.addData(3, tempPower.ToString());
+			EDC.GraphDataPoints.Add(tempAverage);
+			EDC.GraphDataPoints.Add(tempPower);
+			EDC.GraphDataPoints.Add(tempWork);
+			EDC.GraphDataPoints.Add(tempForce);
 		}
 		if (speeds.Count > 1)
 		{

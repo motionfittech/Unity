@@ -10,9 +10,9 @@ public class ExerDatabaseCsv : MonoBehaviour
 {
 	private char lineSeperater = '\n'; // It defines line seperate character
 	private char fieldSeperator = ','; // It defines field seperate chracter
-	public List<float> datapoints = new List<float>();
 	private EquationData ED;
 	public List<string> csvfiles = new List<string>();
+	public List<float> GraphDataPoints = new List<float>();
     private void Start()
     {
 		ED = GetComponent<CSVManager>().ED;
@@ -26,7 +26,7 @@ public class ExerDatabaseCsv : MonoBehaviour
 	}
     public void readData(int index)
 	{
-		if (csvfiles[index].Length == 0)
+		/*if (csvfiles[index].Length == 0)
 			return;
 
 
@@ -71,12 +71,13 @@ public class ExerDatabaseCsv : MonoBehaviour
 				}
 
 			}
-		}
-	//	ED.bcf.addbarValue(datapoints);
+		}*/
+		//	ED.bcf.addbarValue(datapoints);
 		//ED.gcf.Multicall(datapoints);
 
 
-
+		ED.bcf.addbarSingleValue(GraphDataPoints[index]);
+		ED.gcf.Singcall(GraphDataPoints[index]);
 
 	}
 

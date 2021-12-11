@@ -65,7 +65,7 @@ public class BarChartFeed : MonoBehaviour {
 
     public void addbarSingleValue(float tempvalues)
     {
-      
+        barChart.DataSource.ClearCategories();
         counter += 1;
         maxvalue.maxValue += 1.5f;
         if (tempvalues >= 6)

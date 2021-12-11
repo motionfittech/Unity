@@ -54,7 +54,7 @@ public class WorkoutManager : MonoBehaviour
     public Vector2 OpeningPos, ClosingPos;
     public Sprite openSp, closeSp;
     public Image currentSideImageIcon;
-
+    public ExerDatabaseCsv EDC;
     private void Awake()
     {
       //  startBt.material.SetColor("_Outline_Color", Color.black);
@@ -118,7 +118,7 @@ public class WorkoutManager : MonoBehaviour
             CenterButton.GetComponent<Image>().color = Color.red;
             CenterButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "STOP";
             _isIKon = true;
-           
+          //  GameObject.FindObjectOfType<CSVManager>().call();
         }
         else
         {
@@ -131,7 +131,7 @@ public class WorkoutManager : MonoBehaviour
             CenterButton.GetComponent<Image>().color = Color.green;
             CenterButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "START";
             _isIKon = false;
-           
+          
 
         }
     }
@@ -207,30 +207,54 @@ public class WorkoutManager : MonoBehaviour
         //  myModalWindow.icon = "spriteVariable; // Change icon
         if (counter == 2)
         {
-            myModalWindow.titleText = "SEE DATA"; // Change title
-            myModalWindow.descriptionText = "Viewing Data will stop Exercise, Unsave Reps will be lost"; // Change desc
+           /* if(EDC.GraphDataPoints.Count == 0)
+            {
+                myModalWindow.titleText = "SEE DATA"; // Change title
+                myModalWindow.descriptionText = "No data found please do at least one rep to view Data."; // Change desc
+                counter = 1;
+            }
+            else
+            {*/
+                if (_isIKon)
+                {
+                    myModalWindow.titleText = "SEE DATA"; // Change title
+                    myModalWindow.descriptionText = "Viewing Data will stop Exercise, Unsave Reps will be lost"; // Change desc
+                }
+                else
+                {
+                    myModalWindow.CloseWindow();
+                    answer(counter);
+                    return;
+                }
+          //  }
+         
+           
            
         }
         else if (counter == 1)
         {
-            myModalWindow.titleText = "BACK TO EXERCISE"; // Change title
-            myModalWindow.descriptionText = "You can go back to Exercise and start Exercise"; // Change desc
-         
+          /*  myModalWindow.titleText = "BACK TO EXERCISE"; // Change title
+            myModalWindow.descriptionText = "You can go back to Exercise and start Exercise."; // Change desc*/
+
+            myModalWindow.CloseWindow();
+            answer(counter);
+            return;
+
         }
         else if (counter == 0)
         {
             myModalWindow.titleText = "PREVIEW EXERCISE"; // Change title
-            myModalWindow.descriptionText = "Preview will stop exercise, Unsave Reps will be lost"; // Change desc
+            myModalWindow.descriptionText = "Preview will stop exercise, Unsave Reps will be lost.."; // Change desc
         }
         else if (counter == 3)
         {
             myModalWindow.titleText = "Main Menu"; // Change title
-            myModalWindow.descriptionText = "Do you really want to go to Main Menu, Unsave Reps will be lost"; // Change desc
+            myModalWindow.descriptionText = "Do you really want to go to Main Menu, Unsave Reps will be lost."; // Change desc
         }
         else if (counter == 4)
         {
             myModalWindow.titleText = "Imbalances"; // Change title
-            myModalWindow.descriptionText = "Do you really want to go to Imbalances, Unsave Reps will be lost"; // Change desc
+            myModalWindow.descriptionText = "Do you really want to go to Imbalances, Unsave Reps will be lost."; // Change desc
         }
         else if (counter == 7)
         {
@@ -272,9 +296,17 @@ public class WorkoutManager : MonoBehaviour
                 innerList(workout1, false);
                 innerList(workout3, false);
                 innerList(workout2, true);
-               
-            /*    main_Camera.transform.position = CameraPos2;
-                main_Camera.transform.eulerAngles = CameraRot2;*/
+                stopWorkout(currentWorkoutSO);
+
+                Doneanimation();
+                popupPanel.SetActive(false);
+                WH.animator.speed = 1;
+                //            FCT.OnButtonPress_DisconnectButton();
+                CenterButton.GetComponent<Image>().color = Color.green;
+                CenterButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "START";
+                _isIKon = false;
+                /*    main_Camera.transform.position = CameraPos2;
+                    main_Camera.transform.eulerAngles = CameraRot2;*/
                 break;
             case 3:
                 Application.LoadLevel(1);
