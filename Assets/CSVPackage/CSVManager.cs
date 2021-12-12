@@ -13,18 +13,20 @@ public class CSVManager : MonoBehaviour
 
 	public List<string> a = new List<string>();
 	public int IndexX = 0, IndexY = 1, IndexZ = 2 ;
-	
-	public string csvName;
+
 
 	public EquationData ED;
+	public string csvName;
 
-	// new work
-	List<Vector3> PointsLinearVelocity = new List<Vector3>();
-	List<Vector3> PointsAngularVelocity = new List<Vector3>();
-	Vector3 pointLinearVelocity;
-	Vector3 pointAngularVelocity;
-	List<Vector3> LinearVelocity = new List<Vector3>();
-	List<Vector3> AngularVelocity = new List<Vector3>();
+	//New
+	float VIx, VIy, VIz;
+	List<float> AccelerationPointSx, AccelerationPointSy, AccelerationPointSz;
+	List<float> VelocityPointSx, VelocityPointSy, VelocityPointSz;
+	float totalVelocityX, totalVelocityY, totalVelocityZ;
+	float SumofVelocity;
+	float TotalPerX, TotalPerY, TotalPerZ;
+	public float ParameterX = 20, ParameterY = -30, Parameterz = 50;
+	float TotalDeviationX, TotalDeviationY, TotalDeviationZ;
 	private void Start()
 	{
 		Invoke("call", 2);
@@ -32,8 +34,8 @@ public class CSVManager : MonoBehaviour
 
 	public void call()
 	{
-		PlayerPrefs.SetString("path", "C:/Users/asus/Downloads/Log Folder 2/AndrewBicepCurl23Reps.csv");
-		NewreadData(PlayerPrefs.GetString("path", ""), false);
+		//PlayerPrefs.SetString("path", "C:/Users/asus/Downloads/Log Folder 2/AndrewDeadlift20reps.csv");
+		NewreadData("C:/Users/asus/Downloads/Log Folder 2/"+csvName+".csv", false);
 	}
 	public void readData(string rawDataPath, bool _isSaving)
 	{
@@ -120,22 +122,23 @@ public class CSVManager : MonoBehaviour
 				if (temprecords[0].Length > 0)
 				{
 
-					Vector3 FliteredValues = new Vector3(float.Parse(temprecords[IndexX]), float.Parse(temprecords[IndexY]), float.Parse(temprecords[IndexZ]));
-					Vector3 FliteredValues2 = new Vector3(float.Parse(temprecords[3]), float.Parse(temprecords[4]), float.Parse(temprecords[5]));
+					Vector3 CsvPoints = new Vector3(float.Parse(temprecords[IndexX]), float.Parse(temprecords[IndexY]), float.Parse(temprecords[IndexZ]));
+				//	Vector3 FliteredValues2 = new Vector3(float.Parse(temprecords[3]), float.Parse(temprecords[4]), float.Parse(temprecords[5]));
 					if (i > 0)
 					{
-						PointsLinearVelocity.Add(FliteredValues);
-						PointsAngularVelocity.Add(FliteredValues2);
 					
 					}
                     else
                     {
-						pointLinearVelocity = FliteredValues;
-						pointAngularVelocity = FliteredValues2;
-                    }
-					
+						// VI
+						VIx = CsvPoints.x;
+						VIy = CsvPoints.y;
+						VIz = CsvPoints.z;
+					}
 
-
+					AccelerationPointSx.Add(CsvPoints.x);
+					AccelerationPointSy.Add(CsvPoints.y);
+					AccelerationPointSz.Add(CsvPoints.z);
 				}
 
 
@@ -145,31 +148,83 @@ public class CSVManager : MonoBehaviour
 #if UNITY_EDITOR
 			UnityEditor.AssetDatabase.Refresh();
 #endif
-            foreach (var temp in PointsLinearVelocity)
+           //X
+			for(int i = 0; i < AccelerationPointSx.Count; i++)
             {
-				var calculator = (temp - pointLinearVelocity) / Time.deltaTime;
-				pointLinearVelocity = temp;
+				//Velocity Equation
+				float VelocityPointCalculation = (AccelerationPointSx[i] -VIx) / Time.deltaTime;
+                VIx = AccelerationPointSx[i];
 			
-				LinearVelocity.Add(AOC.filterPos(calculator));
+				totalVelocityX += VelocityPointCalculation;
+				VelocityPointSx.Add(VelocityPointCalculation);
 				
+
             }
-			foreach (var temp in PointsAngularVelocity)
+			//Y
+			for (int i = 0; i < AccelerationPointSy.Count; i++)
 			{
-				var calculator = (temp - pointAngularVelocity) / Time.deltaTime;
-				pointAngularVelocity = temp;
-				AngularVelocity.Add(AOC.filterPos(calculator));
-				
+				//Velocity Equation
+				float VelocityPointCalculation = (AccelerationPointSy[i] -VIy) / Time.deltaTime;
+				VIy = AccelerationPointSy[i];
+
+				totalVelocityY += VelocityPointCalculation;
+				VelocityPointSy.Add(VelocityPointCalculation);
+
+
 			}
-			Vector3 totalpercangtage = Vector3.zero;
-			foreach(var getfilter in LinearVelocity)
+			//Z
+			for (int i = 0; i < AccelerationPointSz.Count; i++)
+			{
+				//Velocity Equation
+				float VelocityPointCalculation = (AccelerationPointSz[i] -VIz) / Time.deltaTime;
+				VIz = AccelerationPointSz[i];
+
+				totalVelocityZ += VelocityPointCalculation;
+				VelocityPointSz.Add(VelocityPointCalculation);
+
+
+			}
+			 // Sum of Velocity
+				float sum = totalVelocityX + totalVelocityY + totalVelocityZ;
+			print("Sum of Velocity "+sum);
+
+			for (int i = 0; i < VelocityPointSx.Count; i++)
+			{
+				float ParcantageCalculation = VelocityPointSx[i] / sum;
+				TotalPerX += ParcantageCalculation;
+
+			}
+
+            for (int i = 0; i < VelocityPointSy.Count; i++)
             {
-				print(getfilter);
-				totalpercangtage += getfilter*3;
-				
+                float ParcantageCalculation = VelocityPointSy[i] / sum;
+                TotalPerY += ParcantageCalculation;
+
             }
 
-			Vector3 getParcantage = totalpercangtage/100;
-			print(Mathf.Abs(getParcantage.x) +"% "+ Mathf.Abs(getParcantage.y) + "% "+ Mathf.Abs(getParcantage.z) + "%");
+			for (int i = 0; i < VelocityPointSz.Count; i++)
+			{
+				float ParcantageCalculation = VelocityPointSz[i] / sum;
+				TotalPerZ += ParcantageCalculation;
+
+			}
+
+
+
+			print("Percantage of X = " + TotalPerX*100 + "%");
+            print("Percantage of Y = " + TotalPerY*100 + "%");
+			print("Percantage of Z = " + TotalPerZ*100 + "%");
+
+			TotalDeviationX = (TotalPerX * 100) - ParameterX;
+			TotalDeviationY = (TotalPerY * 100) - ParameterY;
+			TotalDeviationZ = (TotalPerZ * 100) - Parameterz;
+			float TotalSumDeviation = TotalDeviationX + TotalDeviationY + TotalDeviationZ;
+			print("Total Deviation on X " + TotalDeviationX +"%");
+			print("Total Deviation on Y " + TotalDeviationY + "%");
+			print("Total Deviation on Z " + TotalDeviationZ + "%");
+			print("Total Sum of Deviation " + TotalSumDeviation + "%");
+			float Exerciseform = 100 - TotalSumDeviation;
+			print("Exercise Form " + Exerciseform + "%");
 			//ED.callafter(speeds, true);
 		}
 
