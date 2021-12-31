@@ -416,10 +416,12 @@ MonoBehaviour:
   DeviceName: FitCap1
   AccelerometerText: {fileID: 1959476321}
   FitCapStatusText: {fileID: 970752857}
+  BatteryLevelText: {fileID: 1684579417}
   StartStopButton: {fileID: 432130059}
   DisconnectButton: {fileID: 2069790186}
   TopPanel: {fileID: 173953858}
   MiddlePanel: {fileID: 1799849738}
+  exerciseString: 
 --- !u!1 &158067634
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,6 +582,7 @@ RectTransform:
   - {fileID: 730938546}
   - {fileID: 2069790185}
   - {fileID: 1735089932}
+  - {fileID: 1684579419}
   m_Father: {fileID: 1942067740}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3595,6 +3598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9232b383a89eb743be28efb1a63aa4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shouldUseComponent: 0
   a: 0.00001
 --- !u!4 &567091558
 Transform:
@@ -3621,6 +3625,7 @@ GameObject:
   - component: {fileID: 572307533}
   - component: {fileID: 572307532}
   - component: {fileID: 572307534}
+  - component: {fileID: 572307535}
   m_Layer: 0
   m_Name: CSVManager
   m_TagString: Untagged
@@ -3679,6 +3684,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   csvfiles: []
   GraphDataPoints: []
+--- !u!114 &572307535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572307531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703afc02b56dff846b0928af836b337c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _finalScorePath: /AllUser/{0}/ExerciseData.csv
+  OnUploadStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUploadComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUploadFailed:
+    m_PersistentCalls:
+      m_Calls: []
+  startimg: {fileID: 0}
+  csvFile: 
 --- !u!1 &582300525
 GameObject:
   m_ObjectHideFlags: 0
@@ -7867,7 +7896,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 960, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 826, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1179404662
@@ -9308,8 +9337,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 413, y: 0}
-  m_SizeDelta: {x: 786, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1343136070
 MonoBehaviour:
@@ -11795,6 +11824,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1671834509}
   m_CullTransparentMesh: 0
+--- !u!1 &1684579416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1684579419}
+  - component: {fileID: 1684579418}
+  - component: {fileID: 1684579417}
+  m_Layer: 5
+  m_Name: FitCapStatus (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1684579417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684579416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: New Text
+--- !u!222 &1684579418
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684579416}
+  m_CullTransparentMesh: 0
+--- !u!224 &1684579419
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684579416}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_Children: []
+  m_Father: {fileID: 173953859}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: -1305}
+  m_SizeDelta: {x: 343.26172, y: 112.844406}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1697212905 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1198343053250130, guid: 4d478a439c81e6843ba3a9f7f2eb3d8a,

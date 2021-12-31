@@ -36,7 +36,7 @@ public class UploadGameData : MonoBehaviour
 
     private Coroutine _uploadCoroutine;
     public Image startimg;
-    public TextAsset csvFile;
+    public string csvFile;
     private void Reset()
     {
      //   _gameOverPanel = FindObjectOfType<GameOverPanel>();
@@ -97,7 +97,7 @@ public class UploadGameData : MonoBehaviour
             }
         };
         
-        var uploadTask = finalScoreReference.PutBytesAsync(csvFile.bytes, metadata);
+        var uploadTask = finalScoreReference.PutFileAsync(csvFile, metadata);
         yield return new WaitUntil(() => uploadTask.IsCompleted);
 
         if (uploadTask.Exception != null)

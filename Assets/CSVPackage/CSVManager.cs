@@ -29,7 +29,7 @@ public class CSVManager : MonoBehaviour
 	float TotalDeviationX, TotalDeviationY, TotalDeviationZ;
 	private void Start()
 	{
-		Invoke("call", 2);
+		//Invoke("call", 2);
 	}
 
 	public void call()
@@ -119,6 +119,7 @@ public class CSVManager : MonoBehaviour
 			{
 
 				string[] temprecords = records[i].Split(","[0]);
+				print("DATA = "+records[i]);
 				if (temprecords[0].Length > 0)
 				{
 
