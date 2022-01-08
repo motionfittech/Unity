@@ -37,10 +37,47 @@ public class EquationData : MonoBehaviour
 		float tempForce = returnForce(speeds, 5);
 		float tempWork = returnWork(speeds, tempForce);
 		float tempPower = returnPower(tempWork, speeds.Count);
-		velocityAverageTxt.text = tempAverage.ToString().Substring(0, 5) + " m/s";
-		PowerTxt.text = tempPower.ToString().Substring(0, 6) + " P";
-		ForceTxt.text = tempForce.ToString().Substring(0, 6) + " N";
-		WorkTxt.text = tempWork.ToString().Substring(0, 6) + " J";
+		
+		if (tempAverage.ToString().Length > 4)
+		{
+			velocityAverageTxt.text = tempAverage.ToString().Substring(0, 5) + " m/s";
+		}
+        else
+        {
+			velocityAverageTxt.text = tempAverage.ToString() + " m/s";
+
+		}
+		if (tempPower.ToString().Length > 4)
+		{
+			PowerTxt.text = tempPower.ToString().Substring(0, 6) + " P";
+		}
+		else
+		{
+			PowerTxt.text = tempPower.ToString() + " P";
+
+		}
+
+		if (tempForce.ToString().Length > 4)
+		{
+			ForceTxt.text = tempForce.ToString().Substring(0, 6) + " N";
+		}
+		else
+		{
+			ForceTxt.text = tempForce.ToString() + " N";
+
+		}
+		if (tempWork.ToString().Length > 4)
+		{
+			WorkTxt.text = tempWork.ToString().Substring(0, 6) + " J";
+		}
+		else
+		{
+			WorkTxt.text = tempWork.ToString() + " J";
+
+		}
+
+
+		
 
 		//bcf.addbarSingleValue(tempAverage);
 		//	gcf.Singcall(tempAverage);

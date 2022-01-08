@@ -17,123 +17,123 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using Firebase.Auth;
-using Firebase.Storage;
+//using Firebase.Storage;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UploadGameData : MonoBehaviour
 {
- //   [SerializeField] private GameOverPanel _gameOverPanel;
+ ////   [SerializeField] private GameOverPanel _gameOverPanel;
 
-    // matching the rules, {0} is the user id
-    [SerializeField, Tooltip("Wherse to store the score. {0} will be replaced by the UserID")]
-    private string _finalScorePath = "/AllUser/{0}/ExerciseData.csv";
+ //   // matching the rules, {0} is the user id
+ //   [SerializeField, Tooltip("Wherse to store the score. {0} will be replaced by the UserID")]
+ //   private string _finalScorePath = "/AllUser/{0}/ExerciseData.csv";
 
-    public UnityEvent OnUploadStarted = new UnityEvent();
-    public UploadGameDataCompleteEvent OnUploadComplete = new UploadGameDataCompleteEvent();
-    public UploadGameDataFailedEvent OnUploadFailed = new UploadGameDataFailedEvent();
+ //   public UnityEvent OnUploadStarted = new UnityEvent();
+ //   public UploadGameDataCompleteEvent OnUploadComplete = new UploadGameDataCompleteEvent();
+ //   public UploadGameDataFailedEvent OnUploadFailed = new UploadGameDataFailedEvent();
 
-    private Coroutine _uploadCoroutine;
-    public Image startimg;
-    public string csvFile;
-    private void Reset()
-    {
-     //   _gameOverPanel = FindObjectOfType<GameOverPanel>();
-    }
+ //   private Coroutine _uploadCoroutine;
+ //   public Image startimg;
+ //   public string csvFile;
+ //   private void Reset()
+ //   {
+ //    //   _gameOverPanel = FindObjectOfType<GameOverPanel>();
+ //   }
 
-    private void Start()
-    {
+ //   private void Start()
+ //   {
        
-    }
+ //   }
 
-    public void Trigger()
-    {
-        if (_uploadCoroutine == null)
-        {
-            _uploadCoroutine = StartCoroutine(UploadData());
-        }
-    }
+ //   public void Trigger()
+ //   {
+ //       if (_uploadCoroutine == null)
+ //       {
+ //           _uploadCoroutine = StartCoroutine(UploadData());
+ //       }
+ //   }
 
-    private IEnumerator UploadData()
-    {
-        OnUploadStarted.Invoke();
-      //  var deathData = _gameOverPanel.DeathData;
-        //if (deathData == null)
-        //{
-        //    HandleException(
-        //        FailureReason.NoDeathData,
-        //        new Exception("No death data, this should only happen in editor"));
-        //    yield break;
-        //}
+ //   private IEnumerator UploadData()
+ //   {
+ //       OnUploadStarted.Invoke();
+ //     //  var deathData = _gameOverPanel.DeathData;
+ //       //if (deathData == null)
+ //       //{
+ //       //    HandleException(
+ //       //        FailureReason.NoDeathData,
+ //       //        new Exception("No death data, this should only happen in editor"));
+ //       //    yield break;
+ //       //}
 
-        // TODO: abstract
-        var auth = FirebaseAuth.DefaultInstance;
-        if (auth.CurrentUser == null)
-        {
-            var signInTask = auth.SignInAnonymouslyAsync();
-            yield return new WaitUntil(() => signInTask.IsCompleted);
+ //       // TODO: abstract
+ //       var auth = FirebaseAuth.DefaultInstance;
+ //       if (auth.CurrentUser == null)
+ //       {
+ //           var signInTask = auth.SignInAnonymouslyAsync();
+ //           yield return new WaitUntil(() => signInTask.IsCompleted);
 
-            if (signInTask.Exception != null)
-            {
-                HandleException(FailureReason.SignInFailed, signInTask.Exception);
-                yield break;
-            }
-        }
+ //           if (signInTask.Exception != null)
+ //           {
+ //               HandleException(FailureReason.SignInFailed, signInTask.Exception);
+ //               yield break;
+ //           }
+ //       }
 
-        // //we're logged in. Yay!
-        var storage = FirebaseStorage.DefaultInstance;
-        var finalScoreReference = storage.GetReference(string.Format(_finalScorePath, auth.CurrentUser.UserId));
+ //       // //we're logged in. Yay!
+ //       var storage = FirebaseStorage.DefaultInstance;
+ //       var finalScoreReference = storage.GetReference(string.Format(_finalScorePath, auth.CurrentUser.UserId));
 
-        var metadata = new MetadataChange
-        {
-            ContentType = "File/csv",
-            CustomMetadata = new Dictionary<string, string>()
-            {
-                //{"duration", deathData.Duration.ToString(CultureInfo.InvariantCulture)},
-                //{"death_reason", deathData.DeathReason.ToString()},
-                //{"death_reason_string", deathData.DeathReasonString},
-                //{"final_score", deathData.FinalScore.ToString()}
-            }
-        };
+ //       var metadata = new MetadataChange
+ //       {
+ //           ContentType = "File/csv",
+ //           CustomMetadata = new Dictionary<string, string>()
+ //           {
+ //               //{"duration", deathData.Duration.ToString(CultureInfo.InvariantCulture)},
+ //               //{"death_reason", deathData.DeathReason.ToString()},
+ //               //{"death_reason_string", deathData.DeathReasonString},
+ //               //{"final_score", deathData.FinalScore.ToString()}
+ //           }
+ //       };
         
-        var uploadTask = finalScoreReference.PutFileAsync(csvFile, metadata);
-        yield return new WaitUntil(() => uploadTask.IsCompleted);
+ //       var uploadTask = finalScoreReference.PutFileAsync(csvFile, metadata);
+ //       yield return new WaitUntil(() => uploadTask.IsCompleted);
 
-        if (uploadTask.Exception != null)
-        {
-            HandleException(FailureReason.UploadFailed, uploadTask.Exception);
-            yield break;
-        }
+ //       if (uploadTask.Exception != null)
+ //       {
+ //           HandleException(FailureReason.UploadFailed, uploadTask.Exception);
+ //           yield break;
+ //       }
 
-        OnUploadComplete.Invoke(finalScoreReference);
-        _uploadCoroutine = null;
-        Debug.Log($"Data Uploaded to {finalScoreReference.Path}");
-    }
+ //       OnUploadComplete.Invoke(finalScoreReference);
+ //       _uploadCoroutine = null;
+ //       Debug.Log($"Data Uploaded to {finalScoreReference.Path}");
+ //   }
 
-    private void HandleException(FailureReason reason, Exception exception)
-    {
-        OnUploadFailed.Invoke(reason, exception);
-        _uploadCoroutine = null;
-        Debug.LogWarning($"Failed with {reason} because {exception}");
-    }
+ //   private void HandleException(FailureReason reason, Exception exception)
+ //   {
+ //       OnUploadFailed.Invoke(reason, exception);
+ //       _uploadCoroutine = null;
+ //       Debug.LogWarning($"Failed with {reason} because {exception}");
+ //   }
 
-    public enum FailureReason
-    {
-        None,
-        SignInFailed,
-        UploadFailed,
-        NoDeathData
-    }
+ //   public enum FailureReason
+ //   {
+ //       None,
+ //       SignInFailed,
+ //       UploadFailed,
+ //       NoDeathData
+ //   }
 
-    [Serializable]
-    public class UploadGameDataFailedEvent : UnityEvent<FailureReason, Exception>
-    {
-    }
+ //   [Serializable]
+ //   public class UploadGameDataFailedEvent : UnityEvent<FailureReason, Exception>
+ //   {
+ //   }
 
-    [Serializable]
-    public class UploadGameDataCompleteEvent : UnityEvent<StorageReference>
-    {
+ //   [Serializable]
+ //   public class UploadGameDataCompleteEvent : UnityEvent<StorageReference>
+ //   {
 
-    }
+ //   }
 }

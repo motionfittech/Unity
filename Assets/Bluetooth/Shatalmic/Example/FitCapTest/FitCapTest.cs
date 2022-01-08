@@ -124,7 +124,7 @@ public class FitCapTest : MonoBehaviour
         {
             DisplayData = true;
             //  TextMeshProUGUI txt = StartStopButton.GetComponentInChildren<TextMeshProUGUI>();
-            //  txt.text = "Stop";
+          //    txt.text = "Stop";
 
             //string startstring = System.DateTime.Now.ToString();
             System.DateTime theTime = System.DateTime.Now;
@@ -138,9 +138,10 @@ public class FitCapTest : MonoBehaviour
             string starttimetag = "Session date: " + theTime.Year + "-" + theTime.Month + "-" + theTime.Day + "-" + theTime.Hour + ":" + theTime.Minute + ":" + theTime.Second + "\n";
             if (!File.Exists(path))
             {
+                print("START");
                 // write data to file
                 //string starttimetag = "Session date: " + theTime.Year + "-" + theTime.Month + "-" + theTime.Day + "-" + theTime.Hour + ":" + theTime.Minute + ":" + theTime.Second + "\n";
-               // File.WriteAllText(path, starttimetag);
+                File.WriteAllText(path, "");
             }
         }
         else
@@ -148,18 +149,18 @@ public class FitCapTest : MonoBehaviour
             if (path.Length > 0)
             {
                 FitCapStatusMessages = "Stored in this path" + path;
-                   print("path is not null");
+                  
                 DisplayData = false;
-                TextMeshProUGUI txt = StartStopButton.GetComponentInChildren<TextMeshProUGUI>();
-                txt.text = "Start";
+            //    TextMeshProUGUI txt1 = StartStopButton.GetComponentInChildren<TextMeshProUGUI>();
+             //   txt1.text = "Start";
                 if (path.Length > 0)
                 {
                     FitCapStatusMessages = "Stored in this path" + path;
                       print("path is not null "+path);
                     PlayerPrefs.SetString("path", path);
-                    //  GameObject.FindObjectOfType<CSVManager>().NewreadData(path, true);
-                    GameObject.FindObjectOfType<UploadGameData>().csvFile = path;
-                    GameObject.FindObjectOfType<UploadGameData>().Trigger();
+                      GameObject.FindObjectOfType<CSVManager>().NewreadData(path, true);
+                   // GameObject.FindObjectOfType<UploadGameData>().csvFile = path;
+                   // GameObject.FindObjectOfType<UploadGameData>().Trigger();
 
                 }
                 else
@@ -174,9 +175,9 @@ public class FitCapTest : MonoBehaviour
                
             }
             DisplayData = false;
-            //   Text txt = StartStopButton.GetComponentInChildren<Text>();
-            //  txt.text = "Start";
-            print("else");
+            TextMeshProUGUI txt = StartStopButton.GetComponentInChildren<TextMeshProUGUI>();
+              txt.text = "Start";
+            print("STOP");
             path = "";
         }
         // Debug.Log("Button clicked " + DisplayData);
@@ -468,7 +469,7 @@ public class FitCapTest : MonoBehaviour
                             BluetoothLEHardwareInterface.SubscribeCharacteristicWithDeviceAddress(_deviceAddress, SubscribeAccelerometer.ServiceUUID, SubscribeAccelerometer.CharacteristicUUID, delegate { }, OnCharacteristicNotification);
                             FitCapStatusMessages = "Subscribed to FitCap Accelerometer...";
 
-                            Text txt = StartStopButton.GetComponentInChildren<Text>();
+                            TextMeshProUGUI txt = StartStopButton.GetComponentInChildren<TextMeshProUGUI>();
                             txt.text = "Start";
                         }
                         break;
