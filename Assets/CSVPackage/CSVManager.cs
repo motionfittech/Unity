@@ -14,21 +14,37 @@ public class CSVManager : MonoBehaviour
 	[Header("Acceleration Value in CSV Index")]
 
 	public List<string> a = new List<string>();
-	public int IndexX = 0, IndexY = 1, IndexZ = 2 ;
+	public int IndexX = 0;
+	public int IndexY = 1;
+	public int IndexZ = 2 ;
 
 
 	public EquationData ED;
 	public string csvName;
 
 	//New
-	float VIx, VIy, VIz;
-	List<float> AccelerationPointSx, AccelerationPointSy, AccelerationPointSz;
-	List<float> VelocityPointSx, VelocityPointSy, VelocityPointSz;
-	float totalVelocityX, totalVelocityY, totalVelocityZ;
-	float SumofVelocity;
-	float TotalPerX, TotalPerY, TotalPerZ;
-	public float ParameterX = 20, ParameterY = -30, Parameterz = 50;
-	float TotalDeviationX, TotalDeviationY, TotalDeviationZ;
+	float VIx;
+	float VIy;
+	float VIz;
+	List<float> AccelerationPointSx = new List<float>();
+	List<float> AccelerationPointSy = new List<float>();
+	List<float> AccelerationPointSz = new List<float>();
+	List<float> VelocityPointSx = new List<float>();
+	List<float> VelocityPointSy = new List<float>();
+	List<float> VelocityPointSz = new List<float>();
+	float totalVelocityX;
+	float totalVelocityY;
+	float totalVelocityZ;
+	List<float> SumofVelocity = new List<float>();
+	float TotalPerX;
+	float TotalPerY;
+	float TotalPerZ;
+	public float ParameterX = 20;
+	public float ParameterY = -30;
+	public float Parameterz = 50;
+	float TotalDeviationX;
+	float TotalDeviationY;
+	float TotalDeviationZ;
 	public Text gameversion;
 	private void Start()
 	{
@@ -125,28 +141,32 @@ public class CSVManager : MonoBehaviour
 
 				string[] temprecords = records[i].Split(","[0]);
 				print("DATA = "+records[i]);
-				if (temprecords[0].Length > 0)
+				if (temprecords.Length > 2)
 				{
-
-					Vector3 CsvPoints = new Vector3(float.Parse(temprecords[IndexX]), float.Parse(temprecords[IndexY]), float.Parse(temprecords[IndexZ]));
-				//	Vector3 FliteredValues2 = new Vector3(float.Parse(temprecords[3]), float.Parse(temprecords[4]), float.Parse(temprecords[5]));
+					print("DATA = 2 " + temprecords.Length);
+					Vector3 CsvPoints = new Vector3(float.Parse(temprecords[0]), float.Parse(temprecords[1]), float.Parse(temprecords[2]));
+					//	Vector3 FliteredValues2 = new Vector3(float.Parse(temprecords[3]), float.Parse(temprecords[4]), float.Parse(temprecords[5]));
+					print("DATA = 3 " + CsvPoints);
 					if (i > 0)
 					{
-					
+						print("DATA = 4 " + i);
 					}
                     else
                     {
 						// VI
+
 						VIx = CsvPoints.x;
 						VIy = CsvPoints.y;
 						VIz = CsvPoints.z;
+						print("DATA = 5 " + VIx);
 					}
-					if (CsvPoints != null)
-					{
-						AccelerationPointSx.Add(CsvPoints.x);
+
+					print("DATA = 6 ");
+					print("DATA = 6.1 " + CsvPoints);
+					AccelerationPointSx.Add(CsvPoints.x);
 						AccelerationPointSy.Add(CsvPoints.y);
 						AccelerationPointSz.Add(CsvPoints.z);
-					}
+					print("DATA = 7 " + AccelerationPointSx);
 				}
                 else
                 {
@@ -193,6 +213,7 @@ public class CSVManager : MonoBehaviour
 			}
 			 // Sum of Velocity
 				float sum = totalVelocityX + totalVelocityY + totalVelocityZ;
+			SumofVelocity.Add(sum);
 			print("Sum of Velocity "+sum);
 		
 			for (int i = 0; i < VelocityPointSx.Count; i++)
@@ -232,9 +253,11 @@ public class CSVManager : MonoBehaviour
 			print("Total Sum of Deviation " + TotalSumDeviation + "%");
 			float Exerciseform = 100 - TotalSumDeviation;
 			print("Exercise Form " + Exerciseform + "%");
-			speeds.Add(sum);
-			speeds.Add(sum);
-			speeds.Add(sum);
+			for(int c = 0; c< SumofVelocity.Count; c++)
+            {
+				speeds.Add(SumofVelocity[c]);
+            }
+			
 			ED.callafter(speeds, true);
 		}
         else
