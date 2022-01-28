@@ -209,6 +209,15 @@ public class LocalDatabase : MonoBehaviour
             {
                 chars[i].SetActive(false);
             }
+
+            if(i == 100)
+            {
+                GameObject.FindObjectOfType<WorkoutHandler>().Defaultanimator(1);
+            }
+            else
+            {
+                GameObject.FindObjectOfType<WorkoutHandler>().Defaultanimator(0);
+            }
         }
     }
 }

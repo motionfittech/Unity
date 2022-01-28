@@ -11,7 +11,8 @@ public class WorkoutHandler : MonoBehaviour, IHandleWorkouts
     [SerializeField] private Transform leftHandPosition;
 
 
-    public Animator animator;
+    [HideInInspector]public Animator animator;
+    public List<Animator> Listani = new List<Animator>();
     private bool isReadingPlayerData = false;
 
     private bool usingLeftHand = false;
@@ -78,6 +79,11 @@ public class WorkoutHandler : MonoBehaviour, IHandleWorkouts
 
 
         }
+    }
+
+    public void Defaultanimator(int count)
+    {
+        animator = Listani[count];
     }
 
     
