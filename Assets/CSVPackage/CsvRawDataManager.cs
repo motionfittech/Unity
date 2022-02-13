@@ -49,12 +49,12 @@ public class CsvRawDataManager : MonoBehaviour
 
         foreach (Vector3 temp in Nonfilterpos)
         {
-            filterpos.Add(AOC.filterPos(temp));
+         //   filterpos.Add(AOC.filterPos(temp));
            
         }
         foreach (Vector3 temp in NonfilterGye)
         {
-            filterGye.Add(AOC.filterPos(temp));
+           // filterGye.Add(AOC.filterPos(temp));
 
         }
 

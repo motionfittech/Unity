@@ -371,7 +371,7 @@ public class BluetoothLEHardwareInterface
 		if (!Application.isEditor)
 		{
 #if UNITY_IOS || UNITY_TVOS
-			//_iOSBluetoothLELog (message);
+			_iOSBluetoothLELog (enable.ToString());
 #elif UNITY_ANDROID
 			if (_android != null)
 				_android.Call ("androidBluetoothEnable", enable);

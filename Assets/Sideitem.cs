@@ -20,7 +20,7 @@ public class Sideitem : MonoBehaviour
 
         if (!WM._Dowehaveanimation)
             WM._Dowehaveanimation = true;
-        FCT.exerciseString = this.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text;
+      //  FCT.exerciseString = this.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text;
         WM.CenterButtonExercisetxt.text = this.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text;
         //print(this.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text +  " "+ currentToggle.isOn);
     }

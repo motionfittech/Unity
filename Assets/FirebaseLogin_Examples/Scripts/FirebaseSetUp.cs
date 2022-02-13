@@ -46,7 +46,7 @@ public class FirebaseSetUp : MonoBehaviour
             }
             else if (PlayerPrefs.GetString("loginMethod", "C") == "G")
             {
-                GetComponent<GoogleSignInDemo>().SignInWithGoogle();
+                //GetComponent<GoogleSignInDemo>().SignInWithGoogle();
             }
 
             //   CSB.LoadScene();
