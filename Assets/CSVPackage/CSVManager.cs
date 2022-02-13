@@ -49,7 +49,7 @@ public class CSVManager : MonoBehaviour
 	public TextMeshProUGUI exerciseform;
 	private void Start()
 	{
-	//	Invoke("call", 2);
+    //	Invoke("call", 2);
 
 		gameversion.text = Application.version;
 	}
@@ -58,68 +58,68 @@ public class CSVManager : MonoBehaviour
 	{
 		//PlayerPrefs.SetString("path", "C:/Users/asus/Downloads/Log Folder 2/AndrewDeadlift20reps.csv");
 			NewreadData("C:/Users/asus/Downloads/Log Folder 2/"+csvName+".csv", false);
-		//NewreadDataCSV(csvFile,true);
+	//	NewreadDataCSV(csvFile,true);
 	}
-//	public void readData(string rawDataPath, bool _isSaving)
-//	{
-
-		
-//		if (rawDataPath.Length == 0)
-//			return;
-
-//		indexer = 0;
-//		Vector3 previous = Vector3.zero;
-//		Vector3 current = Vector3.zero;
-//		Vector3 firstvalue = Vector3.zero;
-//		List<float> speeds = new List<float>();
-//		if (File.Exists(rawDataPath))
-//		{
-
-//			string temptext = File.ReadAllText(rawDataPath);
-//			string[] records = temptext.Split("\n"[0]);
-
-//			for (int i = 0; i < records.Length; i++)
-//			{
-
-//				string[] temprecords = records[i].Split(","[0]);
-//				if (temprecords[0].Length > 0)
-//				{
-
-//					Vector3 FliteredValues = new Vector3(float.Parse(temprecords[IndexX]), float.Parse(temprecords[IndexY]), float.Parse(temprecords[IndexZ]));
-//					Vector3 FliteredValues2 = new Vector3(float.Parse(temprecords[3]), float.Parse(temprecords[4]), float.Parse(temprecords[5]));
-//					current = FliteredValues;
-
-//					if (i > 0)
-//					{
-//						current = current - firstvalue;
-
-//						float velocity = Vector3.Distance(previous, current);
-//						float tempvelocity = velocity / i * 0.1f;
-
-//						speeds.Add(Mathf.Abs(tempvelocity));
-//					}
-//					else
-//					{
-//						firstvalue = current;
-//					}
-
-//					previous = current;
+	//	public void readData(string rawDataPath, bool _isSaving)
+	//	{
 
 
-//				}
+	//		if (rawDataPath.Length == 0)
+	//			return;
+
+	//		indexer = 0;
+	//		Vector3 previous = Vector3.zero;
+	//		Vector3 current = Vector3.zero;
+	//		Vector3 firstvalue = Vector3.zero;
+	//		List<float> speeds = new List<float>();
+	//		if (File.Exists(rawDataPath))
+	//		{
+
+	//			string temptext = File.ReadAllText(rawDataPath);
+	//			string[] records = temptext.Split("\n"[0]);
+
+	//			for (int i = 0; i < records.Length; i++)
+	//			{
+
+	//				string[] temprecords = records[i].Split(","[0]);
+	//				if (temprecords[0].Length > 0)
+	//				{
+
+	//					Vector3 FliteredValues = new Vector3(float.Parse(temprecords[IndexX]), float.Parse(temprecords[IndexY]), float.Parse(temprecords[IndexZ]));
+	//					Vector3 FliteredValues2 = new Vector3(float.Parse(temprecords[3]), float.Parse(temprecords[4]), float.Parse(temprecords[5]));
+	//					current = FliteredValues;
+
+	//					if (i > 0)
+	//					{
+	//						current = current - firstvalue;
+
+	//						float velocity = Vector3.Distance(previous, current);
+	//						float tempvelocity = velocity / i * 0.1f;
+
+	//						speeds.Add(Mathf.Abs(tempvelocity));
+	//					}
+	//					else
+	//					{
+	//						firstvalue = current;
+	//					}
+
+	//					previous = current;
 
 
-//			}
+	//				}
 
 
-//#if UNITY_EDITOR
-//			UnityEditor.AssetDatabase.Refresh();
-//#endif
-//			ED.callafter(speeds, true);
-//		}
+	//			}
 
-//	}
- // ReadData from path new one
+
+	//#if UNITY_EDITOR
+	//			UnityEditor.AssetDatabase.Refresh();
+	//#endif
+	//			ED.callafter(speeds, true);
+	//		}
+
+	//	}
+	// ReadData from path new one
 	public void NewreadData(string rawDataPath, bool _isSaving)
 	{
 
@@ -138,22 +138,24 @@ public class CSVManager : MonoBehaviour
 			string temptext = File.ReadAllText(rawDataPath);
 			string[] records = temptext.Split("\n"[0]);
 
+
 			for (int i = 0; i < records.Length; i++)
 			{
 
 				string[] temprecords = records[i].Split(","[0]);
-				print("DATA = "+records[i]);
+				//print("DATA = " + records[i]);
 				if (temprecords.Length > 2)
 				{
-					print("DATA = 2 " + temprecords.Length);
-					Vector3 CsvPoints = new Vector3(float.Parse(temprecords[0]) / 100000.9f, float.Parse(temprecords[1]) / 100000.9f, float.Parse(temprecords[2]) / 100000.9f);                 //	Vector3 FliteredValues2 = new Vector3(float.Parse(temprecords[3]), float.Parse(temprecords[4]), float.Parse(temprecords[5]));
-					print("DATA = 3 " + CsvPoints);
+					//	print("DATA = 2 " + temprecords.Length);
+					Vector3 CsvPoints = new Vector3(float.Parse(temprecords[0]) / 1000.9f, float.Parse(temprecords[1]) / 1000.9f, float.Parse(temprecords[2]) / 100000.9f);
+					//	Vector3 FliteredValues2 = new Vector3(float.Parse(temprecords[3]), float.Parse(temprecords[4]), float.Parse(temprecords[5]));
+					//	print("DATA = 3 " + CsvPoints);
 					if (i > 0)
 					{
-						print("DATA = 4 " + i);
+						//	print("DATA = 4 " + i);
 					}
-                    else
-                    {
+					else
+					{
 						// VI
 
 						VIx = CsvPoints.x;
@@ -163,40 +165,39 @@ public class CSVManager : MonoBehaviour
 						ParameterY = Mathf.Abs(CsvPoints.y);
 						//	print("DATA = 5 " + VIx);
 						Parameterz = Mathf.Abs(CsvPoints.z);
-						print("DATA = 5 " + VIx);
 					}
 
-					print("DATA = 6 ");
-					print("DATA = 6.1 " + CsvPoints);
+					//print("DATA = 6 ");
+					//print("DATA = 6.1 " + CsvPoints);
 					AccelerationPointSx.Add(CsvPoints.x);
-						AccelerationPointSy.Add(CsvPoints.y);
-						AccelerationPointSz.Add(CsvPoints.z);
-					print("DATA = 7 " + AccelerationPointSx);
+					AccelerationPointSy.Add(CsvPoints.y);
+					AccelerationPointSz.Add(CsvPoints.z);
+					//print("DATA = 7 " + AccelerationPointSx);
 				}
-                else
-                {
-					print("current row is empty "+ i);
-                }
+				else
+				{
+					//	print("current row is empty " + i);
+				}
 
 
 			}
 
-			for(int i = 0; i < AccelerationPointSx.Count; i++)
-            {
+			for (int i = 0; i < AccelerationPointSx.Count; i++)
+			{
 				//Velocity Equation
-				float VelocityPointCalculation = (AccelerationPointSx[i] -VIx) / Time.deltaTime;
-                VIx = AccelerationPointSx[i];
-			
+				float VelocityPointCalculation = (AccelerationPointSx[i] - VIx) / Time.deltaTime;
+				VIx = AccelerationPointSx[i];
+
 				totalVelocityX += VelocityPointCalculation;
 				VelocityPointSx.Add(VelocityPointCalculation);
-				
 
-            }
+
+			}
 			//Y
 			for (int i = 0; i < AccelerationPointSy.Count; i++)
 			{
 				//Velocity Equation
-				float VelocityPointCalculation = (AccelerationPointSy[i] -VIy) / Time.deltaTime;
+				float VelocityPointCalculation = (AccelerationPointSy[i] - VIy) / Time.deltaTime;
 				VIy = AccelerationPointSy[i];
 
 				totalVelocityY += VelocityPointCalculation;
@@ -208,7 +209,7 @@ public class CSVManager : MonoBehaviour
 			for (int i = 0; i < AccelerationPointSz.Count; i++)
 			{
 				//Velocity Equation
-				float VelocityPointCalculation = (AccelerationPointSz[i] -VIz) / Time.deltaTime;
+				float VelocityPointCalculation = (AccelerationPointSz[i] - VIz) / Time.deltaTime;
 				VIz = AccelerationPointSz[i];
 
 				totalVelocityZ += VelocityPointCalculation;
@@ -216,11 +217,11 @@ public class CSVManager : MonoBehaviour
 
 
 			}
-			 // Sum of Velocity
-				float sum = totalVelocityX + totalVelocityY + totalVelocityZ;
+			// Sum of Velocity
+			float sum = totalVelocityX + totalVelocityY + totalVelocityZ;
 			SumofVelocity.Add(sum);
-			print("Sum of Velocity "+sum);
-		
+			print("Sum of Velocity " + sum);
+
 			for (int i = 0; i < VelocityPointSx.Count; i++)
 			{
 				float ParcantageCalculation = VelocityPointSx[i] / sum;
@@ -228,12 +229,12 @@ public class CSVManager : MonoBehaviour
 
 			}
 
-            for (int i = 0; i < VelocityPointSy.Count; i++)
-            {
-                float ParcantageCalculation = VelocityPointSy[i] / sum;
-                TotalPerY += ParcantageCalculation;
+			for (int i = 0; i < VelocityPointSy.Count; i++)
+			{
+				float ParcantageCalculation = VelocityPointSy[i] / sum;
+				TotalPerY += ParcantageCalculation;
 
-            }
+			}
 
 			for (int i = 0; i < VelocityPointSz.Count; i++)
 			{
@@ -244,36 +245,37 @@ public class CSVManager : MonoBehaviour
 
 
 
-			print("Percantage of X = " + TotalPerX*100 + "%");
-            print("Percantage of Y = " + TotalPerY*100 + "%");
-			print("Percantage of Z = " + TotalPerZ*100 + "%");
+			print("Percantage of X = " + TotalPerX * 100 + "%");
+			print("Percantage of Y = " + TotalPerY * 100 + "%");
+			print("Percantage of Z = " + TotalPerZ * 100 + "%");
 
 			TotalDeviationX = (TotalPerX * 100) - ParameterX;
 			TotalDeviationY = (TotalPerY * 100) - ParameterY;
 			TotalDeviationZ = (TotalPerZ * 100) - Parameterz;
 			float TotalSumDeviation = TotalDeviationX + TotalDeviationY + TotalDeviationZ;
-			print("Total Deviation on X " + TotalDeviationX +"%");
+			print("Total Deviation on X " + TotalDeviationX + "%");
 			print("Total Deviation on Y " + TotalDeviationY + "%");
 			print("Total Deviation on Z " + TotalDeviationZ + "%");
 			print("Total Sum of Deviation " + TotalSumDeviation + "%");
 			float Exerciseform = 100 - TotalSumDeviation;
 			print("Exercise Form " + Exerciseform + "%");
-			 
-			for(int c = 0; c< SumofVelocity.Count; c++)
-            {
+			exerciseform.text = Exerciseform.ToString() + "%";
+			for (int c = 0; c < SumofVelocity.Count; c++)
+			{
 				speeds.Add(SumofVelocity[c]);
-            }
-			
-			ED.callafter(speeds, true);
-		}
-        else
-        {
-		//	print("path is null");
-        }
+			}
 
+			ED.callafter(speeds, true);
+			//}
+			//else
+			//{
+			//	print("path is null");
+			//}
+
+		}
 	}
 
-	public void NewreadDataCSV(TextAsset rawDataPath, bool _isSaving)
+		public void NewreadDataCSV(TextAsset rawDataPath, bool _isSaving)
 	{
 
 
@@ -411,7 +413,7 @@ public class CSVManager : MonoBehaviour
 			print("Total Sum of Deviation " + TotalSumDeviation + "%");
 			float Exerciseform = 100 - TotalSumDeviation;
 			print("Exercise Form " + Exerciseform + "%");
-		exerciseform.text = exerciseform.ToString() + "%";
+		exerciseform.text = Exerciseform.ToString() + "%";
 			for (int c = 0; c < SumofVelocity.Count; c++)
 			{
 				speeds.Add(SumofVelocity[c]);
