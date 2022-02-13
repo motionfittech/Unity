@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0037024359, g: 0.0032408813, b: 0.0015062646, a: 1}
+  m_IndirectSpecularColor: {r: 0.0037024347, g: 0.0032408708, b: 0.0015062541, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3649,7 +3649,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   csvFile: {fileID: 4900000, guid: f6a306fb7c4b64b9fbeac304e797d6ac, type: 3}
   AOC: {fileID: 567091556}
-  saveFilename: AndrewBicepCurl23Reps
+  saveFilename: newcsvFile
   a: []
   IndexX: 0
   IndexY: 1
@@ -3698,9 +3698,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 572307531}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 703afc02b56dff846b0928af836b337c, type: 3}
+  m_Script: {fileID: 11500000, guid: b79c5db6469af4233a4210501770a879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Photo: {fileID: 0}
 --- !u!1 &582300525
 GameObject:
   m_ObjectHideFlags: 0
@@ -8048,7 +8049,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 960, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 826, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1179404662
@@ -9568,8 +9569,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 413, y: 0}
-  m_SizeDelta: {x: 786, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1343136070
 MonoBehaviour:

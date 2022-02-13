@@ -13,7 +13,7 @@ public class FirebaseSetUp : MonoBehaviour
         Invoke("checkLogin",2);
     }
 
-    public void registerUser(string username,string email, string UID)
+    public void registerUser(string username, string email, string UID)
     {
 
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
@@ -23,7 +23,11 @@ public class FirebaseSetUp : MonoBehaviour
         dbRef.Child("users").Child(UID).Child("Input").Child("x").SetValueAsync("0,0,0");
         dbRef.Child("users").Child(UID).Child("Input").Child("y").SetValueAsync("0,0,0");
         LocalDatabase.instance.saveData(UID);
+
         CSB.LoadScene();
+
+        Destroy(this.GetComponent<CustomAuth>());
+        DontDestroyOnLoad(this.gameObject);
     }
 
     public void checkLogin()

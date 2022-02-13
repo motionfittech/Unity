@@ -43,8 +43,8 @@ public class ChangeSceneWithButton : MonoBehaviour
     public void LoadScene()
     {
         Fade.gameObject.SetActive(true);
-      
-        Invoke("Restart",1);
+
+        Restart();
     }
     private void Restart()
     {

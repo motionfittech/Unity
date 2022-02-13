@@ -57,8 +57,8 @@ public class CSVManager : MonoBehaviour
 	public void call()
 	{
 		//PlayerPrefs.SetString("path", "C:/Users/asus/Downloads/Log Folder 2/AndrewDeadlift20reps.csv");
-			NewreadData("C:/Users/asus/Downloads/Log Folder 2/"+csvName+".csv", false);
-	//	NewreadDataCSV(csvFile,true);
+		//	NewreadData("C:/Users/asus/Downloads/Log Folder 2/"+csvName+".csv", false);
+		//NewreadDataCSV(csvFile,true);
 	}
 	//	public void readData(string rawDataPath, bool _isSaving)
 	//	{
@@ -148,6 +148,8 @@ public class CSVManager : MonoBehaviour
 				{
 					//	print("DATA = 2 " + temprecords.Length);
 					Vector3 CsvPoints = new Vector3(float.Parse(temprecords[0]) / 1000.9f, float.Parse(temprecords[1]) / 1000.9f, float.Parse(temprecords[2]) / 100000.9f);
+					Vector3 CsvPoints2 = new Vector3(float.Parse(temprecords[3]) / 1000.9f, float.Parse(temprecords[4]) / 1000.9f, float.Parse(temprecords[5]) / 100000.9f);
+					addData(CsvPoints[0].ToString(), CsvPoints[1].ToString(), CsvPoints[2].ToString(), CsvPoints2[0].ToString(), CsvPoints2[1].ToString(), CsvPoints2[2].ToString());
 					//	Vector3 FliteredValues2 = new Vector3(float.Parse(temprecords[3]), float.Parse(temprecords[4]), float.Parse(temprecords[5]));
 					//	print("DATA = 3 " + CsvPoints);
 					if (i > 0)
@@ -266,12 +268,12 @@ public class CSVManager : MonoBehaviour
 			}
 
 			ED.callafter(speeds, true);
+			GameObject.FindObjectOfType<FirebaseStorageHandler>().uploadData(LocalDatabase.instance.UID.ToString(), getPath() + "/Resources/" + saveFilename + ".csv");
 			//}
 			//else
 			//{
 			//	print("path is null");
 			//}
-
 		}
 	}
 
@@ -301,10 +303,12 @@ public class CSVManager : MonoBehaviour
 				if (temprecords.Length > 2)
 				{
 				//	print("DATA = 2 " + temprecords.Length);
-					Vector3 CsvPoints = new Vector3(float.Parse(temprecords[0])/100000.9f, float.Parse(temprecords[1])/100000.9f, float.Parse(temprecords[2])/100000.9f);
-					//	Vector3 FliteredValues2 = new Vector3(float.Parse(temprecords[3]), float.Parse(temprecords[4]), float.Parse(temprecords[5]));
+				Vector3 CsvPoints = new Vector3(float.Parse(temprecords[0]) / 1000.9f, float.Parse(temprecords[1]) / 1000.9f, float.Parse(temprecords[2]) / 100000.9f);
+				Vector3 CsvPoints2 = new Vector3(float.Parse(temprecords[3]) / 1000.9f, float.Parse(temprecords[4]) / 1000.9f, float.Parse(temprecords[5]) / 100000.9f);
+				addData(CsvPoints[0].ToString(), CsvPoints[1].ToString(), CsvPoints[2].ToString(), CsvPoints2[0].ToString(), CsvPoints2[1].ToString(), CsvPoints2[2].ToString());
+				//	Vector3 FliteredValues2 = new Vector3(float.Parse(temprecords[3]), float.Parse(temprecords[4]), float.Parse(temprecords[5]));
 				//	print("DATA = 3 " + CsvPoints);
-					if (i > 0)
+				if (i > 0)
 					{
 					//	print("DATA = 4 " + i);
 					}
@@ -420,6 +424,7 @@ public class CSVManager : MonoBehaviour
 			}
 
 			ED.callafter(speeds, true);
+		GameObject.FindObjectOfType<FirebaseStorageHandler>().uploadData(LocalDatabase.instance.UID.ToString(), getPath() + "/Resources/" + saveFilename + ".csv");
 		//}
 		//else
 		//{
@@ -439,18 +444,18 @@ public class CSVManager : MonoBehaviour
 		return temp;
     }
 
-	public void addData(string X,string Y, string Z, string vel)
+	public void addData(string X,string Y, string Z,string GX,string GY, string GZ)
 	{
 
       //  Following line adds data to CSV file
 
         if (indexer > 0)
         {
-            File.AppendAllText(getPath() + "/Resources/" + saveFilename + ".csv", lineSeperater + X + fieldSeperator + Y + fieldSeperator + Z + fieldSeperator + vel);
+            File.AppendAllText(getPath() + "/Resources/" + saveFilename + ".csv", lineSeperater + X + fieldSeperator + Y + fieldSeperator + Z + fieldSeperator + GX + fieldSeperator + GY + fieldSeperator + GZ);
         }
         else
         {
-            File.AppendAllText(getPath() + "/Resources/"+ saveFilename + ".csv", X + fieldSeperator + Y + fieldSeperator + Z + fieldSeperator + vel);
+            File.AppendAllText(getPath() + "/Resources/"+ saveFilename + ".csv", X + fieldSeperator + Y + fieldSeperator + Z + fieldSeperator + GX + fieldSeperator + GY + fieldSeperator + GZ);
 			indexer += 1;
 		}
 	
