@@ -144,6 +144,37 @@ public class LocalDatabase : MonoBehaviour
 
        
     }
+    public void Loadcsvcounter()
+    {
+        Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
+        dbRef.Child("users").Child(UID).Child("csvCounter").GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted)
+            {
+                // Failure
+                print("dsfdsf");
+            }
+            else if (task.IsCompleted)
+            {
+                DataSnapshot snapshot = task.Result;
+                //    print(snapshot.Value.ToString());
+                PlayerPrefs.SetString("csvCounter", snapshot.Value.ToString());
+                // Success
+            }
+        });
+    }
+    public void savcsvcounter(string Data)
+    {
+        Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
+        dbRef.Child("users").Child(UID).Child("csvCounter").SetValueAsync(Data);
+        PlayerPrefs.SetString("csvCounter", Data.ToString());
+    }
+    public void saveExerciseData(MyClass temp)
+    {
+        Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
+        dbRef.Child("users").Child(UID).Child("CSV_Data").SetRawJsonValueAsync(JsonUtility.ToJson(temp));
+    }
+
     public void repData(string Exercisename, string Data)
     {
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
@@ -218,6 +249,16 @@ public class LocalDatabase : MonoBehaviour
             {
                 GameObject.FindObjectOfType<WorkoutHandler>().Defaultanimator(0);
             }
+        }
+    }
+
+    public class MyClass
+    {
+        public int counter;
+        public string[] intArray;
+        public void setArray()
+        {
+            intArray = new string[counter];
         }
     }
 }

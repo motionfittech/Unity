@@ -15,21 +15,21 @@ public class FirebaseSetUp : MonoBehaviour
 
     public void registerUser(string username, string email, string UID)
     {
-
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
         dbRef.Child("users").Child(UID).Child("username").SetValueAsync(username);
         dbRef.Child("users").Child(UID).Child("email").SetValueAsync(email);
         dbRef.Child("users").Child(UID).Child("characterselect").SetValueAsync("0");
-        dbRef.Child("users").Child(UID).Child("Input").Child("x").SetValueAsync("0,0,0");
-        dbRef.Child("users").Child(UID).Child("Input").Child("y").SetValueAsync("0,0,0");
+        dbRef.Child("users").Child(UID).Child("csvCounter").SetValueAsync("0");
         LocalDatabase.instance.saveData(UID);
-
         CSB.LoadScene();
-
         Destroy(this.GetComponent<CustomAuth>());
         DontDestroyOnLoad(this.gameObject);
     }
-
+    public void savedata(Vector3 acc,Vector3 rot)
+    {
+        Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
+        dbRef.Child("users").Child(LocalDatabase.instance.UID).Child("CSV").Child("CSV").SetValueAsync(acc.x.ToString());
+    }
     public void checkLogin()
     {
 

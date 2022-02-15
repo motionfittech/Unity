@@ -3,6 +3,8 @@ using System.IO;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
+
 public class CSVManager : MonoBehaviour
 {
 	public TextAsset csvFile;
@@ -29,6 +31,9 @@ public class CSVManager : MonoBehaviour
 	List<float> AccelerationPointSx = new List<float>();
 	List<float> AccelerationPointSy = new List<float>();
 	List<float> AccelerationPointSz = new List<float>();
+	List<float> AccelerationRotationSx = new List<float>();
+	List<float> AccelerationRotationSy = new List<float>();
+	List<float> AccelerationRotationSz = new List<float>();
 	List<float> VelocityPointSx = new List<float>();
 	List<float> VelocityPointSy = new List<float>();
 	List<float> VelocityPointSz = new List<float>();
@@ -147,9 +152,9 @@ public class CSVManager : MonoBehaviour
 				if (temprecords.Length > 2)
 				{
 					//	print("DATA = 2 " + temprecords.Length);
-					Vector3 CsvPoints = new Vector3(float.Parse(temprecords[0]) / 1000.9f, float.Parse(temprecords[1]) / 1000.9f, float.Parse(temprecords[2]) / 100000.9f);
-					Vector3 CsvPoints2 = new Vector3(float.Parse(temprecords[3]) / 1000.9f, float.Parse(temprecords[4]) / 1000.9f, float.Parse(temprecords[5]) / 100000.9f);
-					addData(CsvPoints[0].ToString(), CsvPoints[1].ToString(), CsvPoints[2].ToString(), CsvPoints2[0].ToString(), CsvPoints2[1].ToString(), CsvPoints2[2].ToString());
+					Vector3 CsvPoints = new Vector3(float.Parse(temprecords[0]) / 1000.9f, float.Parse(temprecords[1]) / 1000.9f, float.Parse(temprecords[2]) / 1000.9f);
+					Vector3 CsvPoints2 = new Vector3(float.Parse(temprecords[3]) / 1000.9f, float.Parse(temprecords[4]) / 1000.9f, float.Parse(temprecords[5]) / 1000.9f);
+					//addData(CsvPoints[0].ToString(), CsvPoints[1].ToString(), CsvPoints[2].ToString(), CsvPoints2[0].ToString(), CsvPoints2[1].ToString(), CsvPoints2[2].ToString());
 					//	Vector3 FliteredValues2 = new Vector3(float.Parse(temprecords[3]), float.Parse(temprecords[4]), float.Parse(temprecords[5]));
 					//	print("DATA = 3 " + CsvPoints);
 					if (i > 0)
@@ -174,6 +179,9 @@ public class CSVManager : MonoBehaviour
 					AccelerationPointSx.Add(CsvPoints.x);
 					AccelerationPointSy.Add(CsvPoints.y);
 					AccelerationPointSz.Add(CsvPoints.z);
+					AccelerationRotationSx.Add(CsvPoints2.x);
+					AccelerationRotationSy.Add(CsvPoints2.y);
+					AccelerationRotationSz.Add(CsvPoints2.z);
 					//print("DATA = 7 " + AccelerationPointSx);
 				}
 				else
@@ -267,8 +275,9 @@ public class CSVManager : MonoBehaviour
 				speeds.Add(SumofVelocity[c]);
 			}
 
-			ED.callafter(speeds, true);
-			GameObject.FindObjectOfType<FirebaseStorageHandler>().uploadData(LocalDatabase.instance.UID.ToString(), getPath() + "/Resources/" + saveFilename + ".csv");
+			//ED.callafter(speeds, true);
+			StartCoroutine(uploaddata());
+			//GameObject.FindObjectOfType<FirebaseStorageHandler>().uploadData(LocalDatabase.instance.UID.ToString(), getPath() + "/Resources/" + saveFilename + ".csv");
 			//}
 			//else
 			//{
@@ -276,8 +285,32 @@ public class CSVManager : MonoBehaviour
 			//}
 		}
 	}
-
-		public void NewreadDataCSV(TextAsset rawDataPath, bool _isSaving)
+	IEnumerator uploaddata()
+	{
+		LocalDatabase.MyClass temp = new LocalDatabase.MyClass();
+		temp.counter = AccelerationPointSx.Count;
+		temp.setArray();
+		int indexer = 0;
+		while (temp.intArray.Length > indexer)
+		{
+			temp.intArray[indexer] = AccelerationPointSx[indexer].ToString() + "," + AccelerationPointSy[indexer].ToString() + "," + AccelerationPointSz[indexer].ToString() +","+ AccelerationRotationSx[indexer].ToString() + "," + AccelerationRotationSy[indexer].ToString() + "," + AccelerationRotationSz[indexer].ToString();
+			indexer += 1;
+			print("uploading data.....");
+			yield return new WaitForSeconds(0.01f);
+		}
+		AccelerationPointSx = new List<float>();
+		AccelerationPointSy = new List<float>();
+		AccelerationPointSz = new List<float>();
+		AccelerationRotationSx = new List<float>();
+		AccelerationRotationSy = new List<float>();
+		AccelerationRotationSz = new List<float>();
+		int temp1 = int.Parse(PlayerPrefs.GetString("csvCounter", "0"));
+		temp1 += 1;
+		LocalDatabase.instance.savcsvcounter(temp1.ToString());
+		LocalDatabase.instance.saveExerciseData(temp);
+		print("uploading DONE.");
+	}
+	public void NewreadDataCSV(TextAsset rawDataPath, bool _isSaving)
 	{
 
 
@@ -424,7 +457,7 @@ public class CSVManager : MonoBehaviour
 			}
 
 			ED.callafter(speeds, true);
-		GameObject.FindObjectOfType<FirebaseStorageHandler>().uploadData(LocalDatabase.instance.UID.ToString(), getPath() + "/Resources/" + saveFilename + ".csv");
+	//	GameObject.FindObjectOfType<FirebaseStorageHandler>().uploadData(LocalDatabase.instance.UID.ToString(), getPath() + "/Resources/" + saveFilename + ".csv");
 		//}
 		//else
 		//{
