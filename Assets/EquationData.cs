@@ -30,13 +30,13 @@ public class EquationData : MonoBehaviour
     }
 
 
-	public void callafter(List<float> speeds,bool _isSaving)
+	public void callafter(float speeds)
 	{
 		print("we callafter now");
-		float tempAverage = returnAverage(speeds);
-		float tempForce = returnForce(speeds, 5);
-		float tempWork = returnWork(speeds, tempForce);
-		float tempPower = returnPower(tempWork, speeds.Count);
+		float tempAverage = Mathf.Abs(returnAverage(speeds));
+		float tempForce = Mathf.Abs(returnForce(speeds, 1));
+		float tempWork = Mathf.Abs(returnWork(speeds, 1));
+		float tempPower = Mathf.Abs(returnPower(tempWork, 1));
 		
 		if (tempAverage.ToString().Length > 4)
 		{
@@ -81,20 +81,20 @@ public class EquationData : MonoBehaviour
 
 		//bcf.addbarSingleValue(tempAverage);
 		//	gcf.Singcall(tempAverage);
-		if (_isSaving)
-		{
-			EDC.addData(0, tempAverage.ToString());
-			EDC.addData(1, tempForce.ToString());
-			EDC.addData(2, tempWork.ToString());
-			EDC.addData(3, tempPower.ToString());
+		//if (_isSaving)
+		//{
+		//	EDC.addData(0, tempAverage.ToString());
+		//	EDC.addData(1, tempForce.ToString());
+		//	EDC.addData(2, tempWork.ToString());
+		//	EDC.addData(3, tempPower.ToString());
 			EDC.GraphDataPoints.Add(tempAverage);
 			EDC.GraphDataPoints.Add(tempPower);
 			EDC.GraphDataPoints.Add(tempWork);
 			EDC.GraphDataPoints.Add(tempForce);
-		}
-		if (speeds.Count > 1)
-		{
-			float returnLoss = returnVelocityLoss(speeds.Count - 2, speeds.Count - 1);
+		//}
+		//if (speeds.Count > 1)
+		//{
+			float returnLoss = speeds;
 			if (returnLoss < 0)
 			{
 				L_VelocityTxt.text = " Velocity Loss";
@@ -115,45 +115,45 @@ public class EquationData : MonoBehaviour
 			}
 			
 			VelocityLossTxt.text = returnLoss.ToString() + " m/s";
-		}
-		speeds.Clear();
+		//}
+	//	speeds.Clear();
 
 	}
 
-	float returnAverage(List<float> speeds)
+	float returnAverage(float speeds)
 	{
-		float averageTotal = 0;
+		float averageTotal = speeds;
 
 
-		for (int i = 0; i < speeds.Count; i++)
-		{
-			averageTotal += speeds[i];
+		//for (int i = 0; i < speeds.Count; i++)
+		//{
+		//	averageTotal += speeds[i];
 
-		}
+		//}
 		// Avelocity = TotalVelocity/TotalCount
-		return averageTotal / speeds.Count;
+		return averageTotal; // speeds.Count;
 	}
-	float returnForce(List<float> speeds, float mass)
+	float returnForce(float speeds, float mass)
 	{
-		float Totalacceleration = 0;
+		float Totalacceleration = speeds;
 
-		for (int i = 0; i < speeds.Count; i++)
-		{
-			Totalacceleration += speeds[i];
+	//	for (int i = 0; i < speeds.Count; i++)
+		//{
+		//	Totalacceleration += speeds[i];
 
-		}
+		//}
 		// Force = Acceleration*Mass
 		return Totalacceleration * mass;
 	}
 
-	float returnWork(List<float> finalVelocity, float Force)
+	float returnWork(float finalVelocity, float Force)
 	{
 
-		float Vf = 0;
-		for (int i = 0; i < finalVelocity.Count; i++)
-		{
-			Vf += finalVelocity[i];
-		}
+		float Vf = finalVelocity;
+		//for (int i = 0; i < finalVelocity.Count; i++)
+		//{
+		//	Vf += finalVelocity[i];
+		//}
 		// Displacemnt = 1/2(vi+vf)*t
 		float Displacement = (Vf / 2);
 		// Work = Force * Discplacement

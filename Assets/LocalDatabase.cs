@@ -1,9 +1,10 @@
 ﻿using Firebase.Database;
 using Firebase.Extensions;
+//using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+//using UnityEngine.UI;
 public class LocalDatabase : MonoBehaviour
 {
     public string username;
@@ -166,13 +167,19 @@ public class LocalDatabase : MonoBehaviour
     public void savcsvcounter(string Data)
     {
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
-        dbRef.Child("users").Child(UID).Child("csvCounter").SetValueAsync(Data);
+        dbRef.Child("users").Child(UID).Child("csvCounter").Child(PlayerPrefs.GetString("csvCounter", "0")).SetValueAsync(Data);
         PlayerPrefs.SetString("csvCounter", Data.ToString());
     }
     public void saveExerciseData(MyClass temp)
     {
+        //Create a reference to where the file needs to be uploaded
+        //DateTime theTime = DateTime.Now;
+        //string date = theTime.ToString("yyyy-MM-dd\\Z");
+        //string time = theTime.ToString("HH:mm:ss\\Z");
+        //string datetime = theTime.ToString("yyyy-MM-dd\\THH:mm:ss\\Z");
+
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
-        dbRef.Child("users").Child(UID).Child("CSV_Data").SetRawJsonValueAsync(JsonUtility.ToJson(temp));
+        dbRef.Child("users").Child(UID).Child("CSV_Data").Child(GameObject.FindObjectOfType<WorkoutManager>().CenterButtonExercisetxt.text+ PlayerPrefs.GetString("csvCounter", "0")).SetRawJsonValueAsync(JsonUtility.ToJson(temp));
     }
 
     public void repData(string Exercisename, string Data)
@@ -243,11 +250,11 @@ public class LocalDatabase : MonoBehaviour
 
             if(i == 100)
             {
-                GameObject.FindObjectOfType<WorkoutHandler>().Defaultanimator(1);
+              //  GameObject.FindObjectOfType<WorkoutHandler>().Defaultanimator(1);
             }
             else
             {
-                GameObject.FindObjectOfType<WorkoutHandler>().Defaultanimator(0);
+               // GameObject.FindObjectOfType<WorkoutHandler>().Defaultanimator(0);
             }
         }
     }
@@ -255,6 +262,10 @@ public class LocalDatabase : MonoBehaviour
     public class MyClass
     {
         public int counter;
+        //public float Averagevelocity;
+        //public float Force ;
+        //public float work;
+        //public float power;
         public string[] intArray;
         public void setArray()
         {

@@ -46,9 +46,9 @@ public class ScrollHandler : MonoBehaviour
         string tempstring = "";
             for (int i = 0; i < selectedExercise.Count; i++)
            {
-            for (int z = 0; z < AnimatorParameters.Count; z++)
+            for (int z = 0; z < buttonname.Count; z++)
             {
-                if(selectedExercise[i] == AnimatorParameters[z])
+                if(selectedExercise[i] == buttonname[z])
                 {
                     if (tempstring.Length > 0)
                     {
@@ -75,17 +75,22 @@ public class ScrollHandler : MonoBehaviour
 
     public void preaddExercise(string a)
     {
+        print(createExercise.Count);
         for (int i = 0; i < createExercise.Count; i++)
         {
+            print("aaavv");
             if (a == createExercise[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text)
             {
+                print("aaaaadd");
                 if (createExercise[i].transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().color.a <= 0)
                 {
 
                 }
                 else
                 {
+                    print("aaa");
                     selectedExercise.Remove(a);
+                    print(createExercise.Count);
                     for (int z = 0; z < selectedExerciseobj.Count; z++)
                     {
 
@@ -106,6 +111,18 @@ public class ScrollHandler : MonoBehaviour
                     }
                     return;
                 }
+            }
+            else
+            {
+                //GameObject temp = selectedExerciseobj[1];
+                //Destroy(temp);
+                //selectedExerciseobj.Remove(selectedExerciseobj[1]);
+                //closebutton.gameObject.SetActive(false);
+                //circle.gameObject.SetActive(false);
+               
+                //    ani.SetBool("Arnoldpress", false);
+                   
+                
             }
         }
         Poptitle.text = a;

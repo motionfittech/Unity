@@ -371,7 +371,9 @@ public class WorkoutManager : MonoBehaviour
         string[] tempData = listAnimation.Split(","[0]);
         for (int i = 0; i < tempData.Length; i++)
         {
+
             int temp = int.Parse(tempData[i]);
+            print(temp);
             selectedAnimations.Add(nameofAnimations[temp]);
 //            print(nameofAnimations[temp]);
         //    HS.CreateNewItem(nameofAnimations[temp]);

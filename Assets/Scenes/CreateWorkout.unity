@@ -5695,6 +5695,14 @@ MonoBehaviour:
   - Sumo
   - Uprightrow
   - Walkinglunges
+  - Normal Gait
+  - Hemiplegic Gait
+  - Diplegic Gait
+  - Neuropathic Gait
+  - Myopathic Gait
+  - Choreiform Gait
+  - Ataxic Gait
+  - Sensory Gait
   selectedExercise: []
   createExercise: []
   selectedExerciseobj: []

@@ -40,7 +40,7 @@ public class CSVManager : MonoBehaviour
 	float totalVelocityX;
 	float totalVelocityY;
 	float totalVelocityZ;
-	List<float> SumofVelocity = new List<float>();
+	
 	float TotalPerX;
 	float TotalPerY;
 	float TotalPerZ;
@@ -154,7 +154,7 @@ public class CSVManager : MonoBehaviour
 					//	print("DATA = 2 " + temprecords.Length);
 					Vector3 CsvPoints = new Vector3(float.Parse(temprecords[0]) / 1000.9f, float.Parse(temprecords[1]) / 1000.9f, float.Parse(temprecords[2]) / 1000.9f);
 					Vector3 CsvPoints2 = new Vector3(float.Parse(temprecords[3]) / 1000.9f, float.Parse(temprecords[4]) / 1000.9f, float.Parse(temprecords[5]) / 1000.9f);
-					//addData(CsvPoints[0].ToString(), CsvPoints[1].ToString(), CsvPoints[2].ToString(), CsvPoints2[0].ToString(), CsvPoints2[1].ToString(), CsvPoints2[2].ToString());
+				//	addData(CsvPoints[0].ToString(), CsvPoints[1].ToString(), CsvPoints[2].ToString(), CsvPoints2[0].ToString(), CsvPoints2[1].ToString(), CsvPoints2[2].ToString());
 					//	Vector3 FliteredValues2 = new Vector3(float.Parse(temprecords[3]), float.Parse(temprecords[4]), float.Parse(temprecords[5]));
 					//	print("DATA = 3 " + CsvPoints);
 					if (i > 0)
@@ -229,8 +229,7 @@ public class CSVManager : MonoBehaviour
 			}
 			// Sum of Velocity
 			float sum = totalVelocityX + totalVelocityY + totalVelocityZ;
-			SumofVelocity.Add(sum);
-			print("Sum of Velocity " + sum);
+			
 
 			for (int i = 0; i < VelocityPointSx.Count; i++)
 			{
@@ -270,14 +269,14 @@ public class CSVManager : MonoBehaviour
 			float Exerciseform = 100 - TotalSumDeviation;
 			print("Exercise Form " + Exerciseform + "%");
 			exerciseform.text = Exerciseform.ToString() + "%";
-			for (int c = 0; c < SumofVelocity.Count; c++)
-			{
-				speeds.Add(SumofVelocity[c]);
-			}
+			//for (int c = 0; c < SumofVelocity.Count; c++)
+			//{
+			//	speeds.Add(SumofVelocity[c]);
+			//}
 
-			//ED.callafter(speeds, true);
+			ED.callafter(sum);
 			StartCoroutine(uploaddata());
-			//GameObject.FindObjectOfType<FirebaseStorageHandler>().uploadData(LocalDatabase.instance.UID.ToString(), getPath() + "/Resources/" + saveFilename + ".csv");
+		//	GameObject.FindObjectOfType<FirebaseStorageHandler>().uploadData(LocalDatabase.instance.UID.ToString(), getPath() + "/Resources/" + saveFilename + ".csv");
 			//}
 			//else
 			//{
@@ -289,6 +288,10 @@ public class CSVManager : MonoBehaviour
 	{
 		LocalDatabase.MyClass temp = new LocalDatabase.MyClass();
 		temp.counter = AccelerationPointSx.Count;
+		//temp.Averagevelocity = float.Parse(ED.velocityAverageTxt.text);
+		//temp.Force = float.Parse(ED.ForceTxt.text);
+		//temp.work = float.Parse(ED.WorkTxt.text);
+		//temp.power = float.Parse(ED.PowerTxt.text);
 		temp.setArray();
 		int indexer = 0;
 		while (temp.intArray.Length > indexer)
@@ -338,7 +341,7 @@ public class CSVManager : MonoBehaviour
 				//	print("DATA = 2 " + temprecords.Length);
 				Vector3 CsvPoints = new Vector3(float.Parse(temprecords[0]) / 1000.9f, float.Parse(temprecords[1]) / 1000.9f, float.Parse(temprecords[2]) / 100000.9f);
 				Vector3 CsvPoints2 = new Vector3(float.Parse(temprecords[3]) / 1000.9f, float.Parse(temprecords[4]) / 1000.9f, float.Parse(temprecords[5]) / 100000.9f);
-				addData(CsvPoints[0].ToString(), CsvPoints[1].ToString(), CsvPoints[2].ToString(), CsvPoints2[0].ToString(), CsvPoints2[1].ToString(), CsvPoints2[2].ToString());
+//				addData(CsvPoints[0].ToString(), CsvPoints[1].ToString(), CsvPoints[2].ToString(), CsvPoints2[0].ToString(), CsvPoints2[1].ToString(), CsvPoints2[2].ToString());
 				//	Vector3 FliteredValues2 = new Vector3(float.Parse(temprecords[3]), float.Parse(temprecords[4]), float.Parse(temprecords[5]));
 				//	print("DATA = 3 " + CsvPoints);
 				if (i > 0)
@@ -410,7 +413,7 @@ public class CSVManager : MonoBehaviour
 			}
 			// Sum of Velocity
 			float sum = totalVelocityX + totalVelocityY + totalVelocityZ;
-			SumofVelocity.Add(sum);
+			//SumofVelocity.Add(sum);
 			print("Sum of Velocity " + sum);
 
 			for (int i = 0; i < VelocityPointSx.Count; i++)
@@ -451,12 +454,12 @@ public class CSVManager : MonoBehaviour
 			float Exerciseform = 100 - TotalSumDeviation;
 			print("Exercise Form " + Exerciseform + "%");
 		exerciseform.text = Exerciseform.ToString() + "%";
-			for (int c = 0; c < SumofVelocity.Count; c++)
-			{
-				speeds.Add(SumofVelocity[c]);
-			}
+			//for (int c = 0; c < SumofVelocity.Count; c++)
+			//{
+			//	speeds.Add(SumofVelocity[c]);
+			//}
 
-			ED.callafter(speeds, true);
+			ED.callafter(sum);
 	//	GameObject.FindObjectOfType<FirebaseStorageHandler>().uploadData(LocalDatabase.instance.UID.ToString(), getPath() + "/Resources/" + saveFilename + ".csv");
 		//}
 		//else
@@ -466,52 +469,52 @@ public class CSVManager : MonoBehaviour
 
 	}
 
-	public void incrementList(string b)
-    {
-		a.Add(b);
-    }
+//	public void incrementList(string b)
+//    {
+//		a.Add(b);
+//    }
 
 
-	public List<string> pushdata(List<string> temp)
-    {
-		return temp;
-    }
+//	public List<string> pushdata(List<string> temp)
+//    {
+//		return temp;
+//    }
 
-	public void addData(string X,string Y, string Z,string GX,string GY, string GZ)
-	{
+//	public void addData(string X,string Y, string Z,string GX,string GY, string GZ)
+//	{
 
-      //  Following line adds data to CSV file
+//      //  Following line adds data to CSV file
 
-        if (indexer > 0)
-        {
-            File.AppendAllText(getPath() + "/Resources/" + saveFilename + ".csv", lineSeperater + X + fieldSeperator + Y + fieldSeperator + Z + fieldSeperator + GX + fieldSeperator + GY + fieldSeperator + GZ);
-        }
-        else
-        {
-            File.AppendAllText(getPath() + "/Resources/"+ saveFilename + ".csv", X + fieldSeperator + Y + fieldSeperator + Z + fieldSeperator + GX + fieldSeperator + GY + fieldSeperator + GZ);
-			indexer += 1;
-		}
+//        if (indexer > 0)
+//        {
+//            File.AppendAllText(getPath() + "/Resources/" + saveFilename + ".csv", lineSeperater + X + fieldSeperator + Y + fieldSeperator + Z + fieldSeperator + GX + fieldSeperator + GY + fieldSeperator + GZ);
+//        }
+//        else
+//        {
+//            File.AppendAllText(getPath() + "/Resources/"+ saveFilename + ".csv", X + fieldSeperator + Y + fieldSeperator + Z + fieldSeperator + GX + fieldSeperator + GY + fieldSeperator + GZ);
+//			indexer += 1;
+//		}
 	
-	}
+//	}
 
 	
-	private static string getPath()
-	{
-#if UNITY_EDITOR
-		return Application.dataPath;
-#elif UNITY_ANDROID
-		return Application.persistentDataPath;// +fileName;
-#elif UNITY_IPHONE
-		return GetiPhoneDocumentsPath();// +"/"+fileName;
-#else
-		return Application.dataPath;// +"/"+ fileName;
-#endif
-	}
-	// Get the path in iOS device
-	private static string GetiPhoneDocumentsPath()
-	{
-		string path = Application.dataPath.Substring(0, Application.dataPath.Length - 5);
-		path = path.Substring(0, path.LastIndexOf('/'));
-		return path + "/Documents";
-	}
+//	private static string getPath()
+//	{
+//#if UNITY_EDITOR
+//		return Application.dataPath;
+//#elif UNITY_ANDROID
+//		return Application.persistentDataPath;// +fileName;
+//#elif UNITY_IPHONE
+//		return GetiPhoneDocumentsPath();// +"/"+fileName;
+//#else
+//		return Application.dataPath;// +"/"+ fileName;
+//#endif
+//	}
+//	// Get the path in iOS device
+//	private static string GetiPhoneDocumentsPath()
+//	{
+//		string path = Application.dataPath.Substring(0, Application.dataPath.Length - 5);
+//		path = path.Substring(0, path.LastIndexOf('/'));
+//		return path + "/Documents";
+//	}
 }
