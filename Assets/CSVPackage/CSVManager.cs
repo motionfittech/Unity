@@ -52,6 +52,8 @@ public class CSVManager : MonoBehaviour
 	float TotalDeviationZ;
 	public Text gameversion;
 	public TextMeshProUGUI exerciseform;
+
+
 	private void Start()
 	{
     //	Invoke("call", 2);
@@ -125,10 +127,37 @@ public class CSVManager : MonoBehaviour
 
 	//	}
 	// ReadData from path new one
+	public void Savebt()
+    {
+		saveData(true);
+		DebugSaveData();
+
+    }
+	public void DebugSaveData()
+    {
+		//print("false");
+		saveData(false);
+	}
+	public void saveData(bool saveData)
+    {
+		string temp = PlayerPrefs.GetString("path", "");
+		if (temp.Length <= 0)
+		{
+			print("path is unvalid");
+			return;
+		}
+
+		NewreadData(temp,saveData);
+		//temp = "";
+	//	PlayerPrefs.SetString("path", temp);
+
+	    
+	}
+
+
 	public void NewreadData(string rawDataPath, bool _isSaving)
 	{
-
-
+		
 		if (rawDataPath.Length == 0)
 			return;
 
@@ -195,7 +224,16 @@ public class CSVManager : MonoBehaviour
 			for (int i = 0; i < AccelerationPointSx.Count; i++)
 			{
 				//Velocity Equation
-				float VelocityPointCalculation = (AccelerationPointSx[i] - VIx) / Time.deltaTime;
+
+				float VelocityPointCalculation =  0 ;
+				if (_isSaving)
+				{
+					VelocityPointCalculation = (AccelerationPointSx[i] - VIx) / Time.deltaTime;
+				}
+                else
+                {
+					VelocityPointCalculation = (AccelerationPointSx[i] - VIx);
+				}
 				VIx = AccelerationPointSx[i];
 
 				totalVelocityX += VelocityPointCalculation;
@@ -207,7 +245,16 @@ public class CSVManager : MonoBehaviour
 			for (int i = 0; i < AccelerationPointSy.Count; i++)
 			{
 				//Velocity Equation
-				float VelocityPointCalculation = (AccelerationPointSy[i] - VIy) / Time.deltaTime;
+				float VelocityPointCalculation = 0;
+				if (_isSaving)
+				{
+					 VelocityPointCalculation = (AccelerationPointSy[i] - VIy) / Time.deltaTime;
+				}
+				else
+				{
+					 VelocityPointCalculation = (AccelerationPointSy[i] - VIy);
+				}
+				
 				VIy = AccelerationPointSy[i];
 
 				totalVelocityY += VelocityPointCalculation;
@@ -219,7 +266,15 @@ public class CSVManager : MonoBehaviour
 			for (int i = 0; i < AccelerationPointSz.Count; i++)
 			{
 				//Velocity Equation
-				float VelocityPointCalculation = (AccelerationPointSz[i] - VIz) / Time.deltaTime;
+				float VelocityPointCalculation = 0;
+				if (_isSaving)
+				{
+					VelocityPointCalculation = (AccelerationPointSz[i] - VIz) / Time.deltaTime;
+				}
+				else
+				{
+					VelocityPointCalculation = (AccelerationPointSz[i] - VIz);
+				}
 				VIz = AccelerationPointSz[i];
 
 				totalVelocityZ += VelocityPointCalculation;
@@ -273,9 +328,11 @@ public class CSVManager : MonoBehaviour
 			//{
 			//	speeds.Add(SumofVelocity[c]);
 			//}
-
-			ED.callafter(sum);
-			StartCoroutine(uploaddata());
+			if (_isSaving)
+			{
+				ED.callafter(sum);
+			}
+			StartCoroutine(uploaddata(_isSaving));
 		//	GameObject.FindObjectOfType<FirebaseStorageHandler>().uploadData(LocalDatabase.instance.UID.ToString(), getPath() + "/Resources/" + saveFilename + ".csv");
 			//}
 			//else
@@ -284,7 +341,7 @@ public class CSVManager : MonoBehaviour
 			//}
 		}
 	}
-	IEnumerator uploaddata()
+	IEnumerator uploaddata(bool _isNotDebugging)
 	{
 		LocalDatabase.MyClass temp = new LocalDatabase.MyClass();
 		temp.counter = AccelerationPointSx.Count;
@@ -294,24 +351,36 @@ public class CSVManager : MonoBehaviour
 		//temp.power = float.Parse(ED.PowerTxt.text);
 		temp.setArray();
 		int indexer = 0;
+//		print(temp.intArray.Length);
 		while (temp.intArray.Length > indexer)
 		{
-			temp.intArray[indexer] = AccelerationPointSx[indexer].ToString() + "," + AccelerationPointSy[indexer].ToString() + "," + AccelerationPointSz[indexer].ToString() +","+ AccelerationRotationSx[indexer].ToString() + "," + AccelerationRotationSy[indexer].ToString() + "," + AccelerationRotationSz[indexer].ToString();
-			indexer += 1;
-			print("uploading data.....");
+			if (_isNotDebugging)
+			{
+				temp.intArray[indexer] = AccelerationPointSx[indexer].ToString() + "," + AccelerationPointSy[indexer].ToString() + "," + AccelerationPointSz[indexer].ToString() + "," + AccelerationRotationSx[indexer].ToString() + "," + AccelerationRotationSy[indexer].ToString() + "," + AccelerationRotationSz[indexer].ToString();
+			}
+			else
+			{
+				print(AccelerationPointSx[indexer].ToString() + "," + AccelerationPointSy[indexer].ToString() + "," + AccelerationPointSz[indexer].ToString() + "," + AccelerationRotationSx[indexer].ToString() + "," + AccelerationRotationSy[indexer].ToString() + "," + AccelerationRotationSz[indexer].ToString());
+
+				indexer += 1;
+			//	print("uploading data.....");
+			}
 			yield return new WaitForSeconds(0.01f);
 		}
-		AccelerationPointSx = new List<float>();
-		AccelerationPointSy = new List<float>();
-		AccelerationPointSz = new List<float>();
-		AccelerationRotationSx = new List<float>();
-		AccelerationRotationSy = new List<float>();
-		AccelerationRotationSz = new List<float>();
-		int temp1 = int.Parse(PlayerPrefs.GetString("csvCounter", "0"));
-		temp1 += 1;
-		LocalDatabase.instance.savcsvcounter(temp1.ToString());
-		LocalDatabase.instance.saveExerciseData(temp);
-		print("uploading DONE.");
+		//AccelerationPointSx = new List<float>();
+		//AccelerationPointSy = new List<float>();
+		//AccelerationPointSz = new List<float>();
+		//AccelerationRotationSx = new List<float>();
+		//AccelerationRotationSy = new List<float>();
+		//AccelerationRotationSz = new List<float>();
+		if (_isNotDebugging)
+		{
+			int temp1 = int.Parse(PlayerPrefs.GetString("csvCounter", "0"));
+			temp1 += 1;
+			LocalDatabase.instance.savcsvcounter(temp1.ToString());
+			LocalDatabase.instance.saveExerciseData(temp);
+		}
+	//	print("uploading DONE.");
 	}
 	public void NewreadDataCSV(TextAsset rawDataPath, bool _isSaving)
 	{
@@ -453,7 +522,7 @@ public class CSVManager : MonoBehaviour
 			print("Total Sum of Deviation " + TotalSumDeviation + "%");
 			float Exerciseform = 100 - TotalSumDeviation;
 			print("Exercise Form " + Exerciseform + "%");
-		exerciseform.text = Exerciseform.ToString() + "%";
+	    	exerciseform.text = Exerciseform.ToString() + "%";
 			//for (int c = 0; c < SumofVelocity.Count; c++)
 			//{
 			//	speeds.Add(SumofVelocity[c]);

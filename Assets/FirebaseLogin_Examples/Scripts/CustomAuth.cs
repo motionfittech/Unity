@@ -84,7 +84,7 @@ public class CustomAuth : MonoBehaviour
 
     public void Login(string email, string password)
     {
-        print(password);
+//        print(password);
         auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
         {
             if (task.IsCanceled)

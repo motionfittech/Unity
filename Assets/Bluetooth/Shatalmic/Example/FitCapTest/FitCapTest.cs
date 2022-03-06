@@ -138,7 +138,7 @@ public class FitCapTest : MonoBehaviour
             string starttimetag = "Session date: " + theTime.Year + "-" + theTime.Month + "-" + theTime.Day + "-" + theTime.Hour + ":" + theTime.Minute + ":" + theTime.Second + "\n";
             if (!File.Exists(path))
             {
-                print("START");
+             //   print("START");
                 // write data to file
                 //string starttimetag = "Session date: " + theTime.Year + "-" + theTime.Month + "-" + theTime.Day + "-" + theTime.Hour + ":" + theTime.Minute + ":" + theTime.Second + "\n";
                 File.WriteAllText(path, "");
@@ -156,9 +156,9 @@ public class FitCapTest : MonoBehaviour
                 if (path.Length > 0)
                 {
                     FitCapStatusMessages = "Stored in this path" + path;
-                      print("path is not null "+path);
+                   //   print("path is not null "+path);
                     PlayerPrefs.SetString("path", path);
-                      GameObject.FindObjectOfType<CSVManager>().NewreadData(path, true);
+                    //  GameObject.FindObjectOfType<CSVManager>().NewreadData(path, true);
                    // GameObject.FindObjectOfType<UploadGameData>().csvFile = path;
                    // GameObject.FindObjectOfType<UploadGameData>().Trigger();
 
@@ -177,7 +177,7 @@ public class FitCapTest : MonoBehaviour
             DisplayData = false;
             TextMeshProUGUI txt = StartStopButton.GetComponentInChildren<TextMeshProUGUI>();
               txt.text = "Start";
-            print("STOP");
+          //  print("STOP");
             path = "";
         }
         // Debug.Log("Button clicked " + DisplayData);
