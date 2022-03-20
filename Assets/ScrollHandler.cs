@@ -27,7 +27,8 @@ public class ScrollHandler : MonoBehaviour
     private List<GameObject> tempSetList = new List<GameObject>();
     private void Start()
     {
-       
+        buttonname = new List<string>(0);
+        buttonname = AnimatorParameters;
         for(int i = 0; i < buttonname.Count; i++)
         {
             GameObject clone = Instantiate(prefab,parent.transform.position,Quaternion.identity);

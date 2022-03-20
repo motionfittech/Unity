@@ -32,7 +32,7 @@ public class EquationData : MonoBehaviour
 
 	public void callafter(List<float> speeds,bool _isSaving)
 	{
-		print("we callafter now");
+//		print("we callafter now");
 		float tempAverage = returnAverage(speeds);
 		float tempForce = returnForce(speeds, 5);
 		float tempWork = returnWork(speeds, tempForce);

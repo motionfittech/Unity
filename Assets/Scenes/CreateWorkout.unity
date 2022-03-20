@@ -5699,15 +5699,15 @@ MonoBehaviour:
   createExercise: []
   selectedExerciseobj: []
   AnimatorParameters:
-  - AlternatingFrontRaise
-  - Arnoldpress
-  - Bandpullapart
-  - Squat
-  - Benchpress
-  - Bentoverrow
-  - Bentlegraises
-  - Bicyclecrunch
-  - Bodyweighthamstringcurl
+  - Normal Gait
+  - Hemiplegic Gait
+  - Diplegic Gait
+  - Neuropathic Gait
+  - Myopathic Gait
+  - Choreiform Gait
+  - Ataxic Gait
+  - Parkinsonian Gait
+  - Sensory Gait
   - Bridges
   - Crunch
   - Curl

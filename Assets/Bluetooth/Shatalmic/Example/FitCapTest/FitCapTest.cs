@@ -156,9 +156,9 @@ public class FitCapTest : MonoBehaviour
                 if (path.Length > 0)
                 {
                     FitCapStatusMessages = "Stored in this path" + path;
-                      print("path is not null "+path);
-                    PlayerPrefs.SetString("path", path);
-                      GameObject.FindObjectOfType<CSVManager>().NewreadData(path, true);
+                  //    print("path is not null "+path);
+                  //  PlayerPrefs.SetString("path", path);
+                      GameObject.FindObjectOfType<CSVManager>().NewreadData(path);
                    // GameObject.FindObjectOfType<UploadGameData>().csvFile = path;
                    // GameObject.FindObjectOfType<UploadGameData>().Trigger();
 
@@ -177,7 +177,7 @@ public class FitCapTest : MonoBehaviour
             DisplayData = false;
             TextMeshProUGUI txt = StartStopButton.GetComponentInChildren<TextMeshProUGUI>();
               txt.text = "Start";
-            print("STOP");
+//            print("STOP");
             path = "";
         }
         // Debug.Log("Button clicked " + DisplayData);
