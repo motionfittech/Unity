@@ -315,7 +315,7 @@ public class CSVManager : MonoBehaviour
 		if (File.Exists(rawDataPath))
 		{
 
-			string temptext = File.ReadAllText(rawDataPath);
+			string temptext = File.ReadAllText(Path.Combine(Application.streamingAssetsPath, rawDataPath));
 			string[] records = temptext.Split("\n"[0]);
 			StartCoroutine(readData(records));
 			
@@ -475,7 +475,7 @@ public class CSVManager : MonoBehaviour
 			// Sum of Velocity
 			float sum = totalVelocityX + totalVelocityY + totalVelocityZ;
 			SumofVelocity.Add(sum);
-			print("Sum of Velocity " + sum);
+		//	print("Sum of Velocity " + sum);
 
 			for (int i = 0; i < VelocityPointSx.Count; i++)
 			{
@@ -500,24 +500,24 @@ public class CSVManager : MonoBehaviour
 
 
 
-			print("Percantage of X = " + TotalPerX * 100 + "%");
-			print("Percantage of Y = " + TotalPerY * 100 + "%");
-			print("Percantage of Z = " + TotalPerZ * 100 + "%");
+			//print("Percantage of X = " + TotalPerX * 100 + "%");
+			//print("Percantage of Y = " + TotalPerY * 100 + "%");
+			//print("Percantage of Z = " + TotalPerZ * 100 + "%");
 
 			TotalDeviationX = (TotalPerX * 100) - ParameterX;
 			TotalDeviationY = (TotalPerY * 100) - ParameterY;
 			TotalDeviationZ = (TotalPerZ * 100) - Parameterz;
 			float TotalSumDeviation = TotalDeviationX + TotalDeviationY + TotalDeviationZ;
-			print("Total Deviation on X " + TotalDeviationX + "%");
-			print("Total Deviation on Y " + TotalDeviationY + "%");
-			print("Total Deviation on Z " + TotalDeviationZ + "%");
-			print("Total Sum of Deviation " + TotalSumDeviation + "%");
+			//print("Total Deviation on X " + TotalDeviationX + "%");
+			//print("Total Deviation on Y " + TotalDeviationY + "%");
+			//print("Total Deviation on Z " + TotalDeviationZ + "%");
+			//print("Total Sum of Deviation " + TotalSumDeviation + "%");
 			float Exerciseform = 100 - TotalSumDeviation;
-			print("Exercise Form " + Exerciseform + "%");
+		//	print("Exercise Form " + Exerciseform + "%");
 		exerciseform.text = Exerciseform.ToString() + "%";
 			for (int c = 0; c < SumofVelocity.Count; c++)
 			{
-			print(SumofVelocity[c]);
+			//print(SumofVelocity[c]);
 				speeds.Add(SumofVelocity[c]);
 			}
 

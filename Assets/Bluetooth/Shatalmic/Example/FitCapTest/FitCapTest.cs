@@ -120,6 +120,7 @@ public class FitCapTest : MonoBehaviour
 
     public void OnButtonPress_StartStopButton()
     {
+        string prepath = ".csv";
         if (DisplayData == false)
         {
             DisplayData = true;
@@ -130,7 +131,8 @@ public class FitCapTest : MonoBehaviour
             System.DateTime theTime = System.DateTime.Now;
             string startstring = theTime.Year + "_" + theTime.Month + "_" + theTime.Day + "_" + theTime.Hour + "_" + theTime.Minute + "_" + theTime.Second;
             //path = Application.dataPath + "/log_" + startstring + ".csv";  // unknown
-            path = Application.persistentDataPath + "/log_" + exerciseString + "_" + startstring + ".csv"; // works, original
+            prepath = "/log_" + exerciseString + "_" + startstring + ".csv";
+            path = Path.Combine(Application.streamingAssetsPath, prepath); // works, original
 
             FitCapStatusMessages = path;
 
@@ -156,9 +158,10 @@ public class FitCapTest : MonoBehaviour
                 if (path.Length > 0)
                 {
                     FitCapStatusMessages = "Stored in this path" + path;
+              
                   //    print("path is not null "+path);
                   //  PlayerPrefs.SetString("path", path);
-                      GameObject.FindObjectOfType<CSVManager>().NewreadData(path);
+                      GameObject.FindObjectOfType<CSVManager>().NewreadData(prepath);
                    // GameObject.FindObjectOfType<UploadGameData>().csvFile = path;
                    // GameObject.FindObjectOfType<UploadGameData>().Trigger();
 
