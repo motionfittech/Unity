@@ -132,8 +132,7 @@ public class FitCapTest : MonoBehaviour
             string startstring = theTime.Year + "_" + theTime.Month + "_" + theTime.Day + "_" + theTime.Hour + "_" + theTime.Minute + "_" + theTime.Second;
             //path = Application.dataPath + "/log_" + startstring + ".csv";  // unknown
             prepath = "/log_" + exerciseString + "_" + startstring + ".csv";
-            path = Path.Combine(Application.streamingAssetsPath, prepath); // works, original
-
+            path = Application.persistentDataPath + prepath; // works, original
             FitCapStatusMessages = path;
 
             // create file if it doesn't exist

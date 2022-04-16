@@ -55,6 +55,10 @@ public class WorkoutManager : MonoBehaviour
     public Sprite openSp, closeSp;
     public Image currentSideImageIcon;
     public ExerDatabaseCsv EDC;
+    public GameObject BluetoothPopup;
+    public bool _left, _right;
+    public Button Imagebt1, Imagebt2;
+    public Slider handSlider;
     private void Awake()
     {
       //  startBt.material.SetColor("_Outline_Color", Color.black);
@@ -74,14 +78,37 @@ public class WorkoutManager : MonoBehaviour
         main_Camera.transform.position = CameraPos1;
         main_Camera.transform.eulerAngles = CameraRot1;*/
         loadworkoutData();
-        
-     //   PlayerPrefs.SetString("workout",LocalDatabase.instance.workoutData);
+
+        //   PlayerPrefs.SetString("workout",LocalDatabase.instance.workoutData);
+
+        Invoke("Openpanelbuletooth",1f);
      
     }
+
+
     private void LateUpdate()
     {
         OnCompleteAttackAnimation();   
     }
+
+    public void Openpanelbuletooth()
+    {
+        BluetoothPopup.SetActive(true);
+    }
+    public void colourSwitcherRt()
+    {
+            Imagebt1.image.color = new Color(0,0,0,0);
+            Imagebt2.image.color = new Color(0,1,0,1);
+            handSlider.value = 1;
+            
+    }
+    public void colourSwitcherLt()
+    {
+        Imagebt1.image.color = new Color(0, 1, 0, 1);
+        Imagebt2.image.color = new Color(0,0,0,0);
+        handSlider.value = 0;
+    }
+    
 
     void OnCompleteAttackAnimation()
     {

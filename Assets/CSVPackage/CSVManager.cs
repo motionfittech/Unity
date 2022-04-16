@@ -50,7 +50,7 @@ public class CSVManager : MonoBehaviour
 	float TotalDeviationX;
 	float TotalDeviationY;
 	float TotalDeviationZ;
-	public Text gameversion;
+//	public Text gameversion;
 	public TextMeshProUGUI exerciseform;
 	public TextMeshProUGUI fatiguetxt;
 	public TextMeshProUGUI muscleBalancetxt;
@@ -59,7 +59,7 @@ public class CSVManager : MonoBehaviour
 	{
     //	Invoke("call", 2);
 
-		gameversion.text = Application.version;
+	//	gameversion.text = Application.version;
 	}
 
 	public void call()
@@ -138,7 +138,7 @@ public class CSVManager : MonoBehaviour
         {
 			
 			string[] temprecords = records[i].Split(","[0]);
-			//print("DATA = " + records[i]);
+			print("DATA = " + records[i]);
 			if (temprecords.Length > 2)
 			{
 				//	print("DATA = 2 " + temprecords.Length);
@@ -176,13 +176,13 @@ public class CSVManager : MonoBehaviour
 			}
 			else
 			{
-				//	print("current row is empty " + i);
+					print("current row is empty " + i);
 			}
 			i++;
 			yield return null;
         }
-
-		StartCoroutine(getAcceleration());
+		StartCoroutine(uploaddata());
+	//	StartCoroutine(getAcceleration());
     }
 	IEnumerator getAcceleration()
     {
@@ -275,9 +275,9 @@ public class CSVManager : MonoBehaviour
 			yield return null;
 		}
 		
-		print("Percantage of X = " + TotalPerX * 100 + "%");
-		print("Percantage of Y = " + TotalPerY * 100 + "%");
-		print("Percantage of Z = " + TotalPerZ * 100 + "%");
+			print("Percantage of X = " + TotalPerX * 100 + "%");
+			print("Percantage of Y = " + TotalPerY * 100 + "%");
+			print("Percantage of Z = " + TotalPerZ * 100 + "%");
 
 		TotalDeviationX = (TotalPerX * 100) - ParameterX;
 		TotalDeviationY = (TotalPerY * 100) - ParameterY;
@@ -315,7 +315,7 @@ public class CSVManager : MonoBehaviour
 		if (File.Exists(rawDataPath))
 		{
 
-			string temptext = File.ReadAllText(Path.Combine(Application.streamingAssetsPath, rawDataPath));
+			string temptext = File.ReadAllText(Application.persistentDataPath + rawDataPath);
 			string[] records = temptext.Split("\n"[0]);
 			StartCoroutine(readData(records));
 			
