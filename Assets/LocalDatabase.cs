@@ -207,7 +207,7 @@ public class LocalDatabase : MonoBehaviour
             yield return null;
         }
 
-        manageCharacter(chars, temp);
+        manageCharacter(chars, 101);
         FadeImage.SetActive(false);
 
     }

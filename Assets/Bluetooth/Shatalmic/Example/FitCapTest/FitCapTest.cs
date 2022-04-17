@@ -10,6 +10,9 @@ public class FitCapTest : MonoBehaviour
 {
     public string DeviceName = "FitCap1";
 
+
+   
+
     public Text AccelerometerText;
     public Text FitCapStatusText;
     public Text BatteryLevelText;
@@ -160,9 +163,10 @@ public class FitCapTest : MonoBehaviour
               
                   //    print("path is not null "+path);
                   //  PlayerPrefs.SetString("path", path);
-                      GameObject.FindObjectOfType<CSVManager>().NewreadData(prepath);
-                   // GameObject.FindObjectOfType<UploadGameData>().csvFile = path;
-                   // GameObject.FindObjectOfType<UploadGameData>().Trigger();
+                      GameObject.FindObjectOfType<CSVManager>().NewreadDataCSV(GameObject.FindObjectOfType<CSVManager>().csvFile, true);
+                   
+                    // GameObject.FindObjectOfType<UploadGameData>().csvFile = path;
+                    // GameObject.FindObjectOfType<UploadGameData>().Trigger();
 
                 }
                 else
