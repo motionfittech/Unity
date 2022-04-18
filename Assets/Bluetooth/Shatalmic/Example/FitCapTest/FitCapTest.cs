@@ -9,7 +9,7 @@ using TMPro;
 public class FitCapTest : MonoBehaviour
 {
     public string DeviceName = "FitCap1";
-
+    public CSVManager csv;
     public Text AccelerometerText;
     public Text FitCapStatusText;
     public Text BatteryLevelText;
@@ -158,7 +158,7 @@ public class FitCapTest : MonoBehaviour
                     FitCapStatusMessages = "Stored in this path" + path;
                       print("path is not null "+path);
                     PlayerPrefs.SetString("path", path);
-                      GameObject.FindObjectOfType<CSVManager>().NewreadData(path, true);
+                      csv.NewreadData(path, true);
                    // GameObject.FindObjectOfType<UploadGameData>().csvFile = path;
                    // GameObject.FindObjectOfType<UploadGameData>().Trigger();
 

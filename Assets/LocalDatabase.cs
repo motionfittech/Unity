@@ -152,7 +152,7 @@ public class LocalDatabase : MonoBehaviour
             if (task.IsFaulted)
             {
                 // Failure
-                print("dsfdsf");
+              
             }
             else if (task.IsCompleted)
             {
@@ -172,7 +172,7 @@ public class LocalDatabase : MonoBehaviour
     public void saveExerciseData(MyClass temp)
     {
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
-        dbRef.Child("users").Child(UID).Child("CSV_Data").SetRawJsonValueAsync(JsonUtility.ToJson(temp));
+        dbRef.Child("users").Child(UID).Child("CSV_Data").Child(GameObject.FindObjectOfType<CSVManager>().ExerciseTxt.text + PlayerPrefs.GetString("csvCounter","")).SetRawJsonValueAsync(JsonUtility.ToJson(temp));
     }
 
     public void repData(string Exercisename, string Data)
@@ -207,7 +207,7 @@ public class LocalDatabase : MonoBehaviour
             yield return null;
         }
 
-        manageCharacter(chars, temp);
+        manageCharacter(chars, 101);
         FadeImage.SetActive(false);
 
     }
