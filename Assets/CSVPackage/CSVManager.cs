@@ -99,35 +99,7 @@ public class CSVManager : MonoBehaviour
 			return;
 		calculateAllData(records);
 	}
-	IEnumerator uploaddata()
-	{
-		LocalDatabase.MyClass temp = new LocalDatabase.MyClass();
-		temp.counter = AccelerationPointSx.Count;
-		temp.setArray();
-		int indexer = 0;
-		while (temp.intArray.Length > indexer)
-		{
-			temp.intArray[indexer] = AccelerationPointSx[indexer].ToString() + "," + AccelerationPointSy[indexer].ToString() + "," + AccelerationPointSz[indexer].ToString() +","+ AccelerationRotationSx[indexer].ToString() + "," + AccelerationRotationSy[indexer].ToString() + "," + AccelerationRotationSz[indexer].ToString();
-			indexer += 1;
-			print("uploading data.....");
-			Loadingscreen.SetActive(true);
-			UpdataLoadingtxt.text = "Uploading Data please wait , " + indexer.ToString();
-			yield return new WaitForSeconds(0.01f);
-		}
-		AccelerationPointSx = new List<float>();
-		AccelerationPointSy = new List<float>();
-		AccelerationPointSz = new List<float>();
-		AccelerationRotationSx = new List<float>();
-		AccelerationRotationSy = new List<float>();
-		AccelerationRotationSz = new List<float>();
-		int temp1 = int.Parse(PlayerPrefs.GetString("csvCounter", "0"));
-		temp1 += 1;
-		LocalDatabase.instance.savcsvcounter(temp1.ToString());
-		LocalDatabase.instance.saveExerciseData(temp);
-		Loadingscreen.SetActive(false);
-		UpdataLoadingtxt.gameObject.SetActive(false);
-		print("uploading DONE.");
-	}
+	
 
 	public void calculateAllData(string [] records)
     {
@@ -276,7 +248,35 @@ public class CSVManager : MonoBehaviour
 
 	}
 
-
+	IEnumerator uploaddata()
+	{
+		LocalDatabase.MyClass temp = new LocalDatabase.MyClass();
+		temp.counter = AccelerationPointSx.Count;
+		temp.setArray();
+		int indexer = 0;
+		while (temp.intArray.Length > indexer)
+		{
+			temp.intArray[indexer] = AccelerationPointSx[indexer].ToString() + "," + AccelerationPointSy[indexer].ToString() + "," + AccelerationPointSz[indexer].ToString() + "," + AccelerationRotationSx[indexer].ToString() + "," + AccelerationRotationSy[indexer].ToString() + "," + AccelerationRotationSz[indexer].ToString();
+			indexer += 1;
+			print("uploading data.....");
+			Loadingscreen.SetActive(true);
+			UpdataLoadingtxt.text = "Uploading Data please wait , " + indexer.ToString();
+			yield return new WaitForSeconds(0.01f);
+		}
+		AccelerationPointSx = new List<float>();
+		AccelerationPointSy = new List<float>();
+		AccelerationPointSz = new List<float>();
+		AccelerationRotationSx = new List<float>();
+		AccelerationRotationSy = new List<float>();
+		AccelerationRotationSz = new List<float>();
+		int temp1 = int.Parse(PlayerPrefs.GetString("csvCounter", "0"));
+		temp1 += 1;
+		LocalDatabase.instance.savcsvcounter(temp1.ToString());
+		LocalDatabase.instance.saveExerciseData(temp);
+		Loadingscreen.SetActive(false);
+		UpdataLoadingtxt.gameObject.SetActive(false);
+		print("uploading DONE.");
+	}
 
 	public void incrementList(string b)
     {

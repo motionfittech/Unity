@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Base (Unlit)
   m_Shader: {fileID: 4800000, guid: 655c7c9cd39597648b0973c1aa721acd, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: WIREFRAME_COLOR_TEXTURE_TRANSPARENCY_ON WIREFRAME_FRESNEL_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -71,6 +71,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _BumpScale: 1
     - _Cull: 2
@@ -89,11 +90,11 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _WireframeShader_Diameter: 0.5
+    - _WireframeShader_Diameter: 1
     - _WireframeShader_Smoothness: 0
-    - _WireframeShader_Thickness: 0.01
+    - _WireframeShader_Thickness: 0
     - _Wireframe_BaseVertexColor: 0
-    - _Wireframe_ColorEmissionStrength: 1
+    - _Wireframe_ColorEmissionStrength: 5
     - _Wireframe_DistanceFade: 0
     - _Wireframe_DistanceFadeEnd: 10
     - _Wireframe_DistanceFadeStart: 5
@@ -103,7 +104,7 @@ Material:
     - _Wireframe_DynamicMaskEnumID: 0
     - _Wireframe_DynamicMaskInvert: 0
     - _Wireframe_DynamicMaskType: 1
-    - _Wireframe_FresnelBias: 0
+    - _Wireframe_FresnelBias: -0.05
     - _Wireframe_FresnelEnumID: 0
     - _Wireframe_FresnelInvert: 0
     - _Wireframe_FresnelPow: 1
@@ -132,10 +133,11 @@ Material:
     - _Wireframe_WireVertexColor: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _Wireframe_Color: {r: 0.1792453, g: 0.1792453, b: 0.1792453, a: 1}
+    - _Wireframe_Color: {r: 0, g: 0.5199942, b: 1, a: 1}
     - _Wireframe_ColorTexture_Scroll: {r: 0, g: 0, b: 0, a: 0}
     - _Wireframe_MainTex_Scroll: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
