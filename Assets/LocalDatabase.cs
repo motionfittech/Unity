@@ -11,7 +11,7 @@ public class LocalDatabase : MonoBehaviour
     public string UID;
     public static LocalDatabase instance;
     private DataSnapshot levelSnapshot;
-
+    public int ExeCounter = 0;
     private void Awake()
     {
         if (instance != null)
@@ -61,6 +61,7 @@ public class LocalDatabase : MonoBehaviour
         PlayerPrefs.SetString("uid", UID);
         loadusername();
         loadmail();
+        getExerciseCount();
     }
 
 
@@ -174,7 +175,13 @@ public class LocalDatabase : MonoBehaviour
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
         dbRef.Child("users").Child(UID).Child("CSV_Data").Child(GameObject.FindObjectOfType<CSVManager>().ExerciseTxt.text + PlayerPrefs.GetString("csvCounter","")).SetRawJsonValueAsync(JsonUtility.ToJson(temp));
     }
-
+    public void saveVelocityData(float value)
+    {
+      
+        Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
+        dbRef.Child("users").Child(UID).Child("exercisedata").Child("averagevelocity").Child(ExeCounter.ToString()).SetRawJsonValueAsync(value.ToString());
+       
+    }
     public void repData(string Exercisename, string Data)
     {
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
@@ -211,6 +218,31 @@ public class LocalDatabase : MonoBehaviour
         FadeImage.SetActive(false);
 
     }
+    public void getExerciseCount()
+    {
+     
+      
+        
+            Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
+            dbRef.Child("users").Child(UID).Child("exercisedata").Child("averagevelocity").GetValueAsync().ContinueWithOnMainThread(task =>
+            {
+                if (task.IsFaulted)
+                {
+                    // Handle the error...
+                }
+                else if (task.IsCompleted)
+                {
+                   
+                    DataSnapshot snapshot = task.Result;
+                  
+                    ExeCounter = (int)snapshot.ChildrenCount;
+                    print(ExeCounter +"aaaa");
+                }
+            });
+
+       
+     }
+
     public void setCharacter(string indexer)
     {
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;

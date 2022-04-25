@@ -13,6 +13,7 @@ public class ExerDatabaseCsv : MonoBehaviour
 	private EquationData ED;
 	public List<string> csvfiles = new List<string>();
 	public List<float> GraphDataPoints = new List<float>();
+	public List<float> datapoints = new List<float>();
     private void Start()
     {
 		ED = GetComponent<CSVManager>().ED;
@@ -22,14 +23,22 @@ public class ExerDatabaseCsv : MonoBehaviour
 		csvfiles.Add(getPath() + "ForceData" + ".csv");
 		csvfiles.Add(getPath() + "PowerData" + ".csv");
 		csvfiles.Add(getPath() + "WorkData" + ".csv");
-
+		//Invoke("runData",2);
 	}
+
+	public void runData()
+    {
+		readData(0);
+		readData(1);
+		readData(2);
+	}
+
     public void readData(int index)
 	{
-		/*if (csvfiles[index].Length == 0)
+		if (csvfiles[index].Length == 0)
 			return;
 
-
+		print("File exite");
 		datapoints = new List<float>(0);
 		ED.bcf.barChart.DataSource.ClearCategories();
 		
@@ -71,13 +80,13 @@ public class ExerDatabaseCsv : MonoBehaviour
 				}
 
 			}
-		}*/
-		//	ED.bcf.addbarValue(datapoints);
-		//ED.gcf.Multicall(datapoints);
+		}
+			ED.bcf.addbarValue(datapoints);
+		ED.gcf.Multicall(datapoints);
 
 
-		ED.bcf.addbarSingleValue(GraphDataPoints[index]);
-		ED.gcf.Singcall(GraphDataPoints[index]);
+	//	ED.bcf.addbarSingleValue(GraphDataPoints[index]);
+		//ED.gcf.Singcall(GraphDataPoints[index]);
 
 	}
 

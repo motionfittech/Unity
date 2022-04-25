@@ -23,10 +23,10 @@ public class CSVManager : MonoBehaviour
 
 	public EquationData ED;
 	public string csvName;
-	//New
-	float VIx;
-	float VIy;
-	float VIz;
+	//New inistal velocity
+	float VIx = 0;
+	float VIy = 0;
+	float VIz = 0;
 	List<float> AccelerationPointSx = new List<float>();
 	List<float> AccelerationPointSy = new List<float>();
 	List<float> AccelerationPointSz = new List<float>();
@@ -61,7 +61,7 @@ public class CSVManager : MonoBehaviour
 
 	private void Start()
 	{
-	// 	Invoke("call", 2);
+	 	Invoke("call", 2);
 
 		gameversion.text = Application.version;
 	}
@@ -70,7 +70,7 @@ public class CSVManager : MonoBehaviour
 	{
 		//PlayerPrefs.SetString("path", "C:/Users/asus/Downloads/Log Folder 2/AndrewDeadlift20reps.csv");
 		//	NewreadData("C:/Users/asus/Downloads/Log Folder 2/"+csvName+".csv", false);
-	//	NewreadDataCSV(csvFile,true);
+		NewreadDataCSV(csvFile,true);
 	}
 
 	public void NewreadData(string rawDataPath, bool _isSaving)
@@ -112,49 +112,29 @@ public class CSVManager : MonoBehaviour
 		{
 
 			string[] temprecords = records[i].Split(","[0]);
-			//print("DATA = " + records[i]);
-			if (temprecords.Length > 2)
+			
+			if (temprecords.Length > 0)
 			{
-				//	print("DATA = 2 " + temprecords.Length);
-				Vector3 CsvPoints = new Vector3(float.Parse(temprecords[0]) / 1000.9f, float.Parse(temprecords[1]) / 1000.9f, float.Parse(temprecords[2]) / 1000.9f);
-				Vector3 CsvPoints2 = new Vector3(float.Parse(temprecords[3]) / 1000.9f, float.Parse(temprecords[4]) / 1000.9f, float.Parse(temprecords[5]) / 1000.9f);
-				//addData(CsvPoints[0].ToString(), CsvPoints[1].ToString(), CsvPoints[2].ToString(), CsvPoints2[0].ToString(), CsvPoints2[1].ToString(), CsvPoints2[2].ToString());
-				//	Vector3 FliteredValues2 = new Vector3(float.Parse(temprecords[3]), float.Parse(temprecords[4]), float.Parse(temprecords[5]));
-				//	print("DATA = 3 " + CsvPoints);
+				
+				Vector3 CsvPoints = new Vector3(float.Parse(temprecords[0]), float.Parse(temprecords[1]), float.Parse(temprecords[2]));
+				Vector3 CsvPoints2 = new Vector3(float.Parse(temprecords[3]), float.Parse(temprecords[4]) , float.Parse(temprecords[5]));
+				
 
 				Loadingscreen.SetActive(true);
 				UpdataLoadingtxt.gameObject.SetActive(true);
 				UpdataLoadingtxt.text = "Getting Data please wait , " + i.ToString();
-				if (i > 0)
-				{
-					//	print("DATA = 4 " + i);
-				}
-				else
-				{
-					// VI
-
-					VIx = CsvPoints.x;
-					VIy = CsvPoints.y;
-					VIz = CsvPoints.z;
-					ParameterX = Mathf.Abs(CsvPoints.x);
-					ParameterY = Mathf.Abs(CsvPoints.y);
-					//	print("DATA = 5 " + VIx);
-					Parameterz = Mathf.Abs(CsvPoints.z);
-				}
-
-				//print("DATA = 6 ");
-				//print("DATA = 6.1 " + CsvPoints);
+				
 				AccelerationPointSx.Add(CsvPoints.x);
 				AccelerationPointSy.Add(CsvPoints.y);
 				AccelerationPointSz.Add(CsvPoints.z);
 				AccelerationRotationSx.Add(CsvPoints2.x);
 				AccelerationRotationSy.Add(CsvPoints2.y);
 				AccelerationRotationSz.Add(CsvPoints2.z);
-				//print("DATA = 7 " + AccelerationPointSx);
+				
 			}
 			else
 			{
-				//	print("current row is empty " + i);
+					print("current row is empty " + i);
 			}
 
 
@@ -162,9 +142,9 @@ public class CSVManager : MonoBehaviour
 
 		for (int i = 0; i < AccelerationPointSx.Count; i++)
 		{
-			//Velocity Equation
-			float VelocityPointCalculation = (AccelerationPointSx[i] - VIx) / Time.deltaTime;
-			VIx = AccelerationPointSx[i];
+			//Velocity Equation // i is time here
+			float VelocityPointCalculation = VIx+(i/10)* AccelerationPointSx[i];
+			VIx = VelocityPointCalculation;
 
 			totalVelocityX += VelocityPointCalculation;
 			VelocityPointSx.Add(VelocityPointCalculation);
@@ -175,8 +155,8 @@ public class CSVManager : MonoBehaviour
 		for (int i = 0; i < AccelerationPointSy.Count; i++)
 		{
 			//Velocity Equation
-			float VelocityPointCalculation = (AccelerationPointSy[i] - VIy) / Time.deltaTime;
-			VIy = AccelerationPointSy[i];
+			float VelocityPointCalculation = VIy + (i / 10) * AccelerationPointSy[i];
+			VIy = VelocityPointCalculation;
 
 			totalVelocityY += VelocityPointCalculation;
 			VelocityPointSy.Add(VelocityPointCalculation);
@@ -187,8 +167,8 @@ public class CSVManager : MonoBehaviour
 		for (int i = 0; i < AccelerationPointSz.Count; i++)
 		{
 			//Velocity Equation
-			float VelocityPointCalculation = (AccelerationPointSz[i] - VIz) / Time.deltaTime;
-			VIz = AccelerationPointSz[i];
+			float VelocityPointCalculation = VIz + (i / 10) * AccelerationPointSz[i];
+			VIz = VelocityPointCalculation;
 
 			totalVelocityZ += VelocityPointCalculation;
 			VelocityPointSz.Add(VelocityPointCalculation);
@@ -196,7 +176,7 @@ public class CSVManager : MonoBehaviour
 
 		}
 		// Sum of Velocity
-		float sum = totalVelocityX + totalVelocityY + totalVelocityZ;
+		float sum = (totalVelocityX + totalVelocityY + totalVelocityZ)/2;
 		SumofVelocity.Add(sum);
 		print("Sum of Velocity " + sum);
 
@@ -240,10 +220,11 @@ public class CSVManager : MonoBehaviour
 		exerciseform.text = Exerciseform.ToString() + "%";
 		for (int c = 0; c < SumofVelocity.Count; c++)
 		{
+			LocalDatabase.instance.saveVelocityData(SumofVelocity[c]);
 			speeds.Add(SumofVelocity[c]);
 		}
 
-		//ED.callafter(speeds, true);
+		ED.callafter(speeds, true);
 		StartCoroutine(uploaddata());       //}
 
 	}
@@ -261,6 +242,7 @@ public class CSVManager : MonoBehaviour
 			print("uploading data.....");
 			Loadingscreen.SetActive(true);
 			UpdataLoadingtxt.text = "Uploading Data please wait , " + indexer.ToString();
+			
 			yield return new WaitForSeconds(0.01f);
 		}
 		AccelerationPointSx = new List<float>();
@@ -273,6 +255,7 @@ public class CSVManager : MonoBehaviour
 		temp1 += 1;
 		LocalDatabase.instance.savcsvcounter(temp1.ToString());
 		LocalDatabase.instance.saveExerciseData(temp);
+
 		Loadingscreen.SetActive(false);
 		UpdataLoadingtxt.gameObject.SetActive(false);
 		print("uploading DONE.");

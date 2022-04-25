@@ -32,7 +32,7 @@ public class EquationData : MonoBehaviour
 
 	public void callafter(List<float> speeds,bool _isSaving)
 	{
-		print("we callafter now");
+		print("we callafter now " + speeds.Count);
 		float tempAverage = returnAverage(speeds);
 		float tempForce = returnForce(speeds, 5);
 		float tempWork = returnWork(speeds, tempForce);
@@ -83,6 +83,7 @@ public class EquationData : MonoBehaviour
 		//	gcf.Singcall(tempAverage);
 		if (_isSaving)
 		{
+			print("saving data ");
 			EDC.addData(0, tempAverage.ToString());
 			EDC.addData(1, tempForce.ToString());
 			EDC.addData(2, tempWork.ToString());
@@ -131,7 +132,7 @@ public class EquationData : MonoBehaviour
 
 		}
 		// Avelocity = TotalVelocity/TotalCount
-		return averageTotal / speeds.Count;
+		return Mathf.Abs(averageTotal / speeds.Count);
 	}
 	float returnForce(List<float> speeds, float mass)
 	{
