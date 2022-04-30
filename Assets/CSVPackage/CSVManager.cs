@@ -61,7 +61,7 @@ public class CSVManager : MonoBehaviour
 
 	private void Start()
 	{
-	 	Invoke("call", 2);
+	// 	Invoke("call", 2);
 
 		gameversion.text = Application.version;
 	}
@@ -113,7 +113,7 @@ public class CSVManager : MonoBehaviour
 
 			string[] temprecords = records[i].Split(","[0]);
 			
-			if (temprecords.Length > 0)
+			if (temprecords.Length > 2)
 			{
 				
 				Vector3 CsvPoints = new Vector3(float.Parse(temprecords[0]), float.Parse(temprecords[1]), float.Parse(temprecords[2]));

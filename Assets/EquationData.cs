@@ -7,7 +7,7 @@ public class EquationData : MonoBehaviour
 {
 
 
-	public BarChartFeed bcf;
+	//public BarChartFeed bcf;
 	public GraphChartFeed gcf;
 	public ExerDatabaseCsv EDC;
 	public TextMeshProUGUI velocityAverageTxt, ForceTxt, WorkTxt, PowerTxt;
