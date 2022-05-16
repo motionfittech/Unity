@@ -16,7 +16,7 @@ public class ExerDatabaseCsv : MonoBehaviour
 	public List<float> datapoints = new List<float>();
     private void Start()
     {
-		ED = GetComponent<CSVManager>().ED;
+//		ED = GetComponent<CSVManager>().ED;
 
 		
 		//csvfiles.Add(getPath() +"ExerciseData" +".csv");

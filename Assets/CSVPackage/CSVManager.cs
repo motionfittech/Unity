@@ -11,22 +11,22 @@ public class CSVManager : MonoBehaviour
 	private char lineSeperater = '\n'; // It defines line seperate character
 	private char fieldSeperator = ','; // It defines field seperate chracter
 	private int indexer = 0;
-	public AccelerometerObjectControl AOC;
+//	public AccelerometerObjectControl AOC;
 	public string saveFilename = "Default";
 	[Header("Acceleration Value in CSV Index")]
 
-	public List<string> a = new List<string>();
-	public int IndexX = 0;
-	public int IndexY = 1;
-	public int IndexZ = 2 ;
+	//public List<string> a = new List<string>();
+	//public int IndexX = 0;
+	//public int IndexY = 1;
+	//public int IndexZ = 2 ;
 
 
-	public EquationData ED;
-	public string csvName;
-	//New inistal velocity
-	float VIx = 0;
-	float VIy = 0;
-	float VIz = 0;
+	//public EquationData ED;
+	//public string csvName;
+	////New inistal velocity
+	//float VIx = 0;
+	//float VIy = 0;
+	//float VIz = 0;
 	List<float> AccelerationPointSx = new List<float>();
 	List<float> AccelerationPointSy = new List<float>();
 	List<float> AccelerationPointSz = new List<float>();
@@ -36,21 +36,21 @@ public class CSVManager : MonoBehaviour
 	List<float> VelocityPointSx = new List<float>();
 	List<float> VelocityPointSy = new List<float>();
 	List<float> VelocityPointSz = new List<float>();
-	float totalVelocityX;
-	float totalVelocityY;
-	float totalVelocityZ;
-	List<float> SumofVelocity = new List<float>();
-	float TotalPerX;
-	float TotalPerY;
-	float TotalPerZ;
-	public float ParameterX = 20;
-	public float ParameterY = -30;
-	public float Parameterz = 50;
-	float TotalDeviationX;
-	float TotalDeviationY;
-	float TotalDeviationZ;
-	public Text gameversion;
-	public TextMeshProUGUI exerciseform;
+	//float totalVelocityX;
+	//float totalVelocityY;
+	//float totalVelocityZ;
+	//List<float> SumofVelocity = new List<float>();
+	//float TotalPerX;
+	//float TotalPerY;
+	//float TotalPerZ;
+	//public float ParameterX = 20;
+	//public float ParameterY = -30;
+	//public float Parameterz = 50;
+	//float TotalDeviationX;
+	//float TotalDeviationY;
+	//float TotalDeviationZ;
+	//public Text gameversion;
+	//public TextMeshProUGUI exerciseform;
 
 
 	public GameObject Loadingscreen;
@@ -63,7 +63,7 @@ public class CSVManager : MonoBehaviour
 	{
 	// 	Invoke("call", 2);
 
-		gameversion.text = Application.version;
+	//	gameversion.text = Application.version;
 	}
 
 	public void call()
@@ -123,15 +123,15 @@ public class CSVManager : MonoBehaviour
 				Loadingscreen.SetActive(true);
 				UpdataLoadingtxt.gameObject.SetActive(true);
 				UpdataLoadingtxt.text = "Getting Data please wait , " + i.ToString();
-				
-				AccelerationPointSx.Add(CsvPoints.x);
-				AccelerationPointSy.Add(CsvPoints.y);
-				AccelerationPointSz.Add(CsvPoints.z);
-				AccelerationRotationSx.Add(CsvPoints2.x);
-				AccelerationRotationSy.Add(CsvPoints2.y);
-				AccelerationRotationSz.Add(CsvPoints2.z);
-				
-			}
+
+                AccelerationPointSx.Add(CsvPoints.x);
+                AccelerationPointSy.Add(CsvPoints.y);
+                AccelerationPointSz.Add(CsvPoints.z);
+                AccelerationRotationSx.Add(CsvPoints2.x);
+                AccelerationRotationSy.Add(CsvPoints2.y);
+                AccelerationRotationSz.Add(CsvPoints2.z);
+
+            }
 			else
 			{
 					print("current row is empty " + i);
@@ -224,7 +224,7 @@ public class CSVManager : MonoBehaviour
 	//		speeds.Add(SumofVelocity[c]);
 	//	}
 
-		ED.callafter(speeds, true);
+		//ED.callafter(speeds, true);
 		StartCoroutine(uploaddata());       //}
 
 	}
@@ -261,52 +261,52 @@ public class CSVManager : MonoBehaviour
 		print("uploading DONE.");
 	}
 
-	public void incrementList(string b)
-    {
-		a.Add(b);
-    }
+	//public void incrementList(string b)
+ //   {
+	//	a.Add(b);
+ //   }
 
 
-	public List<string> pushdata(List<string> temp)
-    {
-		return temp;
-    }
+//	public List<string> pushdata(List<string> temp)
+//    {
+//		return temp;
+//    }
 
-	public void addData(string X,string Y, string Z,string GX,string GY, string GZ)
-	{
+//	public void addData(string X,string Y, string Z,string GX,string GY, string GZ)
+//	{
 
-      //  Following line adds data to CSV file
+//      //  Following line adds data to CSV file
 
-        if (indexer > 0)
-        {
-            File.AppendAllText(getPath() + "/Resources/" + saveFilename + ".csv", lineSeperater + X + fieldSeperator + Y + fieldSeperator + Z + fieldSeperator + GX + fieldSeperator + GY + fieldSeperator + GZ);
-        }
-        else
-        {
-            File.AppendAllText(getPath() + "/Resources/"+ saveFilename + ".csv", X + fieldSeperator + Y + fieldSeperator + Z + fieldSeperator + GX + fieldSeperator + GY + fieldSeperator + GZ);
-			indexer += 1;
-		}
+//        if (indexer > 0)
+//        {
+//            File.AppendAllText(getPath() + "/Resources/" + saveFilename + ".csv", lineSeperater + X + fieldSeperator + Y + fieldSeperator + Z + fieldSeperator + GX + fieldSeperator + GY + fieldSeperator + GZ);
+//        }
+//        else
+//        {
+//            File.AppendAllText(getPath() + "/Resources/"+ saveFilename + ".csv", X + fieldSeperator + Y + fieldSeperator + Z + fieldSeperator + GX + fieldSeperator + GY + fieldSeperator + GZ);
+//			indexer += 1;
+//		}
 	
-	}
+//	}
 
 	
-	private static string getPath()
-	{
-#if UNITY_EDITOR
-		return Application.dataPath;
-#elif UNITY_ANDROID
-		return Application.persistentDataPath;// +fileName;
-#elif UNITY_IPHONE
-		return GetiPhoneDocumentsPath();// +"/"+fileName;
-#else
-		return Application.dataPath;// +"/"+ fileName;
-#endif
-	}
-	// Get the path in iOS device
-	private static string GetiPhoneDocumentsPath()
-	{
-		string path = Application.dataPath.Substring(0, Application.dataPath.Length - 5);
-		path = path.Substring(0, path.LastIndexOf('/'));
-		return path + "/Documents";
-	}
+//	private static string getPath()
+//	{
+//#if UNITY_EDITOR
+//		return Application.dataPath;
+//#elif UNITY_ANDROID
+//		return Application.persistentDataPath;// +fileName;
+//#elif UNITY_IPHONE
+//		return GetiPhoneDocumentsPath();// +"/"+fileName;
+//#else
+//		return Application.dataPath;// +"/"+ fileName;
+//#endif
+//	}
+//	// Get the path in iOS device
+//	private static string GetiPhoneDocumentsPath()
+//	{
+//		string path = Application.dataPath.Substring(0, Application.dataPath.Length - 5);
+//		path = path.Substring(0, path.LastIndexOf('/'));
+//		return path + "/Documents";
+//	}
 }

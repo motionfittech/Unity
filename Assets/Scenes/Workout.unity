@@ -8110,7 +8110,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: POWER
+          m_StringArgument: Fatigue
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1370509581}
@@ -19075,8 +19075,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114702634043980212}
   m_HandleRect: {fileID: 224421591947494422}
   m_Direction: 2
-  m_Value: 0.99999964
-  m_Size: 0.5003482
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -19218,13 +19218,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1244025765577296}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.41960785}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -20240,8 +20240,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -13, y: 90.58301}
-  m_SizeDelta: {x: -26, y: -181.16504}
+  m_AnchoredPosition: {x: -13, y: 8.9218}
+  m_SizeDelta: {x: -26, y: -17.8424}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224361538412012328
 RectTransform:
@@ -20302,7 +20302,7 @@ RectTransform:
   m_Father: {fileID: 224060826897310634}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.49965158}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.99999976}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -20398,7 +20398,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 162.38684}
+  m_SizeDelta: {x: 0, y: -0.935791}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224809410669922195
 RectTransform:
