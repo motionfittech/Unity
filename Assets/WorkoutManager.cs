@@ -55,6 +55,8 @@ public class WorkoutManager : MonoBehaviour
     public Sprite openSp, closeSp;
     public Image currentSideImageIcon;
     public ExerDatabaseCsv EDC;
+    public TextMeshProUGUI form, imbalance, velocity, velocityloss;
+
     private void Awake()
     {
       //  startBt.material.SetColor("_Outline_Color", Color.black);
@@ -67,7 +69,10 @@ public class WorkoutManager : MonoBehaviour
             Application.LoadLevel(5);
         }
     }
-
+    void callshowData()
+    {
+        LocalDatabase.instance.LoadSeeData();
+    }
     private void Start()
     {
       /*  main_Camera = Camera.main;

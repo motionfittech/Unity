@@ -164,6 +164,47 @@ public class LocalDatabase : MonoBehaviour
             }
         });
     }
+    public void LoadSeeData()
+    {
+        Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
+        dbRef.Child("users").Child(UID).Child("CSV_Data").Child(GameObject.FindObjectOfType<CSVManager>().ExerciseTxt.text + PlayerPrefs.GetString("csvCounter","")).Child("metrics").GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted)
+            {
+                // Failure
+
+            }
+            else if (task.IsCompleted)
+            {
+                DataSnapshot snapshot = task.Result;
+                //    print(snapshot.Value.ToString());
+                int counter = 0;
+                
+
+               foreach(var temp in snapshot.Key)
+                {
+                    if (counter == 0)
+                    {
+                        GameObject.FindObjectOfType<WorkoutManager>().form.text = temp.ToString();
+                    }
+                    else if (counter == 1)
+                    {
+                        GameObject.FindObjectOfType<WorkoutManager>().imbalance.text = temp.ToString();
+                    }
+                    else if (counter == 2)
+                    {
+                        GameObject.FindObjectOfType<WorkoutManager>().velocity.text = temp.ToString();
+                    }
+                    else if (counter == 3)
+                    {
+                        GameObject.FindObjectOfType<WorkoutManager>().velocityloss.text = temp.ToString();
+                    }
+                    counter++;
+                }
+                // Success
+            }
+        });
+    }
     public void savcsvcounter(string Data)
     {
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
