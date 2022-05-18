@@ -107,7 +107,7 @@ public class ChangeSceneWithButton : MonoBehaviour
 
     public void startGame()
     {
-        Sidepanel.DOFade(1,2).SetEase(Ease.Flash);
+        Sidepanel.DOFade(0.5f,2).SetEase(Ease.Flash);
     }
 
 

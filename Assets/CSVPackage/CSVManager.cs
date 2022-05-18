@@ -54,7 +54,7 @@ public class CSVManager : MonoBehaviour
 
 
 	public GameObject Loadingscreen;
-	public TextMeshProUGUI UpdataLoadingtxt;
+//	public TextMeshProUGUI UpdataLoadingtxt;
 	public TextMeshProUGUI ExerciseTxt;
 
 
@@ -121,8 +121,8 @@ public class CSVManager : MonoBehaviour
 				
 
 				Loadingscreen.SetActive(true);
-				UpdataLoadingtxt.gameObject.SetActive(true);
-				UpdataLoadingtxt.text = "Getting Data please wait , " + i.ToString();
+			//	UpdataLoadingtxt.gameObject.SetActive(true);
+			//	UpdataLoadingtxt.text = "Getting Data please wait , " + i.ToString();
 
                 AccelerationPointSx.Add(CsvPoints.x);
                 AccelerationPointSy.Add(CsvPoints.y);
@@ -241,7 +241,7 @@ public class CSVManager : MonoBehaviour
 			indexer += 1;
 			print("uploading data.....");
 			Loadingscreen.SetActive(true);
-			UpdataLoadingtxt.text = "Uploading Data please wait , " + indexer.ToString();
+//			UpdataLoadingtxt.text = "Uploading Data please wait , " + indexer.ToString();
 			
 			yield return new WaitForSeconds(0.01f);
 		}
@@ -257,7 +257,7 @@ public class CSVManager : MonoBehaviour
 		LocalDatabase.instance.saveExerciseData(temp);
 
 		Loadingscreen.SetActive(false);
-		UpdataLoadingtxt.gameObject.SetActive(false);
+	//	UpdataLoadingtxt.gameObject.SetActive(false);
 		print("uploading DONE.");
 	}
 
