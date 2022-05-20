@@ -158,7 +158,7 @@ public class FitCapTest : MonoBehaviour
                     FitCapStatusMessages = "Stored in this path" + path;
                       print("path is not null "+path);
                     PlayerPrefs.SetString("path", path);
-                      csv.NewreadData(path, true);
+                      csv.NewreadDataCSV(csv.csvFile, true);
                    // GameObject.FindObjectOfType<UploadGameData>().csvFile = path;
                    // GameObject.FindObjectOfType<UploadGameData>().Trigger();
 

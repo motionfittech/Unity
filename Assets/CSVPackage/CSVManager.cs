@@ -68,9 +68,9 @@ public class CSVManager : MonoBehaviour
 
 	public void call()
 	{
-		//PlayerPrefs.SetString("path", "C:/Users/asus/Downloads/Log Folder 2/AndrewDeadlift20reps.csv");
+		//PlayerPrefs.SetString("path", "C:/Users/asus/Downloads/Log Folder 2/AndrewBenchPress_1.csv");
 		//	NewreadData("C:/Users/asus/Downloads/Log Folder 2/"+csvName+".csv", false);
-		NewreadDataCSV(csvFile,true);
+		//NewreadDataCSV(csvFile,true);
 	}
 
 	public void NewreadData(string rawDataPath, bool _isSaving)
