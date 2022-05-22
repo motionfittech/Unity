@@ -61,9 +61,10 @@ public class CSVManager : MonoBehaviour
 
 	private void Start()
 	{
-	// 	Invoke("call", 2);
+		// 	Invoke("call", 2);
 
-	//	gameversion.text = Application.version;
+		//	gameversion.text = Application.version;
+		LocalDatabase.instance.Loadcsvcounter();
 	}
 
 	public void call()
@@ -251,10 +252,11 @@ public class CSVManager : MonoBehaviour
 		AccelerationRotationSx = new List<float>();
 		AccelerationRotationSy = new List<float>();
 		AccelerationRotationSz = new List<float>();
+		LocalDatabase.instance.saveExerciseData(temp);
 		int temp1 = int.Parse(PlayerPrefs.GetString("csvCounter", "0"));
 		temp1 += 1;
 		LocalDatabase.instance.savcsvcounter(temp1.ToString());
-		LocalDatabase.instance.saveExerciseData(temp);
+		
 
 		Loadingscreen.SetActive(false);
 	//	UpdataLoadingtxt.gameObject.SetActive(false);

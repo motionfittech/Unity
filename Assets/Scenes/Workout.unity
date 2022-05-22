@@ -766,6 +766,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1370509581}
+        m_TargetAssemblyTypeName: WorkoutManager, Assembly-CSharp
+        m_MethodName: switchHand
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: L
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &190397144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6328,6 +6340,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1370509581}
+        m_TargetAssemblyTypeName: WorkoutManager, Assembly-CSharp
+        m_MethodName: switchHand
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: R
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &810834970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8391,7 +8415,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fatigue
+  m_text: Form
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 194c956b3d864664890e731c63fd4a02, type: 2}
   m_sharedMaterial: {fileID: 21704438749789640, guid: 194c956b3d864664890e731c63fd4a02,
@@ -8955,7 +8979,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.499}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 960, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 826, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1179404662
@@ -9390,7 +9414,7 @@ GameObject:
   - component: {fileID: 1208413531}
   - component: {fileID: 1208413530}
   m_Layer: 5
-  m_Name: VelocityTxt
+  m_Name: VelocityLossTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9436,7 +9460,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0%
+  m_text: 00
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 194c956b3d864664890e731c63fd4a02, type: 2}
   m_sharedMaterial: {fileID: 21704438749789640, guid: 194c956b3d864664890e731c63fd4a02,
@@ -10809,8 +10833,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 413, y: 0}
-  m_SizeDelta: {x: 786, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1343136070
 MonoBehaviour:
@@ -11080,6 +11104,7 @@ MonoBehaviour:
   imbalance: {fileID: 2120502922}
   velocity: {fileID: 685467306}
   velocityloss: {fileID: 1208413530}
+  _isLeft: 
 --- !u!4 &1370509582
 Transform:
   m_ObjectHideFlags: 0
@@ -11131,13 +11156,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gcf: {fileID: 1741483200}
   EDC: {fileID: 572307534}
-  velocityAverageTxt: {fileID: 0}
-  ForceTxt: {fileID: 0}
-  WorkTxt: {fileID: 740752861}
-  PowerTxt: {fileID: 2113928299}
-  VelocityLossTxt: {fileID: 0}
-  L_VelocityTxt: {fileID: 0}
-  VelocityArrowImage: {fileID: 0}
+  form: {fileID: 2113928299}
+  imbalance: {fileID: 2120502922}
+  velocity: {fileID: 685467306}
+  velocity_loss: {fileID: 1208413530}
+  VelocityArrowImage: {fileID: 1358321433}
 --- !u!1 &1391827406
 GameObject:
   m_ObjectHideFlags: 0
@@ -19819,6 +19842,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1370509581}
+        m_TargetAssemblyTypeName: WorkoutManager, Assembly-CSharp
+        m_MethodName: callshowData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   hoverEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -21511,7 +21546,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.019419257}
-  m_AnchorMax: {x: 1, y: 0.99999976}
+  m_AnchorMax: {x: 1, y: 0.9999998}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

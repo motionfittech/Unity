@@ -10,12 +10,7 @@ public class EquationData : MonoBehaviour
 	//public BarChartFeed bcf;
 	public GraphChartFeed gcf;
 	public ExerDatabaseCsv EDC;
-	public TextMeshProUGUI velocityAverageTxt, ForceTxt, WorkTxt, PowerTxt;
-
-
-	[Header(" Velocity_Handler")]
-	public TextMeshProUGUI VelocityLossTxt;
-	public TextMeshProUGUI L_VelocityTxt;
+	public TextMeshProUGUI form, imbalance, velocity, velocity_loss;
 	public Image VelocityArrowImage;
 	// Start is called before the first frame update
 	void Start()

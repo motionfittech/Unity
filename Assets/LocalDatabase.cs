@@ -2,6 +2,7 @@
 using Firebase.Extensions;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 public class LocalDatabase : MonoBehaviour
@@ -167,7 +168,7 @@ public class LocalDatabase : MonoBehaviour
     public void LoadSeeData()
     {
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
-        dbRef.Child("users").Child(UID).Child("CSV_Data").Child(GameObject.FindObjectOfType<CSVManager>().ExerciseTxt.text + PlayerPrefs.GetString("csvCounter","")).Child("metrics").GetValueAsync().ContinueWithOnMainThread(task =>
+        dbRef.Child("users").Child(UID).Child("CSV_Data").GetValueAsync().ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted)
             {
@@ -177,34 +178,66 @@ public class LocalDatabase : MonoBehaviour
             else if (task.IsCompleted)
             {
                 DataSnapshot snapshot = task.Result;
-                //    print(snapshot.Value.ToString());
-                int counter = 0;
-                
-
-               foreach(var temp in snapshot.Key)
+                print("Total seeData Count "+ snapshot.ChildrenCount);
+               foreach(var temp in snapshot.Children)
                 {
-                    if (counter == 0)
+                //    print(Regex.Replace(temp.Key.ToString(), "[^0-9]", ""));
+                    if(Regex.Replace(temp.Key.ToString(), "[^0-9]", "") == (snapshot.ChildrenCount - 1).ToString())
                     {
-                        GameObject.FindObjectOfType<WorkoutManager>().form.text = temp.ToString();
+                        print(temp.Key);
+                        LoadMatricPerExerciseData(temp.Key);
                     }
-                    else if (counter == 1)
-                    {
-                        GameObject.FindObjectOfType<WorkoutManager>().imbalance.text = temp.ToString();
-                    }
-                    else if (counter == 2)
-                    {
-                        GameObject.FindObjectOfType<WorkoutManager>().velocity.text = temp.ToString();
-                    }
-                    else if (counter == 3)
-                    {
-                        GameObject.FindObjectOfType<WorkoutManager>().velocityloss.text = temp.ToString();
-                    }
-                    counter++;
                 }
+
+              
                 // Success
             }
         });
     }
+    public void LoadMatricPerExerciseData(string exerciseName)
+    {
+        Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
+        dbRef.Child("users").Child(UID).Child("CSV_Data").Child(exerciseName).Child("metrics").GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted)
+            {
+                // Failure
+
+            }
+            else if (task.IsCompleted)
+            {
+                DataSnapshot snapshot = task.Result;
+                EquationData tempED = GameObject.FindObjectOfType<EquationData>();
+                foreach (var temp in snapshot.Children)
+                {
+
+                   
+                    if(temp.Key == "form")
+                    {
+                        tempED.form.text = temp.Value.ToString().Substring(0,8);
+                    }
+                    else if(temp.Key == "velocity")
+                    {
+                        tempED.velocity.text = temp.Value.ToString().Substring(0, 8);
+                    }
+                    else if(temp.Key == "velocity_loss")
+                    {
+                        print(temp.Value.ToString().Substring(0, 8));
+                        tempED.velocity_loss.text = temp.Value.ToString().Substring(0, 8);
+                    }
+                    else
+                    {
+                        print(temp.Key.ToString());
+                    }
+                    
+                }
+
+
+                // Success
+            }
+        });
+    }
+
     public void savcsvcounter(string Data)
     {
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
@@ -214,7 +247,7 @@ public class LocalDatabase : MonoBehaviour
     public void saveExerciseData(MyClass temp)
     {
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
-        dbRef.Child("users").Child(UID).Child("CSV_Data").Child(GameObject.FindObjectOfType<CSVManager>().ExerciseTxt.text + PlayerPrefs.GetString("csvCounter","")).SetRawJsonValueAsync(JsonUtility.ToJson(temp));
+        dbRef.Child("users").Child(UID).Child("CSV_Data").Child(GameObject.FindObjectOfType<WorkoutManager>()._isLeft+GameObject.FindObjectOfType<CSVManager>().ExerciseTxt.text + PlayerPrefs.GetString("csvCounter","")).SetRawJsonValueAsync(JsonUtility.ToJson(temp));
     }
     public void saveVelocityData(float value)
     {

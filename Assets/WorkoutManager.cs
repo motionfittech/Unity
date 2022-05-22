@@ -56,6 +56,7 @@ public class WorkoutManager : MonoBehaviour
     public Image currentSideImageIcon;
     public ExerDatabaseCsv EDC;
     public TextMeshProUGUI form, imbalance, velocity, velocityloss;
+    public string _isLeft = "L";
 
     private void Awake()
     {
@@ -69,7 +70,12 @@ public class WorkoutManager : MonoBehaviour
             Application.LoadLevel(5);
         }
     }
-    void callshowData()
+
+    public void switchHand(string Hand)
+    {
+        _isLeft = Hand;
+    }
+   public void callshowData()
     {
         LocalDatabase.instance.LoadSeeData();
     }
