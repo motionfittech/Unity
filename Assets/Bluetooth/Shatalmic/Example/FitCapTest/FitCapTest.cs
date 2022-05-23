@@ -95,7 +95,7 @@ public class FitCapTest : MonoBehaviour
     private States _state = States.None;
     private string _deviceAddress;
 
-    private bool DisplayData = false;
+    public bool DisplayData = false;
     private bool connectdisconnect = false;
 
     // path of the file

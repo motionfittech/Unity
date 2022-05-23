@@ -279,6 +279,8 @@ public class WorkoutManager : MonoBehaviour
         }
 
         myModalWindow.onConfirm.RemoveAllListeners();
+        myModalWindow.onCancel.RemoveAllListeners();
+        myModalWindow.onCancel.AddListener(delegate { GameObject.FindObjectOfType<FitCapTest>().DisplayData = false; });
         myModalWindow.onConfirm.AddListener(delegate { answer(counter); });
         myModalWindow.UpdateUI(); // Update UI
        // myModalWindow.OpenWindow(); // Open window
@@ -342,6 +344,7 @@ public class WorkoutManager : MonoBehaviour
                 break;
             case 7:
                 sideMenuBt();
+                GameObject.FindObjectOfType<FitCapTest>().DisplayData = false;
                 break;
             case 8:
                 Application.LoadLevel(5);
@@ -441,7 +444,7 @@ public class WorkoutManager : MonoBehaviour
                 while (waitingtime > 0)
                 {
                     currentSideImageIcon.sprite = closeSp;
-                    sideMenuObject.GetComponent<RectTransform>().localPosition = Vector3.MoveTowards(sideMenuObject.GetComponent<RectTransform>().localPosition, OpeningPos, testingSpeed);
+                    sideMenuObject.GetComponent<RectTransform>().localPosition = Vector3.MoveTowards(sideMenuObject.GetComponent<RectTransform>().localPosition, OpeningPos, testingSpeed*2);
                     yield return null;
                     waitingtime -= 1;
 
@@ -454,7 +457,7 @@ public class WorkoutManager : MonoBehaviour
                 while (waitingtime > 0)
                 {
                     currentSideImageIcon.sprite = openSp;
-                    sideMenuObject.GetComponent<RectTransform>().localPosition = Vector3.MoveTowards(sideMenuObject.GetComponent<RectTransform>().localPosition,ClosingPos,testingSpeed);
+                    sideMenuObject.GetComponent<RectTransform>().localPosition = Vector3.MoveTowards(sideMenuObject.GetComponent<RectTransform>().localPosition,ClosingPos,testingSpeed*2);
                     yield return null;
                     waitingtime -= 1;
 
