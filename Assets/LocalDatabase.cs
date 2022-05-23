@@ -247,8 +247,12 @@ public class LocalDatabase : MonoBehaviour
     public void saveExerciseData(MyClass temp)
     {
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
-        dbRef.Child("users").Child(UID).Child("CSV_Data").Child(GameObject.FindObjectOfType<WorkoutManager>()._isLeft+GameObject.FindObjectOfType<CSVManager>().ExerciseTxt.text + PlayerPrefs.GetString("csvCounter","")).SetRawJsonValueAsync(JsonUtility.ToJson(temp));
+        dbRef.Child("users").Child(UID).Child("CSV_Data").Child(GameObject.FindObjectOfType<CSVManager>().ExerciseTxt.text + PlayerPrefs.GetString("csvCounter","")).SetRawJsonValueAsync(JsonUtility.ToJson(temp));
+        dbRef.Child("users").Child(UID).Child("CSV_Data").Child(GameObject.FindObjectOfType<CSVManager>().ExerciseTxt.text + PlayerPrefs.GetString("csvCounter", "")).Child("Hand").SetValueAsync(GameObject.FindObjectOfType<WorkoutManager>()._isLeft);
+       
+
     }
+
     public void saveVelocityData(float value)
     {
       

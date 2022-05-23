@@ -56,7 +56,7 @@ public class WorkoutManager : MonoBehaviour
     public Image currentSideImageIcon;
     public ExerDatabaseCsv EDC;
     public TextMeshProUGUI form, imbalance, velocity, velocityloss;
-    public string _isLeft = "L";
+    public string _isLeft = "Left";
 
     private void Awake()
     {
