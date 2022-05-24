@@ -280,7 +280,7 @@ public class WorkoutManager : MonoBehaviour
 
         myModalWindow.onConfirm.RemoveAllListeners();
         myModalWindow.onCancel.RemoveAllListeners();
-        myModalWindow.onCancel.AddListener(delegate { GameObject.FindObjectOfType<FitCapTest>().DisplayData = false; });
+        myModalWindow.onCancel.AddListener(delegate { LocalDatabase.instance.DisplayData = false; });
         myModalWindow.onConfirm.AddListener(delegate { answer(counter); });
         myModalWindow.UpdateUI(); // Update UI
        // myModalWindow.OpenWindow(); // Open window
@@ -344,7 +344,7 @@ public class WorkoutManager : MonoBehaviour
                 break;
             case 7:
                 sideMenuBt();
-                GameObject.FindObjectOfType<FitCapTest>().DisplayData = false;
+               LocalDatabase.instance.DisplayData = false;
                 break;
             case 8:
                 Application.LoadLevel(5);

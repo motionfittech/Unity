@@ -95,7 +95,7 @@ public class FitCapTest : MonoBehaviour
     private States _state = States.None;
     private string _deviceAddress;
 
-    public bool DisplayData = false;
+  
     private bool connectdisconnect = false;
 
     // path of the file
@@ -120,9 +120,9 @@ public class FitCapTest : MonoBehaviour
 
     public void OnButtonPress_StartStopButton()
     {
-        if (DisplayData == false)
+        if (LocalDatabase.instance.DisplayData == false)
         {
-            DisplayData = true;
+           LocalDatabase.instance.DisplayData = true;
             //  TextMeshProUGUI txt = StartStopButton.GetComponentInChildren<TextMeshProUGUI>();
           //    txt.text = "Stop";
 
@@ -150,7 +150,7 @@ public class FitCapTest : MonoBehaviour
             {
                 FitCapStatusMessages = "Stored in this path" + path;
                   
-                DisplayData = false;
+               
             //    TextMeshProUGUI txt1 = StartStopButton.GetComponentInChildren<TextMeshProUGUI>();
              //   txt1.text = "Start";
                 if (path.Length > 0)
@@ -159,8 +159,9 @@ public class FitCapTest : MonoBehaviour
                       print("path is not null "+path);
                     PlayerPrefs.SetString("path", path);
                       csv.NewreadData(PlayerPrefs.GetString("path", ""), true);
-                   // GameObject.FindObjectOfType<UploadGameData>().csvFile = path;
-                   // GameObject.FindObjectOfType<UploadGameData>().Trigger();
+                    // GameObject.FindObjectOfType<UploadGameData>().csvFile = path;
+                    // GameObject.FindObjectOfType<UploadGameData>().Trigger();
+                   LocalDatabase.instance.DisplayData = false;
 
                 }
                 else
@@ -174,7 +175,7 @@ public class FitCapTest : MonoBehaviour
             {
                
             }
-            DisplayData = false;
+           LocalDatabase.instance.DisplayData = false;
             TextMeshProUGUI txt = StartStopButton.GetComponentInChildren<TextMeshProUGUI>();
               txt.text = "Start";
             print("STOP");
@@ -319,7 +320,7 @@ public class FitCapTest : MonoBehaviour
                                 "Y= " + gyrAxesYint32.ToString() + "\n" +
                                 "Z= " + gyrAxesZint32.ToString();
 
-        if (DisplayData == true)
+        if (LocalDatabase.instance.DisplayData == true)
         {
             AccelerometerText.text = display_string;
 

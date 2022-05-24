@@ -13,6 +13,7 @@ public class LocalDatabase : MonoBehaviour
     public static LocalDatabase instance;
     private DataSnapshot levelSnapshot;
     public int ExeCounter = 0;
+    public bool DisplayData = false;
     private void Awake()
     {
         if (instance != null)
