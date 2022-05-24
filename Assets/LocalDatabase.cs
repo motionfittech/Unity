@@ -32,7 +32,8 @@ public class LocalDatabase : MonoBehaviour
 
      void Start()
     {
-       
+
+        Firebase.Database.FirebaseDatabase.DefaultInstance.SetPersistenceEnabled(false);
     }
 
 
@@ -150,7 +151,7 @@ public class LocalDatabase : MonoBehaviour
     public void Loadcsvcounter()
     {
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
-        dbRef.Child("users").Child(UID).Child("csvCounter").GetValueAsync().ContinueWithOnMainThread(task =>
+        dbRef.Child("users").Child(UID).Child("CSV_Data").GetValueAsync().ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted)
             {
@@ -160,8 +161,8 @@ public class LocalDatabase : MonoBehaviour
             else if (task.IsCompleted)
             {
                 DataSnapshot snapshot = task.Result;
-                //    print(snapshot.Value.ToString());
-                PlayerPrefs.SetString("csvCounter", snapshot.Value.ToString());
+                   print(snapshot.ChildrenCount);
+                PlayerPrefs.SetString("csvCounter", snapshot.ChildrenCount.ToString());
                 // Success
             }
         });
@@ -239,12 +240,12 @@ public class LocalDatabase : MonoBehaviour
         });
     }
 
-    public void savcsvcounter(string Data)
-    {
-        Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
-        dbRef.Child("users").Child(UID).Child("csvCounter").SetValueAsync(Data);
-        PlayerPrefs.SetString("csvCounter", Data.ToString());
-    }
+    //public void savcsvcounter(string Data)
+    //{
+    //    Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
+    //    dbRef.Child("users").Child(UID).Child("csvCounter").SetValueAsync(Data);
+    //    PlayerPrefs.SetString("csvCounter", Data.ToString());
+    //}
     public void saveExerciseData(MyClass temp)
     {
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;

@@ -42,7 +42,7 @@ public class WorkoutManager : MonoBehaviour
     public ModalWindowManager myModalWindow;
 
     public TextMeshProUGUI currentAniTxt, work2AniTxt,Clickedtext;
-    public FitCapTest FCT;
+ //   public FitCapTest FCT;
     Camera main_Camera;
 
     [Header("Side Menu")]
@@ -279,8 +279,8 @@ public class WorkoutManager : MonoBehaviour
         }
 
         myModalWindow.onConfirm.RemoveAllListeners();
-        myModalWindow.onCancel.RemoveAllListeners();
-        myModalWindow.onCancel.AddListener(delegate { LocalDatabase.instance.DisplayData = false; });
+    //    myModalWindow.onCancel.RemoveAllListeners();
+     //   myModalWindow.onCancel.AddListener(delegate { GameObject.FindObjectOfType<FitCapTest>().DisplayData = false; });
         myModalWindow.onConfirm.AddListener(delegate { answer(counter); });
         myModalWindow.UpdateUI(); // Update UI
        // myModalWindow.OpenWindow(); // Open window
@@ -344,7 +344,7 @@ public class WorkoutManager : MonoBehaviour
                 break;
             case 7:
                 sideMenuBt();
-               LocalDatabase.instance.DisplayData = false;
+            //    GameObject.FindObjectOfType<FitCapTest>().DisplayData = false;
                 break;
             case 8:
                 Application.LoadLevel(5);

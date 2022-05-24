@@ -255,8 +255,10 @@ public class CSVManager : MonoBehaviour
 		LocalDatabase.instance.saveExerciseData(temp);
 		int temp1 = int.Parse(PlayerPrefs.GetString("csvCounter", "0"));
 		temp1 += 1;
-		LocalDatabase.instance.savcsvcounter(temp1.ToString());
-		
+		PlayerPrefs.SetString("csvCounter", temp1.ToString());
+		//print(temp1);
+		//		LocalDatabase.instance.savcsvcounter(temp1.ToString());
+
 
 		Loadingscreen.SetActive(false);
 	//	UpdataLoadingtxt.gameObject.SetActive(false);
