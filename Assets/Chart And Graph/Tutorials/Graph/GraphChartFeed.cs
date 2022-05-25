@@ -41,8 +41,11 @@ public class GraphChartFeed : MonoBehaviour
 
     public void Singcall(float x)
     {
-        graph.DataSource.Clear();
-        graph.DataSource.AddPointToCategory("Player 1", x, x);
+      //  graph.DataSource.Clear();
+        graph.DataSource.AddPointToCategory("Exercise", x, x);
+           graph.DataSource.EndBatch(); // end the update batch . this call will
+        ////     render the graph
+            graph.DataSource.StartBatch();  // start a new update batch
     }
 
 

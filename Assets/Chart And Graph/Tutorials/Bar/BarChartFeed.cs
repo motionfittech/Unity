@@ -66,21 +66,12 @@ public class BarChartFeed : MonoBehaviour {
     public void addbarSingleValue(float tempvalues)
     {
         barChart.DataSource.ClearCategories();
-        counter += 1;
-        maxvalue.maxValue += 1.5f;
-        if (tempvalues >= 6)
-        {
-            barChart.DataSource.AddCategory("SET " + counter.ToString(), mat1);
-        }
-        else if(tempvalues >= 2 && tempvalues < 6)
-        {
-            barChart.DataSource.AddCategory("SET " + counter.ToString(), mat2);
-        }
-        else
-        {
-            barChart.DataSource.AddCategory("SET " + counter.ToString(), mat3);
-        }
+      //  counter += 1;
+      //  maxvalue.maxValue += 1.5f;
        
-        barChart.DataSource.SetValue("SET " + counter.ToString(), "All", tempvalues);
+            barChart.DataSource.AddCategory("Exercise 1", mat1);
+       
+       
+        barChart.DataSource.SetValue("Exercise 1", "Exercise", tempvalues);
     }
 }

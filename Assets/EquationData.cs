@@ -7,7 +7,7 @@ public class EquationData : MonoBehaviour
 {
 
 
-	//public BarChartFeed bcf;
+	public BarChartFeed bcf;
 	public GraphChartFeed gcf;
 	public ExerDatabaseCsv EDC;
 	public TextMeshProUGUI form, imbalance, velocity, velocity_loss;
@@ -23,7 +23,12 @@ public class EquationData : MonoBehaviour
     {
         
     }
-
+	public void seeDataBar(TextMeshProUGUI values)
+    {
+		float noMinus = Mathf.Abs(float.Parse(values.text));
+		bcf.addbarSingleValue(noMinus);
+		gcf.Singcall(noMinus);
+	}
 
 	public void callafter(List<float> speeds,bool _isSaving)
 	{
@@ -74,8 +79,8 @@ public class EquationData : MonoBehaviour
 
 		
 
-		////bcf.addbarSingleValue(tempAverage);
-		////	gcf.Singcall(tempAverage);
+		
+		////	
 		//if (_isSaving)
 		//{
 		//	print("saving data ");
