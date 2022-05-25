@@ -71,6 +71,20 @@ public class WorkoutManager : MonoBehaviour
         }
     }
 
+    public void activeLoading()
+    {
+        EDC.GetComponent<CSVManager>().Loadingscreen.SetActive(true);
+        switchBt(2);
+        updateExerciseTxt();
+        callshowData();
+        Invoke("callseeDatawithWait",3);
+
+    }
+    public void callseeDatawithWait()
+    {
+        
+        EDC.GetComponent<CSVManager>().Loadingscreen.SetActive(false);
+    }
     public void switchHand(string Hand)
     {
         _isLeft = Hand;
