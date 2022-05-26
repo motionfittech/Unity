@@ -15,7 +15,7 @@ public class EquationData : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-        
+		seeDataBar(form);
     }
 
     // Update is called once per frame

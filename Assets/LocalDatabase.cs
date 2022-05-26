@@ -212,25 +212,24 @@ public class LocalDatabase : MonoBehaviour
                 EquationData tempED = GameObject.FindObjectOfType<EquationData>();
                 foreach (var temp in snapshot.Children)
                 {
+                   print(temp.Key);
 
-                   
-                    if(temp.Key == "form")
+                    if (temp.Key == "form")
                     {
+                        print(temp);
                         tempED.form.text = temp.Value.ToString().Substring(0,8);
                     }
-                    else if(temp.Key == "velocity")
+                    if(temp.Key == "velocity")
                     {
+                        print(temp);
                         tempED.velocity.text = temp.Value.ToString().Substring(0, 8);
                     }
-                    else if(temp.Key == "velocity_loss")
+                    if(temp.Key == "velocity_loss")
                     {
-                        print(temp.Value.ToString().Substring(0, 8));
+                        print(temp);
                         tempED.velocity_loss.text = temp.Value.ToString().Substring(0, 8);
                     }
-                    else
-                    {
-                        print(temp.Key.ToString());
-                    }
+                   
                     
                 }
 

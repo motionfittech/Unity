@@ -81,8 +81,7 @@ public class WorkoutManager : MonoBehaviour
 
     }
     public void callseeDatawithWait()
-    {
-        
+    {        
         EDC.GetComponent<CSVManager>().Loadingscreen.SetActive(false);
     }
     public void switchHand(string Hand)
