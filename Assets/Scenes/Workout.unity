@@ -11186,6 +11186,17 @@ MonoBehaviour:
   velocity: {fileID: 685467306}
   velocity_loss: {fileID: 1208413530}
   VelocityArrowImage: {fileID: 1358321433}
+  BarValues:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
 --- !u!1 &1391827406
 GameObject:
   m_ObjectHideFlags: 0
@@ -11816,12 +11827,12 @@ MonoBehaviour:
   SimpleView: 1
   format: 0
   depth:
-    Automatic: 0
+    Automatic: 1
     Value: 0
   mainDivisions:
     messure: 0
     unitsPerDivision: 0
-    total: 3
+    total: 5
     material: {fileID: 2100000, guid: efebb8411b3539a4299fc48246fd2aff, type: 2}
     materialTiling:
       EnableTiling: 0
@@ -11835,20 +11846,20 @@ MonoBehaviour:
     markDepth:
       Automatic: 1
       Value: 0.5
-    markThickness: 3
+    markThickness: 5
     textPrefab: {fileID: 0}
     textPrefix: 
     textSuffix: 
     fractionDigits: 2
-    fontSize: 5
+    fontSize: 18
     fontSharpness: 3
     textDepth: 0
-    textSeperation: -10.56
+    textSeperation: -25
     alignment: 1
   subDivisions:
     messure: 0
     unitsPerDivision: 0
-    total: 3
+    total: 5
     material: {fileID: 2100000, guid: efebb8411b3539a4299fc48246fd2aff, type: 2}
     materialTiling:
       EnableTiling: 0
@@ -11862,15 +11873,15 @@ MonoBehaviour:
     markDepth:
       Automatic: 1
       Value: 0.5
-    markThickness: 1
+    markThickness: 5
     textPrefab: {fileID: 0}
     textPrefix: 
     textSuffix: 
     fractionDigits: 2
-    fontSize: 5
+    fontSize: 18
     fontSharpness: 3
     textDepth: 0
-    textSeperation: -10.56
+    textSeperation: -25
     alignment: 1
 --- !u!114 &1461293477
 MonoBehaviour:
@@ -11950,7 +11961,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461293473}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 683c1c28d013cce4c9128c952dbdca81, type: 3}
   m_Name: 
@@ -11960,9 +11971,9 @@ MonoBehaviour:
     prefix: 
     suffix: 
     customFormat: 
-  fontSize: 8
+  fontSize: 12
   fontSharpness: 3
-  seperation: -9.78
+  seperation: -25
   location:
     Breadth: 0
     Depth: 0
@@ -11975,7 +11986,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461293473}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a5935733d0eb5b48ba1db228c83f0f0, type: 3}
   m_Name: 
@@ -12051,24 +12062,16 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Data:
-    mCategories:
-    - Name: Exercise 1
-      Materials:
-        Normal: {fileID: 2100000, guid: c7ce674b0130fe840963fac41e6b88fa, type: 2}
-        Hover: {r: 0, g: 0, b: 0, a: 0}
-        Selected: {r: 0, g: 0, b: 0, a: 0}
+    mCategories: []
     mGroups:
     - Exercise
-    mData:
-    - GroupName: Exercise
-      ColumnName: Exercise 1
-      Amount: 0
+    mData: []
     automaticMaxValue: 0
     maxValue: 10
     automaticMinValue: 0
     minValue: 0
   transitionTimeBetaFeature: -1
-  heightRatio: 226.2
+  heightRatio: 700
   totalWidth: 63.370003
   totalDepth: 0
   fitToContainer: 0
@@ -12083,7 +12086,7 @@ MonoBehaviour:
   barSeperation: 45
   groupSeperation: 220
   barSize: 23.37
-  barFitType: 1
+  barFitType: 3
   barFitAlign: 2
 --- !u!114 &1461293482
 MonoBehaviour:
@@ -12098,9 +12101,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barChart: {fileID: 1461293481}
-  mat1: {fileID: 2100000, guid: c7ce674b0130fe840963fac41e6b88fa, type: 2}
-  mat2: {fileID: 2100000, guid: 406626f6ec3675341a990e8a85b93b34, type: 2}
-  mat3: {fileID: 2100000, guid: 406626f6ec3675341a990e8a85b93b34, type: 2}
+  mat1: {fileID: 2100000, guid: 375c4c8ccdaee1144be4710a45d8ff7d, type: 2}
+  mat2: {fileID: 2100000, guid: c7ce674b0130fe840963fac41e6b88fa, type: 2}
+  mat3: {fileID: 2100000, guid: 5fc3245638119f24e9cf06d6b59d1c0b, type: 2}
   maxvalue: {fileID: 158067636}
 --- !u!1 &1476209815
 GameObject:

@@ -51,8 +51,8 @@ public class BarChartFeed : MonoBehaviour {
             }
             
             //   barChart.DataSource.AddCategory("SET "+i.ToString(), mat1);
-            barChart.DataSource.SetValue("SET " + counter.ToString(), "All", tempValues[i]);
-               
+            barChart.DataSource.SetValue("SET " + counter.ToString(), "Exercise", tempValues[i]);
+            print(counter+"gfgd");
             i++;
             counter++;
             maxvalue.maxValue += 1.5f;

@@ -41,7 +41,7 @@ public class GraphChartFeed : MonoBehaviour
 
     public void Singcall(float x)
     {
-        print(x+" HERE");
+        //print(x+" HERE");
       // graph.DataSource.Clear();
         graph.DataSource.AddPointToCategory("Player 1", x, x/2);
         

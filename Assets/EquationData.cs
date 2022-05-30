@@ -12,6 +12,7 @@ public class EquationData : MonoBehaviour
 	public ExerDatabaseCsv EDC;
 	public TextMeshProUGUI form, imbalance, velocity, velocity_loss;
 	public Image VelocityArrowImage;
+	public List<float> BarValues = new List<float>();
 	// Start is called before the first frame update
 	void Start()
     {
@@ -26,8 +27,8 @@ public class EquationData : MonoBehaviour
 	public void seeDataBar(TextMeshProUGUI values)
     {
 		float noMinus = Mathf.Abs(float.Parse(values.text));
-		bcf.addbarSingleValue(noMinus);
-		gcf.Singcall(noMinus);
+	  StartCoroutine(bcf.addbarValue(BarValues));
+		gcf.Singcall(1);
 	}
 
 	public void callafter(List<float> speeds,bool _isSaving)
