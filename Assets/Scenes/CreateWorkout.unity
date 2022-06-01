@@ -5844,8 +5844,8 @@ MonoBehaviour:
   - Bentlegraises
   - Bicyclecrunch
   - Bodyweighthamstringcurl
-  - Bridges
-  - Crunch
+  - NeuropathicGait
+  - SensoryGait
   - Curl
   - Deadlift
   - Dumbelllunges
@@ -5860,15 +5860,15 @@ MonoBehaviour:
   - Legraise
   - Gait
   - Planktopushup
-  - Pushups
-  - Situp
+  - ParkinsonianGait
+  - DiplegicGait
   - Skullcrushers
   - Snatchgripdeadlift
   - Sit-To-Stand
   - Straightlegdeadlift
   - Sumo
   - Uprightrow
-  - Walkinglunges
+  - HemiplegicGait
   selectedExercise: []
   createExercise: []
   selectedExerciseobj: []
@@ -5882,8 +5882,8 @@ MonoBehaviour:
   - Bentlegraises
   - Bicyclecrunch
   - Bodyweighthamstringcurl
-  - Bridges
-  - Crunch
+  - NeuropathicGait
+  - SensoryGait
   - Curl
   - Deadlift
   - Dumbelllunges
@@ -5898,15 +5898,15 @@ MonoBehaviour:
   - Legraise
   - Gait
   - Planktopushup
-  - Pushups
-  - Situp
+  - ParkinsonianGait
+  - DiplegicGait
   - Skullcrushers
   - Snatchgripdeadlift
   - Sit-To-Stand
   - Straightlegdeadlift
   - Sumo
   - Uprightrow
-  - Walkinglunges
+  - HemiplegicGait
   ani: {fileID: 1056865011}
   circle: {fileID: 288866094}
   closebutton: {fileID: 186288428}

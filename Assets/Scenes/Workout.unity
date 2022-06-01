@@ -11077,8 +11077,8 @@ MonoBehaviour:
   - Bentlegraises
   - Bicyclecrunch
   - Bodyweighthamstringcurl
-  - Bridges
-  - Crunch
+  - NeuropathicGait
+  - SensoryGait
   - Curl
   - Deadlift
   - Dumbelllunges
@@ -11093,15 +11093,15 @@ MonoBehaviour:
   - Legraise
   - Gait
   - Planktopushup
-  - Pushups
-  - Situp
+  - ParkinsonianGait
+  - DiplegicGait
   - Skullcrushers
   - Snatchgripdeadlift
   - Sit-To-Stand
   - Straightlegdeadlift
   - Sumo
   - Uprightrow
-  - Walkinglunges
+  - HemiplegicGait
   selectedAnimations: []
   WH: {fileID: 1370509583}
   CenterButtonExercisetxt: {fileID: 1264477781}
