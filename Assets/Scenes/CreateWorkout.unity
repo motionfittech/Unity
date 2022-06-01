@@ -5864,7 +5864,7 @@ MonoBehaviour:
   - Situp
   - Skullcrushers
   - Snatchgripdeadlift
-  - Snatch
+  - Sit-To-Stand
   - Straightlegdeadlift
   - Sumo
   - Uprightrow
@@ -5902,7 +5902,7 @@ MonoBehaviour:
   - Situp
   - Skullcrushers
   - Snatchgripdeadlift
-  - Snatch
+  - Sit-To-Stand
   - Straightlegdeadlift
   - Sumo
   - Uprightrow
@@ -7758,8 +7758,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 588.26904, y: -122.45322}
-  m_SizeDelta: {x: 1136.5381, y: 156.90643}
+  m_AnchoredPosition: {x: 588.2345, y: -122.45322}
+  m_SizeDelta: {x: 1136.469, y: 156.90643}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1084815106
 MonoBehaviour:
@@ -10301,7 +10301,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 38816032}
   m_HandleRect: {fileID: 38816031}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
