@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.004282271, g: 0.0029951904, b: 0.0116650555, a: 1}
+  m_IndirectSpecularColor: {r: 0.004283777, g: 0.0029963716, b: 0.0116695175, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11097,7 +11097,7 @@ MonoBehaviour:
   - Situp
   - Skullcrushers
   - Snatchgripdeadlift
-  - Snatch
+  - Sit-To-Stand
   - Straightlegdeadlift
   - Sumo
   - Uprightrow
