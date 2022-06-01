@@ -173,6 +173,10 @@ public class LocalDatabase : MonoBehaviour
     }
     public void LoadSeeData()
     {
+        indexofGraphs = new List<int>(0);
+        indexofNameGraphs = new List<string>(0);
+        indexofVelocityGraphs = new List<float>(0);
+        indexofformGraphs = new List<float>(0);
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
         dbRef.Child("users").Child(UID).Child("CSV_Data").GetValueAsync().ContinueWithOnMainThread(task =>
         {
@@ -189,9 +193,9 @@ public class LocalDatabase : MonoBehaviour
                 {
                     int tempTotal = (int)snapshot.ChildrenCount;
                     tempTotal -= 1;
-                    int totalValues = 10;
+                    int totalValues = 11;
 
-                    for(int i = 0; i< 10; i++)
+                    for(int i = 0; i< 11; i++)
                     {
                         totalValues -= 1;
                         indexofGraphs.Add(tempTotal - totalValues);

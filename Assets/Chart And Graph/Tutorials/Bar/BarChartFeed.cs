@@ -9,9 +9,9 @@ using System;
 public class BarChartFeed : MonoBehaviour {
     public BarChart barChart;
     public Material mat1,mat2,mat3;
-    public Slider maxvalue;
+  //  public Slider maxvalue;
     
-    int counter = 0;
+    
     public void Start()
     {
      //   PlayerPrefs.SetString("DailyTimer", DateTime.Now.AddHours(1).ToString());
@@ -30,6 +30,10 @@ public class BarChartFeed : MonoBehaviour {
 
 	public IEnumerator addbarValue(List<float> tempValues)
     {
+      for(int x = 0; x < tempValues.Count; x++)
+        {
+            print(x);
+        }
         int i = 0;
         float temptoPlus = 0;
         barChart.DataSource.ClearCategories();
@@ -40,25 +44,25 @@ public class BarChartFeed : MonoBehaviour {
            
             if (tempValues[i] >= 6)
             {
-                barChart.DataSource.AddCategory("SET " + counter.ToString(), mat1);
+                barChart.DataSource.AddCategory("SET " + i.ToString(), mat1);
             }
             else if (tempValues[i] >= 2 && tempValues[i] < 6)
             {
-                barChart.DataSource.AddCategory("SET " + counter.ToString(), mat2);
+                barChart.DataSource.AddCategory("SET " + i.ToString(), mat2);
             }
             else
             {
-                barChart.DataSource.AddCategory("SET " + counter.ToString(), mat3);
+                barChart.DataSource.AddCategory("SET " + i.ToString(), mat3);
             }
 
             //   barChart.DataSource.AddCategory("SET "+i.ToString(), mat1);
             temptoPlus = Mathf.Abs(tempValues[i]);
-            barChart.DataSource.SetValue("SET " + counter.ToString(), "Exercise", temptoPlus);
+            barChart.DataSource.SetValue("SET " + i.ToString(), "Exercise", temptoPlus);
 
 //            print(counter+"gfgd");
             i++;
-            counter++;
-            maxvalue.maxValue += 1.5f;
+           
+          //  maxvalue.maxValue += 1.5f;
             yield return null;
         }
 

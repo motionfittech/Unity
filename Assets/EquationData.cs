@@ -12,7 +12,6 @@ public class EquationData : MonoBehaviour
 	public ExerDatabaseCsv EDC;
 	public TextMeshProUGUI form, imbalance, velocity, velocity_loss;
 	public Image VelocityArrowImage;
-	public List<float> BarValues = new List<float>();
 	// Start is called before the first frame update
 	void Start()
     {
@@ -29,12 +28,18 @@ public class EquationData : MonoBehaviour
 //		print(values.gameObject.name);
 		if (values.gameObject.name == "Velocitytxt")
 		{
+			bcf.barChart.DataSource.MaxValue = 5;
+			gcf.graph.DataSource.HorizontalViewSize = 5;
+			gcf.graph.DataSource.VerticalViewSize = 5;
 			StartCoroutine(bcf.addbarValue(LocalDatabase.instance.indexofVelocityGraphs));
 			StartCoroutine(gcf.Multicall(LocalDatabase.instance.indexofVelocityGraphs));
 		}
         else
         {
-			print(values.gameObject.name);
+			bcf.barChart.DataSource.MaxValue = 100;
+			gcf.graph.DataSource.HorizontalViewSize = 100;
+			gcf.graph.DataSource.VerticalViewSize = 100;
+			
 			StartCoroutine(bcf.addbarValue(LocalDatabase.instance.indexofformGraphs));
 			StartCoroutine(gcf.Multicall(LocalDatabase.instance.indexofformGraphs));
 		}
