@@ -16,7 +16,7 @@ public class EquationData : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-		seeDataBar(form);
+//		seeDataBar(form);
     }
 
     // Update is called once per frame
@@ -26,9 +26,18 @@ public class EquationData : MonoBehaviour
     }
 	public void seeDataBar(TextMeshProUGUI values)
     {
-		float noMinus = Mathf.Abs(float.Parse(values.text));
-	  StartCoroutine(bcf.addbarValue(BarValues));
-		gcf.Singcall(1);
+//		print(values.gameObject.name);
+		if (values.gameObject.name == "Velocitytxt")
+		{
+			StartCoroutine(bcf.addbarValue(LocalDatabase.instance.indexofVelocityGraphs));
+			StartCoroutine(gcf.Multicall(LocalDatabase.instance.indexofVelocityGraphs));
+		}
+        else
+        {
+			print(values.gameObject.name);
+			StartCoroutine(bcf.addbarValue(LocalDatabase.instance.indexofformGraphs));
+			StartCoroutine(gcf.Multicall(LocalDatabase.instance.indexofformGraphs));
+		}
 	}
 
 	public void callafter(List<float> speeds,bool _isSaving)

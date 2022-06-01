@@ -7,6 +7,8 @@ using System.Collections.Generic;
 public class GraphChartFeed : MonoBehaviour
 {
    public GraphChart graph;
+    public Material lineMaterial,InnerFill,PointMaterial;
+    public MaterialTiling MT;
     void Start()
     {
 
@@ -56,13 +58,17 @@ public class GraphChartFeed : MonoBehaviour
     {
         
             int i = 0;
+        float temptoPlus = 0;
         //        maxvalue.maxValue = tempValues.Count;
         graph.DataSource.Clear();
-           
-            while (i < x.Count)
+        graph.DataSource.AddCategory("Player",lineMaterial,6.2f,MT,InnerFill,false,PointMaterial,10);
+        graph.DataSource.AddPointToCategory("Player", 0, 0);
+        while (i < x.Count)
             {
-            graph.DataSource.AddPointToCategory("Player 1", x[i], x[i]);
-
+            temptoPlus = Mathf.Abs(x[i]);
+           
+            graph.DataSource.AddPointToCategory("Player", temptoPlus, temptoPlus/2);
+//            print("Player " + i.ToString());
             i++;
             yield return null;
         }

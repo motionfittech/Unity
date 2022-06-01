@@ -11187,11 +11187,11 @@ MonoBehaviour:
   velocity_loss: {fileID: 1208413530}
   VelocityArrowImage: {fileID: 1358321433}
   BarValues:
-  - 1
+  - 0.5
+  - 0.6
   - 2
-  - 3
-  - 4
-  - 5
+  - 1
+  - 0
   - 6
   - 7
   - 8
@@ -12067,7 +12067,7 @@ MonoBehaviour:
     - Exercise
     mData: []
     automaticMaxValue: 0
-    maxValue: 10
+    maxValue: 5
     automaticMinValue: 0
     minValue: 0
   transitionTimeBetaFeature: -1
@@ -14724,6 +14724,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graph: {fileID: 1741483205}
+  lineMaterial: {fileID: 2100000, guid: 17705335a6baae7449e02ba5755f88ea, type: 2}
+  InnerFill: {fileID: 2100000, guid: b8ab27c4271a3e64d8491c967d324fd0, type: 2}
+  PointMaterial: {fileID: 2100000, guid: fa0b3a0e33fedd249b4527b6027ba69e, type: 2}
+  MT:
+    EnableTiling: 1
+    TileFactor: 0
 --- !u!114 &1741483201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14957,31 +14963,7 @@ MonoBehaviour:
     horizontalViewOrigin: 0
     verticalViewSize: 10
     verticalViewOrigin: 0
-    mSerializedData:
-    - Name: Player 1
-      InitialData:
-      - {x: 0, y: 0}
-      IsBezierCurve: 0
-      SegmentsPerCurve: 300
-      Depth: 0
-      LineHoverPrefab: {fileID: 11494010, guid: 87cd6d8b7ca9527449e32ecefc4015c5,
-        type: 3}
-      PointHoverPrefab: {fileID: 11475216, guid: 57ee497f5c86d764fa20628075109b20,
-        type: 3}
-      LinePrefab: {fileID: 0}
-      Material: {fileID: 2100000, guid: 17705335a6baae7449e02ba5755f88ea, type: 2}
-      LineTiling:
-        EnableTiling: 0
-        TileFactor: 45.5
-      FillPrefab: {fileID: 0}
-      InnerFill: {fileID: 2100000, guid: b8ab27c4271a3e64d8491c967d324fd0, type: 2}
-      LineThickness: 6.2
-      StetchFill: 0
-      DotPrefab: {fileID: 0}
-      PointMaterial: {fileID: 2100000, guid: fa0b3a0e33fedd249b4527b6027ba69e, type: 2}
-      PointSize: 10
-      ViewOrder: 0
-      AllowNonFunctionsBeta: 0
+    mSerializedData: []
   LineClicked:
     m_PersistentCalls:
       m_Calls: []

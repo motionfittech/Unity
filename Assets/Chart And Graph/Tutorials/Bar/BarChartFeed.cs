@@ -31,12 +31,13 @@ public class BarChartFeed : MonoBehaviour {
 	public IEnumerator addbarValue(List<float> tempValues)
     {
         int i = 0;
+        float temptoPlus = 0;
         barChart.DataSource.ClearCategories();
         //        maxvalue.maxValue = tempValues.Count;
        // print(tempValues.Count);
         while (i < tempValues.Count)
         {
-
+           
             if (tempValues[i] >= 6)
             {
                 barChart.DataSource.AddCategory("SET " + counter.ToString(), mat1);
@@ -49,10 +50,12 @@ public class BarChartFeed : MonoBehaviour {
             {
                 barChart.DataSource.AddCategory("SET " + counter.ToString(), mat3);
             }
-            
+
             //   barChart.DataSource.AddCategory("SET "+i.ToString(), mat1);
-            barChart.DataSource.SetValue("SET " + counter.ToString(), "Exercise", tempValues[i]);
-            print(counter+"gfgd");
+            temptoPlus = Mathf.Abs(tempValues[i]);
+            barChart.DataSource.SetValue("SET " + counter.ToString(), "Exercise", temptoPlus);
+
+//            print(counter+"gfgd");
             i++;
             counter++;
             maxvalue.maxValue += 1.5f;

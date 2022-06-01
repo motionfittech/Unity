@@ -14,6 +14,10 @@ public class LocalDatabase : MonoBehaviour
     private DataSnapshot levelSnapshot;
     public int ExeCounter = 0;
     public bool DisplayData = false;
+    public List<int> indexofGraphs = new List<int>();
+    public List<string> indexofNameGraphs = new List<string>();
+    public List<float> indexofVelocityGraphs = new List<float>();
+    public List<float> indexofformGraphs = new List<float>();
     private void Awake()
     {
         if (instance != null)
@@ -161,7 +165,7 @@ public class LocalDatabase : MonoBehaviour
             else if (task.IsCompleted)
             {
                 DataSnapshot snapshot = task.Result;
-                   print(snapshot.ChildrenCount);
+//                   print(snapshot.ChildrenCount);
                 PlayerPrefs.SetString("csvCounter", snapshot.ChildrenCount.ToString());
                 // Success
             }
@@ -180,16 +184,38 @@ public class LocalDatabase : MonoBehaviour
             else if (task.IsCompleted)
             {
                 DataSnapshot snapshot = task.Result;
-                print("Total seeData Count "+ snapshot.ChildrenCount);
-               foreach(var temp in snapshot.Children)
+//                print("Total seeData Count "+ snapshot.ChildrenCount);
+                if(snapshot.ChildrenCount > 10)
                 {
-                //    print(Regex.Replace(temp.Key.ToString(), "[^0-9]", ""));
-                    if(Regex.Replace(temp.Key.ToString(), "[^0-9]", "") == (snapshot.ChildrenCount - 1).ToString())
+                    int tempTotal = (int)snapshot.ChildrenCount;
+                    tempTotal -= 1;
+                    int totalValues = 10;
+
+                    for(int i = 0; i< 10; i++)
                     {
-                        print(temp.Key);
-                        LoadMatricPerExerciseData(temp.Key);
+                        totalValues -= 1;
+                        indexofGraphs.Add(tempTotal - totalValues);
+                        foreach (var temp in snapshot.Children)
+                        {
+                            //print(Regex.Replace(temp.Key.ToString(), "[^0-9]", ""));
+                            if (Regex.Replace(temp.Key.ToString(), "[^0-9]", "") == (indexofGraphs[i]).ToString())
+                            {
+                                //     print(temp.Key);
+                                indexofNameGraphs.Add(temp.Key);
+                                LoadMatricPerExerciseData(temp.Key);
+                            }
+                        }
                     }
                 }
+               //foreach(var temp in snapshot.Children)
+               // {
+               //     print(Regex.Replace(temp.Key.ToString(), "[^0-9]", ""));
+               //     if(Regex.Replace(temp.Key.ToString(), "[^0-9]", "") == (snapshot.ChildrenCount - 1).ToString())
+               //     {
+               //      //     print(temp.Key);
+               //      //   LoadMatricPerExerciseData(temp.Key);
+               //     }
+               // }
 
               
                 // Success
@@ -212,21 +238,23 @@ public class LocalDatabase : MonoBehaviour
                 EquationData tempED = GameObject.FindObjectOfType<EquationData>();
                 foreach (var temp in snapshot.Children)
                 {
-                   print(temp.Key);
+//                   print(temp.Key);
 
                     if (temp.Key == "form")
                     {
-                        print(temp);
+                      //  print(temp);
                         tempED.form.text = temp.Value.ToString().Substring(0,8);
+                        indexofformGraphs.Add(float.Parse(tempED.form.text));
                     }
                     if(temp.Key == "velocity")
                     {
-                        print(temp);
+                      //  print(temp);
                         tempED.velocity.text = temp.Value.ToString().Substring(0, 8);
+                        indexofVelocityGraphs.Add(float.Parse(tempED.velocity.text));
                     }
                     if(temp.Key == "velocity_loss")
                     {
-                        print(temp);
+                     //   print(temp);
                         tempED.velocity_loss.text = temp.Value.ToString().Substring(0, 8);
                     }
                    
@@ -315,7 +343,7 @@ public class LocalDatabase : MonoBehaviour
                     DataSnapshot snapshot = task.Result;
                   
                     ExeCounter = (int)snapshot.ChildrenCount;
-                    print(ExeCounter +"aaaa");
+//                    print(ExeCounter +"aaaa");
                 }
             });
 
