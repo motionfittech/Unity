@@ -220,7 +220,7 @@ public class FitCapTest : MonoBehaviour
 
     void StartProcess()
     {
-        BatteryLevelText.text = "Battery: Unknown";
+    //    BatteryLevelText.text = "Battery: Unknown";
         FitCapStatusMessages = "StartProcess";
         StartStopButton.onClick.AddListener(OnButtonPress_StartStopButton);
         DisconnectButton.onClick.AddListener(OnButtonPress_DisconnectButton);
@@ -238,12 +238,12 @@ public class FitCapTest : MonoBehaviour
         });
     }
 
-    private void OnReadBattery(string characteristric, byte[] rcvd_data)
-    {
-        int level = rcvd_data[0];
-        string batt_level = "Battery: " + level.ToString() + "%";
-        BatteryLevelText.text = batt_level;
-    }
+   // private void OnReadBattery(string characteristric, byte[] rcvd_data)
+   // {
+   //     int level = rcvd_data[0];
+   //     string batt_level = "Battery: " + level.ToString() + "%";
+   //     BatteryLevelText.text = batt_level;
+   // }
 
     private void OnCharacteristicNotification(string deviceAddress, string characteristric, byte[] rcvd_data)
     {
