@@ -16,6 +16,10 @@ public class FitCapTest : MonoBehaviour
 
     public Button StartStopButton;
     public Button DisconnectButton;
+    public Button ConnectLeftArm;
+    public Button ConnectRightArm;
+    public Button ConnectRightLeg;
+    public Button ConnectLeftLeg;
 
     public GameObject TopPanel;
     public GameObject MiddlePanel;
@@ -101,6 +105,7 @@ public class FitCapTest : MonoBehaviour
     // path of the file
     static public string path = "";
 
+    static private int numdevicesrequested = 0;
 
     public void OnButtonPress_DisconnectButton()
     {
@@ -117,7 +122,73 @@ public class FitCapTest : MonoBehaviour
             txt.text = "Connect";
         }
     }
+     public void OnButtonPress_ConnectLeftArm()
+    {
+ //       Text txt = ConnectLeftArm.GetComponentInChildren<TextField>();
+//        const Text cmp = "Add";
+//        if (txt == cmp )
+//        {
+//            txt.text = "Added";
+            numdevicesrequested++;
+//        }
+//        else
+//        {
+//            txt.text = "Add";
+//            numdevicesrequested--;
+//        }
+    }
+    
+     public void OnButtonPress_ConnectRightArm()
+    {
+ //    Text txt = ConnectRightArm.GetComponentInChildren<Text>();
+ //                const Text cmp = "Add";
+ //       if (txt == cmp )
+//
+  //      {
+  //          txt.text = "Added";
+  //          numdevicesrequested++;
+  //      }
+  //      else
+  //      {
+  //          txt.text = "Add";
+  //          numdevicesrequested--;
+  //      }
+    }
+    
+     public void OnButtonPress_ConnectLeftLeg()
+    {
+  //   Text txt = ConnectLeftLeg.GetComponentInChildren<Text>();
+  //               const Text cmp = "Add";
+  //      if (txt == cmp )
+///
+   //     {
+  //          txt.text = "Added";
+  //          numdevicesrequested++;
+ //       }
+  //      else
+  //      {
+  //          txt.text = "Add";
+  //          numdevicesrequested--;
+  //      }
+    }
+    
+     public void OnButtonPress_ConnectRightLeg()
+    {
+      Text txt = ConnectRightLeg.GetComponentInChildren<Text>();
 
+      if (txt.text == "Add" )
+
+       {
+            txt.text = "Added";
+            numdevicesrequested++;
+        }
+        else
+        {
+           txt.text = "Add";
+            numdevicesrequested--;
+        }
+    }
+    
     public void OnButtonPress_StartStopButton()
     {
         if (DisplayData == false)
@@ -224,6 +295,10 @@ public class FitCapTest : MonoBehaviour
         FitCapStatusMessages = "StartProcess";
         StartStopButton.onClick.AddListener(OnButtonPress_StartStopButton);
         DisconnectButton.onClick.AddListener(OnButtonPress_DisconnectButton);
+        ConnectLeftArm.onClick.AddListener(OnButtonPress_ConnectLeftArm);
+        ConnectRightArm.onClick.AddListener(OnButtonPress_ConnectRightArm);
+        ConnectRightLeg.onClick.AddListener(OnButtonPress_ConnectRightLeg);
+        ConnectLeftLeg.onClick.AddListener(OnButtonPress_ConnectLeftLeg);
 
         Reset();
         BluetoothLEHardwareInterface.Initialize(true, false, () =>
