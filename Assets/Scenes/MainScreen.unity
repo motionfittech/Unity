@@ -1943,6 +1943,7 @@ MonoBehaviour:
   TopPanel: {fileID: 927348135}
   MiddlePanel: {fileID: 323722811}
   exerciseString: 
+  DisplayData: 0
 --- !u!114 &824284715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2730,7 +2731,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1198343053250130, guid: 4d478a439c81e6843ba3a9f7f2eb3d8a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114170508423796382, guid: 4d478a439c81e6843ba3a9f7f2eb3d8a,
         type: 3}
