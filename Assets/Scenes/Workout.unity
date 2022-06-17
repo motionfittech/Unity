@@ -533,7 +533,7 @@ GameObject:
   - component: {fileID: 77956674}
   - component: {fileID: 77956673}
   m_Layer: 5
-  m_Name: FitCapStatus
+  m_Name: FitCapStatus4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -890,14 +890,23 @@ MonoBehaviour:
   DeviceName: FitCap1
   csv: {fileID: 572307532}
   AccelerometerText: {fileID: 1959476321}
-  FitCapStatusText: {fileID: 970752857}
+  AccelerometerText2: {fileID: 0}
+  AccelerometerText3: {fileID: 0}
+  AccelerometerText4: {fileID: 0}
+  FitCapStatusText: {fileID: 1522280998}
+  FitCapStatusText2: {fileID: 666281923}
+  FitCapStatusText3: {fileID: 758301940}
+  FitCapStatusText4: {fileID: 77956673}
   BatteryLevelText: {fileID: 1684579417}
+  BatteryLevelText2: {fileID: 0}
+  BatteryLevelText3: {fileID: 0}
+  BatteryLevelText4: {fileID: 0}
   StartStopButton: {fileID: 432130059}
   DisconnectButton: {fileID: 2069790186}
-  ConnectLeftArm: {fileID: 0}
-  ConnectRightArm: {fileID: 0}
+  ConnectLeftArm: {fileID: 508295365}
+  ConnectRightArm: {fileID: 1072914823}
   ConnectRightLeg: {fileID: 471392915}
-  ConnectLeftLeg: {fileID: 0}
+  ConnectLeftLeg: {fileID: 93203223}
   TopPanel: {fileID: 173953858}
   MiddlePanel: {fileID: 1799849738}
   exerciseString: 
@@ -8799,7 +8808,7 @@ GameObject:
   - component: {fileID: 666281924}
   - component: {fileID: 666281923}
   m_Layer: 5
-  m_Name: FitCapStatus
+  m_Name: FitCapStatus2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9793,7 +9802,7 @@ GameObject:
   - component: {fileID: 758301941}
   - component: {fileID: 758301940}
   m_Layer: 5
-  m_Name: FitCapStatus
+  m_Name: FitCapStatus3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20616,7 +20625,7 @@ GameObject:
   - component: {fileID: 1522280999}
   - component: {fileID: 1522280998}
   m_Layer: 5
-  m_Name: FitCapStatus
+  m_Name: FitCapStatus5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

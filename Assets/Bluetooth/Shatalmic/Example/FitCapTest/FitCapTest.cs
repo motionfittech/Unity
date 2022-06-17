@@ -11,8 +11,17 @@ public class FitCapTest : MonoBehaviour
     public string DeviceName = "FitCap1";
     public CSVManager csv;
     public Text AccelerometerText;
+    public Text AccelerometerText2;
+    public Text AccelerometerText3;
+    public Text AccelerometerText4;
     public Text FitCapStatusText;
+    public Text FitCapStatusText2;
+    public Text FitCapStatusText3;
+    public Text FitCapStatusText4;
     public Text BatteryLevelText;
+    public Text BatteryLevelText2;
+    public Text BatteryLevelText3;
+    public Text BatteryLevelText4;
 
     public Button StartStopButton;
     public Button DisconnectButton;
@@ -85,13 +94,34 @@ public class FitCapTest : MonoBehaviour
     {
         None,
         Scan,
+        Scan2,
+        Scan3,
+        Scan4,
         Connect,
+        Connect2,
+        Connect3,
+        Connect4,
         ConfigureAccelerometer,
+        ConfigureAccelerometer2,
+        ConfigureAccelerometer3,
+        ConfigureAccelerometer4,
         //   ReadBattery,
         SubscribeToAccelerometer,
+        SubscribeToAccelerometer2,
+        SubscribeToAccelerometer3,
+        SubscribeToAccelerometer4,
         SubscribingToAccelerometerTimeout,
+        SubscribingToAccelerometerTimeout2,
+        SubscribingToAccelerometerTimeout3,
+        SubscribingToAccelerometerTimeout4,
         Disconnect,
+        Disconnect2,
+        Disconnect3,
+        Disconnect4,
         Disconnecting,
+        Disconnecting2,
+        Disconnecting3,
+        Disconnecting4
     }
 
     private bool _connected = false;
@@ -124,52 +154,56 @@ public class FitCapTest : MonoBehaviour
     }
      public void OnButtonPress_ConnectLeftArm()
     {
- //       Text txt = ConnectLeftArm.GetComponentInChildren<TextField>();
-//        const Text cmp = "Add";
-//        if (txt == cmp )
-//        {
-//            txt.text = "Added";
+ Text txt = ConnectLeftArm.GetComponentInChildren<Text>();
+
+      if (txt.text == "Add" )
+
+       {
+            txt.text = "Remove";
             numdevicesrequested++;
-//        }
-//        else
-//        {
-//            txt.text = "Add";
-//            numdevicesrequested--;
-//        }
+        }
+        else
+        {
+           txt.text = "Add";
+            numdevicesrequested--;
+        }
+        ConnectLeftArm.Select();
     }
     
      public void OnButtonPress_ConnectRightArm()
     {
- //    Text txt = ConnectRightArm.GetComponentInChildren<Text>();
- //                const Text cmp = "Add";
- //       if (txt == cmp )
-//
-  //      {
-  //          txt.text = "Added";
-  //          numdevicesrequested++;
-  //      }
-  //      else
-  //      {
-  //          txt.text = "Add";
-  //          numdevicesrequested--;
-  //      }
+  Text txt = ConnectRightArm.GetComponentInChildren<Text>();
+
+      if (txt.text == "Add" )
+
+       {
+            txt.text = "Remove";
+            numdevicesrequested++;
+        }
+        else
+        {
+           txt.text = "Add";
+            numdevicesrequested--;
+        }
+        ConnectRightArm.Select();
     }
     
      public void OnButtonPress_ConnectLeftLeg()
     {
-  //   Text txt = ConnectLeftLeg.GetComponentInChildren<Text>();
-  //               const Text cmp = "Add";
-  //      if (txt == cmp )
-///
-   //     {
-  //          txt.text = "Added";
-  //          numdevicesrequested++;
- //       }
-  //      else
-  //      {
-  //          txt.text = "Add";
-  //          numdevicesrequested--;
-  //      }
+   Text txt = ConnectLeftLeg.GetComponentInChildren<Text>();
+
+      if (txt.text == "Add" )
+
+       {
+            txt.text = "Remove";
+            numdevicesrequested++;
+        }
+        else
+        {
+           txt.text = "Add";
+            numdevicesrequested--;
+        }
+        ConnectLeftLeg.Select();
     }
     
      public void OnButtonPress_ConnectRightLeg()
@@ -179,7 +213,7 @@ public class FitCapTest : MonoBehaviour
       if (txt.text == "Add" )
 
        {
-            txt.text = "Added";
+            txt.text = "Remove";
             numdevicesrequested++;
         }
         else
@@ -187,8 +221,9 @@ public class FitCapTest : MonoBehaviour
            txt.text = "Add";
             numdevicesrequested--;
         }
+        ConnectRightLeg.Select();
     }
-    
+
     public void OnButtonPress_StartStopButton()
     {
         if (DisplayData == false)
