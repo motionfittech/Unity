@@ -516,7 +516,7 @@ public class FitCapTest : MonoBehaviour
                                     {
                                         SetState(States.Scan, 0.5f);
                                     
-                                    
+                                    }
                                         ConnectLeftArm.OnClick.AddListener(OnButtonPress_ConnectLeftArm);
                                     {
                                         BluetoothLEHardwareInterface.StopScan();
@@ -527,56 +527,41 @@ public class FitCapTest : MonoBehaviour
                                         // this example does not deal with finding more than one
                                         _deviceAddress = address;
                                         SetState(States.Scan2, 0.5f);
-                                    
-                                    }
-                                        ConnectRightArm.OnClick.AddListener(OnButtonPress_ConnectRightArm);
-                                    {
-                                        BluetoothLEHardwareInterface.StopScan();
-
-                                        TopPanel.SetActive(true);
-
-                                        // found a device with the name we want
-                                        // this example does not deal with finding more than one
-                                        _deviceAddress = address;
-                                        SetState(States.Scan2, 0.5f);
-                                    }
-                                        ConnectLeftLeg.OnClick.AddListener(OnButtonPress_ConnectLeftLeg);
-                                    {
-                                        BluetoothLEHardwareInterface.StopScan();
-
-                                        TopPanel.SetActive(true);
-
-                                        // found a device with the name we want
-                                        // this example does not deal with finding more than one
-                                        _deviceAddress = address;
-                                        SetState(States.Scan3, 0.5f);
-                                    }
-                                    ConnectRightLeg.OnClick.AddListener(OnButtonPress_ConnectRightLeg);
-                                    {
-                                        BluetoothLEHardwareInterface.StopScan();
-
-                                        TopPanel.SetActive(true);
-
-                                        // found a device with the name we want
-                                        // this example does not deal with finding more than one
-                                        _deviceAddress = address;
-                                        SetState(States.Scan4, 0.5f);
                                     }
                                 }
-                            }, null, true);
+                            }, 
+                            
+                         null, true);
                         }
                         break;
-                   
-                    case States.Scan2:
-                    {
-                        Debug.Log("Scanning for: " + DeviceName);
-                        BluetoothLEHardwareInterface.ScanForPeripheralsWithServices(null, (address, deviceName) =>
-                         
-                         if (deviceName.Contains(DeviceName))
+                        
+                        case States.Scan2:
+                        {
+                            FitCapStatusMessages = "Scanning for: " + DeviceName;
+                            BluetoothLEHardwareInterface.ScanForPeripheralsWithServices(null, (address, deviceName) =>
+                            {
+
+                                FitCapStatusMessages = "Scanning Found: " + deviceName;
+
+                                if (deviceName.Contains(DeviceName))
                                 {
                                     FitCapStatusMessages = "Found a FitCap: " + address;
-                                    SetState(States.Connect2, 0.5f);
-                    }
+
+                                    if (connectdisconnect == true)
+                                    {
+                                        BluetoothLEHardwareInterface.StopScan();
+
+                                        TopPanel.SetActive(true);
+
+                                        // found a device with the name we want
+                                        // this example does not deal with finding more than one
+                                        _deviceAddress = address;
+                                        SetState(States.Connect, 0.5f);
+                                    }
+                                  }
+                            });}
+
+                        
                     case States.Connect:
                         {
                             FitCapStatusMessages = "Connecting to FitCap...";
