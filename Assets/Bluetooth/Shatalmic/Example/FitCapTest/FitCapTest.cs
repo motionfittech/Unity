@@ -515,23 +515,9 @@ public class FitCapTest : MonoBehaviour
                                      else
                                     {
                                         SetState(States.Scan, 0.5f);
-                                    
                                     }
-                                        ConnectLeftArm.OnClick.AddListener(OnButtonPress_ConnectLeftArm);
-                                    {
-                                        BluetoothLEHardwareInterface.StopScan();
-
-                                        TopPanel.SetActive(true);
-
-                                        // found a device with the name we want
-                                        // this example does not deal with finding more than one
-                                        _deviceAddress = address;
-                                        SetState(States.Scan2, 0.5f);
-                                    }
-                                }
-                            }, 
-                            
-                         null, true);
+                                       }
+                            }, null, true);
                         }
                         break;
                         
