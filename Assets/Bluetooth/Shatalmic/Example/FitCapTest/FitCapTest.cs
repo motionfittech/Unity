@@ -11,24 +11,19 @@ public class FitCapTest : MonoBehaviour
     public string DeviceName = "FitCap1";
     public CSVManager csv;
     public Text AccelerometerText;
-    public Text AccelerometerText2;
-    public Text AccelerometerText3;
-    public Text AccelerometerText4;
     public Text FitCapStatusText;
-    public Text FitCapStatusText2;
-    public Text FitCapStatusText3;
-    public Text FitCapStatusText4;
+    public Text FitCapStatusTextLeftArm;
+    public Text FitCapStatusTextRightArm;
+    public Text FitCapStatusTextLeftLeg;
     public Text BatteryLevelText;
-    public Text BatteryLevelText2;
-    public Text BatteryLevelText3;
-    public Text BatteryLevelText4;
 
     public Button StartStopButton;
     public Button DisconnectButton;
     public Button ConnectLeftArm;
     public Button ConnectRightArm;
-    public Button ConnectRightLeg;
     public Button ConnectLeftLeg;
+    public Button ConnectRightLeg;
+
 
     public GameObject TopPanel;
     public GameObject MiddlePanel;
@@ -94,34 +89,13 @@ public class FitCapTest : MonoBehaviour
     {
         None,
         Scan,
-        Scan2,
-        Scan3,
-        Scan4,
         Connect,
-        Connect2,
-        Connect3,
-        Connect4,
         ConfigureAccelerometer,
-        ConfigureAccelerometer2,
-        ConfigureAccelerometer3,
-        ConfigureAccelerometer4,
         //   ReadBattery,
         SubscribeToAccelerometer,
-        SubscribeToAccelerometer2,
-        SubscribeToAccelerometer3,
-        SubscribeToAccelerometer4,
         SubscribingToAccelerometerTimeout,
-        SubscribingToAccelerometerTimeout2,
-        SubscribingToAccelerometerTimeout3,
-        SubscribingToAccelerometerTimeout4,
         Disconnect,
-        Disconnect2,
-        Disconnect3,
-        Disconnect4,
         Disconnecting,
-        Disconnecting2,
-        Disconnecting3,
-        Disconnecting4
     }
 
     private bool _connected = false;
@@ -131,12 +105,11 @@ public class FitCapTest : MonoBehaviour
 
     public bool DisplayData = false;
     private bool connectdisconnect = false;
-   
+    private bool connectdisconnectleftarm = false;
 
     // path of the file
     static public string path = "";
 
-    static private int numdevicesrequested = 0;
 
     public void OnButtonPress_DisconnectButton()
     {
@@ -152,77 +125,6 @@ public class FitCapTest : MonoBehaviour
             Text txt = DisconnectButton.GetComponentInChildren<Text>();
             txt.text = "Connect";
         }
-    }
-     public void OnButtonPress_ConnectLeftArm()
-    {
- Text txt = ConnectLeftArm.GetComponentInChildren<Text>();
-
-      if (txt.text == "Add" )
-
-       {
-            txt.text = "Remove";
-            numdevicesrequested++;
-        }
-        else
-        {
-           txt.text = "Add";
-            numdevicesrequested--;
-        }
-        ConnectLeftArm.Select();
-    }
-    
-     public void OnButtonPress_ConnectRightArm()
-    {
-  Text txt = ConnectRightArm.GetComponentInChildren<Text>();
-
-      if (txt.text == "Add" )
-
-       {
-            txt.text = "Remove";
-            numdevicesrequested++;
-        }
-        else
-        {
-           txt.text = "Add";
-            numdevicesrequested--;
-        }
-        ConnectRightArm.Select();
-    }
-    
-     public void OnButtonPress_ConnectLeftLeg()
-    {
-   Text txt = ConnectLeftLeg.GetComponentInChildren<Text>();
-
-      if (txt.text == "Add" )
-
-       {
-            txt.text = "Remove";
-            numdevicesrequested++;
-        }
-        else
-        {
-           txt.text = "Add";
-            numdevicesrequested--;
-        }
-        ConnectLeftLeg.Select();
-    }
-    
-     public void OnButtonPress_ConnectRightLeg()
-    {
-      Text txt = ConnectRightLeg.GetComponentInChildren<Text>();
-
-      if (txt.text == "Add" )
-
-       {
-            txt.text = "Remove";
-            numdevicesrequested++;
-        }
-        else
-        {
-           txt.text = "Add";
-            numdevicesrequested--;
-        }
-        ConnectRightLeg.Select();
     }
 
     public void OnButtonPress_StartStopButton()
@@ -305,7 +207,34 @@ public class FitCapTest : MonoBehaviour
             }
         }
     }
+string FitCapStatusMessagesLeftArm
+    {
+        set
+        {
+            Debug.Log(value);
 
+            if (!string.IsNullOrEmpty(value))
+                BluetoothLEHardwareInterface.Log(value);
+            if (FitCapStatusText != null)
+            {
+                FitCapStatusTextLeftArm.text = value;
+            }
+        }
+    }
+    string FitCapStatusMessagesRightArm
+    {
+        set
+        {
+            Debug.Log(value);
+
+            if (!string.IsNullOrEmpty(value))
+                BluetoothLEHardwareInterface.Log(value);
+            if (FitCapStatusText != null)
+            {
+                FitCapStatusTextRightArm.text = value;
+            }
+        }
+    }
     void Reset()
     {
         _connected = false;
@@ -331,10 +260,6 @@ public class FitCapTest : MonoBehaviour
         FitCapStatusMessages = "StartProcess";
         StartStopButton.onClick.AddListener(OnButtonPress_StartStopButton);
         DisconnectButton.onClick.AddListener(OnButtonPress_DisconnectButton);
-        ConnectLeftArm.onClick.AddListener(OnButtonPress_ConnectLeftArm);
-        ConnectRightArm.onClick.AddListener(OnButtonPress_ConnectRightArm);
-        ConnectRightLeg.onClick.AddListener(OnButtonPress_ConnectRightLeg);
-        ConnectLeftLeg.onClick.AddListener(OnButtonPress_ConnectLeftLeg);
 
         Reset();
         BluetoothLEHardwareInterface.Initialize(true, false, () =>
@@ -512,42 +437,15 @@ public class FitCapTest : MonoBehaviour
                                         _deviceAddress = address;
                                         SetState(States.Connect, 0.5f);
                                     }
-                                     else
+                                    else
                                     {
                                         SetState(States.Scan, 0.5f);
                                     }
-                                       }
+                                }
                             }, null, true);
                         }
                         break;
-                        
-                        case States.Scan2:
-                        {
-                            FitCapStatusMessages = "Scanning for: " + DeviceName;
-                            BluetoothLEHardwareInterface.ScanForPeripheralsWithServices(null, (address, deviceName) =>
-                            {
 
-                                FitCapStatusMessages = "Scanning Found: " + deviceName;
-
-                                if (deviceName.Contains(DeviceName))
-                                {
-                                    FitCapStatusMessages = "Found a FitCap: " + address;
-
-                                    if (connectdisconnect == true)
-                                    {
-                                        BluetoothLEHardwareInterface.StopScan();
-
-                                        TopPanel.SetActive(true);
-
-                                        // found a device with the name we want
-                                        // this example does not deal with finding more than one
-                                        _deviceAddress = address;
-                                        SetState(States.Connect, 0.5f);
-                                    }
-                                  }
-                            });}
-
-                        
                     case States.Connect:
                         {
                             FitCapStatusMessages = "Connecting to FitCap...";
@@ -567,7 +465,7 @@ public class FitCapTest : MonoBehaviour
                                     if (AllCharacteristicsFound)
                                     {
                                         _connected = true;
-                                        SetState(States.ConfigureAccelerometer, 3f);
+                                        SetState(States.ConfigureAccelerometer, 0.5f);
 
                                         FitCapStatusMessages = "I am here 2";
                                     }
@@ -619,7 +517,72 @@ public class FitCapTest : MonoBehaviour
                             SetState(States.Disconnect, 0.5f);
                         }
                         break;
+                   
+               //     case States.Scan2:
+               //       {
+                //            FitCapStatusMessagesLeftArm = "Scanning for: " + DeviceName;
+                //            BluetoothLEHardwareInterface.ScanForPeripheralsWithServices(null, (address, deviceName) =>
+                       //     {
+//
+                 //               FitCapStatusMessages = "Scanning Found: " + deviceName;
 
+                  //              if (deviceName.Contains(DeviceName))
+                //                {
+                   //                 FitCapStatusMessagesLeftArm = "Found a FitCap: " + address;
+//
+                   //                 if (connectdisconnectleftarm == true)
+                    //                {
+                    //                    BluetoothLEHardwareInterface.StopScan();
+
+                    //                    TopPanel.SetActive(true);
+
+                                        // found a device with the name we want
+                                        // this example does not deal with finding more than one
+                    //                    _deviceAddress = address;
+                    //                    SetState(States.Connect2, 0.5f);
+                    //                }
+                    //                else
+                    //                {
+                     //                   SetState(States.Scan, 0.5f);
+                     //               }
+                     //           }
+                     //       }, null, true);
+                     //   }
+                      //  break;
+                       
+                //    case States.Connect2:
+                //        {
+                 //           FitCapStatusMessagesLeftArm = "Connecting to FitCap...";
+//
+                 //           BluetoothLEHardwareInterface.ConnectToPeripheral(_deviceAddress, null, null, (address, serviceUUID, characteristicUUID) =>
+                 //           {
+                 //               FitCapStatusMessagesLeftArm = "Connected to FitCap..." + address;
+
+                  //              var characteristic = GetCharacteristic(serviceUUID, characteristicUUID);
+                 //               if (characteristic != null)
+                 //               {
+                  //                  BluetoothLEHardwareInterface.Log(string.Format("Found {0}, {1}", serviceUUID, characteristicUUID));
+                  //                  FitCapStatusMessagesLeftArm = "I am here 1";
+//
+                   //                 characteristic.Found = true;
+
+                    //                if (AllCharacteristicsFound)
+                    //                {
+                     //                   _connected = true;
+                    //                    SetState(States.ConfigureAccelerometer2, 0.5f);
+
+                      //                  FitCapStatusMessages = "I am here 2";
+                      //              }
+                      //          }
+                      //      }, (disconnectAddress) =>
+                      //      {
+                        //        FitCapStatusMessages = "Disconnected from FitCap";
+                      //          Reset();
+                      //          SetState(States.Scan, 1f);
+                      //      });
+                    //    }
+                     //   break;
+                
                     case States.Disconnect:
                         {
                             SetState(States.Disconnecting, 5f);
@@ -645,6 +608,10 @@ public class FitCapTest : MonoBehaviour
                             SetState(States.Scan, 1f);
                         }
                         break;
+
+                        {
+                            
+                        }
                 }
             }
         }
@@ -655,3 +622,5 @@ public class FitCapTest : MonoBehaviour
         return (uuid1.ToUpper().CompareTo(uuid2.ToUpper()) == 0);
     }
 }
+
+
