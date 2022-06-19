@@ -890,17 +890,23 @@ MonoBehaviour:
   DeviceName: FitCap1
   csv: {fileID: 572307532}
   AccelerometerText: {fileID: 1959476321}
+  AccelerometerText2: {fileID: 930577687}
+  AccelerometerText3: {fileID: 339223061}
+  AccelerometerText4: {fileID: 586750393}
   FitCapStatusText: {fileID: 1522280998}
-  FitCapStatusTextLeftArm: {fileID: 666281923}
-  FitCapStatusTextRightArm: {fileID: 77956673}
-  FitCapStatusTextLeftLeg: {fileID: 758301940}
+  FitCapStatusText2: {fileID: 666281923}
+  FitCapStatusText3: {fileID: 758301940}
+  FitCapStatusText4: {fileID: 77956673}
   BatteryLevelText: {fileID: 1684579417}
+  BatteryLevelText2: {fileID: 0}
+  BatteryLevelText3: {fileID: 0}
+  BatteryLevelText4: {fileID: 0}
   StartStopButton: {fileID: 432130059}
-  DisconnectButton: {fileID: 508295365}
+  DisconnectButton: {fileID: 2069790186}
   ConnectLeftArm: {fileID: 508295365}
   ConnectRightArm: {fileID: 1072914823}
-  ConnectLeftLeg: {fileID: 93203223}
   ConnectRightLeg: {fileID: 471392915}
+  ConnectLeftLeg: {fileID: 93203223}
   TopPanel: {fileID: 173953858}
   MiddlePanel: {fileID: 1799849738}
   exerciseString: 
@@ -16097,7 +16103,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.499}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 959.99994, y: 0}
+  m_AnchoredPosition: {x: 960, y: 0}
   m_SizeDelta: {x: 826, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1179404662
@@ -28434,7 +28440,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1648822348}
   m_HandleRect: {fileID: 1648822347}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
