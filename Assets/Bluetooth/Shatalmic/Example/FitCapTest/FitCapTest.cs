@@ -542,12 +542,12 @@ string FitCapStatusMessagesLeftArm
                         break;
                         }          
                     }
-}
+
 
 
     
         
-    Void Update()
+    void Update()
     {
         if (connectdisconnectleftarm == true)
         
