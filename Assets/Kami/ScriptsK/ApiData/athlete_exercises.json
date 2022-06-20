@@ -1,0 +1,2737 @@
+{
+  "status": 200,
+  "data": [
+    {
+      "name": "Benchpress",
+      "datapoints": [
+        {
+          "name": "Force",
+          "dimensions": [
+            {
+              "name": "Daily",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Weekly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Yearly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Monthly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Set Averages",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Per Repetition Of Movement",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Power",
+          "dimensions": [
+            {
+              "name": "Daily",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Weekly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Yearly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Monthly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Set Averages",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Per Repetition Of Movement",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Velocity",
+          "dimensions": [
+            {
+              "name": "Daily",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Weekly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Yearly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Monthly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Set Averages",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Per Repetition Of Movement",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Excercise Form",
+          "dimensions": [
+            {
+              "name": "Daily",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Weekly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Yearly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Monthly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Set Averages",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Per Repetition Of Movement",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Fatigue",
+          "dimensions": [
+            {
+              "name": "Daily",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Weekly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Yearly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Monthly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Set Averages",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Per Repetition Of Movement",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Muscle Imabalances",
+          "dimensions": [
+            {
+              "name": "Daily",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Weekly",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Yearly",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Monthly",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Set Averages",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Per Repetition Of Movement",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Powerlift",
+      "datapoints": [
+        {
+          "name": "Force",
+          "dimensions": [
+            {
+              "name": "Daily",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Weekly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Yearly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Monthly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Set Averages",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Per Repetition Of Movement",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Power",
+          "dimensions": [
+            {
+              "name": "Daily",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Weekly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Yearly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Monthly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Set Averages",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Per Repetition Of Movement",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Velocity",
+          "dimensions": [
+            {
+              "name": "Daily",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Weekly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Yearly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Monthly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Set Averages",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Per Repetition Of Movement",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Excercise Form",
+          "dimensions": [
+            {
+              "name": "Daily",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Weekly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Yearly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Monthly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Set Averages",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Per Repetition Of Movement",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Fatigue",
+          "dimensions": [
+            {
+              "name": "Daily",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Weekly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Yearly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Monthly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Set Averages",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Per Repetition Of Movement",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Muscle Imabalances",
+          "dimensions": [
+            {
+              "name": "Daily",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Weekly",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Yearly",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Monthly",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Set Averages",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Per Repetition Of Movement",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Pushups",
+      "datapoints": [
+        {
+          "name": "Force",
+          "dimensions": [
+            {
+              "name": "Daily",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Weekly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Yearly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Monthly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Set Averages",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Per Repetition Of Movement",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Power",
+          "dimensions": [
+            {
+              "name": "Daily",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Weekly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Yearly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Monthly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Set Averages",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Per Repetition Of Movement",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Velocity",
+          "dimensions": [
+            {
+              "name": "Daily",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Weekly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Yearly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Monthly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Set Averages",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Per Repetition Of Movement",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Excercise Form",
+          "dimensions": [
+            {
+              "name": "Daily",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Weekly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Yearly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Monthly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Set Averages",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Per Repetition Of Movement",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Fatigue",
+          "dimensions": [
+            {
+              "name": "Daily",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Weekly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Yearly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Monthly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Set Averages",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Per Repetition Of Movement",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Muscle Imabalances",
+          "dimensions": [
+            {
+              "name": "Daily",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Weekly",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Yearly",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Monthly",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Set Averages",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Per Repetition Of Movement",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Chinups",
+      "datapoints": [
+        {
+          "name": "Force",
+          "dimensions": [
+            {
+              "name": "Daily",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Weekly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Yearly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Monthly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Set Averages",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Per Repetition Of Movement",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Power",
+          "dimensions": [
+            {
+              "name": "Daily",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Weekly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Yearly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Monthly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Set Averages",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Per Repetition Of Movement",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Velocity",
+          "dimensions": [
+            {
+              "name": "Daily",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Weekly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Yearly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Monthly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Set Averages",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Per Repetition Of Movement",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Excercise Form",
+          "dimensions": [
+            {
+              "name": "Daily",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Weekly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Yearly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Monthly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Set Averages",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Per Repetition Of Movement",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Fatigue",
+          "dimensions": [
+            {
+              "name": "Daily",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Weekly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Yearly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Monthly",
+              "graph": "bar",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Set Averages",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Per Repetition Of Movement",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Muscle Imabalances",
+          "dimensions": [
+            {
+              "name": "Daily",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Weekly",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Yearly",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Monthly",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Set Averages",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            },
+            {
+              "name": "Per Repetition Of Movement",
+              "graph": "pie",
+              "values": [
+                {
+                  "name": "Form",
+                  "formula": "10+5"
+                },
+                {
+                  "name": "Fatigue",
+                  "formula": "30+10"
+                },
+                {
+                  "name": "Velocity",
+                  "formula": "30*2"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
