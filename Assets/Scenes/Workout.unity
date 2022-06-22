@@ -5173,7 +5173,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1599725404}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Sideitem, Assembly-CSharp
         m_MethodName: onValueChanged
         m_Mode: 1
@@ -8942,6 +8942,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LEARN PROPER FORMbt
       objectReference: {fileID: 0}
+    - target: {fileID: 1198343053250130, guid: 4d478a439c81e6843ba3a9f7f2eb3d8a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 114170508423796382, guid: 4d478a439c81e6843ba3a9f7f2eb3d8a,
         type: 3}
       propertyPath: buttonText
@@ -10507,78 +10511,14 @@ MonoBehaviour:
   selectedParet: {fileID: 1063804438}
   selectedprefab: {fileID: 134235814}
   buttonname:
-  - AlternatingFrontRaise
-  - Arnoldpress
-  - Bandpullapart
-  - Squat
-  - Benchpress
-  - Bentoverrow
-  - Bentlegraises
-  - Bicyclecrunch
-  - Bodyweighthamstringcurl
-  - NeuropathicGait
-  - SensoryGait
-  - Curl
-  - Deadlift
-  - Dumbelllunges
-  - Frontraise
-  - Frontsquat
-  - Goodmorning
-  - Hamstringcurl
-  - Kettlebell
-  - Latpulldown
-  - Latpullover
-  - Legcrunch
-  - Legraise
-  - Gait
-  - Planktopushup
-  - ParkinsonianGait
-  - DiplegicGait
-  - Skullcrushers
-  - Snatchgripdeadlift
-  - Sit-To-Stand
-  - Straightlegdeadlift
-  - Sumo
-  - Uprightrow
-  - HemiplegicGait
+  - Glide wire
+  - Stiff wire
+  - Road Runner
+  - Micro Catheter
   selectedExercise: []
   createExercise: []
   selectedExerciseobj: []
-  AnimatorParameters:
-  - AlternatingFrontRaise
-  - Arnoldpress
-  - Bandpullapart
-  - Squat
-  - Benchpress
-  - Bentoverrow
-  - Bentlegraises
-  - Bicyclecrunch
-  - Bodyweighthamstringcurl
-  - NeuropathicGait
-  - SensoryGait
-  - Curl
-  - Deadlift
-  - Dumbelllunges
-  - Frontraise
-  - Frontsquat
-  - Goodmorning
-  - Hamstringcurl
-  - Kettlebell
-  - Latpulldown
-  - Latpullover
-  - Legcrunch
-  - Legraise
-  - Gait
-  - Planktopushup
-  - ParkinsonianGait
-  - DiplegicGait
-  - Skullcrushers
-  - Snatchgripdeadlift
-  - Sit-To-Stand
-  - Straightlegdeadlift
-  - Sumo
-  - Uprightrow
-  - HemiplegicGait
+  AnimatorParameters: []
   ani: {fileID: 3554198462929001310}
   circle: {fileID: 567912934}
   closebutton: {fileID: 567912933}
@@ -13872,7 +13812,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 38816032}
   m_HandleRect: {fileID: 38816031}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -21108,7 +21048,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1648822348}
   m_HandleRect: {fileID: 1648822347}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -22567,7 +22507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d218e07e7315e243acdfcc700d01eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonText: SEE DATA
+  buttonText: REVIEW TECHNIQUE
   clickEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -22716,7 +22656,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SEE DATA
+  m_text: REVIEW TECHNIQUE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 84dd14695854bbc43a5faa24fcf93d0d, type: 2}
   m_sharedMaterial: {fileID: 21261991626553910, guid: 84dd14695854bbc43a5faa24fcf93d0d,
@@ -22922,7 +22862,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SEE DATA
+  m_text: REVIEW TECHNIQUE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 194c956b3d864664890e731c63fd4a02, type: 2}
   m_sharedMaterial: {fileID: 21704438749789640, guid: 194c956b3d864664890e731c63fd4a02,
@@ -24392,8 +24332,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -391, y: 281}
-  m_SizeDelta: {x: 200, y: 70}
+  m_AnchoredPosition: {x: -960, y: 191}
+  m_SizeDelta: {x: 200, y: 92.058}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224809411080767954
 RectTransform:
@@ -39118,7 +39058,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &3554198462929001310
 Animator:
   serializedVersion: 4
