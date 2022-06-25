@@ -33,9 +33,9 @@ public class CSVManager : MonoBehaviour
 	List<float> AccelerationRotationSx = new List<float>();
 	List<float> AccelerationRotationSy = new List<float>();
 	List<float> AccelerationRotationSz = new List<float>();
-	List<float> VelocityPointSx = new List<float>();
-	List<float> VelocityPointSy = new List<float>();
-	List<float> VelocityPointSz = new List<float>();
+	// List<float> VelocityPointSx = new List<float>();
+	// List<float> VelocityPointSy = new List<float>();
+	// List<float> VelocityPointSz = new List<float>();
 	//float totalVelocityX;
 	//float totalVelocityY;
 	//float totalVelocityZ;
