@@ -263,8 +263,8 @@ public class LocalDatabase : MonoBehaviour
                     }
                     if(temp.Key == "imbalance")
                     {
-                        tempED.imbalance_l.text = temp.Value[0].ToString().Substring(0, 8);
-                        tempED.imbalance_r.text = temp.Value[1].ToString().Substring(0, 8);
+                        // tempED.imbalance_l.text = temp.Value[0].ToString().Substring(0, 8);
+                        // tempED.imbalance_r.text = temp.Value[1].ToString().Substring(0, 8);
                     }
                    
                     
