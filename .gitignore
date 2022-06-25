@@ -61,3 +61,6 @@ crashlytics-build.properties
 
 # Mac generated
 .DS_Store
+
+# Visual Studio Code
+.vscode
