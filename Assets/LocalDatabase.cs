@@ -265,6 +265,38 @@ public class LocalDatabase : MonoBehaviour
                     
                 }
 
+                loadClassificationPerExercise(exerciseName, tempED);
+
+                // Success
+            }
+        });
+    }
+
+    public void loadClassificationPerExercise(string exerciseName, EquationData data) {
+        Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
+        dbRef.Child("users").Child(UID).Child("CSV_Data").Child(exerciseName).Child("ml").GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted)
+            {
+                // Failure
+
+            }
+            else if (task.IsCompleted)
+            {
+                DataSnapshot snapshot = task.Result;
+                foreach (var temp in snapshot.Children)
+                {
+
+                    if (temp.Key == "classification")
+                    {
+                        data.classification.text = temp.Value.ToString().Substring(0, 8);
+                    }
+                    if (temp.Key == "confidence")
+                    {
+                        data.confidence.text = temp.Value.ToString().Substring(0, 8);
+                    }
+                    
+                }
 
                 // Success
             }
