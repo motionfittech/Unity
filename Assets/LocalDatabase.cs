@@ -261,6 +261,11 @@ public class LocalDatabase : MonoBehaviour
                      //   print(temp);
                         tempED.velocity_loss.text = temp.Value.ToString().Substring(0, 8);
                     }
+                    if(temp.Key == "imbalance")
+                    {
+                        tempED.imbalance_l.text = temp.Value[0].ToString().Substring(0, 8);
+                        tempED.imbalance_r.text = temp.Value[1].ToString().Substring(0, 8);
+                    }
                    
                     
                 }

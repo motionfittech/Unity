@@ -10,7 +10,7 @@ public class EquationData : MonoBehaviour
 	public BarChartFeed bcf;
 	public GraphChartFeed gcf;
 	public ExerDatabaseCsv EDC;
-	public TextMeshProUGUI form, imbalance, velocity, velocity_loss, classification, confidence;
+	public TextMeshProUGUI form, imbalance_l, imbalance_r, velocity, velocity_loss, classification, confidence;
 	public Image VelocityArrowImage;
 	// Start is called before the first frame update
 	void Start()
