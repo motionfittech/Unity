@@ -228,18 +228,19 @@ public class LocalDatabase : MonoBehaviour
     }
     public void LoadMatricPerExerciseData(string exerciseName)
     {
+        EquationData tempED = GameObject.FindObjectOfType<EquationData>();
+
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
         dbRef.Child("users").Child(UID).Child("CSV_Data").Child(exerciseName).Child("metrics").GetValueAsync().ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted)
             {
                 // Failure
-
+                print("Fault in metrics DB call");
             }
             else if (task.IsCompleted)
             {
                 DataSnapshot snapshot = task.Result;
-                EquationData tempED = GameObject.FindObjectOfType<EquationData>();
                 foreach (var temp in snapshot.Children)
                 {
 //                   print(temp.Key);
@@ -263,6 +264,7 @@ public class LocalDatabase : MonoBehaviour
                     }
                     if(temp.Key == "imbalance")
                     {
+                        // TODO: get imbalance readings from DB working
                         // tempED.imbalance_l.text = temp.Value[0].ToString().Substring(0, 8);
                         // tempED.imbalance_r.text = temp.Value[1].ToString().Substring(0, 8);
                     }
@@ -270,11 +272,12 @@ public class LocalDatabase : MonoBehaviour
                     
                 }
 
-                loadClassificationPerExercise(exerciseName, tempED);
-
                 // Success
             }
         });
+
+        loadClassificationPerExercise(exerciseName, tempED);
+
     }
 
     public void loadClassificationPerExercise(string exerciseName, EquationData data) {
@@ -284,7 +287,7 @@ public class LocalDatabase : MonoBehaviour
             if (task.IsFaulted)
             {
                 // Failure
-
+                print("Fault in classification DB call");
             }
             else if (task.IsCompleted)
             {
