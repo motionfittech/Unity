@@ -248,18 +248,21 @@ public class LocalDatabase : MonoBehaviour
                     if (temp.Key == "form")
                     {
                       //  print(temp);
+                        print("Form: " + temp.Value.ToString().Substring(0, 8));
                         tempED.form.text = temp.Value.ToString().Substring(0,8);
                         indexofformGraphs.Add(float.Parse(tempED.form.text));
                     }
                     if(temp.Key == "velocity")
                     {
                       //  print(temp);
+                        print("Velocity: " + temp.Value.ToString().Substring(0, 8));
                         tempED.velocity.text = temp.Value.ToString().Substring(0, 8);
                         indexofVelocityGraphs.Add(float.Parse(tempED.velocity.text));
                     }
                     if(temp.Key == "velocity_loss")
                     {
                      //   print(temp);
+                        print("Velocity loss: " + temp.Value.ToString().Substring(0, 8));
                         tempED.velocity_loss.text = temp.Value.ToString().Substring(0, 8);
                     }
                     if(temp.Key == "imbalance")
@@ -297,10 +300,12 @@ public class LocalDatabase : MonoBehaviour
 
                     if (temp.Key == "classification")
                     {
+                        print("Classification: " + temp.Value.ToString().Substring(0, 8));
                         data.classification.text = temp.Value.ToString().Substring(0, 8);
                     }
                     if (temp.Key == "confidence")
                     {
+                        print("Confidence: " + temp.Value.ToString().Substring(0, 8));
                         data.confidence.text = temp.Value.ToString().Substring(0, 8);
                     }
                     
