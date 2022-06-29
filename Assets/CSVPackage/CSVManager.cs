@@ -252,10 +252,10 @@ public class CSVManager : MonoBehaviour
 		AccelerationRotationSx = new List<float>();
 		AccelerationRotationSy = new List<float>();
 		AccelerationRotationSz = new List<float>();
-		LocalDatabase.instance.saveExerciseData(temp);
 		int temp1 = int.Parse(PlayerPrefs.GetString("csvCounter", "0"));
 		temp1 += 1;
 		PlayerPrefs.SetString("csvCounter", temp1.ToString());
+		LocalDatabase.instance.saveExerciseData(temp);
 		//print(temp1);
 		//		LocalDatabase.instance.savcsvcounter(temp1.ToString());
 
