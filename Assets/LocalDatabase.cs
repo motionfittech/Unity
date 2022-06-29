@@ -164,7 +164,8 @@ public class LocalDatabase : MonoBehaviour
 //                   print(snapshot.ChildrenCount);
                 foreach (var temp in snapshot.Children)
                 {
-                    PlayerPrefs.SetString("csvCounter", temp.toString());
+                    int val = (int)temp.Value;
+                    PlayerPrefs.SetString("csvCounter", val.ToString());
                 }
                 // Success
             }
