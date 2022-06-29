@@ -162,7 +162,10 @@ public class LocalDatabase : MonoBehaviour
             {
                 DataSnapshot snapshot = task.Result;
 //                   print(snapshot.ChildrenCount);
-                PlayerPrefs.SetString("csvCounter", snapshot.Value.toString());
+                foreach (var temp in snapshot.Children)
+                {
+                    PlayerPrefs.SetString("csvCounter", temp.Value.toString());
+                }
                 // Success
             }
         });
@@ -204,7 +207,7 @@ public class LocalDatabase : MonoBehaviour
                                 indexofNameGraphs.Add(temp.Key);
                                 LoadMatricPerExerciseData(temp.Key);
                                 IDictionary dictUser = (IDictionary)temp.Value;
-                                Debug.log("Inside LoadSeeData; Classification: " + dictUser["ml"]["classification"]);
+                                print("Inside LoadSeeData; Classification: " + dictUser["ml"]);
                             }
                         }
                     }
@@ -216,7 +219,7 @@ public class LocalDatabase : MonoBehaviour
     }
     public void LoadMatricPerExerciseData(string exerciseName)
     {
-        Debug.log("Entered metrics function");
+        print("Entered metrics function");
 
         EquationData tempED = GameObject.FindObjectOfType<EquationData>();
 
@@ -226,7 +229,7 @@ public class LocalDatabase : MonoBehaviour
             if (task.IsFaulted)
             {
                 // Failure
-                Debug.Log("Fault in metrics DB call");
+                print("Fault in metrics DB call");
             } 
             else if (task.IsCompleted)
             {
@@ -238,21 +241,21 @@ public class LocalDatabase : MonoBehaviour
                     if (temp.Key == "form")
                     {
                       //  print(temp);
-                        Debug.Log("Form: " + temp.Value.ToString().Substring(0, 8));
+                        print("Form: " + temp.Value.ToString().Substring(0, 8));
                         tempED.form.text = temp.Value.ToString().Substring(0,8);
                         indexofformGraphs.Add(float.Parse(tempED.form.text));
                     }
                     if(temp.Key == "velocity")
                     {
                       //  print(temp);
-                        Debug.Log("Velocity: " + temp.Value.ToString().Substring(0, 8));
+                        print("Velocity: " + temp.Value.ToString().Substring(0, 8));
                         tempED.velocity.text = temp.Value.ToString().Substring(0, 8);
                         indexofVelocityGraphs.Add(float.Parse(tempED.velocity.text));
                     }
                     if(temp.Key == "velocity_loss")
                     {
                      //   print(temp);
-                        Debug.Log("Velocity loss: " + temp.Value.ToString().Substring(0, 8));
+                        print("Velocity loss: " + temp.Value.ToString().Substring(0, 8));
                         tempED.velocity_loss.text = temp.Value.ToString().Substring(0, 8);
                     }
                     if(temp.Key == "imbalance")
@@ -280,7 +283,7 @@ public class LocalDatabase : MonoBehaviour
             if (task.IsFaulted)
             {
                 // Failure
-                Debug.Log("Fault in classification DB call");
+                print("Fault in classification DB call");
             }
             else if (task.IsCompleted)
             {
@@ -290,12 +293,12 @@ public class LocalDatabase : MonoBehaviour
 
                     if (temp.Key == "classification")
                     {
-                        Debug.Log("Classification: " + temp.Value.ToString().Substring(0, 8));
+                        print("Classification: " + temp.Value.ToString().Substring(0, 8));
                         data.classification.text = temp.Value.ToString().Substring(0, 8);
                     }
                     if (temp.Key == "confidence")
                     {
-                        Debug.Log("Confidence: " + temp.Value.ToString().Substring(0, 8));
+                        print("Confidence: " + temp.Value.ToString().Substring(0, 8));
                         data.confidence.text = temp.Value.ToString().Substring(0, 8);
                     }
                     
