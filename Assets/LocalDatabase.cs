@@ -68,7 +68,7 @@ public class LocalDatabase : MonoBehaviour
         PlayerPrefs.SetString("uid", UID);
         loadusername();
         loadmail();
-        getExerciseCount();
+        // getExerciseCount();
     }
 
 
@@ -130,43 +130,39 @@ public class LocalDatabase : MonoBehaviour
     {
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
        
-       
-            dbRef.Child("users").Child(UID).Child("workout").GetValueAsync().ContinueWithOnMainThread(task =>
-            {
-                if (task.IsFaulted)
-                {
-                    // Failure
-                    print("dsfdsf");
-                }
-                else if (task.IsCompleted)
-                {
-                    DataSnapshot snapshot = task.Result;
-                //    print(snapshot.Value.ToString());
-                    PlayerPrefs.SetString("workout", snapshot.Value.ToString());
-                    // Success
-                }
-            });
-
-           
-        
-
-       
-    }
-    public void Loadcsvcounter()
-    {
-        Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
-        dbRef.Child("users").Child(UID).Child("CSV_Data").GetValueAsync().ContinueWithOnMainThread(task =>
+        dbRef.Child("users").Child(UID).Child("workout").GetValueAsync().ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted)
             {
                 // Failure
-              
+                print("dsfdsf");
+            }
+            else if (task.IsCompleted)
+            {
+                DataSnapshot snapshot = task.Result;
+            //    print(snapshot.Value.ToString());
+                PlayerPrefs.SetString("workout", snapshot.Value.ToString());
+                // Success
+            }
+        });
+       
+    }
+
+    public void Loadcsvcounter()
+    {
+        Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
+        dbRef.Child("users").Child(UID).Child("csvCounter").GetValueAsync().ContinueWithOnMainThread(task =>
+        {
+            if (task.IsFaulted)
+            {
+                // Failure
+                print("Failed to load CSV count");
             }
             else if (task.IsCompleted)
             {
                 DataSnapshot snapshot = task.Result;
 //                   print(snapshot.ChildrenCount);
-                PlayerPrefs.SetString("csvCounter", snapshot.ChildrenCount.ToString());
+                PlayerPrefs.SetString("csvCounter", snapshot.Value.toString());
                 // Success
             }
         });
@@ -207,20 +203,12 @@ public class LocalDatabase : MonoBehaviour
                                 //     print(temp.Key);
                                 indexofNameGraphs.Add(temp.Key);
                                 LoadMatricPerExerciseData(temp.Key);
+                                IDictionary dictUser = (IDictionary)temp.Value;
+                                Debug.log("Inside LoadSeeData; Classification: " + dictUser["ml"]["classification"]);
                             }
                         }
                     }
                 }
-               //foreach(var temp in snapshot.Children)
-               // {
-               //     print(Regex.Replace(temp.Key.ToString(), "[^0-9]", ""));
-               //     if(Regex.Replace(temp.Key.ToString(), "[^0-9]", "") == (snapshot.ChildrenCount - 1).ToString())
-               //     {
-               //      //     print(temp.Key);
-               //      //   LoadMatricPerExerciseData(temp.Key);
-               //     }
-               // }
-
               
                 // Success
             }
@@ -228,6 +216,8 @@ public class LocalDatabase : MonoBehaviour
     }
     public void LoadMatricPerExerciseData(string exerciseName)
     {
+        Debug.log("Entered metrics function");
+
         EquationData tempED = GameObject.FindObjectOfType<EquationData>();
 
         Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
@@ -236,8 +226,8 @@ public class LocalDatabase : MonoBehaviour
             if (task.IsFaulted)
             {
                 // Failure
-                print("Fault in metrics DB call");
-            }
+                Debug.Log("Fault in metrics DB call");
+            } 
             else if (task.IsCompleted)
             {
                 DataSnapshot snapshot = task.Result;
@@ -248,21 +238,21 @@ public class LocalDatabase : MonoBehaviour
                     if (temp.Key == "form")
                     {
                       //  print(temp);
-                        print("Form: " + temp.Value.ToString().Substring(0, 8));
+                        Debug.Log("Form: " + temp.Value.ToString().Substring(0, 8));
                         tempED.form.text = temp.Value.ToString().Substring(0,8);
                         indexofformGraphs.Add(float.Parse(tempED.form.text));
                     }
                     if(temp.Key == "velocity")
                     {
                       //  print(temp);
-                        print("Velocity: " + temp.Value.ToString().Substring(0, 8));
+                        Debug.Log("Velocity: " + temp.Value.ToString().Substring(0, 8));
                         tempED.velocity.text = temp.Value.ToString().Substring(0, 8);
                         indexofVelocityGraphs.Add(float.Parse(tempED.velocity.text));
                     }
                     if(temp.Key == "velocity_loss")
                     {
                      //   print(temp);
-                        print("Velocity loss: " + temp.Value.ToString().Substring(0, 8));
+                        Debug.Log("Velocity loss: " + temp.Value.ToString().Substring(0, 8));
                         tempED.velocity_loss.text = temp.Value.ToString().Substring(0, 8);
                     }
                     if(temp.Key == "imbalance")
@@ -290,7 +280,7 @@ public class LocalDatabase : MonoBehaviour
             if (task.IsFaulted)
             {
                 // Failure
-                print("Fault in classification DB call");
+                Debug.Log("Fault in classification DB call");
             }
             else if (task.IsCompleted)
             {
@@ -300,12 +290,12 @@ public class LocalDatabase : MonoBehaviour
 
                     if (temp.Key == "classification")
                     {
-                        print("Classification: " + temp.Value.ToString().Substring(0, 8));
+                        Debug.Log("Classification: " + temp.Value.ToString().Substring(0, 8));
                         data.classification.text = temp.Value.ToString().Substring(0, 8);
                     }
                     if (temp.Key == "confidence")
                     {
-                        print("Confidence: " + temp.Value.ToString().Substring(0, 8));
+                        Debug.Log("Confidence: " + temp.Value.ToString().Substring(0, 8));
                         data.confidence.text = temp.Value.ToString().Substring(0, 8);
                     }
                     
@@ -331,23 +321,23 @@ public class LocalDatabase : MonoBehaviour
 
     }
 
-    public void saveVelocityData(float value)
-    {
+    // public void saveVelocityData(float value)
+    // {
       
-        Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
-        dbRef.Child("users").Child(UID).Child("exercisedata").Child("averagevelocity").Child(ExeCounter.ToString()).SetRawJsonValueAsync(value.ToString());
+    //     Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
+    //     dbRef.Child("users").Child(UID).Child("exercisedata").Child("averagevelocity").Child(ExeCounter.ToString()).SetRawJsonValueAsync(value.ToString());
        
-    }
-    public void repData(string Exercisename, string Data)
-    {
-        Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
-        dbRef.Child("users").Child("ab00").Child("DailyWorkout").Child(Exercisename).Child("fatigue").SetValueAsync(Data);
-        dbRef.Child("users").Child("ab00").Child("DailyWorkout").Child(Exercisename).Child("Velocity").SetValueAsync(Data);
-        dbRef.Child("users").Child("ab00").Child("DailyWorkout").Child(Exercisename).Child("distance").SetValueAsync(Data);
-        dbRef.Child("users").Child("ab00").Child("DailyWorkout").Child(Exercisename).Child("calories ").SetValueAsync(Data);
-        dbRef.Child("users").Child("ab00").Child("WeeklyWorkout").SetValueAsync("00");
-        dbRef.Child("users").Child("ab00").Child("MonthlyWorkout").SetValueAsync("00");
-    }
+    // }
+    // public void repData(string Exercisename, string Data)
+    // {
+    //     Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
+    //     dbRef.Child("users").Child("ab00").Child("DailyWorkout").Child(Exercisename).Child("fatigue").SetValueAsync(Data);
+    //     dbRef.Child("users").Child("ab00").Child("DailyWorkout").Child(Exercisename).Child("Velocity").SetValueAsync(Data);
+    //     dbRef.Child("users").Child("ab00").Child("DailyWorkout").Child(Exercisename).Child("distance").SetValueAsync(Data);
+    //     dbRef.Child("users").Child("ab00").Child("DailyWorkout").Child(Exercisename).Child("calories ").SetValueAsync(Data);
+    //     dbRef.Child("users").Child("ab00").Child("WeeklyWorkout").SetValueAsync("00");
+    //     dbRef.Child("users").Child("ab00").Child("MonthlyWorkout").SetValueAsync("00");
+    // }
     
     public IEnumerator getCharacter(List<GameObject> chars, GameObject FadeImage)
     {
@@ -374,30 +364,30 @@ public class LocalDatabase : MonoBehaviour
         FadeImage.SetActive(false);
 
     }
-    public void getExerciseCount()
-    {
+//     public void getExerciseCount()
+//     {
      
       
         
-            Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
-            dbRef.Child("users").Child(UID).Child("exercisedata").Child("averagevelocity").GetValueAsync().ContinueWithOnMainThread(task =>
-            {
-                if (task.IsFaulted)
-                {
-                    // Handle the error...
-                }
-                else if (task.IsCompleted)
-                {
+//             Firebase.Database.DatabaseReference dbRef = Firebase.Database.FirebaseDatabase.DefaultInstance.RootReference;
+//             dbRef.Child("users").Child(UID).Child("exercisedata").Child("averagevelocity").GetValueAsync().ContinueWithOnMainThread(task =>
+//             {
+//                 if (task.IsFaulted)
+//                 {
+//                     // Handle the error...
+//                 }
+//                 else if (task.IsCompleted)
+//                 {
                    
-                    DataSnapshot snapshot = task.Result;
+//                     DataSnapshot snapshot = task.Result;
                   
-                    ExeCounter = (int)snapshot.ChildrenCount;
-//                    print(ExeCounter +"aaaa");
-                }
-            });
+//                     ExeCounter = (int)snapshot.ChildrenCount;
+// //                    print(ExeCounter +"aaaa");
+//                 }
+//             });
 
        
-     }
+//      }
 
     public void setCharacter(string indexer)
     {
