@@ -20,8 +20,8 @@ MonoBehaviour:
   buttonThemeType: 0
   buttonFont: {fileID: 11400000, guid: 84dd14695854bbc43a5faa24fcf93d0d, type: 2}
   buttonFontSize: 80
-  buttonBorderColor: {r: 1, g: 1, b: 1, a: 1}
-  buttonFilledColor: {r: 1, g: 1, b: 1, a: 1}
+  buttonBorderColor: {r: 0.13333334, g: 0.13333334, b: 0.13333334, a: 1}
+  buttonFilledColor: {r: 0.007843138, g: 0.007843138, b: 0.007843138, a: 1}
   buttonTextBasicColor: {r: 0, g: 0, b: 0, a: 1}
   buttonTextColor: {r: 0, g: 0, b: 0, a: 1}
   buttonTextHighlightedColor: {r: 1, g: 1, b: 1, a: 1}

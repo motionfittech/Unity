@@ -14,12 +14,12 @@ public class WorkoutManager : MonoBehaviour
 
     [Header("workoutScene1")]
     public List<GameObject> workout1 = new List<GameObject>();
-    public Vector3 CameraPos1;
-    public Vector3 CameraRot1;
+   /* public Vector3 CameraPos1;
+    public Vector3 CameraRot1;*/
     [Header("workoutScene2")]
     public List<GameObject> workout2 = new List<GameObject>();
-    public Vector3 CameraPos2;
-    public Vector3 CameraRot2;
+  /*  public Vector3 CameraPos2;
+    public Vector3 CameraRot2;*/
     [Header("Imbalance")]
     public List<GameObject> workout3 = new List<GameObject>();
     public GameObject VelocityPanel;
@@ -42,7 +42,7 @@ public class WorkoutManager : MonoBehaviour
     public ModalWindowManager myModalWindow;
 
     public TextMeshProUGUI currentAniTxt, work2AniTxt,Clickedtext;
-    public FitCapTest FCT;
+ //   public FitCapTest FCT;
     Camera main_Camera;
 
     [Header("Side Menu")]
@@ -54,19 +54,49 @@ public class WorkoutManager : MonoBehaviour
     public Vector2 OpeningPos, ClosingPos;
     public Sprite openSp, closeSp;
     public Image currentSideImageIcon;
+    public ExerDatabaseCsv EDC;
+    public TextMeshProUGUI form, imbalance_l, imbalance_r, velocity, velocityloss, classification, confidence;
+    public string _isLeft = "Left";
+
     private void Awake()
     {
       //  startBt.material.SetColor("_Outline_Color", Color.black);
       //  startBt.material.SetFloat("TileX", 0.05f);
        // startBt.material.SetFloat("TileY", 0.05f);
 
+        if(PlayerPrefs.GetInt("firsttime",0) == 0)
+        {
+           
+            Application.LoadLevel(5);
+        }
     }
 
+    public void activeLoading()
+    {
+        EDC.GetComponent<CSVManager>().Loadingscreen.SetActive(true);
+        switchBt(2);
+        updateExerciseTxt();
+        callshowData();
+        Invoke("callseeDatawithWait",3);
+
+    }
+    public void callseeDatawithWait()
+    {        
+        EDC.GetComponent<CSVManager>().Loadingscreen.SetActive(false);
+    }
+    public void switchHand(string Hand)
+    {
+        _isLeft = Hand;
+    }
+   public void callshowData()
+    {
+        LocalDatabase.instance.LoadSeeData();
+    }
     private void Start()
     {
-        main_Camera = Camera.main;
+      /*  main_Camera = Camera.main;
         main_Camera.transform.position = CameraPos1;
-        main_Camera.transform.eulerAngles = CameraRot1;
+        main_Camera.transform.eulerAngles = CameraRot1;*/
         loadworkoutData();
         
      //   PlayerPrefs.SetString("workout",LocalDatabase.instance.workoutData);
@@ -112,11 +142,12 @@ public class WorkoutManager : MonoBehaviour
             CenterButton.GetComponent<Image>().color = Color.red;
             CenterButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "STOP";
             _isIKon = true;
-           
+          //  GameObject.FindObjectOfType<CSVManager>().call();
         }
         else
         {
             stopWorkout(currentWorkoutSO);
+          
             Doneanimation();
             popupPanel.SetActive(false);
             WH.animator.speed = 1;
@@ -124,13 +155,14 @@ public class WorkoutManager : MonoBehaviour
             CenterButton.GetComponent<Image>().color = Color.green;
             CenterButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "START";
             _isIKon = false;
+          
 
         }
     }
 
     //IEnumerator startCounter()
     //{
-    //    Doneanimation();
+    ///    Doneanimation();
     //    int temp = 0;
     //    popupPanel.SetActive(true);
     //    PopupText.fontSize = 400;
@@ -199,39 +231,69 @@ public class WorkoutManager : MonoBehaviour
         //  myModalWindow.icon = "spriteVariable; // Change icon
         if (counter == 2)
         {
-            myModalWindow.titleText = "SEE DATA"; // Change title
-            myModalWindow.descriptionText = "Viewing Data will stop Exercise, Unsave Reps will be lost"; // Change desc
+           /* if(EDC.GraphDataPoints.Count == 0)
+            {
+                myModalWindow.titleText = "SEE DATA"; // Change title
+                myModalWindow.descriptionText = "No data found please do at least one rep to view Data."; // Change desc
+                counter = 1;
+            }
+            else
+            {*/
+                if (_isIKon)
+                {
+                    myModalWindow.titleText = "SEE DATA"; // Change title
+                    myModalWindow.descriptionText = "Viewing Data will stop Exercise, Unsave Reps will be lost"; // Change desc
+                }
+                else
+                {
+                    myModalWindow.CloseWindow();
+                    answer(counter);
+                    return;
+                }
+          //  }
+         
+           
            
         }
         else if (counter == 1)
         {
-            myModalWindow.titleText = "BACK TO EXERCISE"; // Change title
-            myModalWindow.descriptionText = "You can go back to Exercise and start Exercise"; // Change desc
-         
+          /*  myModalWindow.titleText = "BACK TO EXERCISE"; // Change title
+            myModalWindow.descriptionText = "You can go back to Exercise and start Exercise."; // Change desc*/
+
+            myModalWindow.CloseWindow();
+            answer(counter);
+            return;
+
         }
         else if (counter == 0)
         {
             myModalWindow.titleText = "PREVIEW EXERCISE"; // Change title
-            myModalWindow.descriptionText = "Preview will stop exercise, Unsave Reps will be lost"; // Change desc
+            myModalWindow.descriptionText = "Preview will stop exercise, Unsave Reps will be lost.."; // Change desc
         }
         else if (counter == 3)
         {
             myModalWindow.titleText = "Main Menu"; // Change title
-            myModalWindow.descriptionText = "Do you really want to go to Main Menu, Unsave Reps will be lost"; // Change desc
+            myModalWindow.descriptionText = "Do you really want to go to Main Menu, Unsave Reps will be lost."; // Change desc
         }
         else if (counter == 4)
         {
             myModalWindow.titleText = "Imbalances"; // Change title
-            myModalWindow.descriptionText = "Do you really want to go to Imbalances, Unsave Reps will be lost"; // Change desc
+            myModalWindow.descriptionText = "Do you really want to go to Imbalances, Unsave Reps will be lost."; // Change desc
         }
         else if (counter == 7)
         {
             myModalWindow.titleText = "Exercise"; // Change title
             myModalWindow.descriptionText = "Do you want to add exerice click? ";
         }
-       
+        else if (counter == 8)
+        {
+            myModalWindow.titleText = "Tutorial"; // Change title
+            myModalWindow.descriptionText = "You have already Watched the tutorials, do you want to go back and master your skill? ";
+        }
 
         myModalWindow.onConfirm.RemoveAllListeners();
+    //    myModalWindow.onCancel.RemoveAllListeners();
+     //   myModalWindow.onCancel.AddListener(delegate { GameObject.FindObjectOfType<FitCapTest>().DisplayData = false; });
         myModalWindow.onConfirm.AddListener(delegate { answer(counter); });
         myModalWindow.UpdateUI(); // Update UI
        // myModalWindow.OpenWindow(); // Open window
@@ -253,16 +315,24 @@ public class WorkoutManager : MonoBehaviour
                 innerList(workout3, false);
                 innerList(workout1, true);
                
-                main_Camera.transform.position = CameraPos1;
-                main_Camera.transform.eulerAngles = CameraRot1;
+            /*    main_Camera.transform.position = CameraPos1;
+                main_Camera.transform.eulerAngles = CameraRot1;*/
                 break;
             case 2:
                 innerList(workout1, false);
                 innerList(workout3, false);
                 innerList(workout2, true);
-               
-                main_Camera.transform.position = CameraPos2;
-                main_Camera.transform.eulerAngles = CameraRot2;
+                stopWorkout(currentWorkoutSO);
+
+                Doneanimation();
+                popupPanel.SetActive(false);
+                WH.animator.speed = 1;
+                //            FCT.OnButtonPress_DisconnectButton();
+                CenterButton.GetComponent<Image>().color = Color.green;
+                CenterButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "START";
+                _isIKon = false;
+                /*    main_Camera.transform.position = CameraPos2;
+                    main_Camera.transform.eulerAngles = CameraRot2;*/
                 break;
             case 3:
                 Application.LoadLevel(1);
@@ -277,6 +347,7 @@ public class WorkoutManager : MonoBehaviour
                 innerList(workout2, false);
                 innerList(workout3, false);
                 VelocityPanel.SetActive(true);
+               
                 break;
             case 6:
                 innerList(workout1, false);
@@ -286,8 +357,11 @@ public class WorkoutManager : MonoBehaviour
                 break;
             case 7:
                 sideMenuBt();
+            //    GameObject.FindObjectOfType<FitCapTest>().DisplayData = false;
                 break;
-
+            case 8:
+                Application.LoadLevel(5);
+                break;
             default:
                 print("Incorrect");
                 break;
@@ -361,7 +435,7 @@ public class WorkoutManager : MonoBehaviour
 
     public void updateExerciseTxt()
     {
-        work2AniTxt.text = currentAniTxt.text;
+       // work2AniTxt.text = currentAniTxt.text;
     }
 
     public void textString(string textH)
@@ -383,7 +457,7 @@ public class WorkoutManager : MonoBehaviour
                 while (waitingtime > 0)
                 {
                     currentSideImageIcon.sprite = closeSp;
-                    sideMenuObject.GetComponent<RectTransform>().localPosition = Vector3.MoveTowards(sideMenuObject.GetComponent<RectTransform>().localPosition, OpeningPos, testingSpeed);
+                    sideMenuObject.GetComponent<RectTransform>().localPosition = Vector3.MoveTowards(sideMenuObject.GetComponent<RectTransform>().localPosition, OpeningPos, testingSpeed*2);
                     yield return null;
                     waitingtime -= 1;
 
@@ -396,7 +470,7 @@ public class WorkoutManager : MonoBehaviour
                 while (waitingtime > 0)
                 {
                     currentSideImageIcon.sprite = openSp;
-                    sideMenuObject.GetComponent<RectTransform>().localPosition = Vector3.MoveTowards(sideMenuObject.GetComponent<RectTransform>().localPosition,ClosingPos,testingSpeed);
+                    sideMenuObject.GetComponent<RectTransform>().localPosition = Vector3.MoveTowards(sideMenuObject.GetComponent<RectTransform>().localPosition,ClosingPos,testingSpeed*2);
                     yield return null;
                     waitingtime -= 1;
 

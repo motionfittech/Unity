@@ -95,6 +95,7 @@ public class facebookLogin : MonoBehaviour
                     }
 
                     Firebase.Auth.FirebaseUser newUser = task.Result;
+                   //   GameObject.FindObjectOfType<SG_Email>().SendSendgridEmailSMTP();
                     print(task.Exception);
                     Debug.LogFormat("User signed in successfully: {0} ({1})  ",newUser.DisplayName, newUser.UserId);
                     PlayerPrefs.SetString("loginMethod", "F");

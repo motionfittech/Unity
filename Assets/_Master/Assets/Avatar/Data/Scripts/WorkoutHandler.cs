@@ -11,7 +11,8 @@ public class WorkoutHandler : MonoBehaviour, IHandleWorkouts
     [SerializeField] private Transform leftHandPosition;
 
 
-    public Animator animator = null;
+    [HideInInspector]public Animator animator;
+    public List<Animator> Listani = new List<Animator>();
     private bool isReadingPlayerData = false;
 
     private bool usingLeftHand = false;
@@ -20,8 +21,8 @@ public class WorkoutHandler : MonoBehaviour, IHandleWorkouts
     {
         isReadingPlayerData = false;
 
-        animator.runtimeAnimatorController = workout.workoutController;
-        animator.SetBool("isWorkoutActive", true);
+       // animator.runtimeAnimatorController = workout.workoutController;
+       // animator.SetBool("isWorkoutActive", true);
         if (workout.leftHandAsset)
         {
             usingLeftHand = true;
@@ -43,8 +44,8 @@ public class WorkoutHandler : MonoBehaviour, IHandleWorkouts
 
     public void StopWorkout(WorkoutScriptableObject workout)
     {
-        animator.runtimeAnimatorController = workout.workoutController;
-        animator.SetBool("isWorkoutActive", false);
+      //  animator.runtimeAnimatorController = workout.workoutController;
+     //   animator.SetBool("isWorkoutActive", false);
     }
 
     public void ReadUserData()
@@ -78,6 +79,11 @@ public class WorkoutHandler : MonoBehaviour, IHandleWorkouts
 
 
         }
+    }
+
+    public void Defaultanimator(int count)
+    {
+        animator = Listani[count];
     }
 
     
