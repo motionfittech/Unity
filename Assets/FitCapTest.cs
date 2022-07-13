@@ -344,19 +344,19 @@ public class FitCapTest : MonoBehaviour
     void Start()
     {
 
-        //#if UNITY_ANDROID
-        // const string perms_activity = "android.permission.ACTIVITY_RECOGNITION";
-        //  if (!Permission.HasUserAuthorizedPermission(perms_activity))
-        //  {
-        //     Permission.RequestUserPermission(perms_activity);
-        // }
+#if UNITY_ANDROID
+        const string perms_activity = "android.permission.ACTIVITY_RECOGNITION";
+        if (!Permission.HasUserAuthorizedPermission(perms_activity))
+        {
+            Permission.RequestUserPermission(perms_activity);
+        }
 
-        // const string perms_course_location = "android.permission.ACCESS_COARSE_LOCATION";
-        // if (!Permission.HasUserAuthorizedPermission(perms_course_location))
-        // {
-        //     Permission.RequestUserPermission(perms_course_location);
-        //  }
-        //#endif
+        const string perms_course_location = "android.permission.ACCESS_COARSE_LOCATION";
+        if (!Permission.HasUserAuthorizedPermission(perms_course_location))
+        {
+            Permission.RequestUserPermission(perms_course_location);
+        }
+#endif
         StartProcess();
     }
 
