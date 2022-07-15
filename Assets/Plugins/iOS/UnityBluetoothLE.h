@@ -31,6 +31,7 @@
     
     NSMutableDictionary *_services;
     NSMutableDictionary *_characteristics;
+    NSMutableDictionary *_allCharacteristics;
 #endif
     
     NSMutableArray *_backgroundMessages;
@@ -68,9 +69,10 @@
 - (void)writeCharactersticBytesReset;
 - (void)writeCharactersticBytes:(CBPeripheral *)peripheral characteristic:(CBCharacteristic *)characteristic data:(NSData *)data withResponse:(CBCharacteristicWriteType)withResponse;
 - (void)writeNextPacket:(CBPeripheral *)peripheral characteristic:(CBCharacteristic *)characteristic;
+- (void)requestMtu:(NSString *)name mtu:(int)mtu;
+- (void)readRSSI:(NSString *)name;
 
 #if !TARGET_OS_TV
-- (void)requestMtu:(NSString *)name mtu:(int)mtu;
 - (void)scanForBeacons:(NSArray<CLBeaconRegion *> *)beaconRegions;
 - (void)stopBeaconScan;
 

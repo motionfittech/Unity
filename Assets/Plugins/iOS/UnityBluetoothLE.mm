@@ -150,13 +150,19 @@ extern "C" {
             [_unityBluetoothLE disconnectAll];
     }
     
-#if !TARGET_OS_TV
     void _iOSBluetoothLERequestMtu (char *name, int mtu) {
         
         if (_unityBluetoothLE != nil)
             [_unityBluetoothLE requestMtu:[NSString stringWithFormat:@"%s", name] mtu:mtu];
     }
+    
+    void _iOSBluetoothLEReadRSSI (char *name) {
+        
+        if (_unityBluetoothLE != nil)
+            [_unityBluetoothLE readRSSI:[NSString stringWithFormat:@"%s", name]];
+    }
 
+#if !TARGET_OS_TV
     void _iOSBluetoothLEScanForBeacons (char *proximityUUIDsStringRaw) {
         
         if (_unityBluetoothLE != nil)
@@ -177,8 +183,13 @@ extern "C" {
                         NSArray *parts = [sUUID componentsSeparatedByString:@":"];
                         if (parts.count == 2)
                         {
-                            CLBeaconRegion *beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:parts[0]] identifier:parts[1]];
-                            [beaconRegions addObject:beaconRegion];
+                            if (@available(iOS 13.0, *)) {
+                                CLBeaconRegion *beaconRegion = [[CLBeaconRegion alloc] initWithUUID:[[NSUUID alloc] initWithUUIDString:parts[0]] identifier:parts[1]];
+                                [beaconRegions addObject:beaconRegion];
+                            } else {
+                                CLBeaconRegion *beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:parts[0]] identifier:parts[1]];
+                                [beaconRegions addObject:beaconRegion];
+                            }
                             
                             [_unityBluetoothLE scanForBeacons:beaconRegions];
                         }
@@ -300,6 +311,7 @@ extern "C" {
     _peripheralManager = nil;
     _services = nil;
     _characteristics = nil;
+    _allCharacteristics = nil;
 #endif
     if (asCentral)
         _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
@@ -310,6 +322,7 @@ extern "C" {
     
     _services = [[NSMutableDictionary alloc] init];
     _characteristics = [[NSMutableDictionary alloc] init];
+    _allCharacteristics = [[NSMutableDictionary alloc] init];
 #endif
     
     _peripherals = [[NSMutableDictionary alloc] init];
@@ -389,7 +402,13 @@ extern "C" {
     NSEnumerator *enumerator = [_characteristics keyEnumerator];
     id key;
     while ((key = [enumerator nextObject]))
-        [characteristics addObject:[_characteristics objectForKey:key]];
+    {
+        CBCharacteristic *characteristic = [_characteristics objectForKey:key];
+        [_characteristics removeObjectForKey:key];
+        [characteristics addObject:characteristic];
+        [_allCharacteristics setObject:characteristic forKey:[characteristic UUID]];
+    }
+    [_characteristics removeAllObjects];
     
     service.characteristics = characteristics;
     
@@ -425,6 +444,9 @@ extern "C" {
         if (_peripheralManager != nil)
             [_peripheralManager removeAllServices];
     }
+
+    if (_allCharacteristics != nil)
+        [_allCharacteristics removeAllObjects];
 }
 
 - (void)peripheralName:(NSString *)newName
@@ -484,10 +506,10 @@ extern "C" {
 
 - (void)updateCharacteristicValue:(NSString *)uuid value:(NSData *)value
 {
-    if (_characteristics != nil)
+    if (_allCharacteristics != nil)
     {
         CBUUID *cbuuid = [CBUUID UUIDWithString:uuid];
-        CBMutableCharacteristic *characteristic = [_characteristics objectForKey:cbuuid];
+        CBMutableCharacteristic *characteristic = [_allCharacteristics objectForKey:cbuuid];
         if (characteristic != nil)
         {
             characteristic.value = value;
@@ -627,6 +649,18 @@ extern "C" {
         if (peripheral != nil)
         {
             [_centralManager cancelPeripheralConnection:peripheral];
+        }
+    }
+}
+
+- (void)readRSSI:(NSString *)name
+{
+    if (_peripherals != nil && name != nil)
+    {
+        CBPeripheral *peripheral = [_peripherals objectForKey:name];
+        if (peripheral != nil)
+        {
+            [peripheral readRSSI];
         }
     }
 }
@@ -1078,6 +1112,24 @@ extern "C" {
     }
 }
 
+- (void)peripheral:(CBPeripheral *) peripheral didReadRSSI:(NSNumber *)RSSI error:(NSError *)error
+{
+    if (error)
+    {
+        NSString *message = [NSString stringWithFormat:@"Error~%@", error.description];
+        UnitySendMessage ("BluetoothLEReceiver", "OnBluetoothMessage", [message UTF8String] );
+    }
+    else
+    {
+        NSString *foundPeripheral = [self findPeripheralName:peripheral];
+        if (foundPeripheral != nil)
+        {
+            NSString *message = [NSString stringWithFormat:@"DidReadRSSI~%@~%@", foundPeripheral, RSSI];
+            UnitySendMessage ("BluetoothLEReceiver", "OnBluetoothMessage", [message UTF8String] );
+        }
+    }
+}
+
 #if !TARGET_OS_TV
 // peripheral manager delegate implementation
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral
@@ -1134,7 +1186,7 @@ extern "C" {
     
     if (_peripheralManager != nil)
     {
-        CBMutableCharacteristic *characteristic = [_characteristics objectForKey:request.characteristic.UUID];
+        CBMutableCharacteristic *characteristic = [_allCharacteristics objectForKey:request.characteristic.UUID];
         
         if (characteristic != nil)
         {
@@ -1160,7 +1212,7 @@ extern "C" {
             CBATTRequest *request = [requests objectAtIndex:i];
             if (request != nil)
             {
-                CBMutableCharacteristic *characteristic = [_characteristics objectForKey:request.characteristic.UUID];
+                CBMutableCharacteristic *characteristic = [_allCharacteristics objectForKey:request.characteristic.UUID];
                 
                 if (characteristic != nil)
                 {

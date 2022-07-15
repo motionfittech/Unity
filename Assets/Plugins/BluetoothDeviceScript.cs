@@ -32,6 +32,7 @@ public class BluetoothDeviceScript : MonoBehaviour
 	public Dictionary<string, Dictionary<string, Action<string, byte[]>>> DidUpdateCharacteristicValueAction;
 	public Dictionary<string, Dictionary<string, Action<string, string, byte[]>>> DidUpdateCharacteristicValueWithDeviceAddressAction;
 	public Action<string, int> RequestMtuAction;
+	public Action<string, int> ReadRSSIAction;
 
 	// Use this for initialization
 	void Start ()
@@ -71,6 +72,7 @@ public class BluetoothDeviceScript : MonoBehaviour
 	const string deviceDidUpdateValueForCharacteristic = "DidUpdateValueForCharacteristic";
 	const string deviceLog = "Log";
 	const string deviceRequestMtu = "MtuChanged";
+	const string deviceReadRSSI = "DidReadRSSI";
 
 	public void OnBluetoothMessage (string message)
 	{
@@ -79,8 +81,10 @@ public class BluetoothDeviceScript : MonoBehaviour
 			char[] delim = new char[] { '~' };
 			string[] parts = message.Split (delim);
 
-            for (int i = 0; i < parts.Length; ++i)
-                BluetoothLEHardwareInterface.Log(string.Format("Part: {0} - {1}", i, parts[i]));
+			string log = "";
+			for (int i = 0; i < parts.Length; ++i)
+				log += string.Format("| {0}", parts[i]);
+			BluetoothLEHardwareInterface.Log(log);
 
             if (message.Length >= deviceInitializedString.Length && message.Substring (0, deviceInitializedString.Length) == deviceInitializedString)
 			{
@@ -274,6 +278,18 @@ public class BluetoothDeviceScript : MonoBehaviour
 					}
                 }
 			}
+			else if (message.Length >= deviceReadRSSI.Length && message.Substring(0, deviceReadRSSI.Length) == deviceReadRSSI)
+			{
+				if (parts.Length >= 3)
+				{
+					if (ReadRSSIAction != null)
+					{
+						int rssi = 0;
+						if (int.TryParse(parts[2], out rssi))
+							ReadRSSIAction(parts[1], rssi);
+					}
+				}
+			}
 		}
 	}
 
@@ -365,4 +381,15 @@ public class BluetoothDeviceScript : MonoBehaviour
 		Input.location.Stop ();
 	}
 #endif
+
+	public void OnApplicationQuit()
+	{
+		if (Application.isEditor)
+        {
+			BluetoothLEHardwareInterface.DeInitialize(() =>
+			{
+				BluetoothLEHardwareInterface.Log("Deinitialize complete");
+			});
+        }
+	}
 }

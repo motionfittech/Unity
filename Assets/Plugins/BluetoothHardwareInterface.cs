@@ -26,6 +26,7 @@ using UnityEngine;
 using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
+using System.Collections;
 
 #if UNITY_2018_3_OR_NEWER
 #if UNITY_ANDROID
@@ -61,6 +62,21 @@ public class BluetoothLEHardwareInterface
 		LowPower = 0,
 		Balanced = 1,
 		High = 2,
+	}
+
+	public enum AdvertisingMode
+	{
+		LowPower = 0,
+		Balanced = 1,
+		LowLatency = 2
+	}
+
+	public enum AdvertisingPower
+	{
+		UltraLow = 0,
+		Low = 1,
+		Medium = 2,
+		High = 3,
 	}
 
 	public enum iOSProximity
@@ -136,6 +152,9 @@ public class BluetoothLEHardwareInterface
 	[DllImport("BluetoothLEOSX")]
 	private static extern void OSXBluetoothLERequestMtu (string name, int mtu);
 
+	[DllImport("BluetoothLEOSX")]
+	private static extern void OSXBluetoothLEReadRSSI (string name);
+
 	[DllImport ("BluetoothLEOSX")]
 	private static extern void OSXBluetoothLEDisconnectPeripheral (string name);
 
@@ -196,10 +215,13 @@ public class BluetoothLEHardwareInterface
 	[DllImport ("__Internal")]
 	private static extern void _iOSBluetoothLEDisconnectAll ();
 
-#if !UNITY_TVOS
 	[DllImport("__Internal")]
 	private static extern void _iOSBluetoothLERequestMtu(string name, int mtu);
 
+	[DllImport("__Internal")]
+	private static extern void _iOSBluetoothLEReadRSSI(string name);
+
+#if !UNITY_TVOS
 	[DllImport ("__Internal")]
 	private static extern void _iOSBluetoothLEScanForBeacons (string proximityUUIDsString);
 
@@ -266,16 +288,59 @@ public class BluetoothLEHardwareInterface
 #endif
 	}
 
+#if UNITY_2018_3_OR_NEWER
+#if UNITY_ANDROID
+	private static IEnumerator AskForPermissions()
+	{
+		bool scanAsked = false;
+		bool connectAsked = false;
+		bool permissionsGranted = false;
+		float timerValue = 0f;
+
+		while (timerValue < 5f)
+		{
+			if (!Permission.HasUserAuthorizedPermission("android.permission.BLUETOOTH_SCAN"))
+			{
+				if (!scanAsked)
+				{
+					Permission.RequestUserPermission("android.permission.BLUETOOTH_SCAN");
+					scanAsked = true;
+				}
+			}
+			else
+			{
+				if (!Permission.HasUserAuthorizedPermission("android.permission.BLUETOOTH_CONNECT"))
+				{
+					if (!connectAsked)
+					{
+						Permission.RequestUserPermission("android.permission.BLUETOOTH_CONNECT");
+						connectAsked = true;
+						break;
+					}
+				}
+				else
+                {
+					permissionsGranted = true;
+                }
+			}
+
+			timerValue += Time.deltaTime;
+
+			yield return new WaitForEndOfFrame();
+		}
+
+		if (!permissionsGranted)
+        {
+			if (bluetoothDeviceScript.ErrorAction != null)
+				bluetoothDeviceScript.ErrorAction("Error~Permissions Not Granted");
+        }
+	}
+#endif
+#endif
+
 	public static BluetoothDeviceScript Initialize (bool asCentral, bool asPeripheral, Action action, Action<string> errorAction)
 	{
 		bluetoothDeviceScript = null;
-
-#if UNITY_2018_3_OR_NEWER
-#if UNITY_ANDROID
-		if (!Permission.HasUserAuthorizedPermission (Permission.FineLocation))
-			Permission.RequestUserPermission (Permission.FineLocation);
-#endif
-#endif
 
 		GameObject bluetoothLEReceiver = GameObject.Find("BluetoothLEReceiver");
 		if (bluetoothLEReceiver == null)
@@ -296,8 +361,49 @@ public class BluetoothLEHardwareInterface
 
 		GameObject.DontDestroyOnLoad (bluetoothLEReceiver);
 
+#if UNITY_2018_3_OR_NEWER
+#if UNITY_ANDROID
+
+		Log($"API: {SystemInfo.operatingSystem}");
+
+		int apiVersion = 30;
+		int apiIndex = SystemInfo.operatingSystem.IndexOf(" API-");
+		if (apiIndex >= 0)
+		{
+			Log($"API Index: {apiIndex}");
+			string versionString = SystemInfo.operatingSystem.Substring(apiIndex + 5, 2);
+			Log($"API Version String: {versionString}");
+			if (!int.TryParse(versionString, out apiVersion))
+			{
+				Log($"int parse failed: {versionString}");
+				apiVersion = 30;
+			}
+		}
+
+		Log($"API Version: {apiVersion}");
+
+		if (apiVersion >= 31)
+		{
+			if (asCentral)
+				bluetoothDeviceScript.StartCoroutine(AskForPermissions());
+
+			if (asPeripheral)
+			{
+				if (!Permission.HasUserAuthorizedPermission("android.permission.BLUETOOTH_ADVERTISE"))
+					Permission.RequestUserPermission("android.permission.BLUETOOTH_ADVERTISE");
+			}
+		}
+        else
+        {
+            if (!Permission.HasUserAuthorizedPermission(Permission.FineLocation))
+                Permission.RequestUserPermission(Permission.FineLocation);
+        }
+
+#endif
+#endif
+
 #if EXPERIMENTAL_MACOS_EDITOR && (UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX)
-		ConnectUnitySendMessageCallback ((objectName, commandName, commandData) => {
+        ConnectUnitySendMessageCallback((objectName, commandName, commandData) => {
 			string name = Marshal.PtrToStringAuto (objectName);
 			string command = Marshal.PtrToStringAuto (commandName);
 			string data = Marshal.PtrToStringAuto (commandData);
@@ -371,7 +477,7 @@ public class BluetoothLEHardwareInterface
 		if (!Application.isEditor)
 		{
 #if UNITY_IOS || UNITY_TVOS
-			_iOSBluetoothLELog (enable.ToString());
+			//_iOSBluetoothLELog (message);
 #elif UNITY_ANDROID
 			if (_android != null)
 				_android.Call ("androidBluetoothEnable", enable);
@@ -399,6 +505,30 @@ public class BluetoothLEHardwareInterface
 #elif UNITY_ANDROID
 			if (_android != null)
 				_android.Call ("androidBluetoothConnectionPriority", (int)connectionPriority);
+#endif
+		}
+	}
+
+	public static void BluetoothAdvertisingMode (AdvertisingMode advertisingMode)
+	{
+		if (!Application.isEditor)
+		{
+#if UNITY_IPHONE || UNITY_TVOS
+#elif UNITY_ANDROID
+			if (_android != null)
+				_android.Call ("androidBluetoothAdvertisingMode", (int)advertisingMode);
+#endif
+		}
+	}
+
+	public static void BluetoothAdvertisingPower (AdvertisingPower advertisingPower)
+	{
+		if (!Application.isEditor)
+		{
+#if UNITY_IPHONE || UNITY_TVOS
+#elif UNITY_ANDROID
+			if (_android != null)
+				_android.Call ("androidBluetoothAdvertisingPower", (int)advertisingPower);
 #endif
 		}
 	}
@@ -471,6 +601,25 @@ public class BluetoothLEHardwareInterface
         if (_android != null)
 		{
 			_android.Call ("androidBluetoothRequestMtu", name, mtu);
+		}
+#endif
+	}
+
+	public static void ReadRSSI(string name, Action<string, int> action)
+    {
+		if (bluetoothDeviceScript != null)
+        {
+			bluetoothDeviceScript.ReadRSSIAction = action;
+        }
+
+#if EXPERIMENTAL_MACOS_EDITOR && (UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX)
+		OSXBluetoothLEReadRSSI(name);
+#elif UNITY_IOS || UNITY_TVOS
+		_iOSBluetoothLEReadRSSI(name);
+#elif UNITY_ANDROID
+        if (_android != null)
+		{
+			_android.Call ("androidBluetoothReadRSSI", name);
 		}
 #endif
 	}
@@ -944,7 +1093,7 @@ public class BluetoothLEHardwareInterface
 		}
 	}
 	
-	public static void StartAdvertising (Action action)
+	public static void StartAdvertising (Action action, bool isConnectable = true, bool includeName = true, int manufacturerId = 0, byte[] manufacturerSpecificData = null)
 	{
 		if (!Application.isEditor)
 		{
@@ -955,7 +1104,7 @@ public class BluetoothLEHardwareInterface
 			_iOSBluetoothLEStartAdvertising ();
 #elif UNITY_ANDROID
 			if (_android != null)
-				_android.Call ("androidStartAdvertising");
+				_android.Call ("androidStartAdvertising", isConnectable, includeName, manufacturerId, manufacturerSpecificData);
 #endif
 		}
 	}
