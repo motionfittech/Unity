@@ -5835,78 +5835,12 @@ MonoBehaviour:
   selectedParet: {fileID: 1314908433}
   selectedprefab: {fileID: 2022760804}
   buttonname:
-  - AlternatingFrontRaise
-  - Arnoldpress
-  - Bandpullapart
-  - Squat
-  - Benchpress
-  - Bentoverrow
-  - Bentlegraises
-  - Bicyclecrunch
-  - Bodyweighthamstringcurl
-  - NeuropathicGait
-  - SensoryGait
-  - Curl
-  - Deadlift
-  - Dumbelllunges
-  - Frontraise
-  - Frontsquat
-  - Goodmorning
-  - Hamstringcurl
-  - Kettlebell
-  - Latpulldown
-  - Latpullover
-  - Legcrunch
-  - Legraise
-  - Gait
-  - Planktopushup
-  - ParkinsonianGait
-  - DiplegicGait
-  - Skullcrushers
-  - Snatchgripdeadlift
-  - Sit-To-Stand
-  - Straightlegdeadlift
-  - Sumo
-  - Uprightrow
-  - HemiplegicGait
+  - Mechanical Thrombectomy
   selectedExercise: []
   createExercise: []
   selectedExerciseobj: []
   AnimatorParameters:
   - AlternatingFrontRaise
-  - Arnoldpress
-  - Bandpullapart
-  - Squat
-  - Benchpress
-  - Bentoverrow
-  - Bentlegraises
-  - Bicyclecrunch
-  - Bodyweighthamstringcurl
-  - NeuropathicGait
-  - SensoryGait
-  - Curl
-  - Deadlift
-  - Dumbelllunges
-  - Frontraise
-  - Frontsquat
-  - Goodmorning
-  - Hamstringcurl
-  - Kettlebell
-  - Latpulldown
-  - Latpullover
-  - Legcrunch
-  - Legraise
-  - Gait
-  - Planktopushup
-  - ParkinsonianGait
-  - DiplegicGait
-  - Skullcrushers
-  - Snatchgripdeadlift
-  - Sit-To-Stand
-  - Straightlegdeadlift
-  - Sumo
-  - Uprightrow
-  - HemiplegicGait
   ani: {fileID: 1056865011}
   circle: {fileID: 288866094}
   closebutton: {fileID: 186288428}
@@ -8586,7 +8520,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 708332696}
   m_HandleRect: {fileID: 708332695}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -9549,7 +9483,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Create Workout
+  m_text: Start Session
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 194c956b3d864664890e731c63fd4a02, type: 2}
   m_sharedMaterial: {fileID: 21704438749789640, guid: 194c956b3d864664890e731c63fd4a02,
@@ -10301,7 +10235,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 38816032}
   m_HandleRect: {fileID: 38816031}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -20732,7 +20666,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3766112375632607031
 Transform:
   m_ObjectHideFlags: 0
