@@ -1625,7 +1625,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -377, y: 119}
+  m_AnchoredPosition: {x: -960, y: 1605}
   m_SizeDelta: {x: 663.655, y: 229.24414}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &226635471
@@ -2090,7 +2090,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enter Number of Sets to Perform
+  m_text: Enter Details About The Patient's Case
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2225,7 +2225,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SETS
+  m_text: tPA, Contrast & Catheter Inventory
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3381,8 +3381,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -371.76547, y: 625}
-  m_SizeDelta: {x: -743.53094, y: 1250.502}
+  m_AnchoredPosition: {x: -371.7655, y: 1232.545}
+  m_SizeDelta: {x: -743.53, y: 2465.5923}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &347231535
 CanvasRenderer:
@@ -4848,7 +4848,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SET
+  m_text: tPA Inventory
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4bd810f1cbcb0f446a8f5a31453e243f, type: 2}
   m_sharedMaterial: {fileID: 21539420542967178, guid: 4bd810f1cbcb0f446a8f5a31453e243f,
@@ -5836,6 +5836,7 @@ MonoBehaviour:
   selectedprefab: {fileID: 2022760804}
   buttonname:
   - Mechanical Thrombectomy
+  - Pregnancy Termination
   selectedExercise: []
   createExercise: []
   selectedExerciseobj: []
@@ -6068,7 +6069,7 @@ PrefabInstance:
     - target: {fileID: 114404788642818498, guid: f6d82199af7ca3743b7a21cc4398ba50,
         type: 3}
       propertyPath: m_text
-      value: SETS
+      value: Case Details...
       objectReference: {fileID: 0}
     - target: {fileID: 114404788642818498, guid: f6d82199af7ca3743b7a21cc4398ba50,
         type: 3}
@@ -6352,8 +6353,8 @@ Camera:
   m_GameObject: {fileID: 824284705}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.09803922, g: 0.09803922, b: 0.09803922, a: 0.019607844}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.01886791, g: 0.01886791, b: 0.01886791, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -8959,7 +8960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.79607844}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.98039216}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9027,8 +9028,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 588.23, y: 625.31}
-  m_SizeDelta: {x: 743.53, y: 1250.25}
+  m_AnchoredPosition: {x: 588.23, y: 1232.6}
+  m_SizeDelta: {x: 743.53, y: 2465.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1269671786
 CanvasRenderer:
@@ -9650,7 +9651,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: AVAILABLE EXERCISE
+  m_text: SELECT PROCEDURE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 194c956b3d864664890e731c63fd4a02, type: 2}
   m_sharedMaterial: {fileID: 21704438749789640, guid: 194c956b3d864664890e731c63fd4a02,
@@ -9922,7 +9923,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: WEIGHT
+  m_text: Contrast Inventory
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4bd810f1cbcb0f446a8f5a31453e243f, type: 2}
   m_sharedMaterial: {fileID: 21539420542967178, guid: 4bd810f1cbcb0f446a8f5a31453e243f,
@@ -10058,7 +10059,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: REP
+  m_text: Catheter Inventory
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4bd810f1cbcb0f446a8f5a31453e243f, type: 2}
   m_sharedMaterial: {fileID: 21539420542967178, guid: 4bd810f1cbcb0f446a8f5a31453e243f,
@@ -10235,7 +10236,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 38816032}
   m_HandleRect: {fileID: 38816031}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -11810,7 +11811,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SELECTED EXERCISE
+  m_text: SELECTED PROCEDURE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 194c956b3d864664890e731c63fd4a02, type: 2}
   m_sharedMaterial: {fileID: 21704438749789640, guid: 194c956b3d864664890e731c63fd4a02,
@@ -13445,7 +13446,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Start workout
+  m_text: Enter The Operating Room
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 84dd14695854bbc43a5faa24fcf93d0d, type: 2}
   m_sharedMaterial: {fileID: 21261991626553910, guid: 84dd14695854bbc43a5faa24fcf93d0d,
