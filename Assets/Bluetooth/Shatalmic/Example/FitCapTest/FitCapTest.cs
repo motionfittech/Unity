@@ -12,18 +12,10 @@ public class FitCapTest : MonoBehaviour
     public CSVManager csv;
     public Text AccelerometerText;
     public Text FitCapStatusText;
-    public Text FitCapStatusTextLeftArm;
-    public Text FitCapStatusTextRightArm;
-    public Text FitCapStatusTextLeftLeg;
     public Text BatteryLevelText;
 
     public Button StartStopButton;
     public Button DisconnectButton;
-    public Button ConnectLeftArm;
-    public Button ConnectRightArm;
-    public Button ConnectLeftLeg;
-    public Button ConnectRightLeg;
-
 
     public GameObject TopPanel;
     public GameObject MiddlePanel;
@@ -98,30 +90,54 @@ public class FitCapTest : MonoBehaviour
         Disconnecting,
     }
 
-    private bool _connected = false;
-    private float _timeout = 0f;
-    private States _state = States.None;
-    private string _deviceAddress;
+ //   private bool _connected = false;
+ //   private float _timeout = 0f;
+ //   private States _state = States.None;
+ //   private string _deviceAddress;
 
-    public bool DisplayData = false;
-    private bool connectdisconnect = false;
-    private bool connectdisconnectleftarm = false;
+ //   public bool DisplayData = false;
+ //   private bool connectdisconnect = false;
 
+	public struct BLE_Device_Info
+	{
+		public BLE_Device_Info()
+		{
+			_connected = false;
+			_timeout = 0f;
+			_state = States.None;
+			_deviceAddress;
+
+			_DisplayData = false;
+			_connectdisconnect = false;
+		}
+		
+		public bool _connected;
+		public float _timeout;
+		public States _state;
+		public string _deviceAddress;
+
+		public bool _DisplayData;
+		public bool _connectdisconnect;
+	}
+	
+	BLE_Device_Info Devices(10); // allow up to 10 fitcaps
+	
+    
     // path of the file
     static public string path = "";
 
 
     public void OnButtonPress_DisconnectButton()
     {
-        if (connectdisconnect == false)
+        if (Devices[0]._connectdisconnect == false)
         {
-            connectdisconnect = true;
+            Devices[0]._connectdisconnect = true;
             Text txt = DisconnectButton.GetComponentInChildren<Text>();
             txt.text = "Disconnect";
         }
         else
         {
-            connectdisconnect = false;
+            Devices[0]._connectdisconnect = false;
             Text txt = DisconnectButton.GetComponentInChildren<Text>();
             txt.text = "Connect";
         }
@@ -129,9 +145,9 @@ public class FitCapTest : MonoBehaviour
 
     public void OnButtonPress_StartStopButton()
     {
-        if (DisplayData == false)
+        if (Devices[0]._DisplayData == false)
         {
-            DisplayData = true;
+            Devices[0]._DisplayData = true;
             //  TextMeshProUGUI txt = StartStopButton.GetComponentInChildren<TextMeshProUGUI>();
           //    txt.text = "Stop";
 
@@ -159,7 +175,7 @@ public class FitCapTest : MonoBehaviour
             {
                 FitCapStatusMessages = "Stored in this path" + path;
                   
-                DisplayData = false;
+                Devices[0]._DisplayData = false;
             //    TextMeshProUGUI txt1 = StartStopButton.GetComponentInChildren<TextMeshProUGUI>();
              //   txt1.text = "Start";
                 if (path.Length > 0)
@@ -184,13 +200,13 @@ public class FitCapTest : MonoBehaviour
             {
                
             }
-            DisplayData = false;
+            Devices[0]._DisplayData = false;
             TextMeshProUGUI txt = StartStopButton.GetComponentInChildren<TextMeshProUGUI>();
               txt.text = "Start";
             print("STOP");
             path = "";
         }
-        // Debug.Log("Button clicked " + DisplayData);
+        // Debug.Log("Button clicked " + Devices[0]._DisplayData);
     }
 
     string FitCapStatusMessages
@@ -207,40 +223,13 @@ public class FitCapTest : MonoBehaviour
             }
         }
     }
-string FitCapStatusMessagesLeftArm
-    {
-        set
-        {
-            Debug.Log(value);
 
-            if (!string.IsNullOrEmpty(value))
-                BluetoothLEHardwareInterface.Log(value);
-            if (FitCapStatusText != null)
-            {
-                FitCapStatusTextLeftArm.text = value;
-            }
-        }
-    }
-    string FitCapStatusMessagesRightArm
-    {
-        set
-        {
-            Debug.Log(value);
-
-            if (!string.IsNullOrEmpty(value))
-                BluetoothLEHardwareInterface.Log(value);
-            if (FitCapStatusText != null)
-            {
-                FitCapStatusTextRightArm.text = value;
-            }
-        }
-    }
     void Reset()
     {
-        _connected = false;
-        _timeout = 0f;
-        _state = States.None;
-        _deviceAddress = null;
+        Devices[0]._connected = false;
+        Devices[0]._timeout = 0f;
+        Devices[0]._state = States.None;
+        Devices[0]._deviceAddress = null;
 
         TopPanel.SetActive(true);
         MiddlePanel.SetActive(true);
@@ -250,13 +239,13 @@ string FitCapStatusMessagesLeftArm
 
     void SetState(States newState, float timeout)
     {
-        _state = newState;
-        _timeout = timeout;
+        Devices[0]._state = newState;
+        Devices[0]._timeout = timeout;
     }
 
     void StartProcess()
     {
-      //  BatteryLevelText.text = "Battery: Unknown";
+        BatteryLevelText.text = "Battery: Unknown";
         FitCapStatusMessages = "StartProcess";
         StartStopButton.onClick.AddListener(OnButtonPress_StartStopButton);
         DisconnectButton.onClick.AddListener(OnButtonPress_DisconnectButton);
@@ -274,16 +263,16 @@ string FitCapStatusMessagesLeftArm
         });
     }
 
-   // private void OnReadBattery(string characteristric, byte[] rcvd_data)
-   // {
-   //     int level = rcvd_data[0];
-   //     string batt_level = "Battery: " + level.ToString() + "%";
-   //     BatteryLevelText.text = batt_level;
-   // }
+    private void OnReadBattery(string characteristric, byte[] rcvd_data)
+    {
+        int level = rcvd_data[0];
+        string batt_level = "Battery: " + level.ToString() + "%";
+        BatteryLevelText.text = batt_level;
+    }
 
     private void OnCharacteristicNotification(string deviceAddress, string characteristric, byte[] rcvd_data)
     {
-        if (connectdisconnect == false)
+        if (Devices[0]._connectdisconnect == false)
         {
             SetState(States.Disconnect, 0.5f);
         }
@@ -356,7 +345,7 @@ string FitCapStatusMessagesLeftArm
                                 "Y= " + gyrAxesYint32.ToString() + "\n" +
                                 "Z= " + gyrAxesZint32.ToString();
 
-        if (DisplayData == true)
+        if (Devices[0]._DisplayData == true)
         {
             AccelerometerText.text = display_string;
 
@@ -399,15 +388,15 @@ string FitCapStatusMessagesLeftArm
     // Update is called once per frame
     void Update()
     {
-        if (_timeout > 0f)
+        if (Devices[0]._timeout > 0f)
         {
-            _timeout -= Time.deltaTime;
+            Devices[0]._timeout -= Time.deltaTime;
             //BatteryLevelText.text = "time: " + _timeout.ToString();
-            if (_timeout <= 0f)
+            if (Devices[0]._timeout <= 0f)
             {
-                _timeout = 0f;
+                Devices[0]._timeout = 0f;
 
-                switch (_state)
+                switch (Devices[0]._state)
                 {
                     case States.None:
                         {
@@ -426,7 +415,7 @@ string FitCapStatusMessagesLeftArm
                                 {
                                     FitCapStatusMessages = "Found a FitCap: " + address;
 
-                                    if (connectdisconnect == true)
+                                    if (Devices[0]._connectdisconnect == true)
                                     {
                                         BluetoothLEHardwareInterface.StopScan();
 
@@ -434,7 +423,7 @@ string FitCapStatusMessagesLeftArm
 
                                         // found a device with the name we want
                                         // this example does not deal with finding more than one
-                                        _deviceAddress = address;
+                                        Devices[0]._deviceAddress = address;
                                         SetState(States.Connect, 0.5f);
                                     }
                                     else
@@ -450,7 +439,7 @@ string FitCapStatusMessagesLeftArm
                         {
                             FitCapStatusMessages = "Connecting to FitCap...";
 
-                            BluetoothLEHardwareInterface.ConnectToPeripheral(_deviceAddress, null, null, (address, serviceUUID, characteristicUUID) =>
+                            BluetoothLEHardwareInterface.ConnectToPeripheral(Devices[0]._deviceAddress, null, null, (address, serviceUUID, characteristicUUID) =>
                             {
                                 FitCapStatusMessages = "Connected to FitCap..." + address;
 
@@ -464,8 +453,8 @@ string FitCapStatusMessagesLeftArm
 
                                     if (AllCharacteristicsFound)
                                     {
-                                        _connected = true;
-                                        SetState(States.ConfigureAccelerometer, 0.5f);
+                                        Devices[0]._connected = true;
+                                        SetState(States.ConfigureAccelerometer, 3f);
 
                                         FitCapStatusMessages = "I am here 2";
                                     }
@@ -482,7 +471,7 @@ string FitCapStatusMessagesLeftArm
                     case States.ConfigureAccelerometer:
                         {
                             FitCapStatusMessages = "Configuring FitCap Accelerometer...";
-                            BluetoothLEHardwareInterface.WriteCharacteristic(_deviceAddress, ConfigureIMU.ServiceUUID, ConfigureIMU.CharacteristicUUID, ConfigureIMU_Bytes, ConfigureIMU_Bytes.Length, true, (address) =>
+                            BluetoothLEHardwareInterface.WriteCharacteristic(Devices[0]._deviceAddress, ConfigureIMU.ServiceUUID, ConfigureIMU.CharacteristicUUID, ConfigureIMU_Bytes, ConfigureIMU_Bytes.Length, true, (address) =>
                             {
                                 FitCapStatusMessages = "Configured FitCap Accelerometer";
                                 SetState(States.SubscribeToAccelerometer, 2f);
@@ -493,7 +482,7 @@ string FitCapStatusMessagesLeftArm
                         //  case States.ReadBattery:
                         // {
                         //     BatteryLevelText.text = "Battery: Read";
-                        //     BluetoothLEHardwareInterface.ReadCharacteristic(_deviceAddress, Battery.ServiceUUID, Battery.CharacteristicUUID, OnReadBattery);
+                        //     BluetoothLEHardwareInterface.ReadCharacteristic(Devices[0]._deviceAddress, Battery.ServiceUUID, Battery.CharacteristicUUID, OnReadBattery);
                         //     SetState(States.SubscribeToAccelerometer, 2f);
                         // }
                         break;
@@ -503,7 +492,7 @@ string FitCapStatusMessagesLeftArm
                             SetState(States.SubscribingToAccelerometerTimeout, 10f);
                             FitCapStatusMessages = "Subscribing to FitCap Accelerometer...";
 
-                            BluetoothLEHardwareInterface.SubscribeCharacteristicWithDeviceAddress(_deviceAddress, SubscribeAccelerometer.ServiceUUID, SubscribeAccelerometer.CharacteristicUUID, delegate { }, OnCharacteristicNotification);
+                            BluetoothLEHardwareInterface.SubscribeCharacteristicWithDeviceAddress(Devices[0]._deviceAddress, SubscribeAccelerometer.ServiceUUID, SubscribeAccelerometer.CharacteristicUUID, delegate { }, OnCharacteristicNotification);
                             FitCapStatusMessages = "Subscribed to FitCap Accelerometer...";
 
                             TextMeshProUGUI txt = StartStopButton.GetComponentInChildren<TextMeshProUGUI>();
@@ -517,126 +506,13 @@ string FitCapStatusMessagesLeftArm
                             SetState(States.Disconnect, 0.5f);
                         }
                         break;
-                   
-               //     case States.Scan2:
-               //       {
-                //            FitCapStatusMessagesLeftArm = "Scanning for: " + DeviceName;
-                //            BluetoothLEHardwareInterface.ScanForPeripheralsWithServices(null, (address, deviceName) =>
-                       //     {
-//
-                 //               FitCapStatusMessages = "Scanning Found: " + deviceName;
 
-<<<<<<< HEAD
-                    case States.Disconnecting:
-                        {                        // if we got here we timed out disconnecting, so just go to disconnected state
-                            Reset();
-                            SetState(States.Scan, 1f);
-                        }
-                        break;
-                        }          
-                    }
-
-
-
-    
-        
-    void Update()
-    {
-        if (connectdisconnectleftarm == true)
-        
-            _timeout -= Time.deltaTime;
-            //BatteryLevelText.text = "time: " + _timeout.ToString()
-
-    }
-         switch (_state)
-                {
-                    case States.None:
-                        {
-                            break;
-                        }
-
-                    case States.Scan:
-                        {
-                            FitCapStatusMessagesLeftArm = "Scanning for: " + DeviceName;
-                            BluetoothLEHardwareInterface.ScanForPeripheralsWithServices(null, (address, deviceName) =>
-                            {
-
-                                FitCapStatusMessagesLeftArm = "Scanning Found: " + deviceName;
-
-                                if (deviceName.Contains(DeviceName))
-                                {
-                                    FitCapStatusMessagesLeftArm = "Found a FitCap: " + address;
-
-                                    if (connectdisconnect == true)
-                                    {
-                                        BluetoothLEHardwareInterface.StopScan();
-
-                                        TopPanel.SetActive(true);
-=======
-                  //              if (deviceName.Contains(DeviceName))
-                //                {
-                   //                 FitCapStatusMessagesLeftArm = "Found a FitCap: " + address;
-//
-                   //                 if (connectdisconnectleftarm == true)
-                    //                {
-                    //                    BluetoothLEHardwareInterface.StopScan();
-
-                    //                    TopPanel.SetActive(true);
->>>>>>> parent of d2da91a5 (Tried setting the new scan state after subscribe. Dealing with problems)
-
-                                        // found a device with the name we want
-                                        // this example does not deal with finding more than one
-                    //                    _deviceAddress = address;
-                    //                    SetState(States.Connect2, 0.5f);
-                    //                }
-                    //                else
-                    //                {
-                     //                   SetState(States.Scan, 0.5f);
-                     //               }
-                     //           }
-                     //       }, null, true);
-                     //   }
-                      //  break;
-                       
-                //    case States.Connect2:
-                //        {
-                 //           FitCapStatusMessagesLeftArm = "Connecting to FitCap...";
-//
-                 //           BluetoothLEHardwareInterface.ConnectToPeripheral(_deviceAddress, null, null, (address, serviceUUID, characteristicUUID) =>
-                 //           {
-                 //               FitCapStatusMessagesLeftArm = "Connected to FitCap..." + address;
-
-                  //              var characteristic = GetCharacteristic(serviceUUID, characteristicUUID);
-                 //               if (characteristic != null)
-                 //               {
-                  //                  BluetoothLEHardwareInterface.Log(string.Format("Found {0}, {1}", serviceUUID, characteristicUUID));
-                  //                  FitCapStatusMessagesLeftArm = "I am here 1";
-//
-                   //                 characteristic.Found = true;
-
-                    //                if (AllCharacteristicsFound)
-                    //                {
-                     //                   _connected = true;
-                    //                    SetState(States.ConfigureAccelerometer2, 0.5f);
-
-                      //                  FitCapStatusMessages = "I am here 2";
-                      //              }
-                      //          }
-                      //      }, (disconnectAddress) =>
-                      //      {
-                        //        FitCapStatusMessages = "Disconnected from FitCap";
-                      //          Reset();
-                      //          SetState(States.Scan, 1f);
-                      //      });
-                    //    }
-                     //   break;
-                
                     case States.Disconnect:
                         {
                             SetState(States.Disconnecting, 5f);
-                            if (_connected)
+                            if (Devices[0]._connected)
                             {
-                                BluetoothLEHardwareInterface.DisconnectPeripheral(_deviceAddress, (address) =>
+                                BluetoothLEHardwareInterface.DisconnectPeripheral(Devices[0]._deviceAddress, (address) =>
                                 {
                                     // since we have a callback for disconnect in the connect method above, we don't
                                     // need to process the callback here.
@@ -656,10 +532,6 @@ string FitCapStatusMessagesLeftArm
                             SetState(States.Scan, 1f);
                         }
                         break;
-
-                        {
-                            
-                        }
                 }
             }
         }
@@ -670,5 +542,3 @@ string FitCapStatusMessagesLeftArm
         return (uuid1.ToUpper().CompareTo(uuid2.ToUpper()) == 0);
     }
 }
-
-
