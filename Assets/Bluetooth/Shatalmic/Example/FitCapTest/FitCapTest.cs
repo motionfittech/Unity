@@ -100,15 +100,20 @@ public class FitCapTest : MonoBehaviour
 
 	public struct BLE_Device_Info
 	{
-		public BLE_Device_Info()
+		public BLE_Device_Info(bool connected = false, 
+                               float timeout = 0f, 
+                               States state = States.None, 			
+                               string deviceAddress = "",
+                               bool DisplayData = false,
+                               bool connectdisconnect = false)
 		{
-			_connected = false;
-			_timeout = 0f;
-			_state = States.None;
-			_deviceAddress;
+			_connected = connected;
+			_timeout = timeout;
+			_state = state;
+			_deviceAddress = deviceAddress;
 
-			_DisplayData = false;
-			_connectdisconnect = false;
+			_DisplayData = DisplayData;
+			_connectdisconnect = connectdisconnect;
 		}
 		
 		public bool _connected;
@@ -120,9 +125,9 @@ public class FitCapTest : MonoBehaviour
 		public bool _connectdisconnect;
 	}
 	
-	BLE_Device_Info Devices(10); // allow up to 10 fitcaps
+	BLE_Device_Info[] Devices = new BLE_Device_Info[10]; // allow up to 10 fitcaps
 	
-    
+	
     // path of the file
     static public string path = "";
 
