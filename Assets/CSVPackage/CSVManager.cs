@@ -77,7 +77,7 @@ public class CSVManager : MonoBehaviour
 	public void NewreadData(string rawDataPath, bool _isSaving)
 	{
 
-
+		print("called data...");
 		if (rawDataPath.Length == 0)
 			return;
 
@@ -96,8 +96,10 @@ public class CSVManager : MonoBehaviour
 	{
 		string[] records = rawDataPath.text.Split(lineSeperater);
 
-		if (records.Length == 0)
-			return;
+        if (records.Length == 0)
+            return;
+
+		print("not null..");
 		calculateAllData(records);
 	}
 	
@@ -141,52 +143,52 @@ public class CSVManager : MonoBehaviour
 
 		}
 
-	//	for (int i = 0; i < AccelerationPointSx.Count; i++)
-	//	{
-	//		//Velocity Equation // i is time here
-	//		float VelocityPointCalculation = VIx+(i/10)* AccelerationPointSx[i];
-	//		VIx = VelocityPointCalculation;
+		//	for (int i = 0; i < AccelerationPointSx.Count; i++)
+		//	{
+		//		//Velocity Equation // i is time here
+		//		float VelocityPointCalculation = VIx+(i/10)* AccelerationPointSx[i];
+		//		VIx = VelocityPointCalculation;
 
-	//		totalVelocityX += VelocityPointCalculation;
-	//		VelocityPointSx.Add(VelocityPointCalculation);
+		//		totalVelocityX += VelocityPointCalculation;
+		//		VelocityPointSx.Add(VelocityPointCalculation);
 
 
-	//	}
+		//	}
 		//Y
-	//	for (int i = 0; i < AccelerationPointSy.Count; i++)
-	//	{
-			//Velocity Equation
-	//		float VelocityPointCalculation = VIy + (i / 10) * AccelerationPointSy[i];
-	//		VIy = VelocityPointCalculation;
+		//	for (int i = 0; i < AccelerationPointSy.Count; i++)
+		//	{
+		//Velocity Equation
+		//		float VelocityPointCalculation = VIy + (i / 10) * AccelerationPointSy[i];
+		//		VIy = VelocityPointCalculation;
 
-	//		totalVelocityY += VelocityPointCalculation;
-	//		VelocityPointSy.Add(VelocityPointCalculation);
+		//		totalVelocityY += VelocityPointCalculation;
+		//		VelocityPointSy.Add(VelocityPointCalculation);
 
 
-	//	}
+		//	}
 		//Z
-	//	for (int i = 0; i < AccelerationPointSz.Count; i++)
-	//	{
-			//Velocity Equation
-	//		float VelocityPointCalculation = VIz + (i / 10) * AccelerationPointSz[i];
-	//		VIz = VelocityPointCalculation;
+		//	for (int i = 0; i < AccelerationPointSz.Count; i++)
+		//	{
+		//Velocity Equation
+		//		float VelocityPointCalculation = VIz + (i / 10) * AccelerationPointSz[i];
+		//		VIz = VelocityPointCalculation;
 
-	//		totalVelocityZ += VelocityPointCalculation;
-	//		VelocityPointSz.Add(VelocityPointCalculation);
+		//		totalVelocityZ += VelocityPointCalculation;
+		//		VelocityPointSz.Add(VelocityPointCalculation);
 
 
-	//	}
+		//	}
 		// Sum of Velocity
-	//	float sum = (totalVelocityX + totalVelocityY + totalVelocityZ)/2;
-	//	SumofVelocity.Add(sum);
-	//	print("Sum of Velocity " + sum);
+		//	float sum = (totalVelocityX + totalVelocityY + totalVelocityZ)/2;
+		//	SumofVelocity.Add(sum);
+		//	print("Sum of Velocity " + sum);
 
-	//	for (int i = 0; i < VelocityPointSx.Count; i++)
-	//	{
-	//		float ParcantageCalculation = VelocityPointSx[i] / sum;
-	//		TotalPerX += ParcantageCalculation;
+		//	for (int i = 0; i < VelocityPointSx.Count; i++)
+		//	{
+		//		float ParcantageCalculation = VelocityPointSx[i] / sum;
+		//		TotalPerX += ParcantageCalculation;
 
-	//	}
+		//	}
 
 		//for (int i = 0; i < VelocityPointSy.Count; i++)
 		//{
@@ -195,37 +197,38 @@ public class CSVManager : MonoBehaviour
 
 		//}
 
-	///	for (int i = 0; i < VelocityPointSz.Count; i++)
-	///	{
-	//		float ParcantageCalculation = VelocityPointSz[i] / sum;
-	//		TotalPerZ += ParcantageCalculation;
+		///	for (int i = 0; i < VelocityPointSz.Count; i++)
+		///	{
+		//		float ParcantageCalculation = VelocityPointSz[i] / sum;
+		//		TotalPerZ += ParcantageCalculation;
 
-	//	}
+		//	}
 
 
-//
-	//	print("Percantage of X = " + TotalPerX * 100 + "%");
-	//	print("Percantage of Y = " + TotalPerY * 100 + "%");
-	//	print("Percantage of Z = " + TotalPerZ * 100 + "%");
-//
-	//	TotalDeviationX = (TotalPerX * 100) - ParameterX;
-	//	TotalDeviationY = (TotalPerY * 100) - ParameterY;
-	//	TotalDeviationZ = (TotalPerZ * 100) - Parameterz;
-	//	float TotalSumDeviation = TotalDeviationX + TotalDeviationY + TotalDeviationZ;
-	//	print("Total Deviation on X " + TotalDeviationX + "%");
-	//	print("Total Deviation on Y " + TotalDeviationY + "%");
-	//	print("Total Deviation on Z " + TotalDeviationZ + "%");
-	//	print("Total Sum of Deviation " + TotalSumDeviation + "%");
-	//	float Exerciseform = 100 - TotalSumDeviation;
-	//	print("Exercise Form " + Exerciseform + "%");
-	//	exerciseform.text = Exerciseform.ToString() + "%";
-	//	for (int c = 0; c < SumofVelocity.Count; c++)
-	//	{
-	//		LocalDatabase.instance.saveVelocityData(SumofVelocity[c]);
-	//		speeds.Add(SumofVelocity[c]);
-	//	}
+		//
+		//	print("Percantage of X = " + TotalPerX * 100 + "%");
+		//	print("Percantage of Y = " + TotalPerY * 100 + "%");
+		//	print("Percantage of Z = " + TotalPerZ * 100 + "%");
+		//
+		//	TotalDeviationX = (TotalPerX * 100) - ParameterX;
+		//	TotalDeviationY = (TotalPerY * 100) - ParameterY;
+		//	TotalDeviationZ = (TotalPerZ * 100) - Parameterz;
+		//	float TotalSumDeviation = TotalDeviationX + TotalDeviationY + TotalDeviationZ;
+		//	print("Total Deviation on X " + TotalDeviationX + "%");
+		//	print("Total Deviation on Y " + TotalDeviationY + "%");
+		//	print("Total Deviation on Z " + TotalDeviationZ + "%");
+		//	print("Total Sum of Deviation " + TotalSumDeviation + "%");
+		//	float Exerciseform = 100 - TotalSumDeviation;
+		//	print("Exercise Form " + Exerciseform + "%");
+		//	exerciseform.text = Exerciseform.ToString() + "%";
+		//	for (int c = 0; c < SumofVelocity.Count; c++)
+		//	{
+		//		LocalDatabase.instance.saveVelocityData(SumofVelocity[c]);
+		//		speeds.Add(SumofVelocity[c]);
+		//	}
 
 		//ED.callafter(speeds, true);
+		print("Uploadingdata");
 		StartCoroutine(uploaddata());       //}
 
 	}
